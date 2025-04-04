@@ -81,6 +81,237 @@ html {
   scroll-behavior: smooth;
   font-family: "Poppis", sans-serif;
 }
+html body header {
+  width: 100%;
+  position: fixed;
+  z-index: 9999999;
+}
+html body header .abrirMenu,
+html body header .fecharMenu {
+  display: none;
+}
+html body header .one {
+  width: 100dvw;
+  height: 5dvh;
+  background: #371406;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1500px;
+}
+html body header .one .info01 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+html body header .one .info01 a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+html body header .one .info01 a svg {
+  width: 18px;
+  height: 18px;
+  transition: 0.5s;
+}
+html body header .one .info01 a svg:hover {
+  transform: scale(1.08);
+}
+html body header .one .info01 h2 {
+  font-size: 16px;
+  color: var(--fifth-color-cinza);
+  font-family: var(--primary-font);
+  font-weight: bold;
+  margin-left: 10px;
+}
+html body header .one .info01 hr {
+  width: 1px;
+  height: 20px;
+  border: none;
+  border-radius: 10px;
+  background: white;
+  margin: 0px 15px 0px 15px;
+}
+html body header .one .info02 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+html body header .one .info02 a svg {
+  width: 25px;
+  height: 25px;
+  transition: 0.5s;
+}
+html body header .one .info02 a svg:hover {
+  transform: scale(1.08);
+}
+html body header .site {
+  width: 100dvw;
+  height: 10dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  gap: 600px;
+}
+html body header .site .logoHeader a img {
+  width: 70px;
+  height: 70px;
+  transition: 0.3s;
+}
+html body header .site .logoHeader a img:hover {
+  transform: scale(1.08);
+}
+html body header .site nav ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+html body header .site nav ul li {
+  font-family: "Poppis", sans-serif;
+  transition: 0.5s;
+}
+html body header .site nav ul li a {
+  color: #371406;
+  font-weight: bold;
+  font-size: 20px;
+  transition: 0.5s;
+  text-decoration: none;
+}
+html body header .site nav ul li a:hover {
+  color: #181818;
+}
+html body header .site nav ul li a.ativo {
+  color: #181818;
+}
+html body header .site nav ul li a::after {
+  content: "";
+  display: block;
+  margin-top: 5px;
+  width: 0;
+  height: 2px;
+  border-radius: 100px;
+  opacity: 1;
+  transition: all 0.5s;
+  background-color: #946926;
+}
+html body header .site nav ul li a.ativo::after {
+  width: 70%;
+  color: #946926;
+}
+html body header .site nav ul li a:hover::after {
+  width: 100%;
+}
+html body header .site nav li:hover {
+  transform: scale(1.1);
+}
+html body header .site .icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+html body header .site .icons svg {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #371406;
+  padding: 5px;
+  border-radius: 25px;
+  margin-right: 20px;
+  transition: 0.5s;
+}
+html body header .site .icons svg:hover {
+  transform: scale(1.08);
+}
+html body header.scroll .one {
+  display: none;
+}
+html body header.scroll .site {
+  width: 100dvw;
+  height: 10dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  gap: 600px;
+}
+html body header.scroll .site .logoHeader a img {
+  width: 70px;
+  height: 70px;
+  transition: 0.3s;
+}
+html body header.scroll .site .logoHeader a img:hover {
+  transform: scale(1.08);
+}
+html body header.scroll .site nav ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+html body header.scroll .site nav ul li {
+  font-family: "Poppis", sans-serif;
+  transition: 0.5s;
+}
+html body header.scroll .site nav ul li a {
+  color: #371406;
+  font-weight: bold;
+  font-size: 20px;
+  transition: 0.5s;
+  text-decoration: none;
+}
+html body header.scroll .site nav ul li a:hover {
+  color: #181818;
+}
+html body header.scroll .site nav ul li a.ativo {
+  color: #181818;
+}
+html body header.scroll .site nav ul li a::after {
+  content: "";
+  display: block;
+  margin-top: 5px;
+  width: 0;
+  height: 2px;
+  border-radius: 100px;
+  opacity: 1;
+  transition: all 0.5s;
+  background-color: #946926;
+}
+html body header.scroll .site nav ul li a.ativo::after {
+  width: 70%;
+  color: #946926;
+}
+html body header.scroll .site nav ul li a:hover::after {
+  width: 100%;
+}
+html body header.scroll .site nav li:hover {
+  transform: scale(1.1);
+}
+html body header.scroll .site .icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+html body header.scroll .site .icons svg {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #371406;
+  padding: 5px;
+  border-radius: 25px;
+  margin-right: 20px;
+  transition: 0.5s;
+}
+html body header.scroll .site .icons svg:hover {
+  transform: scale(1.08);
+}
 html body main #home {
   height: 100dvh;
   width: 100%;
@@ -99,6 +330,7 @@ html body main #home .home-container {
   align-items: center;
   justify-content: center;
   justify-content: space-between;
+  margin-top: 5%;
 }
 html body main #home .home-container article {
   width: 55%;

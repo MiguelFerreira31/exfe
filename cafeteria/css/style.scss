@@ -145,7 +145,301 @@ html {
 
     body {
 
-        header{}
+        header {
+            width: 100%;
+            position: fixed;
+            z-index: 9999999;
+
+            .abrirMenu,
+            .fecharMenu {
+                display: none;
+            }
+
+
+            .one {
+                width: 100dvw;
+                height: 5dvh;
+                background: $colorTertiary;
+                @include flex-center();
+                gap: 1500px;
+
+                .info01 {
+                    @include flex-center();
+
+                    a {
+                        @include flex-center();
+
+                        svg {
+                            width: 18px;
+                            height: 18px;
+                            transition: 0.5s;
+                        }
+
+                        svg:hover {
+                            transform: scale(1.08);
+                        }
+
+                    }
+
+
+                    h2 {
+                        font-size: 16px;
+                        color: var(--fifth-color-cinza);
+                        font-family: var(--primary-font);
+                        font-weight: bold;
+                        margin-left: 10px;
+
+                    }
+
+                    hr {
+                        width: 1px;
+                        height: 20px;
+                        border: none;
+                        border-radius: 10px;
+                        background: $colorPrimary;
+                        margin: 0px 15px 0px 15px;
+
+                    }
+                }
+
+                .info02 {
+                    @include flex-center();
+
+                    a {
+
+                        svg {
+                            width: 25px;
+                            height: 25px;
+                            transition: 0.5s;
+                        }
+
+                        svg:hover {
+                            transform: scale(1.08);
+                        }
+                    }   
+                }
+
+
+            }
+
+            .site {
+                width: 100dvw;
+                height: 10dvh;
+                @include flex-center();
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                gap: 600px;
+
+                .logoHeader a {
+
+                    img {
+                        width: 70px;
+                        height: 70px;
+                        transition: .3s;
+                    }
+
+                    img:hover {
+                        transform: scale(1.08);
+                    }
+                }
+
+
+                nav {
+
+                    ul {
+                        @include flex-center();
+                        gap: 40px;
+
+                        li {
+                            font-family: $font;
+                            transition: 0.5s;
+
+
+                            a {
+                                color: $colorTertiary;
+                                font-weight: bold;
+                                font-size: 20px;
+                                transition: 0.5s;
+                                text-decoration: none;
+                            }
+
+                            a:hover {
+                                color: #181818;
+                            }
+
+                            a.ativo {
+                                color: #181818;
+                            }
+
+                            a::after {
+                                content: "";
+                                display: block;
+                                margin-top: 5px;
+                                width: 0;
+                                height: 2px;
+                                border-radius: 100px;
+                                opacity: 1;
+                                transition: all 0.5s;
+                                background-color: $colorSecondary;
+                            }
+
+                            a.ativo::after {
+                                width: 70%;
+                                color: $colorSecondary;
+                            }
+
+                            a:hover::after {
+                                width: 100%;
+                            }
+
+
+                        }
+
+                    }
+
+
+                    li:hover {
+                        transform: scale(1.10);
+                    }
+                }
+
+                .icons{
+                    @include flex-center();
+
+                    
+                    svg {
+                        width: 40px;
+                        height: 40px;
+                        border: 1px solid $colorTertiary;
+                        padding: 5px;
+                        border-radius: 25px;
+                        margin-right: 20px;
+                        transition: 0.5s;
+
+                        &:hover {
+                            transform: scale(1.08);
+                        }
+                    }
+                    
+                }
+                    
+            }
+
+        }
+
+        header.scroll {
+
+            .one {
+                display: none;
+            }
+
+            .site {
+                width: 100dvw;
+                height: 10dvh;
+                @include flex-center();
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+                gap: 600px;
+
+                .logoHeader a {
+
+                    img {
+                        width: 70px;
+                        height: 70px;
+                        transition: .3s;
+                    }
+
+                    img:hover {
+                        transform: scale(1.08);
+                    }
+                }
+
+
+                nav {
+
+                    ul {
+                        @include flex-center();
+                        gap: 40px;
+
+                        li {
+                            font-family: $font;
+                            transition: 0.5s;
+
+
+                            a {
+                                color: $colorTertiary;
+                                font-weight: bold;
+                                font-size: 20px;
+                                transition: 0.5s;
+                                text-decoration: none;
+                            }
+
+                            a:hover {
+                                color: #181818;
+                            }
+
+                            a.ativo {
+                                color: #181818;
+                            }
+
+                            a::after {
+                                content: "";
+                                display: block;
+                                margin-top: 5px;
+                                width: 0;
+                                height: 2px;
+                                border-radius: 100px;
+                                opacity: 1;
+                                transition: all 0.5s;
+                                background-color: $colorSecondary;
+                            }
+
+                            a.ativo::after {
+                                width: 70%;
+                                color: $colorSecondary;
+                            }
+
+                            a:hover::after {
+                                width: 100%;
+                            }
+
+
+                        }
+
+                    }
+
+
+                    li:hover {
+                        transform: scale(1.10);
+                    }
+                }
+
+                .icons{
+                    @include flex-center();
+
+                    
+                    svg {
+                        width: 40px;
+                        height: 40px;
+                        border: 1px solid $colorTertiary;
+                        padding: 5px;
+                        border-radius: 25px;
+                        margin-right: 20px;
+                        transition: 0.5s;
+
+                        &:hover {
+                            transform: scale(1.08);
+                        }
+                    }
+                    
+                }
+                    
+            }
+        }
 
         main {
 
@@ -163,6 +457,7 @@ html {
                     height: 100%;
                     @include flex-center();
                     justify-content: space-between;
+                    margin-top: 5%;
 
 
                     article {
@@ -173,7 +468,7 @@ html {
                         align-items: flex-start !important;
                         margin-left: 4%;
 
-                        img{
+                        img {
                             margin-left: 10%;
                         }
 
