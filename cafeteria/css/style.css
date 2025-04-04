@@ -350,7 +350,7 @@ html body main #home .home-container article h2 {
   font-size: 8em;
   letter-spacing: -7px;
   font-weight: 800;
-  background: linear-gradient(90deg, #9E675F -9.62%, #371406 101.5%);
+  background: linear-gradient(90deg, #9e675f -9.62%, #371406 101.5%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -515,7 +515,7 @@ html body main #home .home-container figure {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(to left, #F2E0DB 1.57%, #FFF 128.95%);
+  background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
   border-radius: 120px 0px 0px 120px;
 }
 html body main #home .home-container figure img {
@@ -681,5 +681,760 @@ html body main #home-title .home-container .avaliacao-coffe .avaliacoes-perfil {
   justify-content: center;
   padding: 1%;
   border-radius: 60px;
-  background: linear-gradient(to left, #F2E0DB 1.57%, #FFF 128.95%);
+  background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
+}
+html body main #sobre {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 5%;
+}
+html body main #sobre .sobreLeft {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+html body main #sobre .sobreLeft h2 {
+  font-weight: bold;
+  color: #371406;
+}
+html body main #sobre .sobreLeft p {
+  font-size: 1.5em;
+  color: #b3b3b3;
+}
+html body main #sobre .sobreLeft img {
+  width: 600px;
+  height: 700px;
+  border-radius: 10%;
+}
+html body main #sobre .sobreRight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+html body main #sobre .sobreRight img {
+  width: 600px;
+  height: 700px;
+  border-radius: 10%;
+}
+html body main #sobre .sobreRight h3 {
+  font-weight: bold;
+  color: #946926;
+}
+html body main #sobre .sobreRight p {
+  font-size: 1.5em;
+  color: #b3b3b3;
+}
+html body main #sobre .sobrePosition {
+  position: absolute;
+}
+html body main #sobre .sobrePosition .imgOne {
+  position: absolute;
+  top: 300px;
+  left: -710px;
+}
+html body main #sobre .sobrePosition .imgTwo {
+  position: absolute;
+  top: -520px;
+  left: -60px;
+}
+html body main #produtosEmDestaque {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 5%;
+}
+html body main #produtosEmDestaque .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 3%;
+}
+html body main #produtosEmDestaque .title h2 {
+  font-weight: 900;
+  color: #371406;
+  width: 35%;
+}
+html body main #produtosEmDestaque .title h2 span {
+  color: #946926;
+}
+html body main #produtosEmDestaque .title img {
+  width: 280px;
+  height: 80px;
+  background-color: #946926;
+}
+html body main #produtosEmDestaque .title p {
+  color: #b3b3b3;
+  font-size: 1.5em;
+  width: 700px;
+}
+html body main #produtosEmDestaque .produtosCont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+}
+html body main #produtosEmDestaque .produtosCont .produtosItems {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+html body main #produtosEmDestaque .produtosCont .produtosItems .produtosContItems {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+  width: 450px;
+  height: 160px;
+  border-radius: 25px;
+  border: 1px solid #b3b3b3;
+  padding: 1.5%;
+}
+html body main #produtosEmDestaque .produtosCont .produtosItems .produtosContItems .info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+html body main #produtosEmDestaque .produtosCont .produtosItems .produtosContItems .info h3 {
+  color: #371406;
+  font-size: 1.5em;
+  font-weight: 900;
+}
+html body main #produtosEmDestaque .produtosCont .produtosItems .produtosContItems .info p {
+  color: #b3b3b3;
+  font-size: 1.3em;
+}
+html body main #produtosEmDestaque .produtosCont .produtosItems .produtosContItems .info h4 {
+  font-weight: 900;
+  color: #946926;
+}
+html body main #produtosEmDestaque .produtosCont .produtosItems .produtosContItems .info h4 span {
+  color: #b3b3b3;
+  text-decoration: line-through;
+}
+html body main #produtosEmDestaque .produtosCont .produtosPosition {
+  position: absolute;
+}
+html body main #produtosEmDestaque .produtosCont .produtosPosition img {
+  position: absolute;
+  top: 200px;
+  left: 780px;
+  animation-name: floating;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+@keyframes floating {
+  0% {
+    transform: translate(0, 0px);
+  }
+  50% {
+    transform: translate(0, 10px);
+  }
+  100% {
+    transform: translate(0, 0px);
+  }
+}
+html body main #graos {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1400px !important;
+  height: 400px;
+  justify-content: space-around;
+  margin-top: 7%;
+  background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
+  border-radius: 50px;
+}
+html body main #graos .graosTitle h3 {
+  font-weight: 900;
+  color: #371406;
+  width: 600px;
+  letter-spacing: -2.5px;
+}
+html body main #graos .graosTitle h3 span {
+  color: #946926;
+}
+html body main #graos .graosTitle .buttons-home {
+  width: 50%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: flex-start !important;
+  margin-top: 2%;
+}
+html body main #graos .graosTitle .buttons-home button {
+  position: relative;
+  padding: 12px 35px;
+  background: #371406;
+  font-size: 17px;
+  font-weight: 900;
+  color: white;
+  border: 3px solid #371406;
+  border-radius: 10px;
+  box-shadow: 0 0 0 rgba(116, 48, 0, 0.5490196078);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+html body main #graos .graosTitle .buttons-home .star-1 {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: 25px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
+}
+html body main #graos .graosTitle .buttons-home .star-2 {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+}
+html body main #graos .graosTitle .buttons-home .star-3 {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+}
+html body main #graos .graosTitle .buttons-home .star-4 {
+  position: absolute;
+  top: 20%;
+  left: 40%;
+  width: 8px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
+}
+html body main #graos .graosTitle .buttons-home .star-5 {
+  position: absolute;
+  top: 25%;
+  left: 45%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 0.6s cubic-bezier(0, 0.4, 0, 1.01);
+}
+html body main #graos .graosTitle .buttons-home .star-6 {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 0.8s ease;
+}
+html body main #graos .graosTitle .buttons-home button:hover {
+  background: transparent;
+  color: #371406;
+  box-shadow: 0 0 25px rgba(121, 50, 0, 0.5490196078);
+}
+html body main #graos .graosTitle .buttons-home button:hover .star-1 {
+  position: absolute;
+  top: -80%;
+  left: -30%;
+  width: 25px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #graos .graosTitle .buttons-home button:hover .star-2 {
+  position: absolute;
+  top: -25%;
+  left: 10%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #graos .graosTitle .buttons-home button:hover .star-3 {
+  position: absolute;
+  top: 55%;
+  left: 25%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #graos .graosTitle .buttons-home button:hover .star-4 {
+  position: absolute;
+  top: 30%;
+  left: 80%;
+  width: 8px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #graos .graosTitle .buttons-home button:hover .star-5 {
+  position: absolute;
+  top: 25%;
+  left: 115%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #graos .graosTitle .buttons-home button:hover .star-6 {
+  position: absolute;
+  top: 5%;
+  left: 60%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #graos .graosTitle .buttons-home .fil0 {
+  fill: #371406;
+}
+html body main #graos .seta {
+  position: absolute;
+  top: 3100px;
+  left: 850px;
+  z-index: 999;
+  animation-name: floating;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+@keyframes floating {
+  0% {
+    transform: translate(0, 0px);
+  }
+  50% {
+    transform: translate(0, 10px);
+  }
+  100% {
+    transform: translate(0, 0px);
+  }
+}
+html body main #graos .grao {
+  width: 460px;
+  height: auto;
+}
+html body main #itemsEspecial {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 5%;
+  gap: 50px;
+}
+html body main #itemsEspecial .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+html body main #itemsEspecial .title h2 {
+  color: #371406;
+  font-weight: 900;
+}
+html body main #itemsEspecial .title h2 span {
+  color: #946926;
+}
+html body main #itemsEspecial .title p {
+  text-align: center;
+  font-size: 1.3em;
+  width: 860px;
+  color: #b3b3b3;
+}
+html body main #itemsEspecial .carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+html body main #itemsEspecial .carousel .carouselItems {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+html body main #itemsEspecial .carousel .carouselItems .img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 350px;
+  height: 370px;
+  background: linear-gradient(to top, #f2e0db 1.57%, #fff 128.95%);
+  border-radius: 25px;
+}
+html body main #itemsEspecial .carousel .carouselItems ul {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+html body main #itemsEspecial .carousel .carouselItems ul li .star {
+  animation: blink 1.5s infinite;
+  font-size: 1.6em;
+  color: goldenrod;
+}
+@keyframes blink {
+  0%, 100% {
+    color: rgb(185, 140, 25);
+  }
+  50% {
+    color: gold;
+  }
+}
+html body main #itemsEspecial .carousel .carouselItems ul li .star:nth-child(2) {
+  animation-delay: 0.9s;
+}
+html body main #itemsEspecial .carousel .carouselItems ul li .star:nth-child(3) {
+  animation-delay: 1.2s;
+}
+html body main #itemsEspecial .carousel .carouselItems ul li .star:nth-child(4) {
+  animation-delay: 1.5s;
+}
+html body main #itemsEspecial .carousel .carouselItems ul li .star:nth-child(5) {
+  animation-delay: 1.8s;
+}
+html body main #itemsEspecial .carousel .carouselItems h3 {
+  font-weight: 900;
+  font-size: 2em;
+}
+html body main #itemsEspecial .carousel .carouselItems h4 {
+  font-weight: 900;
+  color: #000000;
+}
+html body main #itemsEspecial .carousel .carouselItems h4 span {
+  color: #b3b3b3;
+  text-decoration: line-through;
+}
+html body main #itemsEspecial .carousel .carouselItems .buttons-home {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2%;
+}
+html body main #itemsEspecial .carousel .carouselItems .buttons-home button {
+  position: relative;
+  padding: 12px 35px;
+  background: #371406;
+  font-size: 17px;
+  font-weight: 900;
+  color: white;
+  border: 3px solid #371406;
+  border-radius: 8px;
+  box-shadow: 0 0 0 rgba(116, 48, 0, 0.5490196078);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+html body main #itemsEspecial .carousel .carouselItems .buttons-home button svg {
+  width: 25px;
+  height: auto;
+}
+html body main #itemsEspecial .carousel .carouselItems .buttons-home .star-1 {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: 25px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
+}
+html body main #itemsEspecial .carousel .carouselItems .buttons-home .star-2 {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+}
+html body main #itemsEspecial .carousel .carouselItems .buttons-home .star-3 {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+}
+html body main #itemsEspecial .carousel .carouselItems .buttons-home .star-4 {
+  position: absolute;
+  top: 20%;
+  left: 40%;
+  width: 8px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
+}
+html body main #itemsEspecial .carousel .carouselItems .buttons-home .star-5 {
+  position: absolute;
+  top: 25%;
+  left: 45%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 0.6s cubic-bezier(0, 0.4, 0, 1.01);
+}
+html body main #itemsEspecial .carousel .carouselItems .buttons-home .star-6 {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 0.8s ease;
+}
+html body main #itemsEspecial .carousel .carouselItems .buttons-home button:hover {
+  background: transparent;
+  color: #371406;
+  box-shadow: 0 0 25px rgba(121, 50, 0, 0.5490196078);
+}
+html body main #itemsEspecial .carousel .carouselItems .buttons-home button:hover .star-1 {
+  position: absolute;
+  top: -80%;
+  left: -30%;
+  width: 25px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #itemsEspecial .carousel .carouselItems .buttons-home button:hover .star-2 {
+  position: absolute;
+  top: -25%;
+  left: 10%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #itemsEspecial .carousel .carouselItems .buttons-home button:hover .star-3 {
+  position: absolute;
+  top: 55%;
+  left: 25%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #itemsEspecial .carousel .carouselItems .buttons-home button:hover .star-4 {
+  position: absolute;
+  top: 30%;
+  left: 80%;
+  width: 8px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #itemsEspecial .carousel .carouselItems .buttons-home button:hover .star-5 {
+  position: absolute;
+  top: 25%;
+  left: 115%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #itemsEspecial .carousel .carouselItems .buttons-home button:hover .star-6 {
+  position: absolute;
+  top: 5%;
+  left: 60%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #itemsEspecial .carousel .carouselItems .buttons-home .fil0 {
+  fill: #371406;
+}
+html body main #itemsEspecial .itemsEspecialPosition {
+  position: absolute;
+}
+html body main #itemsEspecial .itemsEspecialPosition .grao {
+  position: absolute;
+  top: -320px;
+  left: -800px;
+  animation-name: floating;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+@keyframes floating {
+  0% {
+    transform: translate(0, 0px);
+  }
+  50% {
+    transform: translate(0, 10px);
+  }
+  100% {
+    transform: translate(0, 0px);
+  }
+}
+html body main #itemsEspecial .itemsEspecialPosition .cup {
+  position: absolute;
+  top: 420px;
+  left: 780px;
+  animation-name: floating;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+@keyframes floating {
+  0% {
+    transform: translate(0, 0px);
+  }
+  50% {
+    transform: translate(0, 10px);
+  }
+  100% {
+    transform: translate(0, 0px);
+  }
+}
+html body main #avaliacao {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  max-width: 100dvw !important;
+  margin-top: 5%;
+  gap: 50px;
+}
+html body main #avaliacao .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+html body main #avaliacao .title h2 {
+  color: #371406;
+  font-weight: 900;
+}
+html body main #avaliacao .title h2 span {
+  color: #946926;
+}
+html body main #avaliacao .title p {
+  text-align: center;
+  font-size: 1.3em;
+  width: 860px;
+  color: #b3b3b3;
+}
+html body main #avaliacao .carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+html body main #avaliacao .carousel .carouselItems {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+html body main #avaliacao .carousel .carouselItems .img {
+  background-image: url(../img/aroma_joe.jpg);
+  background-repeat: no-repeat;
+  width: 430px;
+  height: 440px;
+  border-radius: 35px;
+}
+html body main #avaliacao .carousel .carouselItems .img .imgItems {
+  transform: rotate(350deg);
+  background: pink;
+  padding: 3%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+html body main #avaliacao .carousel .carouselItems .img .imgItems ul {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+html body main #avaliacao .carousel .carouselItems .img .imgItems ul li .star {
+  animation: blink 1.5s infinite;
+  font-size: 1.6em;
+  color: goldenrod;
+}
+@keyframes blink {
+  0%, 100% {
+    color: rgb(185, 140, 25);
+  }
+  50% {
+    color: gold;
+  }
+}
+html body main #avaliacao .carousel .carouselItems .img .imgItems ul li .star:nth-child(2) {
+  animation-delay: 0.9s;
+}
+html body main #avaliacao .carousel .carouselItems .img .imgItems ul li .star:nth-child(3) {
+  animation-delay: 1.2s;
+}
+html body main #avaliacao .carousel .carouselItems .img .imgItems ul li .star:nth-child(4) {
+  animation-delay: 1.5s;
+}
+html body main #avaliacao .carousel .carouselItems .img .imgItems ul li .star:nth-child(5) {
+  animation-delay: 1.8s;
 }/*# sourceMappingURL=style.css.map */
