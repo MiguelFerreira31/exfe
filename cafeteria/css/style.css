@@ -92,8 +92,8 @@ html body header .fecharMenu {
 }
 html body header .one {
   width: 100dvw;
-  height: 5dvh;
-  background: #371406;
+  height: 5.5dvh;
+  background: linear-gradient(90deg, #9e675f -9.62%, #371406 101.5%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -104,33 +104,70 @@ html body header .one .info01 {
   align-items: center;
   justify-content: center;
 }
-html body header .one .info01 a {
+html body header .one .info01 .card {
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  background-color: transparent;
+  flex-direction: row;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 20px;
+  /* for all social containers*/
+  /* instagram*/
+  /* Whatsapp*/
+  /* facebook*/
 }
-html body header .one .info01 a svg {
-  width: 18px;
-  height: 18px;
-  transition: 0.5s;
+html body header .one .info01 .card .socialContainer {
+  width: 35px;
+  height: 35px;
+  background-color: #9e675f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition-duration: 0.3s;
+  border-radius: 30px;
 }
-html body header .one .info01 a svg:hover {
-  transform: scale(1.08);
+html body header .one .info01 .card .containerOne:hover {
+  background-color: #d62976;
+  transition-duration: 0.3s;
+  transform: scale(1.2);
 }
-html body header .one .info01 h2 {
-  font-size: 16px;
-  color: var(--fifth-color-cinza);
-  font-family: var(--primary-font);
-  font-weight: bold;
-  margin-left: 10px;
+html body header .one .info01 .card .containerTwo:hover {
+  background-color: #128c7e;
+  transition-duration: 0.3s;
+  transform: scale(1.2);
 }
-html body header .one .info01 hr {
-  width: 1px;
-  height: 20px;
-  border: none;
-  border-radius: 10px;
-  background: white;
-  margin: 0px 15px 0px 15px;
+html body header .one .info01 .card .containerThree:hover {
+  background-color: #0072b1;
+  transition-duration: 0.3s;
+  transform: scale(1.2);
+}
+html body header .one .info01 .card .socialContainer:active {
+  transform: scale(0.9);
+  transition-duration: 0.3s;
+}
+html body header .one .info01 .card .socialSvg {
+  width: 17px;
+}
+html body header .one .info01 .card .socialSvg path {
+  fill: rgb(255, 255, 255);
+}
+html body header .one .info01 .card .socialContainer:hover .socialSvg {
+  animation: slide-in-top 0.3s both;
+}
+@keyframes slide-in-top {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 html body header .one .info02 {
   display: flex;
@@ -330,7 +367,6 @@ html body main #home .home-container {
   align-items: center;
   justify-content: center;
   justify-content: space-between;
-  margin-top: 5%;
 }
 html body main #home .home-container article {
   width: 55%;
@@ -340,7 +376,7 @@ html body main #home .home-container article {
   justify-content: center;
   flex-direction: column;
   align-items: flex-start !important;
-  margin-left: 4%;
+  margin-left: 6%;
 }
 html body main #home .home-container article img {
   margin-left: 10%;
@@ -435,7 +471,7 @@ html body main #home .home-container article .buttons-home .star-5 {
   height: auto;
   filter: drop-shadow(0 0 0 #371406);
   z-index: -5;
-  transition: all 0.6s cubic-bezier(0, 0.4, 0, 1.01);
+  transition: all 0.4s cubic-bezier(0, 0.4, 0, 1.01);
 }
 html body main #home .home-container article .buttons-home .star-6 {
   position: absolute;
@@ -519,9 +555,9 @@ html body main #home .home-container figure {
   border-radius: 120px 0px 0px 120px;
 }
 html body main #home .home-container figure img {
-  width: 140%;
+  width: 130%;
   height: auto;
-  margin: -10% 0% 0% -45%;
+  margin: -10% 0% 0% -30%;
   transform: scale(2);
   animation-name: floating;
   animation-duration: 10s;
@@ -764,21 +800,21 @@ html body main #produtosEmDestaque .title {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 30px;
   margin-bottom: 3%;
 }
 html body main #produtosEmDestaque .title h2 {
   font-weight: 900;
   color: #371406;
-  width: 35%;
+  width: 36%;
 }
 html body main #produtosEmDestaque .title h2 span {
   color: #946926;
 }
 html body main #produtosEmDestaque .title img {
-  width: 280px;
-  height: 80px;
-  background-color: #946926;
+  width: auto;
+  height: 120px;
+  transform: rotate(-20deg);
 }
 html body main #produtosEmDestaque .title p {
   color: #b3b3b3;
@@ -797,6 +833,9 @@ html body main #produtosEmDestaque .produtosCont .produtosItems {
   align-items: center;
   justify-content: center;
   gap: 20px;
+}
+html body main #produtosEmDestaque .produtosCont .produtosItems a:hover .produtosContItems {
+  background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
 }
 html body main #produtosEmDestaque .produtosCont .produtosItems .produtosContItems {
   display: flex;
@@ -1372,7 +1411,7 @@ html body main #avaliacao .title h2 span {
 html body main #avaliacao .title p {
   text-align: center;
   font-size: 1.3em;
-  width: 860px;
+  width: 830px;
   color: #b3b3b3;
 }
 html body main #avaliacao .carousel {
@@ -1380,31 +1419,48 @@ html body main #avaliacao .carousel {
   align-items: center;
   justify-content: center;
 }
-html body main #avaliacao .carousel .carouselItems {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-html body main #avaliacao .carousel .carouselItems .img {
-  background-image: url(../img/aroma_joe.jpg);
-  background-repeat: no-repeat;
-  width: 430px;
-  height: 440px;
-  border-radius: 35px;
-}
-html body main #avaliacao .carousel .carouselItems .img .imgItems {
-  transform: rotate(350deg);
-  background: pink;
-  padding: 3%;
+html body main #avaliacao .carousel .carouselCont {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
+  height: 570px;
 }
-html body main #avaliacao .carousel .carouselItems .img .imgItems ul {
+html body main #avaliacao .carousel .carouselCont .img {
+  background-image: url(../img/aroma_joe.jpg);
+  background-repeat: no-repeat;
+  width: 430px;
+  height: 425px;
+  border-radius: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: flex-end;
+  margin-bottom: 10%;
+  transition: 0.1s;
+}
+html body main #avaliacao .carousel .carouselCont .img .imgItems {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  width: 400px;
+  height: 410px;
+  transform: rotate(-5deg);
+  background: #000000;
+  padding: 2%;
+  gap: 5px;
+  border-radius: 25px;
+  position: absolute;
+  top: 4750px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
+}
+html body main #avaliacao .carousel .carouselCont .img .imgItems ul {
   width: 100%;
   display: flex;
   align-items: center;
@@ -1413,7 +1469,7 @@ html body main #avaliacao .carousel .carouselItems .img .imgItems ul {
   justify-content: space-evenly;
   align-items: flex-start;
 }
-html body main #avaliacao .carousel .carouselItems .img .imgItems ul li .star {
+html body main #avaliacao .carousel .carouselCont .img .imgItems ul li .star {
   animation: blink 1.5s infinite;
   font-size: 1.6em;
   color: goldenrod;
@@ -1426,15 +1482,720 @@ html body main #avaliacao .carousel .carouselItems .img .imgItems ul li .star {
     color: gold;
   }
 }
-html body main #avaliacao .carousel .carouselItems .img .imgItems ul li .star:nth-child(2) {
+html body main #avaliacao .carousel .carouselCont .img .imgItems ul li .star:nth-child(2) {
   animation-delay: 0.9s;
 }
-html body main #avaliacao .carousel .carouselItems .img .imgItems ul li .star:nth-child(3) {
+html body main #avaliacao .carousel .carouselCont .img .imgItems ul li .star:nth-child(3) {
   animation-delay: 1.2s;
 }
-html body main #avaliacao .carousel .carouselItems .img .imgItems ul li .star:nth-child(4) {
+html body main #avaliacao .carousel .carouselCont .img .imgItems ul li .star:nth-child(4) {
   animation-delay: 1.5s;
 }
-html body main #avaliacao .carousel .carouselItems .img .imgItems ul li .star:nth-child(5) {
+html body main #avaliacao .carousel .carouselCont .img .imgItems ul li .star:nth-child(5) {
   animation-delay: 1.8s;
+}
+html body main #avaliacao .carousel .carouselCont .img .imgItems P {
+  font-size: 1.3em;
+  color: #b3b3b3;
+  margin: 10% 0% 18% 0%;
+}
+html body main #avaliacao .carousel .carouselCont .img .imgItems h3 {
+  font-weight: 900;
+  color: white;
+  font-size: 1.8em;
+}
+html body main #avaliacao .carousel .carouselCont .img .imgItems h4 {
+  color: #b3b3b3;
+  font-size: 1.2em;
+}
+html body main #avaliacao .carousel .carouselCont .img:hover .imgItems {
+  opacity: 1;
+  visibility: visible;
+}
+html body main #avaliacao .carousel .carouselCont .img:hover:hover ~ .carouselItems {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+html body main #avaliacao .carousel .carouselCont .carouselItems {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  opacity: 1;
+  visibility: visible;
+}
+html body main #avaliacao .carousel .carouselCont .carouselItems ul {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+html body main #avaliacao .carousel .carouselCont .carouselItems ul li .star {
+  animation: blink 1.5s infinite;
+  font-size: 1.6em;
+  color: goldenrod;
+}
+@keyframes blink {
+  0%, 100% {
+    color: rgb(185, 140, 25);
+  }
+  50% {
+    color: gold;
+  }
+}
+html body main #avaliacao .carousel .carouselCont .carouselItems ul li .star:nth-child(2) {
+  animation-delay: 0.9s;
+}
+html body main #avaliacao .carousel .carouselCont .carouselItems ul li .star:nth-child(3) {
+  animation-delay: 1.2s;
+}
+html body main #avaliacao .carousel .carouselCont .carouselItems ul li .star:nth-child(4) {
+  animation-delay: 1.5s;
+}
+html body main #avaliacao .carousel .carouselCont .carouselItems ul li .star:nth-child(5) {
+  animation-delay: 1.8s;
+}
+html body main #avaliacao .carousel .carouselCont .carouselItems h3 {
+  font-weight: 900;
+  color: #000000;
+  font-size: 1.8em;
+  margin-bottom: 5%;
+}
+html body main #avaliacao .carousel .carouselCont .carouselItems h4 {
+  color: #b3b3b3;
+  font-size: 1.2em;
+}
+html body main #qualidade {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100dvw !important;
+  background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
+  gap: 70px;
+  margin-top: 5%;
+}
+html body main #qualidade .qualidadeCont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 50px;
+}
+html body main #qualidade .qualidadeCont .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+}
+html body main #qualidade .qualidadeCont .title h2 {
+  font-weight: 900;
+  color: #371406;
+  letter-spacing: -2px;
+}
+html body main #qualidade .qualidadeCont .title h2 span {
+  color: #946926;
+}
+html body main #qualidade .qualidadeCont .title p {
+  color: #b3b3b3;
+  font-size: 1.3em;
+  margin-top: 2%;
+}
+html body main #qualidade .qualidadeCont .qualidadeItems {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+html body main #qualidade .qualidadeCont .qualidadeItems .qualidadeContItems {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+html body main #qualidade .qualidadeCont .qualidadeItems .qualidadeContItems .itemsQualidade {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
+  width: 500px;
+  height: 120px;
+  gap: 20px;
+}
+html body main #qualidade .qualidadeCont .qualidadeItems .qualidadeContItems .itemsQualidade img {
+  width: 70px;
+  height: auto;
+  background: #9e675f;
+  padding: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+html body main #qualidade .qualidadeCont .qualidadeItems .qualidadeContItems .itemsQualidade div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+html body main #qualidade .qualidadeCont .qualidadeItems .qualidadeContItems .itemsQualidade div h4 {
+  font-weight: 900;
+  color: #371406;
+  width: 420px;
+}
+html body main #qualidade .qualidadeCont .qualidadeItems .qualidadeContItems .itemsQualidade div p {
+  color: #b3b3b3;
+  font-size: 1.3em;
+  width: 380px;
+}
+html body main #blog {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 50px;
+  margin-top: 5%;
+}
+html body main #blog .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+html body main #blog .title h2 {
+  font-weight: 900;
+  color: #371406;
+  letter-spacing: -2px;
+}
+html body main #blog .title h2 span {
+  color: #946926;
+}
+html body main #blog .title p {
+  color: #b3b3b3;
+  font-size: 1.3em;
+  margin-top: 2%;
+  text-align: center;
+  width: 800px;
+}
+html body main #blog .blogContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+html body main #blog .blogContainer .blogCont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+  background: linear-gradient(to top, #f2e0db 1.57%, #fff 128.95%);
+  border-radius: 40px;
+  padding: 0.5%;
+}
+html body main #blog .blogContainer .blogCont .img {
+  overflow: hidden;
+  position: relative;
+}
+html body main #blog .blogContainer .blogCont .img img {
+  border-radius: 25px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: transform 0.5s ease;
+}
+html body main #blog .blogContainer .blogCont .blogItems {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
+}
+html body main #blog .blogContainer .blogCont .blogItems .blogItemsCont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+html body main #blog .blogContainer .blogCont .blogItems .blogItemsCont svg {
+  width: 20px;
+  height: auto;
+}
+html body main #blog .blogContainer .blogCont .blogItems .blogItemsCont p {
+  color: #b3b3b3;
+  font-size: 1.3em;
+}
+html body main #blog .blogContainer .blogCont .blogItems .blogItemsCont hr {
+  transform: rotate(90deg);
+  width: 30px;
+  height: 0.5px;
+  border-radius: 0px;
+  opacity: 1;
+  background: #b3b3b3;
+}
+html body main #blog .blogContainer .blogCont .blogItems .blogTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+html body main #blog .blogContainer .blogCont .blogItems .blogTitle h4 {
+  font-weight: 900;
+  color: #000000;
+  width: 400px;
+}
+html body main #blog .blogContainer .blogCont .blogItems .blogTitle p {
+  color: #b3b3b3;
+  font-size: 1.3em;
+  width: 400px;
+}
+html body main #blog .blogContainer .blogCont .blogItems .blogTitle a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1.1em;
+  color: #946926;
+  font-weight: 900;
+}
+html body main #blog .blogContainer .blogCont .blogItems .blogTitle a span {
+  font-size: 1.5em;
+  transition: transform 0.5s ease;
+}
+html body main #blog .blogContainer .blogCont:hover {
+  cursor: pointer;
+}
+html body main #blog .blogContainer .blogCont:hover .img img {
+  transform: scale(1.1);
+}
+html body main #blog .blogContainer .blogCont:hover span {
+  transform: rotate(-25deg);
+}
+html body main #blog .blogPosition {
+  position: absolute;
+}
+html body main #blog .blogPosition .grao {
+  position: absolute;
+  top: -360px;
+  left: -800px;
+  animation-name: floating;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+@keyframes floating {
+  0% {
+    transform: translate(0, 0px);
+  }
+  50% {
+    transform: translate(0, 10px);
+  }
+  100% {
+    transform: translate(0, 0px);
+  }
+}
+html body main #blog .blogPosition .cup {
+  position: absolute;
+  top: 430px;
+  left: 780px;
+  animation-name: floating;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+@keyframes floating {
+  0% {
+    transform: translate(0, 0px);
+  }
+  50% {
+    transform: translate(0, 10px);
+  }
+  100% {
+    transform: translate(0, 0px);
+  }
+}
+html body main #desconto {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1400px !important;
+  gap: 10px;
+  overflow: hidden;
+  height: 450px;
+  gap: 130px;
+  background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
+  border-radius: 70px;
+  margin-top: 5%;
+}
+html body main #desconto img {
+  width: 100%;
+  height: auto;
+}
+html body main #desconto .coffee {
+  margin-left: 18%;
+}
+html body main #desconto .emailCont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 25px;
+  margin-right: -5%;
+}
+html body main #desconto .emailCont .emailTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+html body main #desconto .emailCont .emailTitle h2 {
+  color: #371406;
+  font-weight: 900;
+  width: 810px;
+  letter-spacing: -2px;
+}
+html body main #desconto .emailCont .emailTitle h2 span {
+  color: #946926;
+}
+html body main #desconto .emailCont .emailTitle p {
+  font-size: 1.4em;
+  color: #000000;
+}
+html body main #desconto .emailCont .emailItems {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+html body main #desconto .emailCont .emailItems form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  width: 100%;
+}
+html body main #desconto .emailCont .emailItems form .email {
+  width: 430px;
+  height: 60px;
+  border-radius: 50px;
+  padding: 2.5% 0% 2% 4%;
+  background: #9e675f;
+  border: none;
+  margin: 0%;
+}
+html body main #desconto .emailCont .emailItems form .email::-moz-placeholder {
+  font-family: "Poppis", sans-serif;
+  font-size: 1.5em;
+  color: white;
+  font-weight: 900;
+}
+html body main #desconto .emailCont .emailItems form .email::placeholder {
+  font-family: "Poppis", sans-serif;
+  font-size: 1.5em;
+  color: white;
+  font-weight: 900;
+}
+html body main #desconto .emailCont .emailItems form .buttons-home button {
+  position: relative;
+  padding: 12px 45px;
+  background: #371406;
+  font-size: 1.3em;
+  font-weight: 900;
+  color: white;
+  border: 3px solid #371406;
+  border-radius: 25px;
+  box-shadow: 0 0 0 rgba(116, 48, 0, 0.5490196078);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+html body main #desconto .emailCont .emailItems form .buttons-home .star-1 {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: 25px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
+}
+html body main #desconto .emailCont .emailItems form .buttons-home .star-2 {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+}
+html body main #desconto .emailCont .emailItems form .buttons-home .star-3 {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+}
+html body main #desconto .emailCont .emailItems form .buttons-home .star-4 {
+  position: absolute;
+  top: 20%;
+  left: 40%;
+  width: 8px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
+}
+html body main #desconto .emailCont .emailItems form .buttons-home .star-5 {
+  position: absolute;
+  top: 25%;
+  left: 45%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 0.4s cubic-bezier(0, 0.4, 0, 1.01);
+}
+html body main #desconto .emailCont .emailItems form .buttons-home .star-6 {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 0.8s ease;
+}
+html body main #desconto .emailCont .emailItems form .buttons-home button:hover {
+  background: transparent;
+  color: #371406;
+  box-shadow: 0 0 25px rgba(121, 50, 0, 0.5490196078);
+}
+html body main #desconto .emailCont .emailItems form .buttons-home button:hover .star-1 {
+  position: absolute;
+  top: -80%;
+  left: -30%;
+  width: 25px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #desconto .emailCont .emailItems form .buttons-home button:hover .star-2 {
+  position: absolute;
+  top: -25%;
+  left: 10%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #desconto .emailCont .emailItems form .buttons-home button:hover .star-3 {
+  position: absolute;
+  top: 55%;
+  left: 25%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #desconto .emailCont .emailItems form .buttons-home button:hover .star-4 {
+  position: absolute;
+  top: 30%;
+  left: 80%;
+  width: 8px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #desconto .emailCont .emailItems form .buttons-home button:hover .star-5 {
+  position: absolute;
+  top: 25%;
+  left: 115%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #desconto .emailCont .emailItems form .buttons-home button:hover .star-6 {
+  position: absolute;
+  top: 5%;
+  left: 60%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #desconto .emailCont .emailItems form .buttons-home .fil0 {
+  fill: #371406;
+}
+html body .footer {
+  margin-top: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
+  background: linear-gradient(to top, #f2e0db 1.57%, #fff 128.95%);
+}
+html body .footer .footer-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+html body .footer .footer-container .footer-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+html body .footer .footer-container .footer-logo h3 {
+  font-size: 1.3em;
+  width: 400px;
+  color: #b3b3b3;
+}
+html body .footer .footer-container .footer-logo img {
+  width: 250px;
+  height: 80px;
+  margin-bottom: 20px;
+}
+html body .footer .footer-container .footer-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 70px;
+}
+html body .footer .footer-container .footer-links .footer-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 20px;
+}
+html body .footer .footer-container .footer-links .footer-section h4 {
+  font-size: 1.8em;
+  font-weight: 900;
+  letter-spacing: -1px;
+  color: #371406;
+}
+html body .footer .footer-container .footer-links .footer-section a {
+  color: #b3b3b3;
+  text-decoration: none;
+  font-size: 1.3em;
+}
+html body .footer .footer-container .footer-links .footer-section a span {
+  color: #371406;
+}
+html body .footer .footer-container .footer-links .footer-section a:hover {
+  color: #371406;
+}
+html body .footer .footer-container .footer-links .footer-section .card {
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  background-color: transparent;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  /* for all social containers*/
+  /* instagram*/
+  /* Whatsapp*/
+  /* facebook*/
+}
+html body .footer .footer-container .footer-links .footer-section .card .socialContainer {
+  width: 35px;
+  height: 35px;
+  background-color: #946926;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition-duration: 0.3s;
+  border-radius: 30px;
+}
+html body .footer .footer-container .footer-links .footer-section .card .containerOne:hover {
+  background-color: #d62976;
+  transition-duration: 0.3s;
+  transform: scale(1.2);
+}
+html body .footer .footer-container .footer-links .footer-section .card .containerTwo:hover {
+  background-color: #128c7e;
+  transition-duration: 0.3s;
+  transform: scale(1.2);
+}
+html body .footer .footer-container .footer-links .footer-section .card .containerThree:hover {
+  background-color: #0072b1;
+  transition-duration: 0.3s;
+  transform: scale(1.2);
+}
+html body .footer .footer-container .footer-links .footer-section .card .socialContainer:active {
+  transform: scale(0.9);
+  transition-duration: 0.3s;
+}
+html body .footer .footer-container .footer-links .footer-section .card .socialSvg {
+  width: 17px;
+}
+html body .footer .footer-container .footer-links .footer-section .card .socialSvg path {
+  fill: rgb(255, 255, 255);
+}
+html body .footer .footer-container .footer-links .footer-section .card .socialContainer:hover .socialSvg {
+  animation: slide-in-top 0.3s both;
+}
+@keyframes slide-in-top {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+html body .footer .footer-final {
+  width: 90%;
+  border-top: 0.5px solid #371406;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-evenly;
+}
+html body .footer .paragrafo {
+  color: rgb(150, 150, 150);
+  font-size: 20px;
+}
+html body .footer .paragrafo span {
+  color: #371406;
 }/*# sourceMappingURL=style.css.map */
