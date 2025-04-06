@@ -2,7 +2,7 @@
     <div class="footer-container">
       <div class="footer-logo">
         <a href="index.html">
-          <img src="../../public/assets/img/" alt="Logo" />
+          <img src="assets/img/" alt="Logo" />
         </a>
         <div class="contato">
           <h3>
@@ -27,7 +27,7 @@
         <div class="footer-section">
           <h4>Contato</h4>
           <a href="#home"><span>&#9742;</span> 11 00000-0000</a>
-          <a href="#sobre"><span>&#9993;</span> devcyclesz@gmail.com</a>
+          <a href="#sobre"><span>&#9993;</span> exfe@gmail.com</a>
 
           <div class="card">
             <a class="socialContainer containerOne" href="#">

@@ -2,7 +2,7 @@
 function getActive($rota)
 {
     $mapaRotas = [
-        'home.php' => 'home',
+        'index.php' => 'home',
         'menu.php' => 'menu',
         'loja.php' => 'loja',
         'blog.php' => 'blog',
@@ -64,27 +64,27 @@ function getActive($rota)
   <nav>
     <ul>
       <li>
-        <a class="<?= getActive('home.php') ?>" href="">
+      <a class="<?= getActive('index.php') ?>" href="http://localhost/exfe/public/home">
           Home
         </a>
       </li>
       <li>
-        <a class="<?= getActive('menu.php') ?>" href="">
+        <a class="<?= getActive('menu.php') ?>" href="http://localhost/exfe/public/menu">
           Menu
         </a>
       </li>
       <li>
-        <a class="<?= getActive('loja.php') ?>" href="">
+        <a class="<?= getActive('loja.php') ?>" href="http://localhost/exfe/public/loja">
           Loja
         </a>
       </li>
       <li>
-        <a class="<?= getActive('blog.php') ?>" href="">
+        <a class="<?= getActive('blog.php') ?>" href="http://localhost/exfe/public/blog">
           Blog
         </a>
       </li>
       <li>
-        <a class="<?= getActive('contato.php') ?>" href="">
+        <a class="<?= getActive('contato.php') ?>" href="http://localhost/exfe/public/contato">
           Contato
         </a>
       </li>

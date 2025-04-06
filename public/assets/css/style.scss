@@ -149,7 +149,8 @@ html {
       .one {
         width: 100dvw;
         height: 5.5dvh;
-        background: linear-gradient(90deg, #9e675f -9.62%, #371406 101.5%);        @include flex-center();
+        background: linear-gradient(90deg, #9e675f -9.62%, #371406 101.5%);
+        @include flex-center();
         gap: 1500px;
 
         .info01 {
@@ -440,6 +441,8 @@ html {
     }
 
     main {
+
+      //#region home
       #banner {
         @include area();
         background-image: url("../img/hero-bg.png");
@@ -471,7 +474,7 @@ html {
               font-size: 8em;
               letter-spacing: -7px;
               font-weight: 800;
-              background: linear-gradient(90deg,  #9e675f -9.62%, #371406 101.5%);
+              background: linear-gradient(90deg, #9e675f -9.62%, #371406 101.5%);
               background-clip: text;
               -webkit-background-clip: text;
               -webkit-text-fill-color: transparent;
@@ -958,12 +961,13 @@ html {
             gap: 20px;
 
             a:hover {
-              .produtosContItems{
-               background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
-                
+              .produtosContItems {
+                background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
+
               }
 
             }
+
             .produtosContItems {
               @include flex-center();
               justify-content: space-between;
@@ -1706,6 +1710,7 @@ html {
                 .imgItems {
                   opacity: 1;
                   visibility: visible;
+                  cursor: pointer;
                 }
 
                 &:hover~.carouselItems {
@@ -2285,6 +2290,171 @@ html {
           }
         }
       }
+
+      //#endregion home
+
+      //#region menu
+
+      //#endregion menu
+
+      //#region loja
+
+      //#endregion loja
+
+      //#region blog
+
+      //#endregion blog
+
+      //#region contato
+      #contato {
+        @include container();
+        @include flex-center();
+        max-width: 100dvw;
+        gap: 50px;
+        margin-top: 5%;
+
+        .maps {
+          width: auto;
+          height: auto;
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+          border-radius: 25px;
+
+          iframe {
+            width: 700px;
+            height: 495px;
+            border-radius: 25px;
+          }
+        }
+
+        .formContato {
+          width: auto;
+          height: auto;
+
+          .form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: $colorPrimary;
+            padding: 30px;
+            width: 450px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+
+            border-radius: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+          }
+
+          ::placeholder {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+          }
+
+          .form button {
+            align-self: flex-end;
+          }
+
+          .flex-column>label {
+            color: $colorTertiary;
+            font-weight: 600;
+          }
+
+          .inputForm {
+            border: 1px solid $colorTertiary;
+            border-radius: 10px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            transition: 0.2s ease-in-out;
+          }
+
+          .input {
+            margin-left: 10px;
+            border-radius: 10px;
+            border: none;
+            width: 100%;
+            height: 100%;
+            color: $colorTertiary;
+          }
+
+          .input:focus {
+            outline: none;
+          }
+
+          .inputForm:focus-within {
+            border: 1.5px solid $colorSecondary;
+          }
+
+          .flex-row {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+            justify-content: space-between;
+          }
+
+          .flex-row>div>label {
+            font-size: 14px;
+            color: $colorTertiary;
+            font-weight: 400;
+          }
+
+          .span {
+            font-size: 14px;
+            margin-left: 5px;
+            color: $colorSecondary;
+            font-weight: 500;
+            cursor: pointer;
+          }
+
+          .button-submit {
+            margin: 20px 0 10px 0;
+            background-color: $colorTertiary;
+            border: none;
+            color: white;
+            font-size: 15px;
+            font-weight: 500;
+            border-radius: 10px;
+            height: 50px;
+            width: 100%;
+            cursor: pointer;
+          }
+
+          .p {
+            text-align: center;
+            color: $colorSecondary;
+            font-size: 14px;
+            margin: 5px 0;
+          }
+
+          .btn {
+            margin-top: 10px;
+            width: 100%;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 500;
+            gap: 10px;
+            border: 1px solid $colorPrimary;
+            background-color: $colorPrimary;
+            cursor: pointer;
+            transition: 0.2s ease-in-out;
+          }
+
+          .btn:hover {
+            border: 1px solid $colorSecondary;
+            ;
+          }
+
+
+        }
+
+      }
+
+      //#endregion contato
+
+
+
     }
 
     .footer {
@@ -2437,11 +2607,14 @@ html {
       .paragrafo {
         color: rgb(150, 150, 150);
         font-size: 20px;
+        font-weight: 900;
 
         span {
           color: $colorTertiary;
         }
       }
     }
+
+
   }
 }

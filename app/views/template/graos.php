@@ -85,6 +85,6 @@
           </button>
         </div>
       </div>
-      <img class="seta" src="../../public/assets/img/seta-graos.png" alt="">
-      <img class="grao" src="../../public/assets/img/graos-img.png" alt="">
+      <img class="seta" src="assets/img/seta-graos.png" alt="">
+      <img class="grao" src="assets/img/graos-img.png" alt="">
     </section>

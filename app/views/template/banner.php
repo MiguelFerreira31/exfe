@@ -1,7 +1,7 @@
 <section id="banner">
       <div class="home-container">
         <article>
-          <img src="../../public/assets/img/img-1.png" alt="">
+          <img src="assets/img/img-1.png" alt="">
           <h2>Beba & sinta</h2>
           <h3>A energia que impulsiona seu dia</h3>
           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias labore saepe nihil fuga recusandae,
@@ -92,6 +92,6 @@
 
         </article>
 
-        <figure><img src="../../public/assets/img/cup-img.png" alt=""></figure>
+        <figure><img src="assets/img/cup-img.png" alt=""></figure>
       </div>
     </section>

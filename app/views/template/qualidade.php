@@ -1,6 +1,6 @@
 <section id="qualidade">
       <div class="img">
-        <img src="../../public/assets/img/maquina_cafe.png" alt="">
+        <img src="assets/img/maquina_cafe.png" alt="">
       </div>
       <div class="qualidadeCont">
         <div class="title">
@@ -11,14 +11,14 @@
         <div class="qualidadeItems">
           <div class="qualidadeContItems">
             <div class="itemsQualidade">
-              <img src="../../public/assets/img/coffee-cup.png" alt="">
+              <img src="assets/img/coffee-cup.png" alt="">
               <div>
                 <h4>Moído na Hora, Sabor Completo</h4>
                 <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Id, ipsa.</p>
               </div>
             </div>
             <div class="itemsQualidade">
-              <img src="../../public/assets/img/coffee-beans.png" alt="">
+              <img src="assets/img/coffee-beans.png" alt="">
               <div>
                 <h4>Torra Lenta para a Perfeição</h4>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, ducimus?</p>
@@ -27,14 +27,14 @@
           </div>
           <div class="qualidadeContItems">
             <div class="itemsQualidade">
-              <img src="../../public/assets/img/cup-coffee.png" alt="">
+              <img src="assets/img/cup-coffee.png" alt="">
               <div>
                 <h4>Sustentável e Orgânico</h4>
                 <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Delectus, possimus.</p>
               </div>
             </div>
             <div class="itemsQualidade">
-              <img src="../../public/assets/img/milkshake.png" alt="">
+              <img src="assets/img/milkshake.png" alt="">
               <div>
                 <h4>Baixa Acidez, Gole Suave</h4>
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil, sint?</p>

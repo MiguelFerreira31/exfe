@@ -23,11 +23,11 @@
 
     <figure>
 
-      <img src="../../public/assets/img/image.png" alt="">
+      <img src="assets/img/image.png" alt="">
     </figure>
 
     <figure>
-      <img src="../../public/assets/img/cup-img3.png" alt="">
+      <img src="assets/img/cup-img3.png" alt="">
     </figure>
 
   </div>
@@ -50,7 +50,7 @@
     </ul>
     <div class="avaliacoes-perfil">
 
-      <img src="../../public/assets/img/group-img.png" alt="">
+      <img src="assets/img/group-img.png" alt="">
 
     </div>
 

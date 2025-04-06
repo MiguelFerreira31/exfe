@@ -1,7 +1,7 @@
 <section id="produtosEmDestaque">
       <div class="title">
         <h2>Produtos em <span>Destaque</span></h2>
-        <img src="../../public/../../public/assets/img/curved-arrow.png" alt="">
+        <img src="assets/img/curved-arrow.png" alt="">
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores molestiae tenetur, modi architecto cum
           dignissimos perspiciatis minima adipisci odio quisquam.</p>
       </div>
@@ -15,7 +15,7 @@
                 <h4>R$10,00</h4>
               </div>
               <div class="img">
-                <img src="../../public/assets/img/coffee_americano.png" alt="">
+                <img src="assets/img/coffee_americano.png" alt="">
               </div>
             </div>
           </a>
@@ -27,7 +27,7 @@
                 <h4><span>R$5,00</span> R$10,00</h4>
               </div>
               <div class="img">
-                <img src="../../public/assets/img/coffee_late.png" alt="">
+                <img src="assets/img/coffee_late.png" alt="">
               </div>
             </div>
           </a>
@@ -39,7 +39,7 @@
                 <h4><span>R$5,00</span> R$10,00</h4>
               </div>
               <div class="img">
-                <img src="../../public/assets/img/expresso_macchiato.png" alt="">
+                <img src="assets/img/expresso_macchiato.png" alt="">
               </div>
             </div>
           </a>
@@ -53,7 +53,7 @@
                 <h4><span>R$5,00</span> R$10,00</h4>
               </div>
               <div class="img">
-                <img src="../../public/assets/img/iced_smoked_latte.png" alt="">
+                <img src="assets/img/iced_smoked_latte.png" alt="">
               </div>
             </div>
           </a>
@@ -65,7 +65,7 @@
                 <h4>R$10,00</h4>
               </div>
               <div class="img">
-                <img src="../../public/assets/img/coffe_mocha.png" alt="">
+                <img src="assets/img/coffe_mocha.png" alt="">
               </div>
             </div>
           </a>
@@ -77,13 +77,13 @@
                 <h4>R$10,00</h4>
               </div>
               <div class="img">
-                <img src="../../public/assets/img/white_chocolate.png" alt="">
+                <img src="assets/img/white_chocolate.png" alt="">
               </div>
             </div>
           </a>
         </div>
         <div class="produtosPosition">
-          <img src="../../public/assets/img/cup-img5.png" alt="">
+          <img src="assets/img/cup-img5.png" alt="">
         </div>
       </div>
     </section>

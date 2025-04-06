@@ -10,7 +10,7 @@
 
   <div class="blogCont">
     <div class="img">
-      <img src="../../public/assets/img/image-blog.jpg" alt="">
+      <img src="assets/img/image-blog.jpg" alt="">
     </div>
 
     <div class="blogItems">
@@ -40,7 +40,7 @@
 
   <div class="blogCont">
     <div class="img">
-      <img src="../../public/assets/img/image-blog.jpg" alt="">
+      <img src="assets/img/image-blog.jpg" alt="">
     </div>
 
     <div class="blogItems">
@@ -70,7 +70,7 @@
 
   <div class="blogCont">
     <div class="img">
-      <img src="../../public/assets/img/image-blog.jpg" alt="">
+      <img src="assets/img/image-blog.jpg" alt="">
     </div>
 
     <div class="blogItems">
@@ -100,7 +100,7 @@
 
   <div class="blogCont">
     <div class="img">
-      <img src="../../public/assets/img/image-blog.jpg" alt="">
+      <img src="assets/img/image-blog.jpg" alt="">
     </div>
 
     <div class="blogItems">
@@ -130,7 +130,7 @@
 
 </div>
 <div class="blogPosition">
-  <img class="grao" src="../../public/assets/img/graos_cafe.png" alt="">
-  <img class="cup" src="../../public/assets/img/cup-img5.png" alt="">
+  <img class="grao" src="assets/img/graos_cafe.png" alt="">
+  <img class="cup" src="assets/img/cup-img5.png" alt="">
 </div>
 </section>

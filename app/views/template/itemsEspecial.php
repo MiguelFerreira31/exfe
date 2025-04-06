@@ -10,7 +10,7 @@
 
         <div class="carouselItems">
           <div class="img">
-            <img src="../../public/assets/img/caramelo_macchiato.png" alt="">
+            <img src="assets/img/caramelo_macchiato.png" alt="">
           </div>
 
           <ul>
@@ -116,7 +116,7 @@
 
         <div class="carouselItems">
           <div class="img">
-            <img src="../../public/assets/img/caramelo_macchiato.png" alt="">
+            <img src="assets/img/caramelo_macchiato.png" alt="">
           </div>
 
           <ul>
@@ -222,7 +222,7 @@
 
         <div class="carouselItems">
           <div class="img">
-            <img src="../../public/assets/img/caramelo_macchiato.png" alt="">
+            <img src="assets/img/caramelo_macchiato.png" alt="">
           </div>
 
           <ul>
@@ -328,7 +328,7 @@
 
         <div class="carouselItems">
           <div class="img">
-            <img src="../../public/assets/img/caramelo_macchiato.png" alt="">
+            <img src="assets/img/caramelo_macchiato.png" alt="">
           </div>
 
           <ul>
@@ -434,7 +434,7 @@
 
         <div class="carouselItems">
           <div class="img">
-            <img src="../../public/assets/img/caramelo_macchiato.png" alt="">
+            <img src="assets/img/caramelo_macchiato.png" alt="">
           </div>
 
           <ul>
@@ -540,7 +540,7 @@
         
         <div class="carouselItems">
           <div class="img">
-            <img src="../../public/assets/img/caramelo_macchiato.png" alt="">
+            <img src="assets/img/caramelo_macchiato.png" alt="">
           </div>
 
           <ul>
@@ -646,7 +646,7 @@
       </div>
 
       <div class="itemsEspecialPosition">
-        <img class="grao" src="../../public/assets/img/graos_cafe.png" alt="">
-        <img class="cup" src="../../public/assets/img/cup-img5.png" alt="">
+        <img class="grao" src="assets/img/graos_cafe.png" alt="">
+        <img class="cup" src="assets/img/cup-img5.png" alt="">
       </div>
     </section>
