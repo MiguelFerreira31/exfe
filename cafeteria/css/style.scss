@@ -1255,6 +1255,8 @@ html {
         flex-direction: column;
         margin-top: 5%;
         gap: 50px;
+        overflow: hidden;
+        max-width: 100dvw;
 
         .title {
           @include flex-center();
@@ -1280,6 +1282,7 @@ html {
 
         .carousel {
           @include flex-center();
+          max-width: 100dvw;
 
           .carouselItems {
             @include flex-center();
@@ -1576,6 +1579,7 @@ html {
         @include flex-center();
         flex-direction: column;
         max-width: 100dvw !important;
+        overflow: hidden;
         margin-top: 5%;
         gap: 50px;
 
@@ -1603,6 +1607,8 @@ html {
 
         .carousel {
           @include flex-center();
+          max-width: 100dvw;
+          margin-left: 3%;
 
           .carouselCont {
             @include flex-center();
@@ -1624,20 +1630,19 @@ html {
               .imgItems {
                 @include flex-center();
                 align-items: flex-start;
-                justify-content: flex-start;
                 flex-direction: column;
                 width: 400px;
                 height: 410px;
                 transform: rotate(-5deg);
                 background: $colorBack;
-                padding: 2%;
-                gap: 5px;
+                padding: 5%;
                 border-radius: 25px;
                 position: absolute;
                 top: 4750px;
                 opacity: 0;
                 visibility: hidden;
                 transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
+                position: static;
 
                 ul {
                   width: 100%;
@@ -1710,7 +1715,6 @@ html {
                 }
               }
             }
-
 
             .carouselItems {
               @include flex-center();

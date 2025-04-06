@@ -1100,6 +1100,8 @@ html body main #itemsEspecial {
   flex-direction: column;
   margin-top: 5%;
   gap: 50px;
+  overflow: hidden;
+  max-width: 100dvw;
 }
 html body main #itemsEspecial .title {
   display: flex;
@@ -1125,6 +1127,7 @@ html body main #itemsEspecial .carousel {
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: 100dvw;
 }
 html body main #itemsEspecial .carousel .carouselItems {
   display: flex;
@@ -1391,6 +1394,7 @@ html body main #avaliacao {
   justify-content: center;
   flex-direction: column;
   max-width: 100dvw !important;
+  overflow: hidden;
   margin-top: 5%;
   gap: 50px;
 }
@@ -1418,6 +1422,8 @@ html body main #avaliacao .carousel {
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: 100dvw;
+  margin-left: 3%;
 }
 html body main #avaliacao .carousel .carouselCont {
   display: flex;
@@ -1445,20 +1451,19 @@ html body main #avaliacao .carousel .carouselCont .img .imgItems {
   align-items: center;
   justify-content: center;
   align-items: flex-start;
-  justify-content: flex-start;
   flex-direction: column;
   width: 400px;
   height: 410px;
   transform: rotate(-5deg);
   background: #000000;
-  padding: 2%;
-  gap: 5px;
+  padding: 5%;
   border-radius: 25px;
   position: absolute;
   top: 4750px;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
+  position: static;
 }
 html body main #avaliacao .carousel .carouselCont .img .imgItems ul {
   width: 100%;
