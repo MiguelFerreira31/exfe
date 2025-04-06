@@ -440,7 +440,7 @@ html {
     }
 
     main {
-      #home {
+      #banner {
         @include area();
         background-image: url("../img/hero-bg.png");
         background-size: cover;
@@ -686,7 +686,7 @@ html {
         }
       }
 
-      #home-title {
+      #banner-title {
         max-width: 100dvw;
         height: 20dvh;
         @include flex-center();

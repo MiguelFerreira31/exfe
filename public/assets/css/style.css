@@ -349,7 +349,7 @@ html body header.scroll .site .icons svg {
 html body header.scroll .site .icons svg:hover {
   transform: scale(1.08);
 }
-html body main #home {
+html body main #banner {
   height: 100dvh;
   width: 100%;
   background-image: url("../img/hero-bg.png");
@@ -360,7 +360,7 @@ html body main #home {
   justify-content: center;
   max-width: 100dvw !important;
 }
-html body main #home .home-container {
+html body main #banner .home-container {
   width: 100%;
   height: 100%;
   display: flex;
@@ -368,7 +368,7 @@ html body main #home .home-container {
   justify-content: center;
   justify-content: space-between;
 }
-html body main #home .home-container article {
+html body main #banner .home-container article {
   width: 55%;
   height: auto;
   display: flex;
@@ -378,10 +378,10 @@ html body main #home .home-container article {
   align-items: flex-start !important;
   margin-left: 6%;
 }
-html body main #home .home-container article img {
+html body main #banner .home-container article img {
   margin-left: 10%;
 }
-html body main #home .home-container article h2 {
+html body main #banner .home-container article h2 {
   width: 100%;
   font-size: 8em;
   letter-spacing: -7px;
@@ -391,17 +391,17 @@ html body main #home .home-container article h2 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-html body main #home .home-container article h3 {
+html body main #banner .home-container article h3 {
   width: 900px;
   letter-spacing: -2px;
   font-size: 4em;
   font-weight: 800;
 }
-html body main #home .home-container article p {
+html body main #banner .home-container article p {
   color: #b3b3b3;
   font-size: 2em;
 }
-html body main #home .home-container article .buttons-home {
+html body main #banner .home-container article .buttons-home {
   width: 50%;
   height: 20%;
   display: flex;
@@ -410,7 +410,7 @@ html body main #home .home-container article .buttons-home {
   justify-content: flex-start !important;
   margin-top: 2%;
 }
-html body main #home .home-container article .buttons-home button {
+html body main #banner .home-container article .buttons-home button {
   position: relative;
   padding: 12px 35px;
   background: #371406;
@@ -423,7 +423,7 @@ html body main #home .home-container article .buttons-home button {
   transition: all 0.3s ease-in-out;
   cursor: pointer;
 }
-html body main #home .home-container article .buttons-home .star-1 {
+html body main #banner .home-container article .buttons-home .star-1 {
   position: absolute;
   top: 20%;
   left: 20%;
@@ -433,7 +433,7 @@ html body main #home .home-container article .buttons-home .star-1 {
   z-index: -5;
   transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
 }
-html body main #home .home-container article .buttons-home .star-2 {
+html body main #banner .home-container article .buttons-home .star-2 {
   position: absolute;
   top: 45%;
   left: 45%;
@@ -443,7 +443,7 @@ html body main #home .home-container article .buttons-home .star-2 {
   z-index: -5;
   transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
 }
-html body main #home .home-container article .buttons-home .star-3 {
+html body main #banner .home-container article .buttons-home .star-3 {
   position: absolute;
   top: 40%;
   left: 40%;
@@ -453,7 +453,7 @@ html body main #home .home-container article .buttons-home .star-3 {
   z-index: -5;
   transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
 }
-html body main #home .home-container article .buttons-home .star-4 {
+html body main #banner .home-container article .buttons-home .star-4 {
   position: absolute;
   top: 20%;
   left: 40%;
@@ -463,7 +463,7 @@ html body main #home .home-container article .buttons-home .star-4 {
   z-index: -5;
   transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
 }
-html body main #home .home-container article .buttons-home .star-5 {
+html body main #banner .home-container article .buttons-home .star-5 {
   position: absolute;
   top: 25%;
   left: 45%;
@@ -473,7 +473,7 @@ html body main #home .home-container article .buttons-home .star-5 {
   z-index: -5;
   transition: all 0.4s cubic-bezier(0, 0.4, 0, 1.01);
 }
-html body main #home .home-container article .buttons-home .star-6 {
+html body main #banner .home-container article .buttons-home .star-6 {
   position: absolute;
   top: 5%;
   left: 50%;
@@ -483,12 +483,12 @@ html body main #home .home-container article .buttons-home .star-6 {
   z-index: -5;
   transition: all 0.8s ease;
 }
-html body main #home .home-container article .buttons-home button:hover {
+html body main #banner .home-container article .buttons-home button:hover {
   background: transparent;
   color: #371406;
   box-shadow: 0 0 25px rgba(121, 50, 0, 0.5490196078);
 }
-html body main #home .home-container article .buttons-home button:hover .star-1 {
+html body main #banner .home-container article .buttons-home button:hover .star-1 {
   position: absolute;
   top: -80%;
   left: -30%;
@@ -497,7 +497,7 @@ html body main #home .home-container article .buttons-home button:hover .star-1 
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #home .home-container article .buttons-home button:hover .star-2 {
+html body main #banner .home-container article .buttons-home button:hover .star-2 {
   position: absolute;
   top: -25%;
   left: 10%;
@@ -506,7 +506,7 @@ html body main #home .home-container article .buttons-home button:hover .star-2 
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #home .home-container article .buttons-home button:hover .star-3 {
+html body main #banner .home-container article .buttons-home button:hover .star-3 {
   position: absolute;
   top: 55%;
   left: 25%;
@@ -515,7 +515,7 @@ html body main #home .home-container article .buttons-home button:hover .star-3 
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #home .home-container article .buttons-home button:hover .star-4 {
+html body main #banner .home-container article .buttons-home button:hover .star-4 {
   position: absolute;
   top: 30%;
   left: 80%;
@@ -524,7 +524,7 @@ html body main #home .home-container article .buttons-home button:hover .star-4 
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #home .home-container article .buttons-home button:hover .star-5 {
+html body main #banner .home-container article .buttons-home button:hover .star-5 {
   position: absolute;
   top: 25%;
   left: 115%;
@@ -533,7 +533,7 @@ html body main #home .home-container article .buttons-home button:hover .star-5 
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #home .home-container article .buttons-home button:hover .star-6 {
+html body main #banner .home-container article .buttons-home button:hover .star-6 {
   position: absolute;
   top: 5%;
   left: 60%;
@@ -542,10 +542,10 @@ html body main #home .home-container article .buttons-home button:hover .star-6 
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #home .home-container article .buttons-home .fil0 {
+html body main #banner .home-container article .buttons-home .fil0 {
   fill: #371406;
 }
-html body main #home .home-container figure {
+html body main #banner .home-container figure {
   width: 35%;
   height: 75%;
   display: flex;
@@ -554,7 +554,7 @@ html body main #home .home-container figure {
   background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
   border-radius: 120px 0px 0px 120px;
 }
-html body main #home .home-container figure img {
+html body main #banner .home-container figure img {
   width: 130%;
   height: auto;
   margin: -10% 0% 0% -30%;
@@ -575,14 +575,14 @@ html body main #home .home-container figure img {
     transform: translate(0, 0px);
   }
 }
-html body main #home-title {
+html body main #banner-title {
   max-width: 100dvw;
   height: 20dvh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-html body main #home-title .home-container {
+html body main #banner-title .home-container {
   width: 100%;
   height: 100%;
   display: flex;
@@ -590,7 +590,7 @@ html body main #home-title .home-container {
   justify-content: center;
   justify-content: space-evenly;
 }
-html body main #home-title .home-container .info-coffe {
+html body main #banner-title .home-container .info-coffe {
   width: 20%;
   height: 100%;
   display: flex;
@@ -598,7 +598,7 @@ html body main #home-title .home-container .info-coffe {
   justify-content: center;
   justify-content: space-evenly;
 }
-html body main #home-title .home-container .info-coffe ul {
+html body main #banner-title .home-container .info-coffe ul {
   width: 50%;
   height: 50%;
   display: flex;
@@ -608,22 +608,22 @@ html body main #home-title .home-container .info-coffe ul {
   justify-content: space-evenly;
   flex-direction: column;
 }
-html body main #home-title .home-container .info-coffe ul:nth-child(1) {
+html body main #banner-title .home-container .info-coffe ul:nth-child(1) {
   border-right: 1px solid #371406;
   margin-right: 2%;
 }
-html body main #home-title .home-container .info-coffe ul li {
+html body main #banner-title .home-container .info-coffe ul li {
   width: 100%;
 }
-html body main #home-title .home-container .info-coffe ul li h5 {
+html body main #banner-title .home-container .info-coffe ul li h5 {
   font-size: 1.6em;
   letter-spacing: 1px;
   color: #946926;
 }
-html body main #home-title .home-container .info-coffe ul li h4 {
+html body main #banner-title .home-container .info-coffe ul li h4 {
   font-size: 2em;
 }
-html body main #home-title .home-container .img-coffe {
+html body main #banner-title .home-container .img-coffe {
   width: 40%;
   height: 100%;
   display: flex;
@@ -631,14 +631,14 @@ html body main #home-title .home-container .img-coffe {
   justify-content: center;
   justify-content: space-evenly;
 }
-html body main #home-title .home-container .img-coffe figure:nth-child(1) {
+html body main #banner-title .home-container .img-coffe figure:nth-child(1) {
   margin-top: -30%;
   margin-left: -60%;
 }
-html body main #home-title .home-container .img-coffe figure:nth-child(2) {
+html body main #banner-title .home-container .img-coffe figure:nth-child(2) {
   margin-top: -15%;
 }
-html body main #home-title .home-container .img-coffe figure:nth-child(2) img {
+html body main #banner-title .home-container .img-coffe figure:nth-child(2) img {
   animation-name: floating;
   animation-duration: 6s;
   animation-iteration-count: infinite;
@@ -655,7 +655,7 @@ html body main #home-title .home-container .img-coffe figure:nth-child(2) img {
     transform: translate(0, 0px);
   }
 }
-html body main #home-title .home-container .avaliacao-coffe {
+html body main #banner-title .home-container .avaliacao-coffe {
   width: 20%;
   height: 40%;
   margin-top: -10%;
@@ -664,7 +664,7 @@ html body main #home-title .home-container .avaliacao-coffe {
   justify-content: center;
   justify-content: center;
 }
-html body main #home-title .home-container .avaliacao-coffe ul {
+html body main #banner-title .home-container .avaliacao-coffe ul {
   width: 60%;
   display: flex;
   align-items: center;
@@ -673,7 +673,7 @@ html body main #home-title .home-container .avaliacao-coffe ul {
   flex-direction: column;
   justify-content: space-evenly;
 }
-html body main #home-title .home-container .avaliacao-coffe ul li .star {
+html body main #banner-title .home-container .avaliacao-coffe ul li .star {
   animation: blink 1.5s infinite;
   font-size: 1.6em;
   color: goldenrod;
@@ -686,30 +686,30 @@ html body main #home-title .home-container .avaliacao-coffe ul li .star {
     color: gold;
   }
 }
-html body main #home-title .home-container .avaliacao-coffe ul li .star:nth-child(2) {
+html body main #banner-title .home-container .avaliacao-coffe ul li .star:nth-child(2) {
   animation-delay: 0.9s;
 }
-html body main #home-title .home-container .avaliacao-coffe ul li .star:nth-child(3) {
+html body main #banner-title .home-container .avaliacao-coffe ul li .star:nth-child(3) {
   animation-delay: 1.2s;
 }
-html body main #home-title .home-container .avaliacao-coffe ul li .star:nth-child(4) {
+html body main #banner-title .home-container .avaliacao-coffe ul li .star:nth-child(4) {
   animation-delay: 1.5s;
 }
-html body main #home-title .home-container .avaliacao-coffe ul li .star:nth-child(5) {
+html body main #banner-title .home-container .avaliacao-coffe ul li .star:nth-child(5) {
   animation-delay: 1.8s;
 }
-html body main #home-title .home-container .avaliacao-coffe ul li h4 {
+html body main #banner-title .home-container .avaliacao-coffe ul li h4 {
   color: rgba(176, 176, 176, 0.9803921569);
   font-size: 2em;
 }
-html body main #home-title .home-container .avaliacao-coffe ul li h4 span {
+html body main #banner-title .home-container .avaliacao-coffe ul li h4 span {
   color: #371406;
 }
-html body main #home-title .home-container .avaliacao-coffe ul li h5 {
+html body main #banner-title .home-container .avaliacao-coffe ul li h5 {
   color: rgba(176, 176, 176, 0.9803921569);
   font-size: 1.3em;
 }
-html body main #home-title .home-container .avaliacao-coffe .avaliacoes-perfil {
+html body main #banner-title .home-container .avaliacao-coffe .avaliacoes-perfil {
   width: 50%;
   height: 80%;
   display: flex;

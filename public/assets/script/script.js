@@ -3,21 +3,6 @@ window.addEventListener("scroll", function () {
     header.classList.toggle('scroll', window.scrollY > 0)
   })
 
-// <?php
-// function getActive($rota)
-// {
-//     $mapaRotas = [
-//         'index.php' => 'home',
-//         'servicos.php' => 'servicos',
-//         'sobre.php' => 'sobre',
-//         'contato.php' => 'contato'
-//     ];
-
-//     $paginaAtual = trim($_SERVER['REQUEST_URI'], '/');
-
-//     return isset($mapaRotas[$rota]) && strpos($paginaAtual, $mapaRotas[$rota]) !== false ? 'ativo' : '';
-// }
-// ?>
 
 document.addEventListener("DOMContentLoaded", function() {
     const menu = document.querySelector("nav");
