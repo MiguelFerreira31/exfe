@@ -18,7 +18,7 @@
 $container-widht: 1200px;
 
 //Colors background
-$colorBg1: #579af2;
+$colorBg1: #ffffff ;
 $colorBg2: #371406;
 $colorBack: #000000;
 
@@ -122,7 +122,7 @@ hr {
 }
 
 ::selection {
-  background-color: $colorBg1;
+  background-color: $colorBg2;
   color: ghostwhite;
 }
 
@@ -135,7 +135,6 @@ html {
   font-family: $font;
 
   body {
-
     header {
       width: 100%;
       position: fixed;
@@ -163,7 +162,6 @@ html {
             flex-direction: row;
             @include flex-center();
             gap: 20px;
-
 
             /* for all social containers*/
             .socialContainer {
@@ -441,7 +439,6 @@ html {
     }
 
     main {
-
       //#region home
       #banner {
         @include area();
@@ -474,17 +471,179 @@ html {
               font-size: 8em;
               letter-spacing: -7px;
               font-weight: 800;
-              background: linear-gradient(90deg, #9e675f -9.62%, #371406 101.5%);
+              background: repeating-linear-gradient(
+                90deg,
+                #9e675f 0%,
+                #371406 50%,
+                #9e675f 100%
+              );
+              background-size: 300% 300%;
+              background-position: 0% 100%;
               background-clip: text;
               -webkit-background-clip: text;
               -webkit-text-fill-color: transparent;
-            }
+              animation: gradientMove 2s infinite ease-in-out alternate;
 
-            h3 {
-              width: 900px;
-              letter-spacing: -2px;
-              font-size: 4em;
-              font-weight: 800;
+              @keyframes gradientMove {
+                0% {
+                  background-position: 0% 0%;
+                }
+                100% {
+                  background-position: 100% 100%;
+                }
+              }
+
+            }
+            
+            
+
+            .content {
+              overflow: hidden;
+
+              font-family: $font;
+              font-size: 1.9em;
+              color: $colorTertiary;
+
+              &__container {
+                font-weight: 600;
+                overflow: hidden;
+                height: 95px;
+
+                &__list {
+                  margin-top: 0;
+                  text-align: left;
+                  list-style: none;
+
+                  -webkit-animation-name: change;
+                  -webkit-animation-duration: 10s;
+                  -webkit-animation-iteration-count: infinite;
+                  animation-name: change;
+                  animation-duration: 10s;
+                  animation-iteration-count: infinite;
+
+                  &__item {
+                    line-height: 80px;
+                    margin: 0;
+                    width: 1200px;
+                    letter-spacing: -2px;
+                    font-size: 2em;
+                    font-weight: 800;
+                  }
+
+                  @-webkit-keyframes change {
+                    0%,
+                    12.66%,
+                    100% {
+                      transform: translate3d(0, 0, 0);
+                    }
+                    16.66%,
+                    29.32% {
+                      transform: translate3d(0, -25%, 0);
+                    }
+                    33.32%,
+                    45.98% {
+                      transform: translate3d(0, -50%, 0);
+                    }
+                    49.98%,
+                    62.64% {
+                      transform: translate3d(0, -75%, 0);
+                    }
+                    66.64%,
+                    79.3% {
+                      transform: translate3d(0, -50%, 0);
+                    }
+                    83.3%,
+                    95.96% {
+                      transform: translate3d(0, -25%, 0);
+                    }
+                  }
+      
+                  @-o-keyframes change {
+                    0%,
+                    12.66%,
+                    100% {
+                      transform: translate3d(0, 0, 0);
+                    }
+                    16.66%,
+                    29.32% {
+                      transform: translate3d(0, -25%, 0);
+                    }
+                    33.32%,
+                    45.98% {
+                      transform: translate3d(0, -50%, 0);
+                    }
+                    49.98%,
+                    62.64% {
+                      transform: translate3d(0, -75%, 0);
+                    }
+                    66.64%,
+                    79.3% {
+                      transform: translate3d(0, -50%, 0);
+                    }
+                    83.3%,
+                    95.96% {
+                      transform: translate3d(0, -25%, 0);
+                    }
+                  }
+      
+                  @-moz-keyframes change {
+                    0%,
+                    12.66%,
+                    100% {
+                      transform: translate3d(0, 0, 0);
+                    }
+                    16.66%,
+                    29.32% {
+                      transform: translate3d(0, -25%, 0);
+                    }
+                    33.32%,
+                    45.98% {
+                      transform: translate3d(0, -50%, 0);
+                    }
+                    49.98%,
+                    62.64% {
+                      transform: translate3d(0, -75%, 0);
+                    }
+                    66.64%,
+                    79.3% {
+                      transform: translate3d(0, -50%, 0);
+                    }
+                    83.3%,
+                    95.96% {
+                      transform: translate3d(0, -25%, 0);
+                    }
+                  }
+      
+                  @keyframes change {
+                    0%,
+                    12.66%,
+                    100% {
+                      transform: translate3d(0, 0, 0);
+                    }
+                    16.66%,
+                    29.32% {
+                      transform: translate3d(0, -25%, 0);
+                    }
+                    33.32%,
+                    45.98% {
+                      transform: translate3d(0, -50%, 0);
+                    }
+                    49.98%,
+                    62.64% {
+                      transform: translate3d(0, -75%, 0);
+                    }
+                    66.64%,
+                    79.3% {
+                      transform: translate3d(0, -50%, 0);
+                    }
+                    83.3%,
+                    95.96% {
+                      transform: translate3d(0, -25%, 0);
+                    }
+                  }
+
+                }
+              }
             }
 
             p {
@@ -799,7 +958,6 @@ html {
                 }
 
                 @keyframes blink {
-
                   0%,
                   100% {
                     color: rgb(185, 140, 25);
@@ -962,10 +1120,12 @@ html {
 
             a:hover {
               .produtosContItems {
-                background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
-
+                background: linear-gradient(
+                  to left,
+                  #f2e0db 1.57%,
+                  #fff 128.95%
+                );
               }
-
             }
 
             .produtosContItems {
@@ -1316,7 +1476,6 @@ html {
                 }
 
                 @keyframes blink {
-
                   0%,
                   100% {
                     color: rgb(185, 140, 25);
@@ -1629,7 +1788,7 @@ html {
               @include flex-center();
               align-items: flex-end;
               margin-bottom: 10%;
-              transition: .10s;
+              transition: 0.1s;
 
               .imgItems {
                 @include flex-center();
@@ -1645,7 +1804,8 @@ html {
                 top: 4750px;
                 opacity: 0;
                 visibility: hidden;
-                transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
+                transition: opacity 0.4s ease, visibility 0.4s ease,
+                  transform 0.4s ease;
                 position: static;
 
                 ul {
@@ -1664,7 +1824,6 @@ html {
                     }
 
                     @keyframes blink {
-
                       0%,
                       100% {
                         color: rgb(185, 140, 25);
@@ -1706,14 +1865,13 @@ html {
               }
 
               &:hover {
-
                 .imgItems {
                   opacity: 1;
                   visibility: visible;
                   cursor: pointer;
                 }
 
-                &:hover~.carouselItems {
+                &:hover ~ .carouselItems {
                   opacity: 0;
                   visibility: hidden;
                   transition: opacity 0.4s ease, visibility 0.4s ease;
@@ -1727,7 +1885,6 @@ html {
               align-items: flex-start;
               opacity: 1;
               visibility: visible;
-
 
               ul {
                 width: 100%;
@@ -1745,7 +1902,6 @@ html {
                   }
 
                   @keyframes blink {
-
                     0%,
                     100% {
                       color: rgb(185, 140, 25);
@@ -1779,7 +1935,6 @@ html {
                 color: $colorQuartenary;
                 font-size: 1.2em;
               }
-
             }
           }
         }
@@ -1912,7 +2067,6 @@ html {
             border-radius: 40px;
             padding: 0.5%;
 
-
             .img {
               overflow: hidden;
               position: relative;
@@ -1950,7 +2104,6 @@ html {
                   border-radius: 0px;
                   opacity: 1;
                   background: $colorQuartenary;
-
                 }
               }
 
@@ -1985,8 +2138,6 @@ html {
                   }
                 }
               }
-
-
             }
 
             &:hover {
@@ -2001,7 +2152,6 @@ html {
               }
             }
           }
-
         }
 
         .blogPosition {
@@ -2073,11 +2223,11 @@ html {
 
         img {
           width: 100%;
-          height: auto
+          height: auto;
         }
 
         .coffee {
-          margin-left: 18%
+          margin-left: 18%;
         }
 
         .emailCont {
@@ -2134,7 +2284,6 @@ html {
               }
 
               .buttons-home {
-
                 button {
                   position: relative;
                   padding: 12px 45px;
@@ -2284,7 +2433,6 @@ html {
                 .fil0 {
                   fill: $colorBg2;
                 }
-
               }
             }
           }
@@ -2340,18 +2488,22 @@ html {
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 
             border-radius: 20px;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+              Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+              sans-serif;
           }
 
           ::placeholder {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+              Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+              sans-serif;
           }
 
           .form button {
             align-self: flex-end;
           }
 
-          .flex-column>label {
+          .flex-column > label {
             color: $colorTertiary;
             font-weight: 600;
           }
@@ -2391,7 +2543,7 @@ html {
             justify-content: space-between;
           }
 
-          .flex-row>div>label {
+          .flex-row > div > label {
             font-size: 14px;
             color: $colorTertiary;
             font-weight: 400;
@@ -2443,18 +2595,11 @@ html {
 
           .btn:hover {
             border: 1px solid $colorSecondary;
-            ;
           }
-
-
         }
-
       }
 
       //#endregion contato
-
-
-
     }
 
     .footer {
@@ -2529,7 +2674,6 @@ html {
               @include flex-center();
               gap: 20px;
 
-
               /* for all social containers*/
               .socialContainer {
                 width: 35px;
@@ -2593,8 +2737,6 @@ html {
             }
           }
         }
-
-
       }
 
       .footer-final {
@@ -2614,7 +2756,5 @@ html {
         }
       }
     }
-
-
   }
 }
