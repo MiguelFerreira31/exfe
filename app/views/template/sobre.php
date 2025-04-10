@@ -14,7 +14,7 @@
       </div>
 
       <div class="sobrePosition">
-        <img class="imgOne" src="assets/img/cup-img2.png" alt="">
-        <img class="imgTwo" src="assets/img/cup-img4.png" alt="">
+        <img class="imgOne" src="assets/img/cup-img2.webp" alt="">
+        <img class="imgTwo" src="assets/img/cup-img4.webp" alt="">
       </div>
     </section>

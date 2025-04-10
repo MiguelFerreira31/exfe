@@ -83,7 +83,7 @@
           </a>
         </div>
         <div class="produtosPosition">
-          <img src="assets/img/cup-img5.png" alt="">
+          <img src="assets/img/cup-img5.webp" alt="">
         </div>
       </div>
     </section>

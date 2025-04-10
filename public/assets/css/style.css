@@ -610,8 +610,6 @@ html body main #banner .home-container figure {
   border-radius: 120px 0px 0px 120px;
 }
 html body main #banner .home-container figure img {
-  width: 130%;
-  height: auto;
   margin: -10% 0% 0% -30%;
   transform: scale(2);
   animation-name: floating;
@@ -1141,8 +1139,8 @@ html body main #graos .seta {
   }
 }
 html body main #graos .grao {
-  width: 460px;
-  height: auto;
+  width: auto;
+  height: 300px;
 }
 html body main #itemsEspecial {
   width: 100%;
@@ -1644,6 +1642,9 @@ html body main #qualidade {
   gap: 70px;
   margin-top: 5%;
 }
+html body main #qualidade .img {
+  margin-left: 1%;
+}
 html body main #qualidade .qualidadeCont {
   display: flex;
   align-items: center;
@@ -1902,10 +1903,9 @@ html body main #desconto {
   align-items: center;
   justify-content: center;
   min-width: 1400px !important;
-  gap: 10px;
   overflow: hidden;
   height: 450px;
-  gap: 130px;
+  gap: 20px;
   background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
   border-radius: 70px;
   margin-top: 5%;
@@ -1915,7 +1915,7 @@ html body main #desconto img {
   height: auto;
 }
 html body main #desconto .coffee {
-  margin-left: 18%;
+  margin-left: 9%;
 }
 html body main #desconto .emailCont {
   display: flex;

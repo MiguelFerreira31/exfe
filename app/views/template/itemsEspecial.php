@@ -646,7 +646,7 @@
       </div>
 
       <div class="itemsEspecialPosition">
-        <img class="grao" src="assets/img/graos_cafe.png" alt="">
-        <img class="cup" src="assets/img/cup-img5.png" alt="">
+        <img class="grao" src="assets/img/graos_cafe.webp" alt="">
+        <img class="cup" src="assets/img/cup-img5.webp" alt="">
       </div>
     </section>

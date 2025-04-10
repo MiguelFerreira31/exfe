@@ -86,5 +86,5 @@
         </div>
       </div>
       <img class="seta" src="assets/img/seta-graos.png" alt="">
-      <img class="grao" src="assets/img/graos-img.png" alt="">
+      <img class="grao" src="assets/img/graos-img.webp" alt="">
     </section>

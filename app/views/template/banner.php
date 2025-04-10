@@ -101,7 +101,7 @@
 
     </article>
 
-    <figure><img src="assets/img/cup-img.png" alt=""></figure>
+    <figure><img src="assets/img/cup-img.webp" alt=""></figure>
   </div>
 
 </section>

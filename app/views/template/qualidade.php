@@ -1,6 +1,6 @@
 <section id="qualidade">
       <div class="img">
-        <img src="assets/img/maquina_cafe.png" alt="">
+        <img src="assets/img/qualidade_coffee.webp" alt="">
       </div>
       <div class="qualidadeCont">
         <div class="title">

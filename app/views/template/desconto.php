@@ -1,5 +1,5 @@
 <section id="desconto">
-      <img class="coffee" src="assets/img/img_coffee_desconto.png" alt="">
+      <img class="coffee" src="assets/img/img_coffee_desconto.webp" alt="">
       <div class="emailCont">
         <div class="emailTitle">
           <h2>Junte-se e Ganhe <span>15% off!</span></h2>
@@ -94,5 +94,5 @@
           </form>
         </div>
       </div>
-      <img class="bean" src="assets/img/img_bean_desconto.png" alt="">
+      <img class="bean" src="assets/img/graos-img.webp" alt="">
     </section>

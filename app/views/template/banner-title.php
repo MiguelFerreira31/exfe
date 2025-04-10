@@ -23,11 +23,11 @@
 
     <figure>
 
-      <img src="assets/img/image.png" alt="">
+      <img src="assets/img/image.webp" alt="">
     </figure>
 
     <figure>
-      <img src="assets/img/cup-img3.png" alt="">
+      <img src="assets/img/cup-img3.webp" alt="">
     </figure>
 
   </div>
