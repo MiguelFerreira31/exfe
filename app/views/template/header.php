@@ -125,7 +125,7 @@ function getActive($rota)
           </form>
         </div>
         <div class="form-container sign-in-container">
-          <form action="#">
+          <form method="POST" action="http://localhost/exfe/public/auth/login">
             <h1>Sign in</h1>
             <div class="social-container">
               <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -133,10 +133,10 @@ function getActive($rota)
               <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
             </div>
             <span>or use your account</span>
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
+            <input type="email" placeholder="Email" name="email" />
+            <input type="password" placeholder="Password" name="senha" />
             <a href="#">Forgot your password?</a>
-            <button>Sign In</button>
+            <button type="submit">Sign In</button>
           </form>
         </div>
         <div class="overlay-container">
