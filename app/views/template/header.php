@@ -22,6 +22,7 @@ function getActive($rota)
   <div class="one">
     <div class="info01">
       <div class="card">
+
         <a class="socialContainer containerOne" href="#">
           <svg viewBox="0 0 16 16" class="socialSvg instagramSvg">
             <path
@@ -44,6 +45,7 @@ function getActive($rota)
               d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z" />
           </svg>
         </a>
+
       </div>
     </div>
 
@@ -84,13 +86,17 @@ function getActive($rota)
     </nav>
 
 
-    <div class="icons">
-      <a href="#">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+    <div class="icons" >
+     
+        <svg class="open-btn" onclick="openSidebar()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
           <path fill="#371406"
             d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
         </svg>
-      </a>
+
+      <div id="sidebar" class="sidebar">
+        <h2 onclick="closeSidebar()">✕</h2>
+
+      </div>
 
       <!-- Button trigger modal -->
       <svg type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" style="background: transparent;">
@@ -108,48 +114,81 @@ function getActive($rota)
   <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: none; width: 800px;">
     <div class="modal-content">
 
-      <div class="modal-body container" id="container" style="max-width: none; width: 800px;">
+      <div class="modal-body container" id="container" style="max-width: none; width: 850px; height: 630px;">
         <div class="form-container sign-up-container">
           <form action="#">
-            <h1>Create Account</h1>
-            <div class="social-container">
-              <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-              <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+
+            <h1>Criar Conta</h1>
+
+            <div class="card">
+
+              <a class="socialContainer containerOne" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="socialSvg" viewBox="0 0 488 512">
+                  <path fill="white"
+                    d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z" />
+                </svg>
+              </a>
+
+              <a class="socialContainer containerTwo" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="socialSvg" viewBox="0 0 384 512">
+                  <path fill="white"
+                    d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" />
+                </svg>
+              </a>
+
             </div>
-            <span>or use your email for registration</span>
+
+            <span>Use seu e-mail para se registrar</span>
             <input type="text" placeholder="Name" />
             <input type="email" placeholder="Email" />
             <input type="password" placeholder="Password" />
-            <button>Sign Up</button>
+            <button>Cadastrar-se</button>
           </form>
         </div>
+
         <div class="form-container sign-in-container">
           <form method="POST" action="http://localhost/exfe/public/auth/login">
-            <h1>Sign in</h1>
-            <div class="social-container">
-              <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-              <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+            <h1>Entrar</h1>
+
+            <div class="card">
+
+              <a class="socialContainer containerOne" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="socialSvg" viewBox="0 0 488 512">
+                  <path fill="white"
+                    d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z" />
+                </svg>
+              </a>
+
+              <a class="socialContainer containerTwo" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="socialSvg" viewBox="0 0 384 512">
+                  <path fill="white"
+                    d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" />
+                </svg>
+              </a>
+
             </div>
-            <span>or use your account</span>
+
+            <span>ou entre com sua conta</span>
             <input type="email" placeholder="Email" name="email" />
             <input type="password" placeholder="Password" name="senha" />
-            <a href="#">Forgot your password?</a>
-            <button type="submit">Sign In</button>
+            <a href="#">Esqueceu sua senha?</a>
+            <button type="submit">Entrar</button>
           </form>
+
         </div>
+
         <div class="overlay-container">
           <div class="overlay">
             <div class="overlay-panel overlay-left">
-              <h1>Welcome Back!</h1>
-              <p>To keep connected with us please login with your personal info</p>
-              <button class="ghost" id="signIn">Sign In</button>
+              <h1>Bem-vindo de volta!</h1>
+              <p>Para manter-se conectado conosco, entre com seus dados pessoais.</p>
+              <button class="ghost" id="signIn">Entrar</button>
             </div>
+
             <div class="overlay-panel overlay-right">
-              <h1>Hello, Friend!</h1>
-              <p>Enter your personal details and start journey with us</p>
-              <button class="ghost" id="signUp">Sign Up</button>
+              <h1>Bem-vindo, amigo!</h1>
+              <p>Insira seus dados pessoais e comece sua jornada conosco.</p>
+              <button class="ghost" id="signUp">Cadastrar-se</button>
             </div>
           </div>
         </div>

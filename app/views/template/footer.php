@@ -6,8 +6,7 @@
         </a>
         <div class="contato">
           <h3>
-            Descubra o poder da tecnologia inovadora para transformar o seu
-            mundo
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto nostrum quaerat illum illo dignissimos veritatis eum commodi nisi! Praesentium, tempora.
           </h3>
         </div>
       </div>

@@ -11,7 +11,7 @@
   margin: 0;
   box-sizing: border-box;
   list-style: none;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 // #region Variaveis
@@ -162,6 +162,7 @@ html {
             flex-direction: row;
             @include flex-center();
             gap: 20px;
+            border: none;
 
             /* for all social containers*/
             .socialContainer {
@@ -334,48 +335,81 @@ html {
               transform: scale(1.08);
             }
           }
+
+          .open-btn {
+            position: relative;
+            cursor: pointer;
+          }
+          
+
+          .sidebar {
+            position: fixed;
+            top: 0;
+            right: -250px;
+            width: 250px;
+            height: auto;
+            background: $colorPrimary;
+            padding-top: 1%;
+            transition: right 0.3s ease-in-out;
+            z-index: 2;
+
+            &.show {
+              right: 0;
+            }
+
+            h2 {
+              font-size: 2em;
+              display: block;
+              padding: 10px 20px;
+              text-decoration: none;
+              color: $colorTertiary;
+              transition: 0.2s;
+
+              &:hover {
+                cursor: pointer;
+                color: $colorSecondary;
+              }
+            }
+          }
+
         }
       }
     }
 
     .modal {
+
       h1 {
         font-weight: bold;
-        margin: 0;
-      }
-
-      h2 {
-        text-align: center;
+        font-size: 4em;
+        width: 370px;
       }
 
       p {
-        font-size: 14px;
+        font-size: 1.2em;
         font-weight: 100;
         line-height: 20px;
-        letter-spacing: 0.5px;
         margin: 20px 0 30px;
       }
 
       span {
-        font-size: 12px;
+        font-size: 1em;
       }
 
       a {
-        color: #333;
-        font-size: 14px;
+        color: $colorSecondary;
+        font-size: 1em;
         text-decoration: none;
         margin: 15px 0;
       }
 
       button {
         border-radius: 20px;
-        border: 1px solid #ff4b2b;
-        background-color: #ff4b2b;
-        color: #ffffff;
-        font-size: 12px;
+        border: 1px solid $colorTertiary;
+        background-color: $colorTertiary;
+        color: $colorPrimary;
+        font-size: 1em;
         font-weight: bold;
         padding: 12px 45px;
-        letter-spacing: 1px;
         text-transform: uppercase;
         transition: transform 80ms ease-in;
       }
@@ -390,14 +424,12 @@ html {
 
       button.ghost {
         background-color: transparent;
-        border-color: #ffffff;
+        border-color: $colorPrimary;
       }
 
       form {
-        background-color: #ffffff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        background-color: $colorPrimary;
+        @include flex-center();
         flex-direction: column;
         padding: 0 50px;
         height: 100%;
@@ -405,7 +437,7 @@ html {
       }
 
       input {
-        background-color: #eee;
+        background-color: $colorPrimary;
         border: none;
         padding: 12px 15px;
         margin: 8px 0;
@@ -413,15 +445,15 @@ html {
       }
 
       .container {
-        background-color: #fff;
+        background-color: $colorPrimary;
         border-radius: 10px;
         box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
           0 10px 10px rgba(0, 0, 0, 0.22);
         position: relative;
         overflow: hidden;
-        width: 768px;
-        max-width: 100%;
-        min-height: 480px;
+        width: 850px;
+        height: 630px;
+        max-width: none;
       }
 
       .form-container {
@@ -456,6 +488,7 @@ html {
       }
 
       @keyframes show {
+
         0%,
         49.99% {
           opacity: 0;
@@ -485,13 +518,12 @@ html {
       }
 
       .overlay {
-        background: #ff416c;
-        background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
-        background: linear-gradient(to right, #ff4b2b, #ff416c);
+        background: linear-gradient(90deg, #9e675f -9.62%, #371406 101.5%);
+        display: flex;
         background-repeat: no-repeat;
         background-size: cover;
         background-position: 0 0;
-        color: #ffffff;
+        color: $colorPrimary;
         position: relative;
         left: -100%;
         height: 100%;
@@ -506,9 +538,7 @@ html {
 
       .overlay-panel {
         position: absolute;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @include flex-center();
         flex-direction: column;
         padding: 0 40px;
         text-align: center;
@@ -540,41 +570,74 @@ html {
         margin: 20px 0;
       }
 
-      .social-container a {
-        border: 1px solid #dddddd;
-        border-radius: 50%;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 5px;
-        height: 40px;
-        width: 40px;
+      .card {
+        width: fit-content;
+        height: fit-content;
+        background-color: transparent;
+        flex-direction: row;
+        @include flex-center();
+        gap: 20px;
+        border: none;
+
+
+        /* for all social containers*/
+        .socialContainer {
+          width: 45px;
+          height: 45px;
+          background-color: #9e675f;
+          @include flex-center();
+          overflow: hidden;
+          transition-duration: 0.3s;
+          border-radius: 30px;
+        }
+
+        /* google*/
+        .containerOne:hover {
+          background-color: #d62937;
+          transition-duration: 0.3s;
+          transform: scale(1.2);
+        }
+
+        /* apple*/
+        .containerTwo:hover {
+          background-color: #5b565c;
+          transition-duration: 0.3s;
+          transform: scale(1.2);
+        }
+
+
+
+        .socialContainer:active {
+          transform: scale(0.9);
+          transition-duration: 0.3s;
+        }
+
+        .socialSvg {
+          width: 17px;
+        }
+
+        .socialSvg path {
+          fill: rgb(255, 255, 255);
+        }
+
+        .socialContainer:hover .socialSvg {
+          animation: slide-in-top 0.3s both;
+        }
+
+        @keyframes slide-in-top {
+          0% {
+            transform: translateY(-50px);
+            opacity: 0;
+          }
+
+          100% {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
       }
 
-      footer {
-        background-color: #222;
-        color: #fff;
-        font-size: 14px;
-        bottom: 0;
-        position: fixed;
-        left: 0;
-        right: 0;
-        text-align: center;
-        z-index: 999;
-      }
 
-      footer p {
-        margin: 10px 0;
-      }
-
-      footer i {
-        color: red;
-      }
-
-      footer a {
-        color: #3c97bf;
-        text-decoration: none;
-      }
     }
 
     header.scroll {
@@ -678,7 +741,9 @@ html {
     }
 
     main {
+
       //#region home
+
       #banner {
         @include area();
         background-image: url("../img/hero-bg.png");
@@ -710,12 +775,10 @@ html {
               font-size: 8em;
               letter-spacing: -7px;
               font-weight: 800;
-              background: repeating-linear-gradient(
-                90deg,
-                #9e675f 0%,
-                #371406 50%,
-                #9e675f 100%
-              );
+              background: repeating-linear-gradient(90deg,
+                  #9e675f 0%,
+                  #371406 50%,
+                  #9e675f 100%);
               background-size: 300% 300%;
               background-position: 0% 100%;
               background-clip: text;
@@ -727,6 +790,7 @@ html {
                 0% {
                   background-position: 0% 0%;
                 }
+
                 100% {
                   background-position: 100% 100%;
                 }
@@ -767,27 +831,33 @@ html {
                   }
 
                   @-webkit-keyframes change {
+
                     0%,
                     12.66%,
                     100% {
                       transform: translate3d(0, 0, 0);
                     }
+
                     16.66%,
                     29.32% {
                       transform: translate3d(0, -25%, 0);
                     }
+
                     33.32%,
                     45.98% {
                       transform: translate3d(0, -50%, 0);
                     }
+
                     49.98%,
                     62.64% {
                       transform: translate3d(0, -75%, 0);
                     }
+
                     66.64%,
                     79.3% {
                       transform: translate3d(0, -50%, 0);
                     }
+
                     83.3%,
                     95.96% {
                       transform: translate3d(0, -25%, 0);
@@ -795,27 +865,33 @@ html {
                   }
 
                   @-o-keyframes change {
+
                     0%,
                     12.66%,
                     100% {
                       transform: translate3d(0, 0, 0);
                     }
+
                     16.66%,
                     29.32% {
                       transform: translate3d(0, -25%, 0);
                     }
+
                     33.32%,
                     45.98% {
                       transform: translate3d(0, -50%, 0);
                     }
+
                     49.98%,
                     62.64% {
                       transform: translate3d(0, -75%, 0);
                     }
+
                     66.64%,
                     79.3% {
                       transform: translate3d(0, -50%, 0);
                     }
+
                     83.3%,
                     95.96% {
                       transform: translate3d(0, -25%, 0);
@@ -823,27 +899,33 @@ html {
                   }
 
                   @-moz-keyframes change {
+
                     0%,
                     12.66%,
                     100% {
                       transform: translate3d(0, 0, 0);
                     }
+
                     16.66%,
                     29.32% {
                       transform: translate3d(0, -25%, 0);
                     }
+
                     33.32%,
                     45.98% {
                       transform: translate3d(0, -50%, 0);
                     }
+
                     49.98%,
                     62.64% {
                       transform: translate3d(0, -75%, 0);
                     }
+
                     66.64%,
                     79.3% {
                       transform: translate3d(0, -50%, 0);
                     }
+
                     83.3%,
                     95.96% {
                       transform: translate3d(0, -25%, 0);
@@ -851,27 +933,33 @@ html {
                   }
 
                   @keyframes change {
+
                     0%,
                     12.66%,
                     100% {
                       transform: translate3d(0, 0, 0);
                     }
+
                     16.66%,
                     29.32% {
                       transform: translate3d(0, -25%, 0);
                     }
+
                     33.32%,
                     45.98% {
                       transform: translate3d(0, -50%, 0);
                     }
+
                     49.98%,
                     62.64% {
                       transform: translate3d(0, -75%, 0);
                     }
+
                     66.64%,
                     79.3% {
                       transform: translate3d(0, -50%, 0);
                     }
+
                     83.3%,
                     95.96% {
                       transform: translate3d(0, -25%, 0);
@@ -886,29 +974,28 @@ html {
               font-size: 2em;
             }
 
-            .buttons-home {
+            .buttons {
               width: 50%;
               height: 20%;
               @include flex-center();
               justify-content: flex-start !important;
               margin-top: 2%;
 
-              // #region btn banner
               button {
                 position: relative;
-                padding: 12px 35px;
+                padding: 10px 40px;
                 background: $colorBg2;
-                font-size: 17px;
-                font-weight: 500;
+                font-size: 1.3em;
+                font-weight: 900;
                 color: white;
                 border: 3px solid $colorBg2;
-                border-radius: 8px;
+                border-radius: 25px;
                 box-shadow: 0 0 0 #7430008c;
                 transition: all 0.3s ease-in-out;
                 cursor: pointer;
               }
 
-              .star-1 {
+              .star-1 img {
                 position: absolute;
                 top: 20%;
                 left: 20%;
@@ -919,7 +1006,7 @@ html {
                 transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
               }
 
-              .star-2 {
+              .star-2 img {
                 position: absolute;
                 top: 45%;
                 left: 45%;
@@ -930,7 +1017,7 @@ html {
                 transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
               }
 
-              .star-3 {
+              .star-3 img {
                 position: absolute;
                 top: 40%;
                 left: 40%;
@@ -941,7 +1028,7 @@ html {
                 transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
               }
 
-              .star-4 {
+              .star-4 img {
                 position: absolute;
                 top: 20%;
                 left: 40%;
@@ -952,7 +1039,7 @@ html {
                 transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
               }
 
-              .star-5 {
+              .star-5 img {
                 position: absolute;
                 top: 25%;
                 left: 45%;
@@ -963,7 +1050,7 @@ html {
                 transition: all 0.4s cubic-bezier(0, 0.4, 0, 1.01);
               }
 
-              .star-6 {
+              .star-6 img {
                 position: absolute;
                 top: 5%;
                 left: 50%;
@@ -980,7 +1067,7 @@ html {
                 box-shadow: 0 0 25px #7932008c;
               }
 
-              button:hover .star-1 {
+              button:hover .star-1 img {
                 position: absolute;
                 top: -80%;
                 left: -30%;
@@ -990,7 +1077,7 @@ html {
                 z-index: 2;
               }
 
-              button:hover .star-2 {
+              button:hover .star-2 img {
                 position: absolute;
                 top: -25%;
                 left: 10%;
@@ -1000,7 +1087,7 @@ html {
                 z-index: 2;
               }
 
-              button:hover .star-3 {
+              button:hover .star-3 img {
                 position: absolute;
                 top: 55%;
                 left: 25%;
@@ -1010,7 +1097,7 @@ html {
                 z-index: 2;
               }
 
-              button:hover .star-4 {
+              button:hover .star-4 img {
                 position: absolute;
                 top: 30%;
                 left: 80%;
@@ -1020,7 +1107,7 @@ html {
                 z-index: 2;
               }
 
-              button:hover .star-5 {
+              button:hover .star-5 img {
                 position: absolute;
                 top: 25%;
                 left: 115%;
@@ -1030,7 +1117,7 @@ html {
                 z-index: 2;
               }
 
-              button:hover .star-6 {
+              button:hover .star-6 img {
                 position: absolute;
                 top: 5%;
                 left: 60%;
@@ -1191,6 +1278,7 @@ html {
                 }
 
                 @keyframes blink {
+
                   0%,
                   100% {
                     color: rgb(185, 140, 25);
@@ -1353,11 +1441,9 @@ html {
 
             a:hover {
               .produtosContItems {
-                background: linear-gradient(
-                  to left,
-                  #f2e0db 1.57%,
-                  #fff 128.95%
-                );
+                background: linear-gradient(to left,
+                    #f2e0db 1.57%,
+                    #fff 128.95%);
               }
             }
 
@@ -1452,29 +1538,28 @@ html {
             }
           }
 
-          .buttons-home {
+          .buttons {
             width: 50%;
             height: 20%;
             @include flex-center();
             justify-content: flex-start !important;
             margin-top: 2%;
 
-            // #region btn banner
             button {
               position: relative;
-              padding: 12px 35px;
+              padding: 10px 40px;
               background: $colorBg2;
-              font-size: 17px;
+              font-size: 1.3em;
               font-weight: 900;
               color: white;
               border: 3px solid $colorBg2;
-              border-radius: 10px;
+              border-radius: 25px;
               box-shadow: 0 0 0 #7430008c;
               transition: all 0.3s ease-in-out;
               cursor: pointer;
             }
 
-            .star-1 {
+            .star-1 img {
               position: absolute;
               top: 20%;
               left: 20%;
@@ -1485,7 +1570,7 @@ html {
               transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
             }
 
-            .star-2 {
+            .star-2 img {
               position: absolute;
               top: 45%;
               left: 45%;
@@ -1496,7 +1581,7 @@ html {
               transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
             }
 
-            .star-3 {
+            .star-3 img {
               position: absolute;
               top: 40%;
               left: 40%;
@@ -1507,7 +1592,7 @@ html {
               transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
             }
 
-            .star-4 {
+            .star-4 img {
               position: absolute;
               top: 20%;
               left: 40%;
@@ -1518,7 +1603,7 @@ html {
               transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
             }
 
-            .star-5 {
+            .star-5 img {
               position: absolute;
               top: 25%;
               left: 45%;
@@ -1526,10 +1611,10 @@ html {
               height: auto;
               filter: drop-shadow(0 0 0 $colorBg2);
               z-index: -5;
-              transition: all 0.6s cubic-bezier(0, 0.4, 0, 1.01);
+              transition: all 0.4s cubic-bezier(0, 0.4, 0, 1.01);
             }
 
-            .star-6 {
+            .star-6 img {
               position: absolute;
               top: 5%;
               left: 50%;
@@ -1546,7 +1631,7 @@ html {
               box-shadow: 0 0 25px #7932008c;
             }
 
-            button:hover .star-1 {
+            button:hover .star-1 img {
               position: absolute;
               top: -80%;
               left: -30%;
@@ -1556,7 +1641,7 @@ html {
               z-index: 2;
             }
 
-            button:hover .star-2 {
+            button:hover .star-2 img {
               position: absolute;
               top: -25%;
               left: 10%;
@@ -1566,7 +1651,7 @@ html {
               z-index: 2;
             }
 
-            button:hover .star-3 {
+            button:hover .star-3 img {
               position: absolute;
               top: 55%;
               left: 25%;
@@ -1576,7 +1661,7 @@ html {
               z-index: 2;
             }
 
-            button:hover .star-4 {
+            button:hover .star-4 img {
               position: absolute;
               top: 30%;
               left: 80%;
@@ -1586,7 +1671,7 @@ html {
               z-index: 2;
             }
 
-            button:hover .star-5 {
+            button:hover .star-5 img {
               position: absolute;
               top: 25%;
               left: 115%;
@@ -1596,7 +1681,7 @@ html {
               z-index: 2;
             }
 
-            button:hover .star-6 {
+            button:hover .star-6 img {
               position: absolute;
               top: 5%;
               left: 60%;
@@ -1610,7 +1695,6 @@ html {
               fill: $colorBg2;
             }
 
-            // #endregion
           }
         }
 
@@ -1646,7 +1730,7 @@ html {
         }
       }
 
-      #itemsEspecial {
+      #itemEspecial {
         @include container();
         @include flex-center();
         flex-direction: column;
@@ -1709,6 +1793,7 @@ html {
                 }
 
                 @keyframes blink {
+
                   0%,
                   100% {
                     color: rgb(185, 140, 25);
@@ -1746,8 +1831,8 @@ html {
               }
             }
 
-            .buttons-home {
-              width: 100%;
+            .buttons {
+              width: 50%;
               height: 20%;
               @include flex-center();
               margin-top: 2%;
@@ -1766,15 +1851,15 @@ html {
                 transition: all 0.3s ease-in-out;
                 cursor: pointer;
                 @include flex-center();
-                gap: 10px;
 
                 svg {
                   width: 25px;
                   height: auto;
+                  margin-left: 10px;
                 }
               }
 
-              .star-1 {
+              .star-1 img {
                 position: absolute;
                 top: 20%;
                 left: 20%;
@@ -1785,7 +1870,7 @@ html {
                 transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
               }
 
-              .star-2 {
+              .star-2 img {
                 position: absolute;
                 top: 45%;
                 left: 45%;
@@ -1796,7 +1881,7 @@ html {
                 transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
               }
 
-              .star-3 {
+              .star-3 img {
                 position: absolute;
                 top: 40%;
                 left: 40%;
@@ -1807,7 +1892,7 @@ html {
                 transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
               }
 
-              .star-4 {
+              .star-4 img {
                 position: absolute;
                 top: 20%;
                 left: 40%;
@@ -1818,7 +1903,7 @@ html {
                 transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
               }
 
-              .star-5 {
+              .star-5 img {
                 position: absolute;
                 top: 25%;
                 left: 45%;
@@ -1826,10 +1911,10 @@ html {
                 height: auto;
                 filter: drop-shadow(0 0 0 $colorBg2);
                 z-index: -5;
-                transition: all 0.6s cubic-bezier(0, 0.4, 0, 1.01);
+                transition: all 0.4s cubic-bezier(0, 0.4, 0, 1.01);
               }
 
-              .star-6 {
+              .star-6 img {
                 position: absolute;
                 top: 5%;
                 left: 50%;
@@ -1846,7 +1931,7 @@ html {
                 box-shadow: 0 0 25px #7932008c;
               }
 
-              button:hover .star-1 {
+              button:hover .star-1 img {
                 position: absolute;
                 top: -80%;
                 left: -30%;
@@ -1856,7 +1941,7 @@ html {
                 z-index: 2;
               }
 
-              button:hover .star-2 {
+              button:hover .star-2 img {
                 position: absolute;
                 top: -25%;
                 left: 10%;
@@ -1866,7 +1951,7 @@ html {
                 z-index: 2;
               }
 
-              button:hover .star-3 {
+              button:hover .star-3 img {
                 position: absolute;
                 top: 55%;
                 left: 25%;
@@ -1876,7 +1961,7 @@ html {
                 z-index: 2;
               }
 
-              button:hover .star-4 {
+              button:hover .star-4 img {
                 position: absolute;
                 top: 30%;
                 left: 80%;
@@ -1886,7 +1971,7 @@ html {
                 z-index: 2;
               }
 
-              button:hover .star-5 {
+              button:hover .star-5 img {
                 position: absolute;
                 top: 25%;
                 left: 115%;
@@ -1896,7 +1981,7 @@ html {
                 z-index: 2;
               }
 
-              button:hover .star-6 {
+              button:hover .star-6 img {
                 position: absolute;
                 top: 5%;
                 left: 60%;
@@ -2057,6 +2142,7 @@ html {
                     }
 
                     @keyframes blink {
+
                       0%,
                       100% {
                         color: rgb(185, 140, 25);
@@ -2104,7 +2190,7 @@ html {
                   cursor: pointer;
                 }
 
-                &:hover ~ .carouselItems {
+                &:hover~.carouselItems {
                   opacity: 0;
                   visibility: hidden;
                   transition: opacity 0.4s ease, visibility 0.4s ease;
@@ -2135,6 +2221,7 @@ html {
                   }
 
                   @keyframes blink {
+
                     0%,
                     100% {
                       color: rgb(185, 140, 25);
@@ -2519,7 +2606,8 @@ html {
                 }
               }
 
-              .buttons-home {
+              .buttons {
+
                 button {
                   position: relative;
                   padding: 12px 45px;
@@ -2534,7 +2622,7 @@ html {
                   cursor: pointer;
                 }
 
-                .star-1 {
+                .star-1 img {
                   position: absolute;
                   top: 20%;
                   left: 20%;
@@ -2545,7 +2633,7 @@ html {
                   transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
                 }
 
-                .star-2 {
+                .star-2 img {
                   position: absolute;
                   top: 45%;
                   left: 45%;
@@ -2556,7 +2644,7 @@ html {
                   transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
                 }
 
-                .star-3 {
+                .star-3 img {
                   position: absolute;
                   top: 40%;
                   left: 40%;
@@ -2567,7 +2655,7 @@ html {
                   transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
                 }
 
-                .star-4 {
+                .star-4 img {
                   position: absolute;
                   top: 20%;
                   left: 40%;
@@ -2578,7 +2666,7 @@ html {
                   transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
                 }
 
-                .star-5 {
+                .star-5 img {
                   position: absolute;
                   top: 25%;
                   left: 45%;
@@ -2589,7 +2677,7 @@ html {
                   transition: all 0.4s cubic-bezier(0, 0.4, 0, 1.01);
                 }
 
-                .star-6 {
+                .star-6 img {
                   position: absolute;
                   top: 5%;
                   left: 50%;
@@ -2606,7 +2694,7 @@ html {
                   box-shadow: 0 0 25px #7932008c;
                 }
 
-                button:hover .star-1 {
+                button:hover .star-1 img {
                   position: absolute;
                   top: -80%;
                   left: -30%;
@@ -2616,7 +2704,7 @@ html {
                   z-index: 2;
                 }
 
-                button:hover .star-2 {
+                button:hover .star-2 img {
                   position: absolute;
                   top: -25%;
                   left: 10%;
@@ -2626,7 +2714,7 @@ html {
                   z-index: 2;
                 }
 
-                button:hover .star-3 {
+                button:hover .star-3 img {
                   position: absolute;
                   top: 55%;
                   left: 25%;
@@ -2636,7 +2724,7 @@ html {
                   z-index: 2;
                 }
 
-                button:hover .star-4 {
+                button:hover .star-4 img {
                   position: absolute;
                   top: 30%;
                   left: 80%;
@@ -2646,7 +2734,7 @@ html {
                   z-index: 2;
                 }
 
-                button:hover .star-5 {
+                button:hover .star-5 img {
                   position: absolute;
                   top: 25%;
                   left: 115%;
@@ -2656,7 +2744,7 @@ html {
                   z-index: 2;
                 }
 
-                button:hover .star-6 {
+                button:hover .star-6 img {
                   position: absolute;
                   top: 5%;
                   left: 60%;
@@ -2669,6 +2757,7 @@ html {
                 .fil0 {
                   fill: $colorBg2;
                 }
+
               }
             }
           }
@@ -2861,12 +2950,13 @@ html {
               flex-direction: row;
               @include flex-center();
               gap: 20px;
+              border: none;
 
               /* for all social containers*/
               .socialContainer {
                 width: 35px;
                 height: 35px;
-                background-color: $colorSecondary;
+                background-color: $colorTertiary;
                 @include flex-center();
                 overflow: hidden;
                 transition-duration: 0.3s;

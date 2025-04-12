@@ -28,7 +28,7 @@
 
     <?php require_once('template/produtosEmDestaque.php') ?>
 
-    <?php require_once('template/itemsEspecial.php') ?>
+    <?php require_once('template/itemEspecial.php') ?>
 
     <?php require_once('template/desconto.php') ?>
 

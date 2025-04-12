@@ -4,7 +4,7 @@
   margin: 0;
   box-sizing: border-box;
   list-style: none;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 /* sizes */
@@ -115,6 +115,7 @@ html body header .one .info01 .card {
   align-items: center;
   justify-content: center;
   gap: 20px;
+  border: none;
   /* for all social containers*/
   /* instagram*/
   /* Whatsapp*/
@@ -264,38 +265,64 @@ html body header .site .icons svg {
 html body header .site .icons svg:hover {
   transform: scale(1.08);
 }
+html body header .site .icons .open-btn {
+  position: relative;
+  cursor: pointer;
+}
+html body header .site .icons .sidebar {
+  position: fixed;
+  top: 0;
+  right: -250px;
+  width: 250px;
+  height: auto;
+  background: white;
+  padding-top: 1%;
+  transition: right 0.3s ease-in-out;
+  z-index: 2;
+}
+html body header .site .icons .sidebar.show {
+  right: 0;
+}
+html body header .site .icons .sidebar h2 {
+  font-size: 2em;
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #371406;
+  transition: 0.2s;
+}
+html body header .site .icons .sidebar h2:hover {
+  cursor: pointer;
+  color: #946926;
+}
 html body .modal h1 {
   font-weight: bold;
-  margin: 0;
-}
-html body .modal h2 {
-  text-align: center;
+  font-size: 4em;
+  width: 370px;
 }
 html body .modal p {
-  font-size: 14px;
+  font-size: 1.2em;
   font-weight: 100;
   line-height: 20px;
-  letter-spacing: 0.5px;
   margin: 20px 0 30px;
 }
 html body .modal span {
-  font-size: 12px;
+  font-size: 1em;
 }
 html body .modal a {
-  color: #333;
-  font-size: 14px;
+  color: #946926;
+  font-size: 1em;
   text-decoration: none;
   margin: 15px 0;
 }
 html body .modal button {
   border-radius: 20px;
-  border: 1px solid #ff4b2b;
-  background-color: #ff4b2b;
-  color: #ffffff;
-  font-size: 12px;
+  border: 1px solid #371406;
+  background-color: #371406;
+  color: white;
+  font-size: 1em;
   font-weight: bold;
   padding: 12px 45px;
-  letter-spacing: 1px;
   text-transform: uppercase;
   transition: transform 80ms ease-in;
 }
@@ -307,10 +334,10 @@ html body .modal button:focus {
 }
 html body .modal button.ghost {
   background-color: transparent;
-  border-color: #ffffff;
+  border-color: white;
 }
 html body .modal form {
-  background-color: #ffffff;
+  background-color: white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -320,21 +347,21 @@ html body .modal form {
   text-align: center;
 }
 html body .modal input {
-  background-color: #eee;
+  background-color: white;
   border: none;
   padding: 12px 15px;
   margin: 8px 0;
   width: 100%;
 }
 html body .modal .container {
-  background-color: #fff;
+  background-color: white;
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   position: relative;
   overflow: hidden;
-  width: 768px;
-  max-width: 100%;
-  min-height: 480px;
+  width: 850px;
+  height: 630px;
+  max-width: none;
 }
 html body .modal .form-container {
   position: absolute;
@@ -386,12 +413,12 @@ html body .modal .container.right-panel-active .overlay-container {
   transform: translateX(-100%);
 }
 html body .modal .overlay {
-  background: #ff416c;
-  background: linear-gradient(to right, #ff4b2b, #ff416c);
+  background: linear-gradient(90deg, #9e675f -9.62%, #371406 101.5%);
+  display: flex;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
-  color: #ffffff;
+  color: white;
   position: relative;
   left: -100%;
   height: 100%;
@@ -432,36 +459,65 @@ html body .modal .container.right-panel-active .overlay-right {
 html body .modal .social-container {
   margin: 20px 0;
 }
-html body .modal .social-container a {
-  border: 1px solid #dddddd;
-  border-radius: 50%;
-  display: inline-flex;
-  justify-content: center;
+html body .modal .card {
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  background-color: transparent;
+  flex-direction: row;
+  display: flex;
   align-items: center;
-  margin: 0 5px;
-  height: 40px;
-  width: 40px;
+  justify-content: center;
+  gap: 20px;
+  border: none;
+  /* for all social containers*/
+  /* google*/
+  /* apple*/
 }
-html body .modal footer {
-  background-color: #222;
-  color: #fff;
-  font-size: 14px;
-  bottom: 0;
-  position: fixed;
-  left: 0;
-  right: 0;
-  text-align: center;
-  z-index: 999;
+html body .modal .card .socialContainer {
+  width: 45px;
+  height: 45px;
+  background-color: #9e675f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition-duration: 0.3s;
+  border-radius: 30px;
 }
-html body .modal footer p {
-  margin: 10px 0;
+html body .modal .card .containerOne:hover {
+  background-color: #d62937;
+  transition-duration: 0.3s;
+  transform: scale(1.2);
 }
-html body .modal footer i {
-  color: red;
+html body .modal .card .containerTwo:hover {
+  background-color: #5b565c;
+  transition-duration: 0.3s;
+  transform: scale(1.2);
 }
-html body .modal footer a {
-  color: #3c97bf;
-  text-decoration: none;
+html body .modal .card .socialContainer:active {
+  transform: scale(0.9);
+  transition-duration: 0.3s;
+}
+html body .modal .card .socialSvg {
+  width: 17px;
+}
+html body .modal .card .socialSvg path {
+  fill: rgb(255, 255, 255);
+}
+html body .modal .card .socialContainer:hover .socialSvg {
+  animation: slide-in-top 0.3s both;
+}
+@keyframes slide-in-top {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 html body header.scroll .one {
   display: none;
@@ -655,7 +711,7 @@ html body main #banner .home-container article p {
   color: #b3b3b3;
   font-size: 2em;
 }
-html body main #banner .home-container article .buttons-home {
+html body main #banner .home-container article .buttons {
   width: 50%;
   height: 20%;
   display: flex;
@@ -664,20 +720,20 @@ html body main #banner .home-container article .buttons-home {
   justify-content: flex-start !important;
   margin-top: 2%;
 }
-html body main #banner .home-container article .buttons-home button {
+html body main #banner .home-container article .buttons button {
   position: relative;
-  padding: 12px 35px;
+  padding: 10px 40px;
   background: #371406;
-  font-size: 17px;
-  font-weight: 500;
+  font-size: 1.3em;
+  font-weight: 900;
   color: white;
   border: 3px solid #371406;
-  border-radius: 8px;
+  border-radius: 25px;
   box-shadow: 0 0 0 rgba(116, 48, 0, 0.5490196078);
   transition: all 0.3s ease-in-out;
   cursor: pointer;
 }
-html body main #banner .home-container article .buttons-home .star-1 {
+html body main #banner .home-container article .buttons .star-1 img {
   position: absolute;
   top: 20%;
   left: 20%;
@@ -687,7 +743,7 @@ html body main #banner .home-container article .buttons-home .star-1 {
   z-index: -5;
   transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
 }
-html body main #banner .home-container article .buttons-home .star-2 {
+html body main #banner .home-container article .buttons .star-2 img {
   position: absolute;
   top: 45%;
   left: 45%;
@@ -697,7 +753,7 @@ html body main #banner .home-container article .buttons-home .star-2 {
   z-index: -5;
   transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
 }
-html body main #banner .home-container article .buttons-home .star-3 {
+html body main #banner .home-container article .buttons .star-3 img {
   position: absolute;
   top: 40%;
   left: 40%;
@@ -707,7 +763,7 @@ html body main #banner .home-container article .buttons-home .star-3 {
   z-index: -5;
   transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
 }
-html body main #banner .home-container article .buttons-home .star-4 {
+html body main #banner .home-container article .buttons .star-4 img {
   position: absolute;
   top: 20%;
   left: 40%;
@@ -717,7 +773,7 @@ html body main #banner .home-container article .buttons-home .star-4 {
   z-index: -5;
   transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
 }
-html body main #banner .home-container article .buttons-home .star-5 {
+html body main #banner .home-container article .buttons .star-5 img {
   position: absolute;
   top: 25%;
   left: 45%;
@@ -727,7 +783,7 @@ html body main #banner .home-container article .buttons-home .star-5 {
   z-index: -5;
   transition: all 0.4s cubic-bezier(0, 0.4, 0, 1.01);
 }
-html body main #banner .home-container article .buttons-home .star-6 {
+html body main #banner .home-container article .buttons .star-6 img {
   position: absolute;
   top: 5%;
   left: 50%;
@@ -737,12 +793,12 @@ html body main #banner .home-container article .buttons-home .star-6 {
   z-index: -5;
   transition: all 0.8s ease;
 }
-html body main #banner .home-container article .buttons-home button:hover {
+html body main #banner .home-container article .buttons button:hover {
   background: transparent;
   color: #371406;
   box-shadow: 0 0 25px rgba(121, 50, 0, 0.5490196078);
 }
-html body main #banner .home-container article .buttons-home button:hover .star-1 {
+html body main #banner .home-container article .buttons button:hover .star-1 img {
   position: absolute;
   top: -80%;
   left: -30%;
@@ -751,7 +807,7 @@ html body main #banner .home-container article .buttons-home button:hover .star-
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #banner .home-container article .buttons-home button:hover .star-2 {
+html body main #banner .home-container article .buttons button:hover .star-2 img {
   position: absolute;
   top: -25%;
   left: 10%;
@@ -760,7 +816,7 @@ html body main #banner .home-container article .buttons-home button:hover .star-
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #banner .home-container article .buttons-home button:hover .star-3 {
+html body main #banner .home-container article .buttons button:hover .star-3 img {
   position: absolute;
   top: 55%;
   left: 25%;
@@ -769,7 +825,7 @@ html body main #banner .home-container article .buttons-home button:hover .star-
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #banner .home-container article .buttons-home button:hover .star-4 {
+html body main #banner .home-container article .buttons button:hover .star-4 img {
   position: absolute;
   top: 30%;
   left: 80%;
@@ -778,7 +834,7 @@ html body main #banner .home-container article .buttons-home button:hover .star-
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #banner .home-container article .buttons-home button:hover .star-5 {
+html body main #banner .home-container article .buttons button:hover .star-5 img {
   position: absolute;
   top: 25%;
   left: 115%;
@@ -787,7 +843,7 @@ html body main #banner .home-container article .buttons-home button:hover .star-
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #banner .home-container article .buttons-home button:hover .star-6 {
+html body main #banner .home-container article .buttons button:hover .star-6 img {
   position: absolute;
   top: 5%;
   left: 60%;
@@ -796,7 +852,7 @@ html body main #banner .home-container article .buttons-home button:hover .star-
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #banner .home-container article .buttons-home .fil0 {
+html body main #banner .home-container article .buttons .fil0 {
   fill: #371406;
 }
 html body main #banner .home-container figure {
@@ -1172,7 +1228,7 @@ html body main #graos .graosTitle h3 {
 html body main #graos .graosTitle h3 span {
   color: #946926;
 }
-html body main #graos .graosTitle .buttons-home {
+html body main #graos .graosTitle .buttons {
   width: 50%;
   height: 20%;
   display: flex;
@@ -1181,20 +1237,20 @@ html body main #graos .graosTitle .buttons-home {
   justify-content: flex-start !important;
   margin-top: 2%;
 }
-html body main #graos .graosTitle .buttons-home button {
+html body main #graos .graosTitle .buttons button {
   position: relative;
-  padding: 12px 35px;
+  padding: 10px 40px;
   background: #371406;
-  font-size: 17px;
+  font-size: 1.3em;
   font-weight: 900;
   color: white;
   border: 3px solid #371406;
-  border-radius: 10px;
+  border-radius: 25px;
   box-shadow: 0 0 0 rgba(116, 48, 0, 0.5490196078);
   transition: all 0.3s ease-in-out;
   cursor: pointer;
 }
-html body main #graos .graosTitle .buttons-home .star-1 {
+html body main #graos .graosTitle .buttons .star-1 img {
   position: absolute;
   top: 20%;
   left: 20%;
@@ -1204,7 +1260,7 @@ html body main #graos .graosTitle .buttons-home .star-1 {
   z-index: -5;
   transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
 }
-html body main #graos .graosTitle .buttons-home .star-2 {
+html body main #graos .graosTitle .buttons .star-2 img {
   position: absolute;
   top: 45%;
   left: 45%;
@@ -1214,7 +1270,7 @@ html body main #graos .graosTitle .buttons-home .star-2 {
   z-index: -5;
   transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
 }
-html body main #graos .graosTitle .buttons-home .star-3 {
+html body main #graos .graosTitle .buttons .star-3 img {
   position: absolute;
   top: 40%;
   left: 40%;
@@ -1224,7 +1280,7 @@ html body main #graos .graosTitle .buttons-home .star-3 {
   z-index: -5;
   transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
 }
-html body main #graos .graosTitle .buttons-home .star-4 {
+html body main #graos .graosTitle .buttons .star-4 img {
   position: absolute;
   top: 20%;
   left: 40%;
@@ -1234,7 +1290,7 @@ html body main #graos .graosTitle .buttons-home .star-4 {
   z-index: -5;
   transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
 }
-html body main #graos .graosTitle .buttons-home .star-5 {
+html body main #graos .graosTitle .buttons .star-5 img {
   position: absolute;
   top: 25%;
   left: 45%;
@@ -1242,9 +1298,9 @@ html body main #graos .graosTitle .buttons-home .star-5 {
   height: auto;
   filter: drop-shadow(0 0 0 #371406);
   z-index: -5;
-  transition: all 0.6s cubic-bezier(0, 0.4, 0, 1.01);
+  transition: all 0.4s cubic-bezier(0, 0.4, 0, 1.01);
 }
-html body main #graos .graosTitle .buttons-home .star-6 {
+html body main #graos .graosTitle .buttons .star-6 img {
   position: absolute;
   top: 5%;
   left: 50%;
@@ -1254,12 +1310,12 @@ html body main #graos .graosTitle .buttons-home .star-6 {
   z-index: -5;
   transition: all 0.8s ease;
 }
-html body main #graos .graosTitle .buttons-home button:hover {
+html body main #graos .graosTitle .buttons button:hover {
   background: transparent;
   color: #371406;
   box-shadow: 0 0 25px rgba(121, 50, 0, 0.5490196078);
 }
-html body main #graos .graosTitle .buttons-home button:hover .star-1 {
+html body main #graos .graosTitle .buttons button:hover .star-1 img {
   position: absolute;
   top: -80%;
   left: -30%;
@@ -1268,7 +1324,7 @@ html body main #graos .graosTitle .buttons-home button:hover .star-1 {
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #graos .graosTitle .buttons-home button:hover .star-2 {
+html body main #graos .graosTitle .buttons button:hover .star-2 img {
   position: absolute;
   top: -25%;
   left: 10%;
@@ -1277,7 +1333,7 @@ html body main #graos .graosTitle .buttons-home button:hover .star-2 {
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #graos .graosTitle .buttons-home button:hover .star-3 {
+html body main #graos .graosTitle .buttons button:hover .star-3 img {
   position: absolute;
   top: 55%;
   left: 25%;
@@ -1286,7 +1342,7 @@ html body main #graos .graosTitle .buttons-home button:hover .star-3 {
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #graos .graosTitle .buttons-home button:hover .star-4 {
+html body main #graos .graosTitle .buttons button:hover .star-4 img {
   position: absolute;
   top: 30%;
   left: 80%;
@@ -1295,7 +1351,7 @@ html body main #graos .graosTitle .buttons-home button:hover .star-4 {
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #graos .graosTitle .buttons-home button:hover .star-5 {
+html body main #graos .graosTitle .buttons button:hover .star-5 img {
   position: absolute;
   top: 25%;
   left: 115%;
@@ -1304,7 +1360,7 @@ html body main #graos .graosTitle .buttons-home button:hover .star-5 {
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #graos .graosTitle .buttons-home button:hover .star-6 {
+html body main #graos .graosTitle .buttons button:hover .star-6 img {
   position: absolute;
   top: 5%;
   left: 60%;
@@ -1313,7 +1369,7 @@ html body main #graos .graosTitle .buttons-home button:hover .star-6 {
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #graos .graosTitle .buttons-home .fil0 {
+html body main #graos .graosTitle .buttons .fil0 {
   fill: #371406;
 }
 html body main #graos .seta {
@@ -1341,7 +1397,7 @@ html body main #graos .grao {
   width: auto;
   height: 300px;
 }
-html body main #itemsEspecial {
+html body main #itemEspecial {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -1355,40 +1411,40 @@ html body main #itemsEspecial {
   overflow: hidden;
   max-width: 100dvw;
 }
-html body main #itemsEspecial .title {
+html body main #itemEspecial .title {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 10px;
 }
-html body main #itemsEspecial .title h2 {
+html body main #itemEspecial .title h2 {
   color: #371406;
   font-weight: 900;
 }
-html body main #itemsEspecial .title h2 span {
+html body main #itemEspecial .title h2 span {
   color: #946926;
 }
-html body main #itemsEspecial .title p {
+html body main #itemEspecial .title p {
   text-align: center;
   font-size: 1.3em;
   width: 860px;
   color: #b3b3b3;
 }
-html body main #itemsEspecial .carousel {
+html body main #itemEspecial .carousel {
   display: flex;
   align-items: center;
   justify-content: center;
   max-width: 100dvw;
 }
-html body main #itemsEspecial .carousel .carouselItems {
+html body main #itemEspecial .carousel .carouselItems {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 10px;
 }
-html body main #itemsEspecial .carousel .carouselItems .img {
+html body main #itemEspecial .carousel .carouselItems .img {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1397,7 +1453,7 @@ html body main #itemsEspecial .carousel .carouselItems .img {
   background: linear-gradient(to top, #f2e0db 1.57%, #fff 128.95%);
   border-radius: 25px;
 }
-html body main #itemsEspecial .carousel .carouselItems ul {
+html body main #itemEspecial .carousel .carouselItems ul {
   width: 100%;
   display: flex;
   align-items: center;
@@ -1405,7 +1461,7 @@ html body main #itemsEspecial .carousel .carouselItems ul {
   flex-direction: column;
   justify-content: space-evenly;
 }
-html body main #itemsEspecial .carousel .carouselItems ul li .star {
+html body main #itemEspecial .carousel .carouselItems ul li .star {
   animation: blink 1.5s infinite;
   font-size: 1.6em;
   color: goldenrod;
@@ -1418,39 +1474,39 @@ html body main #itemsEspecial .carousel .carouselItems ul li .star {
     color: gold;
   }
 }
-html body main #itemsEspecial .carousel .carouselItems ul li .star:nth-child(2) {
+html body main #itemEspecial .carousel .carouselItems ul li .star:nth-child(2) {
   animation-delay: 0.9s;
 }
-html body main #itemsEspecial .carousel .carouselItems ul li .star:nth-child(3) {
+html body main #itemEspecial .carousel .carouselItems ul li .star:nth-child(3) {
   animation-delay: 1.2s;
 }
-html body main #itemsEspecial .carousel .carouselItems ul li .star:nth-child(4) {
+html body main #itemEspecial .carousel .carouselItems ul li .star:nth-child(4) {
   animation-delay: 1.5s;
 }
-html body main #itemsEspecial .carousel .carouselItems ul li .star:nth-child(5) {
+html body main #itemEspecial .carousel .carouselItems ul li .star:nth-child(5) {
   animation-delay: 1.8s;
 }
-html body main #itemsEspecial .carousel .carouselItems h3 {
+html body main #itemEspecial .carousel .carouselItems h3 {
   font-weight: 900;
   font-size: 2em;
 }
-html body main #itemsEspecial .carousel .carouselItems h4 {
+html body main #itemEspecial .carousel .carouselItems h4 {
   font-weight: 900;
   color: #000000;
 }
-html body main #itemsEspecial .carousel .carouselItems h4 span {
+html body main #itemEspecial .carousel .carouselItems h4 span {
   color: #b3b3b3;
   text-decoration: line-through;
 }
-html body main #itemsEspecial .carousel .carouselItems .buttons-home {
-  width: 100%;
+html body main #itemEspecial .carousel .carouselItems .buttons {
+  width: 50%;
   height: 20%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 2%;
 }
-html body main #itemsEspecial .carousel .carouselItems .buttons-home button {
+html body main #itemEspecial .carousel .carouselItems .buttons button {
   position: relative;
   padding: 12px 35px;
   background: #371406;
@@ -1465,13 +1521,13 @@ html body main #itemsEspecial .carousel .carouselItems .buttons-home button {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
 }
-html body main #itemsEspecial .carousel .carouselItems .buttons-home button svg {
+html body main #itemEspecial .carousel .carouselItems .buttons button svg {
   width: 25px;
   height: auto;
+  margin-left: 10px;
 }
-html body main #itemsEspecial .carousel .carouselItems .buttons-home .star-1 {
+html body main #itemEspecial .carousel .carouselItems .buttons .star-1 img {
   position: absolute;
   top: 20%;
   left: 20%;
@@ -1481,7 +1537,7 @@ html body main #itemsEspecial .carousel .carouselItems .buttons-home .star-1 {
   z-index: -5;
   transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
 }
-html body main #itemsEspecial .carousel .carouselItems .buttons-home .star-2 {
+html body main #itemEspecial .carousel .carouselItems .buttons .star-2 img {
   position: absolute;
   top: 45%;
   left: 45%;
@@ -1491,7 +1547,7 @@ html body main #itemsEspecial .carousel .carouselItems .buttons-home .star-2 {
   z-index: -5;
   transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
 }
-html body main #itemsEspecial .carousel .carouselItems .buttons-home .star-3 {
+html body main #itemEspecial .carousel .carouselItems .buttons .star-3 img {
   position: absolute;
   top: 40%;
   left: 40%;
@@ -1501,7 +1557,7 @@ html body main #itemsEspecial .carousel .carouselItems .buttons-home .star-3 {
   z-index: -5;
   transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
 }
-html body main #itemsEspecial .carousel .carouselItems .buttons-home .star-4 {
+html body main #itemEspecial .carousel .carouselItems .buttons .star-4 img {
   position: absolute;
   top: 20%;
   left: 40%;
@@ -1511,7 +1567,7 @@ html body main #itemsEspecial .carousel .carouselItems .buttons-home .star-4 {
   z-index: -5;
   transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
 }
-html body main #itemsEspecial .carousel .carouselItems .buttons-home .star-5 {
+html body main #itemEspecial .carousel .carouselItems .buttons .star-5 img {
   position: absolute;
   top: 25%;
   left: 45%;
@@ -1519,9 +1575,9 @@ html body main #itemsEspecial .carousel .carouselItems .buttons-home .star-5 {
   height: auto;
   filter: drop-shadow(0 0 0 #371406);
   z-index: -5;
-  transition: all 0.6s cubic-bezier(0, 0.4, 0, 1.01);
+  transition: all 0.4s cubic-bezier(0, 0.4, 0, 1.01);
 }
-html body main #itemsEspecial .carousel .carouselItems .buttons-home .star-6 {
+html body main #itemEspecial .carousel .carouselItems .buttons .star-6 img {
   position: absolute;
   top: 5%;
   left: 50%;
@@ -1531,12 +1587,12 @@ html body main #itemsEspecial .carousel .carouselItems .buttons-home .star-6 {
   z-index: -5;
   transition: all 0.8s ease;
 }
-html body main #itemsEspecial .carousel .carouselItems .buttons-home button:hover {
+html body main #itemEspecial .carousel .carouselItems .buttons button:hover {
   background: transparent;
   color: #371406;
   box-shadow: 0 0 25px rgba(121, 50, 0, 0.5490196078);
 }
-html body main #itemsEspecial .carousel .carouselItems .buttons-home button:hover .star-1 {
+html body main #itemEspecial .carousel .carouselItems .buttons button:hover .star-1 img {
   position: absolute;
   top: -80%;
   left: -30%;
@@ -1545,7 +1601,7 @@ html body main #itemsEspecial .carousel .carouselItems .buttons-home button:hove
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #itemsEspecial .carousel .carouselItems .buttons-home button:hover .star-2 {
+html body main #itemEspecial .carousel .carouselItems .buttons button:hover .star-2 img {
   position: absolute;
   top: -25%;
   left: 10%;
@@ -1554,7 +1610,7 @@ html body main #itemsEspecial .carousel .carouselItems .buttons-home button:hove
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #itemsEspecial .carousel .carouselItems .buttons-home button:hover .star-3 {
+html body main #itemEspecial .carousel .carouselItems .buttons button:hover .star-3 img {
   position: absolute;
   top: 55%;
   left: 25%;
@@ -1563,7 +1619,7 @@ html body main #itemsEspecial .carousel .carouselItems .buttons-home button:hove
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #itemsEspecial .carousel .carouselItems .buttons-home button:hover .star-4 {
+html body main #itemEspecial .carousel .carouselItems .buttons button:hover .star-4 img {
   position: absolute;
   top: 30%;
   left: 80%;
@@ -1572,7 +1628,7 @@ html body main #itemsEspecial .carousel .carouselItems .buttons-home button:hove
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #itemsEspecial .carousel .carouselItems .buttons-home button:hover .star-5 {
+html body main #itemEspecial .carousel .carouselItems .buttons button:hover .star-5 img {
   position: absolute;
   top: 25%;
   left: 115%;
@@ -1581,7 +1637,7 @@ html body main #itemsEspecial .carousel .carouselItems .buttons-home button:hove
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #itemsEspecial .carousel .carouselItems .buttons-home button:hover .star-6 {
+html body main #itemEspecial .carousel .carouselItems .buttons button:hover .star-6 img {
   position: absolute;
   top: 5%;
   left: 60%;
@@ -1590,13 +1646,13 @@ html body main #itemsEspecial .carousel .carouselItems .buttons-home button:hove
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #itemsEspecial .carousel .carouselItems .buttons-home .fil0 {
+html body main #itemEspecial .carousel .carouselItems .buttons .fil0 {
   fill: #371406;
 }
-html body main #itemsEspecial .itemsEspecialPosition {
+html body main #itemEspecial .itemsEspecialPosition {
   position: absolute;
 }
-html body main #itemsEspecial .itemsEspecialPosition .grao {
+html body main #itemEspecial .itemsEspecialPosition .grao {
   position: absolute;
   top: -320px;
   left: -800px;
@@ -1616,7 +1672,7 @@ html body main #itemsEspecial .itemsEspecialPosition .grao {
     transform: translate(0, 0px);
   }
 }
-html body main #itemsEspecial .itemsEspecialPosition .cup {
+html body main #itemEspecial .itemsEspecialPosition .cup {
   position: absolute;
   top: 420px;
   left: 780px;
@@ -2177,7 +2233,7 @@ html body main #desconto .emailCont .emailItems form .email::placeholder {
   color: white;
   font-weight: 900;
 }
-html body main #desconto .emailCont .emailItems form .buttons-home button {
+html body main #desconto .emailCont .emailItems form .buttons button {
   position: relative;
   padding: 12px 45px;
   background: #371406;
@@ -2190,7 +2246,7 @@ html body main #desconto .emailCont .emailItems form .buttons-home button {
   transition: all 0.3s ease-in-out;
   cursor: pointer;
 }
-html body main #desconto .emailCont .emailItems form .buttons-home .star-1 {
+html body main #desconto .emailCont .emailItems form .buttons .star-1 img {
   position: absolute;
   top: 20%;
   left: 20%;
@@ -2200,7 +2256,7 @@ html body main #desconto .emailCont .emailItems form .buttons-home .star-1 {
   z-index: -5;
   transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
 }
-html body main #desconto .emailCont .emailItems form .buttons-home .star-2 {
+html body main #desconto .emailCont .emailItems form .buttons .star-2 img {
   position: absolute;
   top: 45%;
   left: 45%;
@@ -2210,7 +2266,7 @@ html body main #desconto .emailCont .emailItems form .buttons-home .star-2 {
   z-index: -5;
   transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
 }
-html body main #desconto .emailCont .emailItems form .buttons-home .star-3 {
+html body main #desconto .emailCont .emailItems form .buttons .star-3 img {
   position: absolute;
   top: 40%;
   left: 40%;
@@ -2220,7 +2276,7 @@ html body main #desconto .emailCont .emailItems form .buttons-home .star-3 {
   z-index: -5;
   transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
 }
-html body main #desconto .emailCont .emailItems form .buttons-home .star-4 {
+html body main #desconto .emailCont .emailItems form .buttons .star-4 img {
   position: absolute;
   top: 20%;
   left: 40%;
@@ -2230,7 +2286,7 @@ html body main #desconto .emailCont .emailItems form .buttons-home .star-4 {
   z-index: -5;
   transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
 }
-html body main #desconto .emailCont .emailItems form .buttons-home .star-5 {
+html body main #desconto .emailCont .emailItems form .buttons .star-5 img {
   position: absolute;
   top: 25%;
   left: 45%;
@@ -2240,7 +2296,7 @@ html body main #desconto .emailCont .emailItems form .buttons-home .star-5 {
   z-index: -5;
   transition: all 0.4s cubic-bezier(0, 0.4, 0, 1.01);
 }
-html body main #desconto .emailCont .emailItems form .buttons-home .star-6 {
+html body main #desconto .emailCont .emailItems form .buttons .star-6 img {
   position: absolute;
   top: 5%;
   left: 50%;
@@ -2250,12 +2306,12 @@ html body main #desconto .emailCont .emailItems form .buttons-home .star-6 {
   z-index: -5;
   transition: all 0.8s ease;
 }
-html body main #desconto .emailCont .emailItems form .buttons-home button:hover {
+html body main #desconto .emailCont .emailItems form .buttons button:hover {
   background: transparent;
   color: #371406;
   box-shadow: 0 0 25px rgba(121, 50, 0, 0.5490196078);
 }
-html body main #desconto .emailCont .emailItems form .buttons-home button:hover .star-1 {
+html body main #desconto .emailCont .emailItems form .buttons button:hover .star-1 img {
   position: absolute;
   top: -80%;
   left: -30%;
@@ -2264,7 +2320,7 @@ html body main #desconto .emailCont .emailItems form .buttons-home button:hover 
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #desconto .emailCont .emailItems form .buttons-home button:hover .star-2 {
+html body main #desconto .emailCont .emailItems form .buttons button:hover .star-2 img {
   position: absolute;
   top: -25%;
   left: 10%;
@@ -2273,7 +2329,7 @@ html body main #desconto .emailCont .emailItems form .buttons-home button:hover 
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #desconto .emailCont .emailItems form .buttons-home button:hover .star-3 {
+html body main #desconto .emailCont .emailItems form .buttons button:hover .star-3 img {
   position: absolute;
   top: 55%;
   left: 25%;
@@ -2282,7 +2338,7 @@ html body main #desconto .emailCont .emailItems form .buttons-home button:hover 
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #desconto .emailCont .emailItems form .buttons-home button:hover .star-4 {
+html body main #desconto .emailCont .emailItems form .buttons button:hover .star-4 img {
   position: absolute;
   top: 30%;
   left: 80%;
@@ -2291,7 +2347,7 @@ html body main #desconto .emailCont .emailItems form .buttons-home button:hover 
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #desconto .emailCont .emailItems form .buttons-home button:hover .star-5 {
+html body main #desconto .emailCont .emailItems form .buttons button:hover .star-5 img {
   position: absolute;
   top: 25%;
   left: 115%;
@@ -2300,7 +2356,7 @@ html body main #desconto .emailCont .emailItems form .buttons-home button:hover 
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #desconto .emailCont .emailItems form .buttons-home button:hover .star-6 {
+html body main #desconto .emailCont .emailItems form .buttons button:hover .star-6 img {
   position: absolute;
   top: 5%;
   left: 60%;
@@ -2309,7 +2365,7 @@ html body main #desconto .emailCont .emailItems form .buttons-home button:hover 
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #desconto .emailCont .emailItems form .buttons-home .fil0 {
+html body main #desconto .emailCont .emailItems form .buttons .fil0 {
   fill: #371406;
 }
 html body main #contato {
@@ -2489,6 +2545,7 @@ html body .footer .footer-container .footer-links .footer-section .card {
   align-items: center;
   justify-content: center;
   gap: 20px;
+  border: none;
   /* for all social containers*/
   /* instagram*/
   /* Whatsapp*/
@@ -2497,7 +2554,7 @@ html body .footer .footer-container .footer-links .footer-section .card {
 html body .footer .footer-container .footer-links .footer-section .card .socialContainer {
   width: 35px;
   height: 35px;
-  background-color: #946926;
+  background-color: #371406;
   display: flex;
   align-items: center;
   justify-content: center;
