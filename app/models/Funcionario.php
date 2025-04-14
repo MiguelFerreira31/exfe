@@ -4,7 +4,7 @@
 
 class Funcionario extends Model
 {
- 
+
 
     public function buscarFuncionario($email)
     {
@@ -51,122 +51,187 @@ class Funcionario extends Model
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    //Método para Pegar 4 Especialidade de servicos de forma aleatória
-    public function getEspecialidadeAleatorio($limite = 4)
-    {
-
-        $sql = "SELECT * FROM tbl_especialidade ORDER BY RAND() LIMIT :limite";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(':limite', (int)$limite, PDO::PARAM_INT);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
 
     // Médoto para o DASHBOARD - Listar todos os serviços com galeria e especialidade
-    public function getListarFuncionarios()
+    public function getListarFuncionario()
     {
-        // Método para listar todos os funcionários ativos por ordem alfabética
-        $sql = "SELECT func.*, esp.nome_especialidade 
-                FROM tbl_funcionario AS func
-                INNER JOIN tbl_especialidade AS esp ON func.id_especialidade = esp.id_especialidade
-                WHERE func.status_funcionario = 'ativo';";
 
-        $stmt = $this->db->query($sql); // Prepara e executa a consulta
+        $sql = "SELECT * 
+                FROM tbl_funcionario AS a
+                INNER JOIN tbl_estado AS e 
+                ON a.id_estado = e.id_estado
+                WHERE TRIM(a.status_funcionario) = 'ativo'";
+
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    public function getListarFuncionarioDesativados()
+    {
+
+        $sql = "SELECT * 
+                FROM tbl_funcionario AS a
+                INNER JOIN tbl_estado AS e 
+                ON a.id_estado = e.id_estado
+                WHERE TRIM(a.status_funcionario) = 'Inativo'";
+        $stmt = $this->db->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
 
 
-    // 5 METODO DASHBOARD ADICONAR SERVICO 
+
+    // 5 METODO DASHBOARD ADICONAR Funcionario
 
     public function addFuncionario($dados)
     {
-
-        $sql = "INSERT INTO tbl_servico (  
-        nome_servico,
-        descricao_servico,
-        preco_base_servico,
-        tempo_estimado_servico,
-        id_especialidade,
-        status_servico,
-        link_servico) 
-
-        VALUES(
-        :nome_servico,
-        :descricao_servico,
-        :preco_base_servico,
-        :tempo_estimado_servico,
-        :id_especialidade,
-        :status_servico,
-        :link_servico
-        
-        )";
+        $sql = "INSERT INTO tbl_funcionario (
+                nome_funcionario, 
+                foto_funcionario,
+                cpf_cnpj,
+                email_funcionario,
+                nasc_funcionario,
+                senha_funcionario,
+                id_tipo_usuario,
+                status_funcionario,
+                telefone_funcionario,
+                endereco_funcionario,
+                bairro_funcionario,
+                cidade_funcionario,
+                cargo_funcionario,
+                id_estado
+            ) VALUES (
+                :nome_funcionario,
+                :foto_funcionario,
+                :cpf_cnpj,
+                :email_funcionario,
+                :nasc_funcionario,
+                :senha_funcionario,
+                :id_tipo_usuario,
+                :status_funcionario,
+                :telefone_funcionario,
+                :endereco_funcionario,
+                :bairro_funcionario,
+                :cidade_funcionario,
+                :cargo_funcionario,
+                :id_estado
+            );";
 
         $stmt = $this->db->prepare($sql);
-
-        $stmt->bindValue(':nome_servico', $dados['nome_servico']);
-        $stmt->bindValue(':descricao_servico', $dados['descricao_servico']);
-        $stmt->bindValue(':preco_base_servico', $dados['preco_base_servico']);
-        $stmt->bindValue(':tempo_estimado_servico', $dados['tempo_estimado_servico']);
-        $stmt->bindValue(':id_especialidade', $dados['id_especialidade']);
-        $stmt->bindValue(':status_servico', $dados['status_servico']);
-        $stmt->bindValue(':link_servico', $dados['link_servico']);
+        $stmt->bindValue(':nome_funcionario', $dados['nome_funcionario']);
+        $stmt->bindValue(':foto_funcionario', $dados['foto_funcionario']);
+        $stmt->bindValue(':cpf_cnpj', $dados['cpf_cnpj']);
+        $stmt->bindValue(':email_funcionario', $dados['email_funcionario']);
+        $stmt->bindValue(':nasc_funcionario', $dados['nasc_funcionario']);
+        $stmt->bindValue(':senha_funcionario', $dados['senha_funcionario']);
+        $stmt->bindValue(':id_tipo_usuario', $dados['tipo_funcionario']); // assumindo que seja o id
+        $stmt->bindValue(':status_funcionario', $dados['status_funcionario']);
+        $stmt->bindValue(':telefone_funcionario', $dados['telefone_funcionario']);
+        $stmt->bindValue(':endereco_funcionario', $dados['endereco_funcionario']);
+        $stmt->bindValue(':bairro_funcionario', $dados['bairro_funcionario']);
+        $stmt->bindValue(':cidade_funcionario', $dados['cidade_funcionario']);
+        $stmt->bindValue(':cargo_funcionario', $dados['cargo_funcionario']);
+        $stmt->bindValue(':id_estado', $dados['id_estado']);
 
         $stmt->execute();
-
         return $this->db->lastInsertId();
     }
 
-    // Add foto galeria 
-    public function addFotoGaleria($id_servico, $arquivo, $nome_servico)
+
+
+    // 6 Método para add FOTO GALERIA 
+
+    public function addFotoFuncionario($id_funcionario, $arquivo)
     {
-        $sql = "INSERT INTO tbl_galeria (foto_galeria,
-                                         alt_galeria,
-                                         status_galeria,
-                                         id_servico)
-                                         
-                                         VALUES (:foto_galeria,
-                                                 :alt_galeria,
-                                                 :status_galeria,
-                                                 :id_servico)";
+        $sql = "UPDATE tbl_funcionario 
+           SET foto_funcionario = :foto_funcionario 
+           WHERE id_funcionario = :id_funcionario";
 
         $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(':foto_galeria', $arquivo);
-        $stmt->bindValue(':alt_galeria', $nome_servico);
-        $stmt->bindValue('status_galeria', 'Ativo');
-        $stmt->bindValue(':id_servico', $id_servico);
+        $stmt->bindValue(':foto_funcionario', $arquivo);
+
+        $stmt->bindValue(':id_funcionario', $id_funcionario);
 
         return $stmt->execute();
     }
 
 
-
-    // Verificar se o link existe
-    public function existeEsseFuncionario($link)
+    public function updateFuncionario($id, $dados)
     {
-        $sql = "SELECT COUNT(*) AS total FROM tbl_servico WHERE link_servico = :link";
+        $sql = "UPDATE tbl_funcionario SET 
+                nome_funcionario = :nome_funcionario,
+                foto_funcionario = :foto_funcionario,
+                cpf_cnpj = :cpf_cnpj,
+                email_funcionario = :email_funcionario,
+                nasc_funcionario = :nasc_funcionario,
+                senha_funcionario = :senha_funcionario,
+                id_tipo_usuario = :id_tipo_usuario,
+                status_funcionario = :status_funcionario,
+                telefone_funcionario = :telefone_funcionario,
+                endereco_funcionario = :endereco_funcionario,
+                bairro_funcionario = :bairro_funcionario,
+                cidade_funcionario = :cidade_funcionario,
+                cargo_funcionario = :cargo_funcionario,
+                id_estado = :id_estado
+                WHERE id_funcionario = :id_funcionario";
+    
         $stmt = $this->db->prepare($sql);
-        $stmt->bindValue('link', $link);
+    
+        $stmt->bindValue(':nome_funcionario', $dados['nome_funcionario']);
+        $stmt->bindValue(':foto_funcionario', $dados['foto_funcionario']);
+        $stmt->bindValue(':cpf_cnpj', $dados['cpf_cnpj']);
+        $stmt->bindValue(':email_funcionario', $dados['email_funcionario']);
+        $stmt->bindValue(':nasc_funcionario', $dados['nasc_funcionario']);
+        $stmt->bindValue(':senha_funcionario', $dados['senha_funcionario']);
+        $stmt->bindValue(':id_tipo_usuario', $dados['id_tipo_usuario']);
+        $stmt->bindValue(':status_funcionario', $dados['status_funcionario']);
+        $stmt->bindValue(':telefone_funcionario', $dados['telefone_funcionario']);
+        $stmt->bindValue(':endereco_funcionario', $dados['endereco_funcionario']);
+        $stmt->bindValue(':bairro_funcionario', $dados['bairro_funcionario']);
+        $stmt->bindValue(':cidade_funcionario', $dados['cidade_funcionario']);
+        $stmt->bindValue(':cargo_funcionario', $dados['cargo_funcionario']);
+        $stmt->bindValue(':id_estado', $dados['id_estado']);
+        $stmt->bindValue(':id_funcionario', $id);
+    
+        return $stmt->execute();
+    }
+    
+
+    public function getFuncionarioById($id)
+    {
+
+        $sql = "SELECT * FROM tbl_funcionario
+                WHERE id_funcionario = :id_funcionario;";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_funcionario', $id, PDO::PARAM_INT);
         $stmt->execute();
 
-        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        return $resultado['total'] > 0;
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
 
-
-    // Criar ou Obter especialidade
-    public function obterOuCriarEspecialidade($nome)
+    // Desativar Funcionario 
+    public function desativarFuncionario($id)
     {
-        $sql = "INSERT INTO tbl_especialidade (nome_especialidade) VALUES (:nome)";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(':nome', $nome);
 
-        if ($stmt->execute()) {
-            return $this->db->lastInsertId();
-        }
-        return false;
+        $sql = "UPDATE tbl_funcionario SET status_funcionario = 'Inativo'  WHERE id_funcionario = :id_funcionario ";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_funcionario', $id, PDO::PARAM_INT);
+        return $stmt->execute();
     }
+
+ // ativar Funcionario 
+
+ public function ativarFuncionario($id)
+ {
+
+     $sql = "UPDATE tbl_funcionario SET status_funcionario = 'Ativo'  WHERE id_funcionario = :id_funcionario ";
+     $stmt = $this->db->prepare($sql);
+     $stmt->bindValue(':id_funcionario', $id, PDO::PARAM_INT);
+     return $stmt->execute();
+ }
+
+
+
 }

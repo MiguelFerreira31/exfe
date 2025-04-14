@@ -129,7 +129,7 @@
 
         <!-- Novo item: Funcionários -->
         <li class="nav-item">
-          <a class="nav-link" href="http://localhost/exfe/public/funcionarios"
+          <a class="nav-link" href="http://localhost/exfe/public/funcionarios/listar"
             style="color: #371406; border-radius: 0.5rem;">
             <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
               style="background-color: #ffd8b9; border-radius: 0.5rem;">
@@ -138,6 +138,18 @@
             <span class="nav-link-text ms-1">Funcionários</span>
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://localhost/exfe/public/funcionarios/desativados"
+            style="color: #371406; border-radius: 0.5rem;">
+            <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
+              style="background-color: #ffd8b9; border-radius: 0.5rem;">
+              <i class="ni ni-badge text-sm" style="color: #371406; opacity: 0.9;"></i>
+            </div>
+            <span class="nav-link-text ms-1">Funcionários Desativados</span>
+          </a>
+        </li>
+
+
 
         <!-- Novo item: Serviços -->
         <li class="nav-item">
