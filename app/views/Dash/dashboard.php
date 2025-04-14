@@ -3,40 +3,38 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <link
-    rel="apple-touch-icon"
-    sizes="76x76"
-    href="../assets/img/apple-icon.png" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Ícone da aplicação para dispositivos Apple -->
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
+  <!-- Link para o arquivo CSS do painel de controle (style personalizado) -->
   <link rel="stylesheet" href="http://localhost/exfe/public/assets/css/dash.css">
+  <!-- Ícone do site (para abas do navegador) -->
   <link rel="icon" type="image/png" href="http://localhost/exfe/public/assets/imgDash/coffeBranco.png" />
-  <title>EXFE</title>
-  <!--     Fonts and icons     -->
-  <link
-    href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
-    rel="stylesheet" />
-  <!-- Nucleo Icons -->
-  <link
-    href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css"
-    rel="stylesheet" />
-  <link
-    href="http://localhost/exfe/public/assets/css/nucleo-svg.css"
-    rel="stylesheet" />
-  <!-- Font Awesome Icons -->
-  <script
-    src="https://kit.fontawesome.com/42d5adcbca.js"
-    crossorigin="anonymous"></script>
-  <!-- CSS Files -->
-  <link
-    id="pagestyle"
-    href="http://localhost/exfe/public/assets/css/argon-dashboard.css?v=2.1.0"
-    rel="stylesheet" />
+  <!-- Link para a biblioteca de ícones do Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css" integrity="sha256-Qsx5lrStHZyR9REqhUF8iQt73X06c8LGIUPzpOhwRrI=" crossorigin="anonymous">
+  <!-- Link para a biblioteca Font Awesome (para ícones adicionais) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Fontes e ícones -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <!-- Nucleo Icons para ícones gráficos (usado no tema Argon) -->
+  <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
+  <!-- Link para o CSS de ícones SVG personalizados -->
+  <link href="http://localhost/exfe/public/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- Script para carregar o Font Awesome (opcional para ícones de fontes) -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <!-- Arquivo CSS principal do painel de controle (argon-dashboard) -->
+  <link id="pagestyle" href="http://localhost/exfe/public/assets/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
+  <!-- Arquivo CSS personalizado para o site -->
+   <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <link rel="stylesheet" href="http://localhost/exfe/public/assets/css/style.css">
+
+  <!-- Título da página -->
+  <title>EXFE</title>
+
 </head>
+
 
 <body class="g-sidenav-show bg-gray-100">
   <div class="min-height-300 position-absolute w-100" style="background-color: #371406;"></div>
@@ -67,101 +65,113 @@
     <hr class="horizontal mt-0" style="border-color: #d3c2b5; opacity: 0.7;" />
 
     <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
-  <ul class="navbar-nav">
+      <ul class="navbar-nav">
 
-    <li class="nav-item">
-      <a class="nav-link active" href="http://localhost/exfe/public/dashboard"
-        style="color: #9e675f; background-color: #fdf6ee; border-radius: 0.5rem;">
-        <div
-          class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
-          style="background-color: #ffd8b9; border-radius: 0.5rem;">
-          <i class="ni ni-tv-2 text-sm" style="color: #371406; opacity: 0.9;"></i>
-        </div>
-        <span class="nav-link-text ms-1">Dashboard</span>
-      </a>
-    </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="http://localhost/exfe/public/dashboard"
+            style="color: #9e675f; background-color: #fdf6ee; border-radius: 0.5rem;">
+            <div
+              class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
+              style="background-color: #ffd8b9; border-radius: 0.5rem;">
+              <i class="ni ni-tv-2 text-sm" style="color: #371406; opacity: 0.9;"></i>
+            </div>
+            <span class="nav-link-text ms-1">Dashboard</span>
+          </a>
+        </li>
 
-    <li class="nav-item">
-      <a class="nav-link" href="../Dash/tables.html"
-        style="color: #371406; border-radius: 0.5rem;">
-        <div
-          class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
-          style="background-color: #ffd8b9; border-radius: 0.5rem;">
-          <i class="ni ni-calendar-grid-58 text-sm" style="color: #371406; opacity: 0.9;"></i>
-        </div>
-        <span class="nav-link-text ms-1">Tabelas</span>
-      </a>
-    </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../Dash/tables.html"
+            style="color: #371406; border-radius: 0.5rem;">
+            <div
+              class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
+              style="background-color: #ffd8b9; border-radius: 0.5rem;">
+              <i class="ni ni-calendar-grid-58 text-sm" style="color: #371406; opacity: 0.9;"></i>
+            </div>
+            <span class="nav-link-text ms-1">Tabelas</span>
+          </a>
+        </li>
 
-    <li class="nav-item">
-      <a class="nav-link" href="../pages/billing.html"
-        style="color: #371406; border-radius: 0.5rem;">
-        <div
-          class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
-          style="background-color: #ffd8b9; border-radius: 0.5rem;">
-          <i class="ni ni-credit-card text-sm" style="color: #371406; opacity: 0.9;"></i>
-        </div>
-        <span class="nav-link-text ms-1">Billing</span>
-      </a>
-    </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../pages/billing.html"
+            style="color: #371406; border-radius: 0.5rem;">
+            <div
+              class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
+              style="background-color: #ffd8b9; border-radius: 0.5rem;">
+              <i class="ni ni-credit-card text-sm" style="color: #371406; opacity: 0.9;"></i>
+            </div>
+            <span class="nav-link-text ms-1">Billing</span>
+          </a>
+        </li>
 
-    <!-- Novo item: Clientes -->
-    <li class="nav-item">
-      <a class="nav-link" href="http://localhost/exfe/public/clientes"
-        style="color: #371406; border-radius: 0.5rem;">
-        <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
-          style="background-color: #ffd8b9; border-radius: 0.5rem;">
-          <i class="ni ni-single-02 text-sm" style="color: #371406; opacity: 0.9;"></i>
-        </div>
-        <span class="nav-link-text ms-1">Clientes</span>
-      </a>
-    </li>
+        <!-- Novo item: Clientes -->
+        <li class="nav-item">
+          <a class="nav-link" href="http://localhost/exfe/public/clientes/listar"
+            style="color: #371406; border-radius: 0.5rem;">
+            <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
+              style="background-color: #ffd8b9; border-radius: 0.5rem;">
+              <i class="ni ni-single-02 text-sm" style="color: #371406; opacity: 0.9;"></i>
+            </div>
+            <span class="nav-link-text ms-1">Clientes</span>
+            
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://localhost/exfe/public/clientes/desativados"
+            style="color: #371406; border-radius: 0.5rem;">
+            <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
+              style="background-color: #ffd8b9; border-radius: 0.5rem;">
+              <i class="ni ni-single-02 text-sm" style="color: #371406; opacity: 0.9;"></i>
+            </div>
+            <span class="nav-link-text ms-1">Clientes Desativados</span>
+            
+          </a>
+        </li>
 
-    <!-- Novo item: Funcionários -->
-    <li class="nav-item">
-      <a class="nav-link" href="http://localhost/exfe/public/funcionarios"
-        style="color: #371406; border-radius: 0.5rem;">
-        <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
-          style="background-color: #ffd8b9; border-radius: 0.5rem;">
-          <i class="ni ni-badge text-sm" style="color: #371406; opacity: 0.9;"></i>
-        </div>
-        <span class="nav-link-text ms-1">Funcionários</span>
-      </a>
-    </li>
+        <!-- Novo item: Funcionários -->
+        <li class="nav-item">
+          <a class="nav-link" href="http://localhost/exfe/public/funcionarios"
+            style="color: #371406; border-radius: 0.5rem;">
+            <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
+              style="background-color: #ffd8b9; border-radius: 0.5rem;">
+              <i class="ni ni-badge text-sm" style="color: #371406; opacity: 0.9;"></i>
+            </div>
+            <span class="nav-link-text ms-1">Funcionários</span>
+          </a>
+        </li>
 
-    <!-- Novo item: Serviços -->
-    <li class="nav-item">
-      <a class="nav-link" href="http://localhost/exfe/public/servicos"
-        style="color: #371406; border-radius: 0.5rem;">
-        <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
-          style="background-color: #ffd8b9; border-radius: 0.5rem;">
-          <i class="ni ni-settings text-sm" style="color: #371406; opacity: 0.9;"></i>
-        </div>
-        <span class="nav-link-text ms-1">Serviços</span>
-      </a>
-    </li>
+        <!-- Novo item: Serviços -->
+        <li class="nav-item">
+          <a class="nav-link" href="http://localhost/exfe/public/servicos"
+            style="color: #371406; border-radius: 0.5rem;">
+            <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
+              style="background-color: #ffd8b9; border-radius: 0.5rem;">
+              <i class="ni ni-settings text-sm" style="color: #371406; opacity: 0.9;"></i>
+            </div>
+            <span class="nav-link-text ms-1">Serviços</span>
+          </a>
+        </li>
 
-    <li class="nav-item mt-3">
-      <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder"
-        style="color: #9e675f; opacity: 0.85;">
-        Account pages
-      </h6>
-    </li>
+        <li class="nav-item mt-3">
+          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder"
+            style="color: #9e675f; opacity: 0.85;">
+            Account pages
+          </h6>
+        </li>
 
-    <li class="nav-item">
-      <a class="nav-link" href="../Dash/profile.html"
-        style="color: #371406; border-radius: 0.5rem;">
-        <div
-          class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
-          style="background-color: #ffd8b9; border-radius: 0.5rem;">
-          <i class="ni ni-single-02 text-sm" style="color: #371406; opacity: 0.9;"></i>
-        </div>
-        <span class="nav-link-text ms-1">Perfil</span>
-      </a>
-    </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../Dash/profile.html"
+            style="color: #371406; border-radius: 0.5rem;">
+            <div
+              class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
+              style="background-color: #ffd8b9; border-radius: 0.5rem;">
+              <i class="ni ni-single-02 text-sm" style="color: #371406; opacity: 0.9;"></i>
+            </div>
+            <span class="nav-link-text ms-1">Perfil</span>
+          </a>
+        </li>
 
-  </ul>
-</div>
+      </ul>
+    </div>
 
   </aside>
 
@@ -418,17 +428,17 @@
         </div>
       </div>
 
-    <!-- Conteúdo -->
-    <?php
-                            if (isset($conteudo)) {
-                                $this->carregarViews($conteudo, $dados);
-                            } else {
-                                echo '<h2>Bem-vindo ' . $usuario['nome_usuario'] . '!</h2>';
-                            }
-                            ?>
+      <!-- Conteúdo -->
+      <?php
+      if (isset($conteudo)) {
+        $this->carregarViews($conteudo, $dados);
+      } else {
+        echo '<h2>Bem-vindo ' . $func['nome_funcionario'] . '!</h2> ';
+      }
+      ?>
 
 
-<div class="row mt-4">
+      <div class="row mt-4">
         <div class="col-lg-7 mb-lg-0 mb-4">
           <div class="card z-index-2 h-100" style="background-color: #fffcea; border: 2px solid #371406; border-radius: 20px; box-shadow: 0 4px 15px rgba(55, 20, 6, 0.2);">
             <div class="card-header pb-0 pt-3 bg-transparent" style="background-color: transparent; border-bottom: 1px solid #ffd8b9;">
@@ -910,7 +920,14 @@
       Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
     }
   </script>
+<!-- jQuery (necessário para Bootstrap 4) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
   <!-- Github buttons -->
+
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="http://localhost/exfe/public/assets/script/argon-dashboard.min.js"></script>
