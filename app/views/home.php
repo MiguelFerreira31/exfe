@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="assets/css/style.css">
 
-  <title>Document</title>
+  <title>Exfé</title>
 </head>
 
 <body>

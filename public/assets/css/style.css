@@ -270,30 +270,163 @@ html body header .site .icons .open-btn {
   cursor: pointer;
 }
 html body header .site .icons .sidebar {
+  background: linear-gradient(to right, #f2e0db, #fff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
   position: fixed;
   top: 0;
-  right: -250px;
-  width: 250px;
-  height: auto;
-  background: white;
-  padding-top: 1%;
+  right: -400px;
+  width: 400px;
+  height: 700PX;
   transition: right 0.3s ease-in-out;
-  z-index: 2;
+  padding: 1.5%;
+  border-radius: 25px;
+  gap: 30px;
 }
 html body header .site .icons .sidebar.show {
   right: 0;
 }
-html body header .site .icons .sidebar h2 {
+html body header .site .icons .sidebar .titleCart {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between !important;
+  padding-bottom: 2%;
+  border-bottom: 0.5px solid #000;
+}
+html body header .site .icons .sidebar .titleCart h2 {
+  font-size: 2em;
+  font-weight: bold;
+  color: #371406;
+}
+html body header .site .icons .sidebar .titleCart h3 {
   font-size: 2em;
   display: block;
-  padding: 10px 20px;
   text-decoration: none;
   color: #371406;
   transition: 0.2s;
 }
-html body header .site .icons .sidebar h2:hover {
+html body header .site .icons .sidebar .titleCart h3:hover {
   cursor: pointer;
   color: #946926;
+}
+html body header .site .icons .sidebar .cartContent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 30px;
+}
+html body header .site .icons .sidebar .cartContent .cartContentItems {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+}
+html body header .site .icons .sidebar .cartContent .cartContentItems .cartItem {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-bottom: 0.5px solid #000;
+  padding-bottom: 7%;
+}
+html body header .site .icons .sidebar .cartContent .cartContentItems .cartItem img {
+  width: 50px;
+  height: auto;
+  border-radius: 10%;
+}
+html body header .site .icons .sidebar .cartContent .cartContentItems .cartItem .cartItemInfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 3%;
+}
+html body header .site .icons .sidebar .cartContent .cartContentItems .cartItem .cartItemInfo h4 {
+  font-size: 1.3em;
+  color: #371406;
+  font-weight: bold;
+}
+html body header .site .icons .sidebar .cartContent .cartContentItems .cartItem .cartItemInfo h5 {
+  font-size: 1em;
+  color: #371406;
+  font-weight: 100;
+}
+html body header .site .icons .sidebar .cartContent .cartContentItems .cartItem .quantidade {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+html body header .site .icons .sidebar .cartContent .cartContentItems .cartItem .quantidade h4 {
+  font-size: 1.3em;
+  color: #371406;
+  font-weight: bold;
+}
+html body header .site .icons .sidebar .cartContent .cartContentItems .cartItem .quantidade .buttonsQuantidade {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+html body header .site .icons .sidebar .cartContent .cartContentItems .cartItem .quantidade .buttonsQuantidade .contador {
+  font-size: 1em;
+}
+html body header .site .icons .sidebar .cartContent .cartContentItems .cartItem .quantidade .buttonsQuantidade button {
+  font-size: 1em;
+  width: 25px;
+  height: 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+html body header .site .icons .sidebar .cartContent .cartContentItems .cartItem .quantidade .buttonsQuantidade .adicionar {
+  background-color: #4CAF50;
+  color: white;
+}
+html body header .site .icons .sidebar .cartContent .cartContentItems .cartItem .quantidade .buttonsQuantidade .diminuir {
+  background-color: #f44336;
+  color: white;
+}
+html body header .site .icons .sidebar .cartContent .buttonsCart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+html body header .site .icons .sidebar .cartContent .buttonsCart button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 125px;
+  height: 40px;
+  position: relative;
+  background: #946926;
+  font-size: 1.1em;
+  font-weight: 900;
+  color: white;
+  border: 3px solid #946926;
+  border-radius: 25px;
+  box-shadow: 0 0 0 rgba(116, 48, 0, 0.5490196078);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+html body header .site .icons .sidebar .cartContent .buttonsCart a button {
+  background: #371406;
+  border: 3px solid #371406;
 }
 html body .modal h1 {
   font-weight: bold;
@@ -1179,7 +1312,7 @@ html body main #produtosEmDestaque .produtosCont .produtosItems .produtosContIte
 }
 html body main #produtosEmDestaque .produtosCont .produtosItems .produtosContItems .info h4 span {
   color: #b3b3b3;
-  text-decoration: line-through;
+  text-decoration: line-through !important;
 }
 html body main #produtosEmDestaque .produtosCont .produtosPosition {
   position: absolute;
@@ -1496,7 +1629,7 @@ html body main #itemEspecial .carousel .carouselItems h4 {
 }
 html body main #itemEspecial .carousel .carouselItems h4 span {
   color: #b3b3b3;
-  text-decoration: line-through;
+  text-decoration: line-through !important;
 }
 html body main #itemEspecial .carousel .carouselItems .buttons {
   width: 50%;

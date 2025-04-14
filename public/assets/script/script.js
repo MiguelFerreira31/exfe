@@ -15,6 +15,21 @@ function closeSidebar() {
     document.getElementById('overlay').classList.remove('show');
 }
 
+
+  let valor = 1;
+
+  function adicionar() {
+    valor++;
+    document.getElementById('valor').innerText = valor;
+  }
+
+  function diminuir() {
+    if (valor > 0) {
+      valor--;
+      document.getElementById('valor').innerText = valor;
+    }
+  }
+
 // ---------- Carousel Item Especial ----------
 $(document).ready(function () {
     $(' #itemEspecial .carousel').slick({
