@@ -125,3 +125,33 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   
 //#endregion
+
+
+window.onscroll = function() {
+  atualizarBotaoProgresso();
+};
+
+function atualizarBotaoProgresso() {
+  const btn = document.getElementById("scrollToTopBtn");
+  const scrollTotal = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrollAtual = document.documentElement.scrollTop;
+
+  // porcentagem rolada
+  const porcentagem = Math.round((scrollAtual / scrollTotal) * 100);
+
+  // atualiza visual
+  btn.style.background = `conic-gradient(#a36a4f ${porcentagem}%, #e0e0e0 ${porcentagem}%)`;
+
+  // mostrar botão
+  if (scrollAtual > 100) {
+    btn.style.display = "flex";
+  } else {
+    btn.style.display = "none";
+  }
+}
+
+function voltarAoTopo() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+

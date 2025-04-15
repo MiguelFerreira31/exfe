@@ -60,29 +60,29 @@
 
   <div class="chat-boot">
 
-<!-- Ícone do Chat -->
-<div id="chat-icon"><i class='bx bx-message-square-detail'></i></div>
+    <!-- Ícone do Chat -->
+    <div id="chat-icon"><i class='bx bx-message-square-detail'></i></div>
 
-<!-- Container do Chat -->
-<div id="chat-container" style="display: none;">
-  <div class="topo-chat">
-    <ul>
-      <li id="bot"><i class="bx bxs-bot"></i></li>
-      <li id="titulo-bot">
-        <h5>Atendimento</h5>
-        <h6>Chat-boot</h6>
-      </li>
-    </ul>
-    <button id="back-button">Fechar</button>
-  </div>
+    <!-- Container do Chat -->
+    <div id="chat-container" style="display: none;">
+      <div class="topo-chat">
+        <ul>
+          <li id="bot"><i class="bx bxs-bot"></i></li>
+          <li id="titulo-bot">
+            <h5>Atendimento</h5>
+            <h6>Chat-boot</h6>
+          </li>
+        </ul>
+        <button id="back-button">Fechar</button>
+      </div>
 
-  <div id="chat-messages"></div>
+      <div id="chat-messages"></div>
 
-  <div class="enviar">
-    <input type="text" id="user-input" placeholder="Digite sua mensagem...">
-    <button id="send-button">Enviar</button>
-  </div>
-</div>
+      <div class="enviar">
+        <input type="text" id="user-input" placeholder="Digite sua mensagem...">
+        <button id="send-button">Enviar</button>
+      </div>
+    </div>
 
 
 
@@ -92,7 +92,9 @@
   <div class="footer-final"></div>
 
   <p class="paragrafo">&copy; 2025 <span>DevCycle</span></p>
+
+  <div id="scrollToTopBtn" onclick="voltarAoTopo()">
+    <span class="arrow">↑</span>
+  </div>
+
 </footer>
-
-
-
