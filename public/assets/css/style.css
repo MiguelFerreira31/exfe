@@ -281,7 +281,7 @@ html body header .site .icons .sidebar {
   top: 0;
   right: -400px;
   width: 400px;
-  height: 700PX;
+  height: 700px;
   transition: right 0.3s ease-in-out;
   padding: 1.5%;
   border-radius: 25px;
@@ -394,7 +394,7 @@ html body header .site .icons .sidebar .cartContent .cartContentItems .cartItem 
   cursor: pointer;
 }
 html body header .site .icons .sidebar .cartContent .cartContentItems .cartItem .quantidade .buttonsQuantidade .adicionar {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
 }
 html body header .site .icons .sidebar .cartContent .cartContentItems .cartItem .quantidade .buttonsQuantidade .diminuir {
@@ -2943,4 +2943,35 @@ html body .footer .chat-boot #chat-container .bot-message i {
   padding: 2%;
   border-radius: 50%;
   color: white;
+}
+html body .footer #scrollToTopBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background: conic-gradient(#371406 0%, #e0e0e0 0%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  color: #0a0a23;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  display: none;
+  transition: 0.3s;
+}
+html body .footer #scrollToTopBtn .arrow {
+  background-color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+html body .footer #scrollToTopBtn:hover {
+  transform: scale(1.08);
 }/*# sourceMappingURL=style.css.map */
