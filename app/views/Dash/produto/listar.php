@@ -21,7 +21,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 ?>
 
 <div class="container my-5">
-    <h2 class="text-center fw-bold py-3" style="background: #9a5c1fad; color: white; border-radius: 12px;">Funcionarios Cadastrados</h2>
+    <h2 class="text-center fw-bold py-3" style="background: #9a5c1fad; color: white; border-radius: 12px;">Produtos Cadastrados</h2>
 
     <div class="table-responsive rounded-3 shadow-lg p-3" style="background: #ffffff;">
         <table class="table table-hover text-center align-middle">
@@ -29,20 +29,21 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     <tr>
         <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Foto</th>
         <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Nome</th>
-        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Email</th>
-        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Telefone</th>
-        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Estado</th>
+        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Descricao</th>
+        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Preço</th>
+        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Categoria</th>
+        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Fornecedor</th>
         <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Editar</th>
         <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Desativar</th>
     </tr>
 </thead>
 
             <tbody>
-                <?php foreach ($funcionarios as $linha): ?>
+                <?php foreach ($produtos as $linha): ?>
                     <tr class="fw-semibold">
-                        <td class="img-funcionario">
+                        <td class="img-produto">
                             <img src="<?php
-                                $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $linha['foto_funcionario'];
+                                $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $linha['foto_produto'];
 
                                 if ($linha['foto_funcionario'] != "") {
                                     if (file_exists($caminhoArquivo)) {
