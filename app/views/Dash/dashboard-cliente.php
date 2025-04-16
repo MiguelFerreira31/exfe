@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -43,21 +43,21 @@
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html " target="_blank">
-        <img src="../imgDash/coffeLogo.png" width="26px" height="26px" class="navbar-brand-img h-100" alt="Logo EXFE">
+        <img src="../imgDash/coffeLogo.png" width="26px" height="26px" class="navbar-brand-img h-100" alt="Logo EXFÉ">
         <span class="ms-1 font-weight-bold">Perfil EXFE</span>
       </a>
     </div>
 
-    <hr class="horizontal dark mt-0">
 
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
-  
+
         <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link active" href="../Dash/profile.html">
+          <a class="nav-link active" href="http://localhost/exfe/public/cliente/perfil">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
             </div>
@@ -73,6 +73,7 @@
             <span class="nav-link-text ms-1">Reservas</span>
           </a>
         </li>
+
         <li class="nav-item">
           <a class="nav-link " href="../Dash/tables.html">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -81,6 +82,7 @@
             <span class="nav-link-text ms-1">Pedidos</span>
           </a>
         </li>
+
         <li class="nav-item">
           <a class="nav-link " href="../pages/billing.html">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -89,16 +91,19 @@
             <span class="nav-link-text ms-1">Avaliação</span>
           </a>
         </li>
+
       </ul>
     </div>
   </aside>
+
   <div class="main-content position-relative max-height-vh-100 h-100">
+
     <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg bg-transparent shadow-none position-absolute px-4 w-100 z-index-2 mt-n11">
       <div class="container-fluid py-1">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 ps-2 me-sm-6 me-5">
-            <li class="breadcrumb-item text-sm"><a class="text-white opacity-5" href="javascript:;">Paginas</a></li>
+            <li class="breadcrumb-item text-sm"><a class="text-white opacity-5" href="javascript:;">Páginas</a></li>
             <li class="breadcrumb-item text-sm text-white active" aria-current="page">Perfil</li>
           </ol>
           <h6 class="text-white font-weight-bolder ms-2">Perfil</h6>
@@ -210,13 +215,15 @@
         </div>
       </div>
     </nav>
+
     <!-- End Navbar -->
+
     <div class="card shadow-lg mx-4 card-profile-bottom">
       <div class="card-body p-3">
         <div class="row gx-4">
           <div class="col-auto">
             <div class="avatar avatar-xl position-relative">
-              <img src="../imgDash/team-2.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+              <img src="http://localhost/exfe/public/uploads/cliente/anaPaula.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
             </div>
           </div>
           <div class="col-auto my-auto">
@@ -232,19 +239,19 @@
                 <li class="nav-item">
                   <a class="nav-link mb-0 px-0 py-1 active d-flex align-items-center justify-content-center " data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="true">
                     <i class="ni ni-app"></i>
-                    <span class="ms-2">App</span>
+                    <span class="ms-2">Whatsapp</span>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link mb-0 px-0 py-1 d-flex align-items-center justify-content-center " data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
                     <i class="ni ni-email-83"></i>
-                    <span class="ms-2">Messages</span>
+                    <span class="ms-2">exfe@email.com</span>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link mb-0 px-0 py-1 d-flex align-items-center justify-content-center " data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
                     <i class="ni ni-settings-gear-65"></i>
-                    <span class="ms-2">Settings</span>
+                    <span class="ms-2">(11) 90000-0000</span>
                   </a>
                 </li>
               </ul>
@@ -253,161 +260,44 @@
         </div>
       </div>
     </div>
-    <div class="container-fluid py-4">
-      <div class="row">
-        <div class="col-md-8">
-          <div class="card">
-            <div class="card-header pb-0">
-              <div class="d-flex align-items-center">
-                <p class="mb-0">Editar Perfil</p>
-                <button class="btn btn-primary btn-sm ms-auto">Configuração</button>
-              </div>
-            </div>
-            <div class="card-body">
-              <p class="text-uppercase text-sm">Informação do Usuário</p>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Nome</label>
-                    <input class="form-control" type="text" value="Lucas Henrique">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Email de acesso</label>
-                    <input class="form-control" type="email" value="lucas@example.com">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Primeiro Nome</label>
-                    <input class="form-control" type="text" value="Lucas">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Ultimo nome</label>
-                    <input class="form-control" type="text" value="Henrique">
-                  </div>
-                </div>
-              </div>
-              <hr class="horizontal dark">
-              <p class="text-uppercase text-sm">Informações de contato</p>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Endereço</label>
-                    <input class="form-control" type="text" value="Rua flôr de cachimbo, 240">
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Cidade</label>
-                    <input class="form-control" type="text" value="São Paulo">
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label for="example-text-input" class="form-control-label">Pais</label>
-                    <input class="form-control" type="text" value="Brasil">
-                  </div>
-                </div>
-              </div>
-              <hr class="horizontal dark">
+
+
+    <!-- Start Footer -->
+    <footer class="footer pt-3  ">
+      <div class="container-fluid">
+        <div class="row align-items-center justify-content-lg-between">
+          <div class="col-lg-6 mb-lg-0 mb-4">
+            <div class="copyright text-center text-sm text-muted text-lg-start">
+              © <script>
+                document.write(new Date().getFullYear())
+              </script>,
+              made with <i class="fa fa-heart"></i> by
+              <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
+              for a better web.
             </div>
           </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card card-profile">
-            <img src="../imgDash/bg-profile.jpg" alt="Image placeholder" class="card-img-top">
-            <div class="row justify-content-center">
-              <div class="col-4 col-lg-4 order-lg-2">
-                <div class="mt-n4 mt-lg-n6 mb-4 mb-lg-0">
-                  <a href="javascript:;">
-                    <img src="../imgDash/team-2.jpg" class="rounded-circle img-fluid border border-2 border-white">
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div class="card-header text-center border-0 pt-0 pt-lg-2 pb-4 pb-lg-3">
-              <div class="d-flex justify-content-between">
-                <a href="javascript:;" class="btn btn-sm btn-info mb-0 d-none d-lg-block">Contato</a>
-                <a href="javascript:;" class="btn btn-sm btn-info mb-0 d-block d-lg-none"><i class="ni ni-collection"></i></a>
-                <a href="javascript:;" class="btn btn-sm btn-dark float-right mb-0 d-none d-lg-block">Mensagens</a>
-                <a href="javascript:;" class="btn btn-sm btn-dark float-right mb-0 d-block d-lg-none"><i class="ni ni-email-83"></i></a>
-              </div>
-            </div>
-            <div class="card-body pt-0">
-              <div class="row">
-                <div class="col">
-                  <div class="d-flex justify-content-center">
-                    <div class="d-grid text-center">
-                      <span class="text-lg font-weight-bolder">22</span>
-                      <span class="text-sm opacity-8">Amigos</span>
-                    </div>
-                    <div class="d-grid text-center mx-4">
-                      
-                    </div>
-                    <div class="d-grid text-center">
-                      <span class="text-lg font-weight-bolder">89</span>
-                      <span class="text-sm opacity-8">Comentarios</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="text-center mt-4">
-                <h5>
-                  Lucas Henrique<span class="font-weight-light">, 18</span>
-                </h5>
-                <div class="h6 font-weight-300">
-                  <i class="ni location_pin mr-2"></i>São Paulo, Brasil
-                </div>
-                <div class="h6 mt-4">
-                  <i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer
-                </div>
-                <div>
-                  <i class="ni education_hat mr-2"></i>University of Computer Science
-                </div>
-              </div>
-            </div>
+          <div class="col-lg-6">
+            <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+              <li class="nav-item">
+                <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
+              </li>
+              <li class="nav-item">
+                <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
+              </li>
+              <li class="nav-item">
+                <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-      <footer class="footer pt-3  ">
-        <div class="container-fluid">
-          <div class="row align-items-center justify-content-lg-between">
-            <div class="col-lg-6 mb-lg-0 mb-4">
-              <div class="copyright text-center text-sm text-muted text-lg-start">
-                © <script>
-                  document.write(new Date().getFullYear())
-                </script>,
-                made with <i class="fa fa-heart"></i> by
-                <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative Tim</a>
-                for a better web.
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative Tim</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted" target="_blank">About Us</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted" target="_blank">License</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
+    </footer>
   </div>
-  
+  </div>
+
   <!--   Core JS Files   -->
   <script src="../script/core/popper.min.js"></script>
   <script src="../script/core/bootstrap.min.js"></script>

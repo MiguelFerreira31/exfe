@@ -14,10 +14,6 @@ class Cliente extends Model
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-
-
-
-
     public function getContarCliente()
     {
 
@@ -50,9 +46,6 @@ class Cliente extends Model
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-
-
 
     public function addCliente($dados)
     {
@@ -145,7 +138,6 @@ class Cliente extends Model
         return $stmt->execute();
     }
 
-
     public function getClienteById($id)
     {
 
@@ -179,6 +171,22 @@ class Cliente extends Model
         return $stmt->execute();
     }
 
+    public function perfilCliente($email)
+    {
+        $sql = "SELECT a.*, e.sigla_estado, e.nome_estado 
+                FROM tbl_cliente AS a
+                INNER JOIN tbl_estado AS e 
+                ON a.id_estado = e.id_estado
+                WHERE a.email_cliente = :email
+                LIMIT 1";
+    
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+    
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    
 
 
     // 6 Método para add FOTO GALERIA 

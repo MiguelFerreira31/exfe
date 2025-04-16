@@ -111,7 +111,7 @@ class ClientesController extends Controller
 
                 $id_cliente = $this->clienteModel->addCliente($dadosCliente);
 
-           
+
 
                 if ($id_cliente) {
                     if (isset($_FILES['foto_cliente']) && $_FILES['foto_cliente']['error'] == 0) {
@@ -191,14 +191,14 @@ class ClientesController extends Controller
                     'email_cliente'               => $email_cliente,
                     'nasc_cliente'                => $nasc_cliente,
                     'senha_cliente'               => $senha_cliente,
-                  
+
                     'status_cliente'              => $status_cliente,
                     'telefone_cliente'            => $telefone_cliente,
                     'endereco_cliente'            => $endereco_cliente,
                     'bairro_cliente'              => $bairro_cliente,
                     'cidade_cliente'              => $cidade_cliente,
                     'id_estado'                   => $id_estado,
-                    );
+                );
 
                 // 4 Atualizar Cliente
                 $id_cliente = $this->clienteModel->updateCliente($id, $dadosCliente);
@@ -244,7 +244,7 @@ class ClientesController extends Controller
         } else if ($_SESSION['id_tipo_usuario'] == '2') {
             $func = new Funcionario();
             $dadosFunc = $func->buscarFuncionario($_SESSION['userEmail']);
-         
+
             $dados['func'] = $dadosFunc;
 
             $dados['conteudo'] = 'dash/cliente/editar';
@@ -252,15 +252,12 @@ class ClientesController extends Controller
         } else if ($_SESSION['id_tipo_usuario'] == '1') {
             $func = new Funcionario();
             $dadosFunc = $func->buscarFuncionario($_SESSION['userEmail']);
-           
+
             $dados['func'] = $dadosFunc;
 
             $dados['conteudo'] = 'dash/cliente/editar';
             $this->carregarViews('dash/dashboard', $dados);
         }
-
-
-
     }
 
 
@@ -302,19 +299,19 @@ class ClientesController extends Controller
     public function desativados()
     {
 
-       
-        $dados = array();
-       
 
-    
+        $dados = array();
+
+
+
         // Buscar Estado
         $estados = new Estado();
         $dados['estados'] = $estados->getListarEstados();
 
-       // Carregar os clientes
-       $clienteModel = new Cliente();
-       $cliente = $clienteModel->getListarClienteDesativados();
-       $dados['clientes'] = $cliente;
+        // Carregar os clientes
+        $clienteModel = new Cliente();
+        $cliente = $clienteModel->getListarClienteDesativados();
+        $dados['clientes'] = $cliente;
 
 
 
@@ -381,6 +378,26 @@ class ClientesController extends Controller
         return false;
     }
 
-
-
+    // Método para exibir o perfil do cliente logado
+    public function perfil()
+    {
+        $dados = array();
+    
+        $dados['titulo'] = 'Perfil';
+    
+        // Buscar os dados do cliente logado pela sessão
+        $clienteModel = new Cliente();
+        $cliente = $clienteModel->perfilCliente($_SESSION['userEmail']);
+    
+        // Buscar Estados
+        $estadoModel = new Estado();
+        $dados['estados'] = $estadoModel->getListarEstados();
+    
+        $dados['cliente'] = $cliente;
+    
+        // View e layout
+        $dados['conteudo'] = 'dash/cliente/perfil';
+        $this->carregarViews('dash/dashboard-cliente', $dados);
+    }
+    
 }

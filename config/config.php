@@ -6,7 +6,7 @@ if(session_status() == PHP_SESSION_NONE){
 
 define("BASE_URL", "http://localhost/exfe/public/");
 
-define("DB_HOST", "127.0.0.1:3308");
+define("DB_HOST", "127.0.0.1:3307");
 define("DB_NAME", "db_exfe");
 define("DB_USER", "root");
 define("DB_PASS", "");
