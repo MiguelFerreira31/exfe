@@ -264,10 +264,6 @@ class ClientesController extends Controller
     // 4- Método para desativar o serviço
     public function desativar($id = null)
     {
-
-
-
-
         if ($id === null) {
             http_response_code(400);
             echo json_encode(['sucesso' => false, "mensagem" => "ID Invalido."]);
@@ -298,8 +294,6 @@ class ClientesController extends Controller
     // Pagina desativados
     public function desativados()
     {
-
-
         $dados = array();
 
 
@@ -324,10 +318,6 @@ class ClientesController extends Controller
     // 5- Método para sativar o serviço
     public function ativar($id = null)
     {
-
-
-
-
         if ($id === null) {
             http_response_code(400);
             echo json_encode(['sucesso' => false, "mensagem" => "ID Invalido."]);

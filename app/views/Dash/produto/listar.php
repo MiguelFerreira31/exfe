@@ -45,28 +45,29 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                             <img src="<?php
                                 $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $linha['foto_produto'];
 
-                                if ($linha['foto_funcionario'] != "") {
+                                if ($linha['foto_produto'] != "") {
                                     if (file_exists($caminhoArquivo)) {
-                                        echo ("http://localhost/exfe/public/uploads/" . htmlspecialchars($linha['foto_funcionario'], ENT_QUOTES, 'UTF-8'));
+                                        echo ("http://localhost/exfe/public/uploads/" . htmlspecialchars($linha['foto_produto'], ENT_QUOTES, 'UTF-8'));
                                     } else {
-                                        echo ("http://localhost/exfe/public/uploads/funcionario/sem-foto-funcionario.jpg");
+                                        echo ("http://localhost/exfe/public/uploads/produto/sem-foto-produto.jpg");
                                     }
                                 } else {
-                                    echo ("http://localhost/exfe/public/uploads/funcionario/sem-foto-funcionario.jpg");
+                                    echo ("http://localhost/exfe/public/uploads/produto/sem-foto-produto.jpg");
                                 }
                             ?>" alt="" class="rounded-circle" style="width: 50px; height: 50px;">
                         </td>
-                        <td><?php echo htmlspecialchars($linha['nome_funcionario']); ?></td>
-                        <td><?php echo htmlspecialchars($linha['email_funcionario']); ?></td>
-                        <td><?php echo htmlspecialchars($linha['telefone_funcionario']); ?></td>
-                        <td><?php echo htmlspecialchars($linha['sigla_estado']); ?></td>
+                        <td><?php echo htmlspecialchars($linha['nome_produto']); ?></td>
+                        <td><?php echo htmlspecialchars($linha['descricao_produto']); ?></td>
+                        <td><?php echo htmlspecialchars($linha['preco_produto']); ?></td>
+                        <td><?php echo htmlspecialchars($linha['id_categoria']); ?></td>
+                        <td><?php echo htmlspecialchars($linha['nome_fornecedor']);?></td>
                         <td>
-                            <a href="http://localhost/exfe/public/funcionarios/editar/<?php echo $linha['id_funcionario']; ?>" title="Editar">
+                            <a href="http://localhost/exfe/public/produtos/editar/<?php echo $linha['id_produto']; ?>" title="Editar">
                                 <i class="fa fa-pencil-alt" style="font-size: 20px; color: #9a5c1f;"></i>
                             </a>
                         </td>
                         <td>
-                            <a href="#" title="Desativar" onclick="abrirModalDesativar(<?php echo $linha['id_funcionario'];  ?>)">
+                            <a href="#" title="Desativar" onclick="abrirModalDesativar(<?php echo $linha['id_produto'];  ?>)">
                                 <i class="fa fa-ban" style="font-size: 20px; color: #ff4d4d;"></i>
                             </a>
                         </td>
@@ -92,12 +93,12 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Desativar Funcionario</h5>
+                <h5 class="modal-title">Desativar Produto</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Tem Certeza que deseja desativar esse Funcionario?</p>
-                <input type="hidden" id="idFuncionarioDesativar" value="">
+                <p>Tem Certeza que deseja desativar esse Produto?</p>
+                <input type="hidden" id="idProdutoDesativar" value="">
 
             </div>
             <div class="modal-footer">
@@ -115,72 +116,51 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
 
 <script>
-    function abrirModalDesativar(idFuncionario) {
-
-
+    function abrirModalDesativar(idProduto) {
         if ($('#modalDesativar').hasClass('show')) {
             return;
         }
 
-        document.getElementById('idFuncionarioDesativar').value = idFuncionario;
+        document.getElementById('idProdutoDesativar').value = idProduto;
         $('#modalDesativar').modal('show');
-
     }
 
+    document.getElementById('btnConfirmar').addEventListener('click', function () {
+        const idProduto = document.getElementById('idProdutoDesativar').value;
+        console.log(idProduto);
 
-    document.getElementById('btnConfirmar').addEventListener('click', function() {
-        const idFuncionario = document.getElementById('idFuncionarioDesativar').value;
-        console.log(idFuncionario);
-
-        if (idFuncionario) {
-            desativarFuncionario(idFuncionario);
+        if (idProduto) {
+            desativarProduto(idProduto);
         }
-
     });
 
-    function desativarFuncionario(idFuncionario) {
-
-        fetch(`http://localhost/exfe/public/funcionarios/desativar/${idFuncionario}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-
-            })
-
-            .then(response => {
-                // Se o codigo de resposta NÃO for OK lança pra ele uma msg de ERRO
-                if (!response.ok) {
-
-                    throw new Error(`Erro HTTP: ${reponse.status}`)
-                    ''
-                }
-                return response.json();
-
-            })
-
-            .then(data => {
-
-                if (data.sucesso) {
-                    console.log('Curso desativado com sucesso');
-                    $('#modalDesativar').modal('hide');
-                    setTimeout(() => {
-                        location.reload();
-                    }), 500;
-
-                } else {
-                    alert(data.mensagem || "Ocorreu um erro ao Desativar o Curso");
-                }
-
-            })
-
-            .catch(erro => {
-                console.error("erro", erro);
-                alert('erro na requisicao');
-
-            })
-
-
-
+    function desativarProduto(idProduto) {
+        fetch(`http://localhost/exfe/public/produtos/desativar/${idProduto}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Erro HTTP: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.sucesso) {
+                console.log('Produto desativado com sucesso');
+                $('#modalDesativar').modal('hide');
+                setTimeout(() => {
+                    location.reload();
+                }, 500);
+            } else {
+                alert(data.mensagem || "Ocorreu um erro ao Desativar o Produto");
+            }
+        })
+        .catch(erro => {
+            console.error("erro", erro);
+            alert('Erro na requisição');
+        });
     }
 </script>

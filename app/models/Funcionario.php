@@ -16,8 +16,6 @@ class Funcionario extends Model
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-
-
     //Método para Pegar somente 3 servicos de forma aleatória
     public function getFuncionarioAleatorio($limite = 3)
     {
@@ -51,7 +49,6 @@ class Funcionario extends Model
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-
     // Médoto para o DASHBOARD - Listar todos os serviços com galeria e especialidade
     public function getListarFuncionario()
     {
@@ -78,9 +75,6 @@ class Funcionario extends Model
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-
-
 
     // 5 METODO DASHBOARD ADICONAR Funcionario
 
@@ -137,8 +131,6 @@ class Funcionario extends Model
         $stmt->execute();
         return $this->db->lastInsertId();
     }
-
-
 
     // 6 Método para add FOTO GALERIA 
 

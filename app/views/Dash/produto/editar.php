@@ -22,7 +22,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
 
 
-<form method="POST" action="http://localhost/exfe/public/funcionarios/editar/<?php echo $funcionarios['id_funcionario']; ?>" enctype="multipart/form-data">
+<form method="POST" action="http://localhost/exfe/public/produtos/editar/<?php echo $produtos['id_produto']; ?>" enctype="multipart/form-data">
     <div class="container my-5">
         <div class="row">
             <!-- Imagem do Funcionario -->
@@ -30,11 +30,11 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                 <div class="image-container" style="width: 100%; max-width: 200px; aspect-ratio: 1/1; overflow: hidden; border-radius: 50%; margin: auto;">
                     <?php
 
-                    $fotoFuncionario = $funcionarios['foto_funcionario'];
-                    $fotoPath = "http://localhost/exfe/public/uploads/" . $fotoFuncionario;
+                    $fotoProduto = $produtos['foto_produto'];
+                    $fotoPath = "http://localhost/exfe/public/uploads/" . $fotoProduto;
                     $fotoDefault = "http://localhost/exfe/public/assets/img/login-img.png";
 
-                    $imagePath = (file_exists($_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $fotoFuncionario) && !empty($fotoFuncionario))
+                    $imagePath = (file_exists($_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $fotoProduto) && !empty($fotoProduto))
                         ? $fotoPath
                         : $fotoDefault;
                     ?>
@@ -47,35 +47,46 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
                     <img src="<?php echo $imagePath ?>" alt="exfe Logo" class="img-fluid" id="preview-img" style="cursor: pointer; border-radius: 12px;">
                 </div>
-                <input type="file" name="foto_funcionario" id="foto_funcionario" style="display: none;" accept="image/*">
+                <input type="file" name="foto_produto" id="foto_produto" style="display: none;" accept="image/*">
             </div>
 
             <!-- Informações do Funcionario -->
             <div class="col-12 col-md-8">
                 <div class="card shadow-lg border-0 rounded-4 p-4" style="background: #ffffff;">
                     <div class="mb-3">
-                        <label for="nome_funcionario" class="form-label fw-bold" style="color: #9a5c1f;">Nome do Funcionario:</label>
-                        <input type="text" class="form-control" id="nome_funcionario" name="nome_funcionario" placeholder="Digite o nome do funcionario" value="<?php echo $funcionarios['nome_funcionario'] ?? ''; ?>" required>
+                        <label for="nome_produto" class="form-label fw-bold" style="color: #9a5c1f;">Nome do Produto:</label>
+                        <input type="text" class="form-control" id="nome_produto" name="nome_produto" placeholder="Digite o nome do Produto" value="<?php echo $produtos['nome_produto'] ?? ''; ?>" required>
                     </div>
 
                     <!-- Email -->
                     <div class="mb-3">
-                        <label for="email_funcionario" class="form-label fw-bold" style="color: #9a5c1f;">Email:</label>
-                        <input type="email" class="form-control" id="email_funcionario" name="email_funcionario" placeholder="exemplo@email.com" value="<?php echo $funcionarios['email_funcionario'] ?? ''; ?>" required>
+                        <label for="descricao_produto" class="form-label fw-bold" style="color: #9a5c1f;">Descrição do Produto</label>
+                        <input type="text" class="form-control" id="descricao_produto" name="descricao_produto" placeholder="Digite a descrição do produto" value="<?php echo $produtos['descricao_produto'] ?? ''; ?>" required>
                     </div>
 
                     <div class="row g-3">
                         <!-- Data de Nascimento -->
                         <div class="col-12 col-md-3">
-                            <label for="nasc_funcionario" class="form-label fw-bold" style="color: #9a5c1f;">Nascimento:</label>
-                            <input type="date" class="form-control" id="nasc_funcionario" name="nasc_funcionario" value="<?php echo $funcionarios['nasc_funcionario'] ?? ''; ?>" required>
+                            <label for="valor_produto" class="form-label fw-bold" style="color: #9a5c1f;">Valor Produto:</label>
+                            <input type="text" class="form-control dinheiro" id="preco_produto" name="preco_produto" value="<?php echo isset($produtos['preco_produto']) ? 'R$ ' . number_format($produtos['preco_produto'], 2, ',', '.') : ''; ?>" required>
+
+
                         </div>
 
                         <!-- Senha -->
                         <div class="col-12 col-md-3">
-                            <label for="senha_funcionario" class="form-label fw-bold" style="color: #9a5c1f;">Senha:</label>
-                            <input type="text" class="form-control" id="senha_funcionario" name="senha_funcionario" value="<?php echo $funcionarios['senha_funcionario'] ?? ''; ?>" required>
+                            <label for="id_categoria" class="form-label fw-bold" style="color: #9a5c1f;">Categorias:</label>
+                            <select class="form-select" id="id_categoria" name="id_categoria">
+                                <option value="">Selecione</option>
+                                <?php foreach ($categorias as $linha): ?>
+                                    <option value="<?php echo $linha['id_categoria']; ?>"
+                                        <?php echo (isset($produtos['id_categoria']) && $produtos['id_categoria'] == $linha['nome_categoria']) ? 'selected' : ''; ?>>
+                                        <?php echo $linha['nome_categoria']; ?> <!-- Exibe o nome da categoria -->
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
+
 
                         <div class="col-12 col-md-3">
                             <label for="cargo_funcionario" class="form-label fw-bold" style="color: #9a5c1f;">Cargo:</label>
@@ -87,8 +98,6 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                             <select class="form-select" id="id_tipo_usuario" name="id_tipo_usuario">
                                 <option value="1" <?php echo (isset($funcionarios['id_tipo_usuario']) && $funcionarios['id_tipo_usuario'] == 1) ? 'selected' : ''; ?>>Gerente</option>
                                 <option value="2" <?php echo (isset($funcionarios['id_tipo_usuario']) && $funcionarios['id_tipo_usuario'] == 2) ? 'selected' : ''; ?>>Funcionário</option>
-
-                             
                             </select>
                         </div>
 
@@ -166,6 +175,29 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                 };
                 render.readAsDataURL(arquivo.files[0]);
             }
+        });
+    });
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const input = document.getElementById('preco_produto');
+
+        input.addEventListener('input', function() {
+            let valor = input.value.replace(/\D/g, '');
+
+            valor = (parseFloat(valor) / 100).toFixed(2);
+            valor = valor
+                .replace(".", ",")
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+            input.value = 'R$ ' + valor;
+        });
+
+        // Remove R$ e converte para float no envio do formulário (opcional)
+        input.form?.addEventListener('submit', function() {
+            input.value = input.value.replace(/[R$\s.]/g, '').replace(',', '.');
         });
     });
 </script>
