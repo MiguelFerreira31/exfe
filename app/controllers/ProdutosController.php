@@ -38,7 +38,7 @@ class ProdutosController extends Controller
         // Carregar os funcionarios
         $produtosModel = new Produtos();
         $produtos = $produtosModel->getListarprodutos();
-        $dados['produtoss'] = $produtos;
+        $dados['produtos'] = $produtos;
 
 
         $dados['conteudo'] = 'dash/produtos/listar';
