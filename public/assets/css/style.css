@@ -77,9 +77,43 @@ hr {
   color: ghostwhite;
 }
 
+.star {
+  animation: blink 1.5s infinite;
+  display: inline-block;
+  font-size: 1.5em;
+  color: goldenrod;
+}
+
+@keyframes blink {
+  0%, 100% {
+    color: rgb(185, 140, 25);
+  }
+  50% {
+    color: gold;
+    font-size: 1.6em;
+  }
+}
+.star:nth-child(2) {
+  animation-delay: 0.9s;
+}
+.star:nth-child(3) {
+  animation-delay: 1.2s;
+}
+.star:nth-child(4) {
+  animation-delay: 1.5s;
+}
+.star:nth-child(5) {
+  animation-delay: 1.8s;
+}
+
 html {
   scroll-behavior: smooth;
   font-family: "Poppis", sans-serif;
+}
+html body {
+  background-image: url("../img/hero-bg.png");
+  background-attachment: fixed;
+  background-position: center;
 }
 html body header {
   width: 100%;
@@ -740,9 +774,6 @@ html body header.scroll .site .icons svg:hover {
 html body main #banner {
   height: 100dvh;
   width: 100%;
-  background-image: url("../img/hero-bg.png");
-  background-size: cover;
-  background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -772,22 +803,80 @@ html body main #banner .home-container article img {
 html body main #banner .home-container article h2 {
   width: 100%;
   font-size: 8em;
-  letter-spacing: -7px;
   font-weight: 800;
-  background: repeating-linear-gradient(90deg, #9e675f 0%, #371406 50%, #9e675f 100%);
-  background-size: 300% 300%;
-  background-position: 0% 100%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientMove 2s infinite ease-in-out alternate;
+  color: #371406;
 }
-@keyframes gradientMove {
-  0% {
-    background-position: 0% 0%;
+html body main #banner .home-container article h2 span {
+  animation: blink3 3.5s infinite;
+  transition: 0.5s ease;
+}
+html body main #banner .home-container article h2 span:nth-child(1) {
+  animation-delay: 0.25s;
+}
+html body main #banner .home-container article h2 span:nth-child(2) {
+  animation-delay: 0.5s;
+}
+html body main #banner .home-container article h2 span:nth-child(3) {
+  animation-delay: 0.75s;
+}
+html body main #banner .home-container article h2 span:nth-child(4) {
+  animation-delay: 1s;
+}
+html body main #banner .home-container article h2 span:nth-child(5) {
+  animation-delay: 1.25s;
+}
+html body main #banner .home-container article h2 span:nth-child(6) {
+  animation-delay: 1.5s;
+}
+html body main #banner .home-container article h2 span:nth-child(7) {
+  animation-delay: 1.75s;
+}
+html body main #banner .home-container article h2 span:nth-child(8) {
+  animation-delay: 2s;
+}
+html body main #banner .home-container article h2 span:nth-child(9) {
+  animation-delay: 2.25s;
+}
+html body main #banner .home-container article h2 span:nth-child(10) {
+  animation-delay: 2.5s;
+}
+html body main #banner .home-container article h2 span:nth-child(11) {
+  animation-delay: 2.75s;
+}
+html body main #banner .home-container article h2 span:nth-child(12) {
+  animation-delay: 3s;
+}
+html body main #banner .home-container article h2 span:nth-child(13) {
+  animation-delay: 3.25s;
+}
+html body main #banner .home-container article h2 span:nth-child(14) {
+  animation-delay: 3.5s;
+}
+html body main #banner .home-container article h2 span:nth-child(15) {
+  animation-delay: 3.75s;
+}
+html body main #banner .home-container article h2 span:nth-child(16) {
+  animation-delay: 4s;
+}
+html body main #banner .home-container article h2 span:nth-child(17) {
+  animation-delay: 4.25s;
+}
+html body main #banner .home-container article h2 span:nth-child(18) {
+  animation-delay: 4.5s;
+}
+html body main #banner .home-container article h2 span:nth-child(19) {
+  animation-delay: 4.75s;
+}
+html body main #banner .home-container article h2 span:nth-child(20) {
+  animation-delay: 5s;
+}
+@keyframes blink3 {
+  0%, 100% {
+    color: #371406;
+    font-size: 1.05em;
   }
-  100% {
-    background-position: 100% 100%;
+  50% {
+    color: #7b361b;
   }
 }
 html body main #banner .home-container article .content {
@@ -1113,31 +1202,6 @@ html body main #banner-title .home-container .avaliacao-coffe ul {
   align-items: flex-start;
   flex-direction: column;
   justify-content: space-evenly;
-}
-html body main #banner-title .home-container .avaliacao-coffe ul li .star {
-  animation: blink 1.5s infinite;
-  font-size: 1.6em;
-  color: goldenrod;
-}
-@keyframes blink {
-  0%, 100% {
-    color: rgb(185, 140, 25);
-  }
-  50% {
-    color: gold;
-  }
-}
-html body main #banner-title .home-container .avaliacao-coffe ul li .star:nth-child(2) {
-  animation-delay: 0.9s;
-}
-html body main #banner-title .home-container .avaliacao-coffe ul li .star:nth-child(3) {
-  animation-delay: 1.2s;
-}
-html body main #banner-title .home-container .avaliacao-coffe ul li .star:nth-child(4) {
-  animation-delay: 1.5s;
-}
-html body main #banner-title .home-container .avaliacao-coffe ul li .star:nth-child(5) {
-  animation-delay: 1.8s;
 }
 html body main #banner-title .home-container .avaliacao-coffe ul li h4 {
   color: rgba(176, 176, 176, 0.9803921569);
@@ -1564,20 +1628,21 @@ html body main #itemEspecial .title p {
   width: 860px;
   color: #b3b3b3;
 }
-html body main #itemEspecial .carousel {
+html body main #itemEspecial .swiper-container {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
   max-width: 100dvw;
 }
-html body main #itemEspecial .carousel .carouselItems {
+html body main #itemEspecial .swiper-container .swiper-slide {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 10px;
 }
-html body main #itemEspecial .carousel .carouselItems .img {
+html body main #itemEspecial .swiper-container .swiper-slide .img {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1586,7 +1651,14 @@ html body main #itemEspecial .carousel .carouselItems .img {
   background: linear-gradient(to top, #f2e0db 1.57%, #fff 128.95%);
   border-radius: 25px;
 }
-html body main #itemEspecial .carousel .carouselItems ul {
+html body main #itemEspecial .swiper-container .swiper-slide .carouselItems {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+html body main #itemEspecial .swiper-container .swiper-slide ul {
   width: 100%;
   display: flex;
   align-items: center;
@@ -1594,44 +1666,19 @@ html body main #itemEspecial .carousel .carouselItems ul {
   flex-direction: column;
   justify-content: space-evenly;
 }
-html body main #itemEspecial .carousel .carouselItems ul li .star {
-  animation: blink 1.5s infinite;
-  font-size: 1.6em;
-  color: goldenrod;
-}
-@keyframes blink {
-  0%, 100% {
-    color: rgb(185, 140, 25);
-  }
-  50% {
-    color: gold;
-  }
-}
-html body main #itemEspecial .carousel .carouselItems ul li .star:nth-child(2) {
-  animation-delay: 0.9s;
-}
-html body main #itemEspecial .carousel .carouselItems ul li .star:nth-child(3) {
-  animation-delay: 1.2s;
-}
-html body main #itemEspecial .carousel .carouselItems ul li .star:nth-child(4) {
-  animation-delay: 1.5s;
-}
-html body main #itemEspecial .carousel .carouselItems ul li .star:nth-child(5) {
-  animation-delay: 1.8s;
-}
-html body main #itemEspecial .carousel .carouselItems h3 {
+html body main #itemEspecial .swiper-container .swiper-slide h3 {
   font-weight: 900;
   font-size: 2em;
 }
-html body main #itemEspecial .carousel .carouselItems h4 {
+html body main #itemEspecial .swiper-container .swiper-slide h4 {
   font-weight: 900;
   color: #000000;
 }
-html body main #itemEspecial .carousel .carouselItems h4 span {
+html body main #itemEspecial .swiper-container .swiper-slide h4 span {
   color: #b3b3b3;
   text-decoration: line-through !important;
 }
-html body main #itemEspecial .carousel .carouselItems .buttons {
+html body main #itemEspecial .swiper-container .swiper-slide .buttons {
   width: 50%;
   height: 20%;
   display: flex;
@@ -1639,7 +1686,7 @@ html body main #itemEspecial .carousel .carouselItems .buttons {
   justify-content: center;
   margin-top: 2%;
 }
-html body main #itemEspecial .carousel .carouselItems .buttons button {
+html body main #itemEspecial .swiper-container .swiper-slide .buttons button {
   position: relative;
   padding: 12px 35px;
   background: #371406;
@@ -1655,12 +1702,12 @@ html body main #itemEspecial .carousel .carouselItems .buttons button {
   align-items: center;
   justify-content: center;
 }
-html body main #itemEspecial .carousel .carouselItems .buttons button svg {
+html body main #itemEspecial .swiper-container .swiper-slide .buttons button svg {
   width: 25px;
   height: auto;
   margin-left: 10px;
 }
-html body main #itemEspecial .carousel .carouselItems .buttons .star-1 img {
+html body main #itemEspecial .swiper-container .swiper-slide .buttons .star-1 img {
   position: absolute;
   top: 20%;
   left: 20%;
@@ -1670,7 +1717,7 @@ html body main #itemEspecial .carousel .carouselItems .buttons .star-1 img {
   z-index: -5;
   transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
 }
-html body main #itemEspecial .carousel .carouselItems .buttons .star-2 img {
+html body main #itemEspecial .swiper-container .swiper-slide .buttons .star-2 img {
   position: absolute;
   top: 45%;
   left: 45%;
@@ -1680,7 +1727,7 @@ html body main #itemEspecial .carousel .carouselItems .buttons .star-2 img {
   z-index: -5;
   transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
 }
-html body main #itemEspecial .carousel .carouselItems .buttons .star-3 img {
+html body main #itemEspecial .swiper-container .swiper-slide .buttons .star-3 img {
   position: absolute;
   top: 40%;
   left: 40%;
@@ -1690,7 +1737,7 @@ html body main #itemEspecial .carousel .carouselItems .buttons .star-3 img {
   z-index: -5;
   transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
 }
-html body main #itemEspecial .carousel .carouselItems .buttons .star-4 img {
+html body main #itemEspecial .swiper-container .swiper-slide .buttons .star-4 img {
   position: absolute;
   top: 20%;
   left: 40%;
@@ -1700,7 +1747,7 @@ html body main #itemEspecial .carousel .carouselItems .buttons .star-4 img {
   z-index: -5;
   transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
 }
-html body main #itemEspecial .carousel .carouselItems .buttons .star-5 img {
+html body main #itemEspecial .swiper-container .swiper-slide .buttons .star-5 img {
   position: absolute;
   top: 25%;
   left: 45%;
@@ -1710,7 +1757,7 @@ html body main #itemEspecial .carousel .carouselItems .buttons .star-5 img {
   z-index: -5;
   transition: all 0.4s cubic-bezier(0, 0.4, 0, 1.01);
 }
-html body main #itemEspecial .carousel .carouselItems .buttons .star-6 img {
+html body main #itemEspecial .swiper-container .swiper-slide .buttons .star-6 img {
   position: absolute;
   top: 5%;
   left: 50%;
@@ -1720,12 +1767,12 @@ html body main #itemEspecial .carousel .carouselItems .buttons .star-6 img {
   z-index: -5;
   transition: all 0.8s ease;
 }
-html body main #itemEspecial .carousel .carouselItems .buttons button:hover {
+html body main #itemEspecial .swiper-container .swiper-slide .buttons button:hover {
   background: transparent;
   color: #371406;
   box-shadow: 0 0 25px rgba(121, 50, 0, 0.5490196078);
 }
-html body main #itemEspecial .carousel .carouselItems .buttons button:hover .star-1 img {
+html body main #itemEspecial .swiper-container .swiper-slide .buttons button:hover .star-1 img {
   position: absolute;
   top: -80%;
   left: -30%;
@@ -1734,7 +1781,7 @@ html body main #itemEspecial .carousel .carouselItems .buttons button:hover .sta
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #itemEspecial .carousel .carouselItems .buttons button:hover .star-2 img {
+html body main #itemEspecial .swiper-container .swiper-slide .buttons button:hover .star-2 img {
   position: absolute;
   top: -25%;
   left: 10%;
@@ -1743,7 +1790,7 @@ html body main #itemEspecial .carousel .carouselItems .buttons button:hover .sta
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #itemEspecial .carousel .carouselItems .buttons button:hover .star-3 img {
+html body main #itemEspecial .swiper-container .swiper-slide .buttons button:hover .star-3 img {
   position: absolute;
   top: 55%;
   left: 25%;
@@ -1752,7 +1799,7 @@ html body main #itemEspecial .carousel .carouselItems .buttons button:hover .sta
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #itemEspecial .carousel .carouselItems .buttons button:hover .star-4 img {
+html body main #itemEspecial .swiper-container .swiper-slide .buttons button:hover .star-4 img {
   position: absolute;
   top: 30%;
   left: 80%;
@@ -1761,7 +1808,7 @@ html body main #itemEspecial .carousel .carouselItems .buttons button:hover .sta
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #itemEspecial .carousel .carouselItems .buttons button:hover .star-5 img {
+html body main #itemEspecial .swiper-container .swiper-slide .buttons button:hover .star-5 img {
   position: absolute;
   top: 25%;
   left: 115%;
@@ -1770,7 +1817,7 @@ html body main #itemEspecial .carousel .carouselItems .buttons button:hover .sta
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #itemEspecial .carousel .carouselItems .buttons button:hover .star-6 img {
+html body main #itemEspecial .swiper-container .swiper-slide .buttons button:hover .star-6 img {
   position: absolute;
   top: 5%;
   left: 60%;
@@ -1779,7 +1826,7 @@ html body main #itemEspecial .carousel .carouselItems .buttons button:hover .sta
   filter: drop-shadow(0 0 10px #371406);
   z-index: 2;
 }
-html body main #itemEspecial .carousel .carouselItems .buttons .fil0 {
+html body main #itemEspecial .swiper-container .swiper-slide .buttons .fil0 {
   fill: #371406;
 }
 html body main #itemEspecial .itemsEspecialPosition {
@@ -1859,23 +1906,24 @@ html body main #avaliacao .title p {
   width: 830px;
   color: #b3b3b3;
 }
-html body main #avaliacao .carousel {
+html body main #avaliacao .swiper {
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 100dvw;
+  max-width: 100%;
   margin-left: 3%;
 }
-html body main #avaliacao .carousel .carouselCont {
+html body main #avaliacao .swiper .swiper-slide {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   align-items: flex-start;
   height: 570px;
+  width: 20%;
 }
-html body main #avaliacao .carousel .carouselCont .img {
-  background-image: url(../img/aroma_joe.jpg);
+html body main #avaliacao .swiper .swiper-slide .img {
+  background-image: url("../img/aroma_joe.jpg");
   background-repeat: no-repeat;
   width: 430px;
   height: 425px;
@@ -1887,7 +1935,7 @@ html body main #avaliacao .carousel .carouselCont .img {
   margin-bottom: 10%;
   transition: 0.1s;
 }
-html body main #avaliacao .carousel .carouselCont .img .imgItems {
+html body main #avaliacao .swiper .swiper-slide .img .imgItems {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1906,7 +1954,7 @@ html body main #avaliacao .carousel .carouselCont .img .imgItems {
   transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
   position: static;
 }
-html body main #avaliacao .carousel .carouselCont .img .imgItems ul {
+html body main #avaliacao .swiper .swiper-slide .img .imgItems ul {
   width: 100%;
   display: flex;
   align-items: center;
@@ -1915,56 +1963,31 @@ html body main #avaliacao .carousel .carouselCont .img .imgItems ul {
   justify-content: space-evenly;
   align-items: flex-start;
 }
-html body main #avaliacao .carousel .carouselCont .img .imgItems ul li .star {
-  animation: blink 1.5s infinite;
-  font-size: 1.6em;
-  color: goldenrod;
-}
-@keyframes blink {
-  0%, 100% {
-    color: rgb(185, 140, 25);
-  }
-  50% {
-    color: gold;
-  }
-}
-html body main #avaliacao .carousel .carouselCont .img .imgItems ul li .star:nth-child(2) {
-  animation-delay: 0.9s;
-}
-html body main #avaliacao .carousel .carouselCont .img .imgItems ul li .star:nth-child(3) {
-  animation-delay: 1.2s;
-}
-html body main #avaliacao .carousel .carouselCont .img .imgItems ul li .star:nth-child(4) {
-  animation-delay: 1.5s;
-}
-html body main #avaliacao .carousel .carouselCont .img .imgItems ul li .star:nth-child(5) {
-  animation-delay: 1.8s;
-}
-html body main #avaliacao .carousel .carouselCont .img .imgItems P {
+html body main #avaliacao .swiper .swiper-slide .img .imgItems P {
   font-size: 1.3em;
   color: #b3b3b3;
   margin: 10% 0% 18% 0%;
 }
-html body main #avaliacao .carousel .carouselCont .img .imgItems h3 {
+html body main #avaliacao .swiper .swiper-slide .img .imgItems h3 {
   font-weight: 900;
   color: white;
   font-size: 1.8em;
 }
-html body main #avaliacao .carousel .carouselCont .img .imgItems h4 {
+html body main #avaliacao .swiper .swiper-slide .img .imgItems h4 {
   color: #b3b3b3;
   font-size: 1.2em;
 }
-html body main #avaliacao .carousel .carouselCont .img:hover .imgItems {
+html body main #avaliacao .swiper .swiper-slide .img:hover .imgItems {
   opacity: 1;
   visibility: visible;
   cursor: pointer;
 }
-html body main #avaliacao .carousel .carouselCont .img:hover:hover ~ .carouselItems {
+html body main #avaliacao .swiper .swiper-slide .img:hover:hover ~ .carouselItems {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.4s ease, visibility 0.4s ease;
 }
-html body main #avaliacao .carousel .carouselCont .carouselItems {
+html body main #avaliacao .swiper .swiper-slide .carouselItems {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1973,7 +1996,7 @@ html body main #avaliacao .carousel .carouselCont .carouselItems {
   opacity: 1;
   visibility: visible;
 }
-html body main #avaliacao .carousel .carouselCont .carouselItems ul {
+html body main #avaliacao .swiper .swiper-slide .carouselItems ul {
   width: 100%;
   display: flex;
   align-items: center;
@@ -1982,38 +2005,13 @@ html body main #avaliacao .carousel .carouselCont .carouselItems ul {
   justify-content: space-evenly;
   align-items: flex-start;
 }
-html body main #avaliacao .carousel .carouselCont .carouselItems ul li .star {
-  animation: blink 1.5s infinite;
-  font-size: 1.6em;
-  color: goldenrod;
-}
-@keyframes blink {
-  0%, 100% {
-    color: rgb(185, 140, 25);
-  }
-  50% {
-    color: gold;
-  }
-}
-html body main #avaliacao .carousel .carouselCont .carouselItems ul li .star:nth-child(2) {
-  animation-delay: 0.9s;
-}
-html body main #avaliacao .carousel .carouselCont .carouselItems ul li .star:nth-child(3) {
-  animation-delay: 1.2s;
-}
-html body main #avaliacao .carousel .carouselCont .carouselItems ul li .star:nth-child(4) {
-  animation-delay: 1.5s;
-}
-html body main #avaliacao .carousel .carouselCont .carouselItems ul li .star:nth-child(5) {
-  animation-delay: 1.8s;
-}
-html body main #avaliacao .carousel .carouselCont .carouselItems h3 {
+html body main #avaliacao .swiper .swiper-slide .carouselItems h3 {
   font-weight: 900;
   color: #000000;
   font-size: 1.8em;
   margin-bottom: 5%;
 }
-html body main #avaliacao .carousel .carouselCont .carouselItems h4 {
+html body main #avaliacao .swiper .swiper-slide .carouselItems h4 {
   color: #b3b3b3;
   font-size: 1.2em;
 }
@@ -2943,6 +2941,35 @@ html body .footer .chat-boot #chat-container .bot-message i {
   padding: 2%;
   border-radius: 50%;
   color: white;
+}
+html body .footer .loader {
+  display: inline-block;
+  width: 20px;
+  height: 10px;
+  text-align: center;
+}
+html body .footer .loader span {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  margin: 0 1px;
+  background: #371406;
+  border-radius: 50%;
+  animation: blink2 1.2s infinite ease-in-out both;
+}
+html body .footer .loader span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+html body .footer .loader span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+@keyframes blink2 {
+  0%, 80%, 100% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
 }
 html body .footer #scrollToTopBtn {
   position: fixed;

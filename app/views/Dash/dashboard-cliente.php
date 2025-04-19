@@ -34,8 +34,8 @@
 
 <body class="g-sidenav-show bg-gray-100">
 
-  <div class="position-absolute w-100 min-height-300 top-0" style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/profile-layout-header.jpg'); background-position-y: 50%;">
-    <span class="mask bg-primary opacity-6"></span>
+  <div class="position-absolute w-100 min-height-300 top-0" style="background-image: url('http://localhost/exfe/public/assets/imgDash/bg_cliente.jpg'); background-position-y: 50%;">
+    <span class="mask opacity-6" style="background-color:#371406;"></span>
   </div>
 
   <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
@@ -57,7 +57,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link active" href="http://localhost/exfe/public/cliente/perfil">
+          <a class="nav-link active" href="http://localhost/exfe/public/clientes/perfil">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
             </div>
@@ -223,13 +223,25 @@
         <div class="row gx-4">
           <div class="col-auto">
             <div class="avatar avatar-xl position-relative">
-              <img src="http://localhost/exfe/public/uploads/cliente/anaPaula.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+              <img src="<?php
+                        $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $cliente['foto_cliente'];
+
+                        if ($cliente['foto_cliente'] != "") {
+                          if (file_exists($caminhoArquivo)) {
+                            echo ("http://localhost/exfe/public/uploads/" . htmlspecialchars($cliente['foto_cliente'], ENT_QUOTES, 'UTF-8'));
+                          } else {
+                            echo ("http://localhost/exfe/public/uploads/cliente/sem-foto-cliente.jpg");
+                          }
+                        } else {
+                          echo ("http://localhost/exfe/public/uploads/cliente/sem-foto-cliente.jpg");
+                        }
+                        ?>" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
             </div>
           </div>
           <div class="col-auto my-auto">
             <div class="h-100">
               <h5 class="mb-1">
-                Lucas Henrique
+                <?php echo $cliente['nome_cliente']  ?>
               </h5>
             </div>
           </div>
@@ -260,6 +272,17 @@
         </div>
       </div>
     </div>
+
+    <!-- Conteúdo -->
+    <?php
+    if (isset($conteudo)) {
+      $this->carregarViews($conteudo, $dados);
+    } else {
+      echo '<h2>Bem-vindo ' . $cliente['nome_cliente'] . '!</h2> ';
+    }
+    ?>
+
+
 
 
     <!-- Start Footer -->
@@ -298,11 +321,21 @@
   </div>
   </div>
 
-  <!--   Core JS Files   -->
-  <script src="../script/core/popper.min.js"></script>
-  <script src="../script/core/bootstrap.min.js"></script>
-  <script src="../script/plugins/perfect-scrollbar.min.js"></script>
-  <script src="../script/pluginssmooth-scrollbar.min.js"></script>
+  <!-- Popper.js (incluído automaticamente no bundle do Bootstrap, mas pode ser usado separado se quiser) -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2"></script>
+
+  <!-- Bootstrap 5 (inclui Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Perfect Scrollbar -->
+  <script src="https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.5.5/dist/perfect-scrollbar.min.js"></script>
+
+  <!-- Smooth Scrollbar -->
+  <script src="https://cdn.jsdelivr.net/npm/smooth-scrollbar@8.7.5/dist/smooth-scrollbar.js"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {

@@ -1,5 +1,3 @@
-
-
 <div class="container-fluid py-4">
   <div class="row">
     <div class="col-md-8">
@@ -20,52 +18,53 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="nome_cliente" class="form-control-label">Nome Completo</label>
-                <input class="form-control" type="text" id="nome_cliente" name="nome_cliente" value="<?= $cliente['nome_cliente'] ?>" placeholder="Digite seu nome completo">
+                <input class="form-control" type="text" id="nome_cliente" name="nome_cliente" value="<?= $cliente['nome_cliente'] ?>" readonly>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="email_cliente" class="form-control-label">Email</label>
-                <input class="form-control" type="email" id="email_cliente" name="email_cliente" value="<?= $cliente['email_cliente'] ?>" placeholder="Digite seu email">
+                <input class="form-control" type="email" id="email_cliente" name="email_cliente" value="<?= $cliente['email_cliente'] ?>" readonly>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="telefone_cliente" class="form-control-label">Telefone</label>
-                <input class="form-control" type="text" id="telefone_cliente" name="telefone_cliente" value="<?= $cliente['telefone_cliente'] ?>" placeholder="Digite seu telefone">
+                <input class="form-control" type="text" id="telefone_cliente" name="telefone_cliente" value="<?= $cliente['telefone_cliente'] ?>" readonly>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="cpf_cnpj" class="form-control-label">CPF/CNPJ</label>
-                <input class="form-control" type="text" id="cpf_cnpj" name="cpf_cnpj" value="<?= $cliente['cpf_cnpj'] ?>" placeholder="Digite seu CPF ou CNPJ">
+                <input class="form-control" type="text" id="cpf_cnpj" name="cpf_cnpj" value="<?= $cliente['cpf_cnpj'] ?>" readonly>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="tipo_cliente" class="form-control-label">Tipo de Cliente</label>
-                <input class="form-control" type="text" id="tipo_cliente" name="tipo_cliente" value="<?= $cliente['tipo_cliente'] ?>" placeholder="Pessoa Física ou Jurídica">
+                <input class="form-control" type="text" id="tipo_cliente" name="tipo_cliente" value="<?= $cliente['tipo_cliente'] ?>" readonly>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="id_tipo_usuario" class="form-control-label">Tipo de Usuário</label>
-                <input class="form-control" type="number" id="id_tipo_usuario" name="id_tipo_usuario" value="<?= $cliente['id_tipo_usuario'] ?>" placeholder="ID do Tipo de Usuário">
+                <input class="form-control" type="number" id="id_tipo_usuario" name="id_tipo_usuario" value="<?= $cliente['id_tipo_usuario'] ?>" readonly>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="senha_cliente" class="form-control-label">Senha</label>
-                <input class="form-control" type="password" id="senha_cliente" name="senha_cliente" value="<?= $cliente['senha_cliente'] ?>" placeholder="Digite sua senha">
+                <input class="form-control" type="password" id="senha_cliente" name="senha_cliente" value="<?= $cliente['senha_cliente'] ?>" readonly>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label for="nasc_cliente" class="form-control-label">Data de Nascimento</label>
-                <input class="form-control" type="date" id="nasc_cliente" name="nasc_cliente" value="<?= $cliente['nasc_cliente'] ?>">
+                <input class="form-control" type="date" id="nasc_cliente" name="nasc_cliente" value="<?= $cliente['nasc_cliente'] ?>" readonly>
               </div>
             </div>
           </div>
+
 
           <hr class="horizontal dark">
           <p class="text-uppercase text-sm">Informações de Contato</p>
@@ -73,28 +72,29 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label for="endereco_cliente" class="form-control-label">Endereço</label>
-                <input class="form-control" type="text" id="endereco_cliente" name="endereco_cliente" value="<?= $cliente['endereco_cliente'] ?>" placeholder="Digite seu endereço">
+                <input class="form-control" type="text" id="endereco_cliente" name="endereco_cliente" value="<?= $cliente['endereco_cliente'] ?>" placeholder="Digite seu endereço" readonly>
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label for="bairro_cliente" class="form-control-label">Bairro</label>
-                <input class="form-control" type="text" id="bairro_cliente" name="bairro_cliente" value="<?= $cliente['bairro_cliente'] ?>" placeholder="Digite seu bairro">
+                <input class="form-control" type="text" id="bairro_cliente" name="bairro_cliente" value="<?= $cliente['bairro_cliente'] ?>" placeholder="Digite seu bairro" readonly >
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label for="cidade_cliente" class="form-control-label">Cidade</label>
-                <input class="form-control" type="text" id="cidade_cliente" name="cidade_cliente" value="<?= $cliente['cidade_cliente'] ?>" placeholder="Digite sua cidade">
+                <input class="form-control" type="text" id="cidade_cliente" name="cidade_cliente" value="<?= $cliente['cidade_cliente'] ?>" placeholder="Digite sua cidade" readonly>
               </div>
             </div>
 
             <div class="col-md-4">
               <label for="uf" class="form-label fw-bold">Estados:</label>
-              <select class="form-select" id="id_estado" name="id_estado">
-                <option value="">Selecione</option>
+              <select class="form-select" id="id_estado" name="id_estado" disabled
+              > 
+                <option value="" readonly>Selecione</option>
                 <?php foreach ($estados as $linha): ?>
-                  <option value="<?= $linha['id_estado']; ?>" <?= ($cliente['id_estado'] == $linha['id_estado']) ? 'selected' : '' ?>>
+                  <option value="<?= $linha['id_estado']; ?>" <?= ($cliente['id_estado'] == $linha['id_estado']) ? 'selected' : '' ?> readonly>
                     <?= $linha['sigla_estado']; ?>
                   </option>
                 <?php endforeach; ?>

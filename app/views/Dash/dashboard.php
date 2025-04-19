@@ -25,8 +25,8 @@
   <!-- Arquivo CSS principal do painel de controle (argon-dashboard) -->
   <link id="pagestyle" href="http://localhost/exfe/public/assets/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
   <!-- Arquivo CSS personalizado para o site -->
-   <!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <link rel="stylesheet" href="http://localhost/exfe/public/assets/css/style.css">
 
@@ -112,7 +112,7 @@
               <i class="ni ni-single-02 text-sm" style="color: #371406; opacity: 0.9;"></i>
             </div>
             <span class="nav-link-text ms-1">Clientes</span>
-            
+
           </a>
         </li>
         <li class="nav-item">
@@ -123,7 +123,7 @@
               <i class="ni ni-single-02 text-sm" style="color: #371406; opacity: 0.9;"></i>
             </div>
             <span class="nav-link-text ms-1">Clientes Desativados</span>
-            
+
           </a>
         </li>
 
@@ -837,12 +837,21 @@
     </div>
   </main>
 
-  <!--   Core JS Files   -->
-  <script src="http://localhost/exfe/public/assets/script/core/popper.min.js"></script>
-  <script src="http://localhost/exfe/public/assets/script/core/bootstrap.min.js"></script>
-  <script src="http://localhost/exfe/public/assets/script/plugins/perfect-scrollbar.min.js"></script>
-  <script src="http://localhost/exfe/public/assets/script/plugins/smooth-scrollbar.min.js"></script>
-  <script src="http://localhost/exfe/public/assets/script/plugins/chartjs.min.js"></script>
+  <!-- Popper.js (incluído automaticamente no bundle do Bootstrap, mas pode ser usado separado se quiser) -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2"></script>
+
+  <!-- Bootstrap 5 (inclui Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Perfect Scrollbar -->
+  <script src="https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.5.5/dist/perfect-scrollbar.min.js"></script>
+
+  <!-- Smooth Scrollbar -->
+  <script src="https://cdn.jsdelivr.net/npm/smooth-scrollbar@8.7.5/dist/smooth-scrollbar.js"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
   <script>
     var ctx1 = document.getElementById("chart-line").getContext("2d");
 
@@ -943,11 +952,11 @@
       Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
     }
   </script>
-<!-- jQuery (necessário para Bootstrap 4) -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- jQuery (necessário para Bootstrap 4) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
   <!-- Github buttons -->
 

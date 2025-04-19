@@ -2,7 +2,11 @@
   <div class="home-container">
     <article>
       <img src="assets/img/img-1.png" alt="">
-      <h2>Beba & sinta</h2>
+      <h2 class="blinking-title">
+        <span>B</span><span>e</span><span>b</span><span>a</span><span> </span>
+        <span>&</span><span> </span>
+        <span>s</span><span>i</span><span>n</span><span>t</span><span>a</span>
+      </h2>
       <div class="content">
         <div class="content__container">
           <ul class="content__container__list">
