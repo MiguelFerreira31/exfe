@@ -16,6 +16,8 @@ class ProdutosController extends Controller
         $this->produtosModel = new Produtos();
     }
 
+    
+
     // FRONT-END: Carregar a lista de Funcionarios
     public function index()
     {
@@ -108,6 +110,9 @@ class ProdutosController extends Controller
             $id_categoria        = filter_input(INPUT_POST, 'id_categoria', FILTER_SANITIZE_NUMBER_INT);
             $id_fornecedor       = filter_input(INPUT_POST, 'id_fornecedor', FILTER_SANITIZE_NUMBER_INT);
             $status_produto      = filter_input(INPUT_POST, 'status_produto', FILTER_SANITIZE_SPECIAL_CHARS);
+            if (empty($status_produto)) {
+                $status_produto = 'ativo'; // valor padrão caso não venha nada
+            }            
             $foto_produto        = filter_input(INPUT_POST, 'foto_produto', FILTER_SANITIZE_SPECIAL_CHARS);
             $alt_foto_produto    = filter_input(INPUT_POST, 'alt_foto_produto', FILTER_SANITIZE_SPECIAL_CHARS);
 
@@ -136,28 +141,19 @@ class ProdutosController extends Controller
 
                 if ($id) {
                     if (isset($_FILES['foto_produto']) && $_FILES['foto_produto']['error'] == 0) {
-
-
                         $arquivo = $this->uploadFoto($_FILES['foto_produto']);
-
-
                         if ($arquivo) {
                             //Inserir na galeria
-
-                            $this->produtosModel->addFotoProduto($id, $arquivo);
-                        } else {
-                            //Definir uma mensagem informando que não pode ser salva
+                            $this->produtosModel->addFotoProduto($id, $arquivo, $nome_produto);
                         }
                     }
-
-
                     // Mensagem de SUCESSO 
-                    $_SESSION['mensagem'] = "Produto Cadastrado com Sucesso";
+                    $_SESSION['mensagem'] = "Produto Atualizado Com Sucesso";
                     $_SESSION['tipo-msg'] = "sucesso";
                     header('Location: http://localhost/exfe/public/produtos/listar');
                     exit;
                 } else {
-                    $dados['mensagem'] = "Erro ao adicionar Ao adicionar Produto";
+                    $dados['mensagem'] = "Erro ao Atalizar Produto";
                     $dados['tipo-msg'] = "erro";
                 }
             } else {
@@ -168,6 +164,14 @@ class ProdutosController extends Controller
         $dados = array();
         $produtos = $this->produtosModel->getProdutoById($id);
         $dados['produtos'] = $produtos;
+
+          // Buscar Fornecedor
+          $fornecedor = new Fornecedor();
+          $dados['fornecedor'] = $fornecedor->getListarFornecedor();
+
+           // Buscar Tipo Produto
+           $fornecedor = new TipoProduto();
+           $dados['tipoProduto'] = $fornecedor->getListarTipoProduto();
 
         if (isset($_SESSION['id_tipo_usuario']) && $_SESSION['id_tipo_usuario'] == '1') {
             $produto = new Produtos();

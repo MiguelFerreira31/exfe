@@ -841,7 +841,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2"></script>
 
   <!-- Bootstrap 5 (inclui Popper) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/script/bootstrap.bundle.min.js"></script>
 
   <!-- Perfect Scrollbar -->
   <script src="https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.5.5/dist/perfect-scrollbar.min.js"></script>

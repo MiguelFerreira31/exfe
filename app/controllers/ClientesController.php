@@ -345,9 +345,6 @@ class ClientesController extends Controller
         }
     }
 
-
-
-
     private function uploadFoto($file)
     {
 

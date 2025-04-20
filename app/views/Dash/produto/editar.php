@@ -39,12 +39,6 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                         : $fotoDefault;
                     ?>
 
-
-
-
-
-
-
                     <img src="<?php echo $imagePath ?>" alt="exfe Logo" class="img-fluid" id="preview-img" style="cursor: pointer; border-radius: 12px;">
                 </div>
                 <input type="file" name="foto_produto" id="foto_produto" style="display: none;" accept="image/*">
@@ -69,99 +63,66 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                         <div class="col-12 col-md-3">
                             <label for="valor_produto" class="form-label fw-bold" style="color: #9a5c1f;">Valor Produto:</label>
                             <input type="text" class="form-control dinheiro" id="preco_produto" name="preco_produto" value="<?php echo isset($produtos['preco_produto']) ? 'R$ ' . number_format($produtos['preco_produto'], 2, ',', '.') : ''; ?>" required>
-
-
                         </div>
 
                         <!-- Senha -->
                         <div class="col-12 col-md-3">
-                            <label for="id_categoria" class="form-label fw-bold" style="color: #9a5c1f;">Categorias:</label>
-                            <select class="form-select" id="id_categoria" name="id_categoria">
+                            <label for="id_fornecedor" class="form-label fw-bold" style="color: #9a5c1f;">Fornecedores:</label>
+                            <select class="form-select" id="id_fornecedor" name="id_fornecedor" required>
                                 <option value="">Selecione</option>
-                                <?php foreach ($categorias as $linha): ?>
+                                <?php foreach ($fornecedor as $linha): ?>
+                                    <option value="<?php echo $linha['id_fornecedor']; ?>"
+                                        <?php echo (isset($produtos['id_fornecedor']) && $produtos['id_fornecedor'] == $linha['id_fornecedor']) ? 'selected' : ''; ?>>
+                                        <?php echo $linha['nome_fornecedor']; ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+
+                        <div class="col-12 col-md-3">
+                            <label for="id_categoria" class="form-label fw-bold" style="color: #9a5c1f;">Tipo do Produto:</label>
+                            <select class="form-select" id="id_categoria" name="id_categoria" required>
+                                <option value="">Selecione</option>
+                                <?php foreach ($tipoProduto as $linha): ?>
                                     <option value="<?php echo $linha['id_categoria']; ?>"
-                                        <?php echo (isset($produtos['id_categoria']) && $produtos['id_categoria'] == $linha['nome_categoria']) ? 'selected' : ''; ?>>
-                                        <?php echo $linha['nome_categoria']; ?> <!-- Exibe o nome da categoria -->
+                                        <?php echo (isset($produtos['id_categoria']) && $produtos['id_categoria'] == $linha['id_categoria']) ? 'selected' : ''; ?>>
+                                        <?php echo $linha['nome_categoria']; ?>
                                     </option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
 
 
-                        <div class="col-12 col-md-3">
-                            <label for="cargo_funcionario" class="form-label fw-bold" style="color: #9a5c1f;">Cargo:</label>
-                            <input type="text" class="form-control" id="cargo_funcionario" name="cpf_cnpj" value="<?php echo $funcionarios['cargo_funcionario'] ?? ''; ?>" required>
-                        </div>
 
-                        <div class="col-12 col-md-3">
-                            <label for="id_tipo_usuario" class="form-label fw-bold" style="color: #9a5c1f;">Tipo de Funcionário:</label>
-                            <select class="form-select" id="id_tipo_usuario" name="id_tipo_usuario">
-                                <option value="1" <?php echo (isset($funcionarios['id_tipo_usuario']) && $funcionarios['id_tipo_usuario'] == 1) ? 'selected' : ''; ?>>Gerente</option>
-                                <option value="2" <?php echo (isset($funcionarios['id_tipo_usuario']) && $funcionarios['id_tipo_usuario'] == 2) ? 'selected' : ''; ?>>Funcionário</option>
+
+                        <div class="form-group">
+                            <label for="status_produto">Status do Produto</label>
+                            <select name="status_produto" id="status_produto" class="form-control">
+                                <option value="ativo" <?php echo ($produtos['status_produto'] == 'ativo') ? 'selected' : ''; ?>>Ativo</option>
+                                <option value="inativo" <?php echo ($produtos['status_produto'] == 'inativo') ? 'selected' : ''; ?>>Inativo</option>
                             </select>
                         </div>
 
 
-                        <!-- Status do Funcionario -->
-                        <div class="col-12 col-md-3">
-                            <label for="status_funcionario" class="form-label fw-bold" style="color: #9a5c1f;">Status Funcionario:</label>
-                            <select class="form-select" id="status_funcionario" name="status_funcionario">
-                                <option value="Ativo" <?php echo (isset($funcionarios['status_funcionario']) && $funcionarios['status_funcionario'] == 'Ativo') ? 'selected' : ''; ?>>Ativo</option>
-                                <option value="Inativo" <?php echo (isset($funcionarios['status_funcionario']) && $funcionarios['status_funcionario'] == 'Inativo') ? 'selected' : ''; ?>>Inativo</option>
-                            </select>
-                        </div>
 
-                        <!-- Telefone -->
-                        <div class="col-12 col-md-3">
-                            <label for="telefone_funcionario" class="form-label fw-bold" style="color: #9a5c1f;">Telefone:</label>
-                            <input type="tel" class="form-control" id="telefone_funcionario" name="telefone_funcionario" placeholder="(XX) XXXXX-XXXX" value="<?php echo $funcionarios['telefone_funcionario'] ?? ''; ?>">
-                        </div>
 
-                        <!-- Endereço -->
-                        <div class="col-12 col-md-3">
-                            <label for="endereco_funcionario" class="form-label fw-bold" style="color: #9a5c1f;">Endereço:</label>
-                            <input type="text" class="form-control" id="endereco_funcionario" name="endereco_funcionario" value="<?php echo $funcionarios['endereco_funcionario'] ?? ''; ?>" required>
-                        </div>
+                    </div>
 
-                        <!-- Bairro -->
-                        <div class="col-12 col-md-3">
-                            <label for="bairro_funcionario" class="form-label fw-bold" style="color: #9a5c1f;">Bairro:</label>
-                            <input type="text" class="form-control" id="bairro_funcionario" name="bairro_funcionario" value="<?php echo $funcionarios['bairro_funcionario'] ?? ''; ?>" required>
-                        </div>
-
-                        <!-- Cidade -->
-                        <div class="col-12 col-md-3">
-                            <label for="cidade_funcionario" class="form-label fw-bold" style="color: #9a5c1f;">Cidade:</label>
-                            <input type="text" class="form-control" id="cidade_funcionario" name="cidade_funcionario" value="<?php echo $funcionarios['cidade_funcionario'] ?? ''; ?>" required>
-                        </div>
-
-                        <!-- Estado -->
-                        <div class="col-12 col-md-3">
-                            <label for="uf" class="form-label fw-bold" style="color: #9a5c1f;">Estados:</label>
-                            <select class="form-select" id="id_estado" name="id_estado">
-                                <option value=""> Selecione </option>
-                                <?php foreach ($estados as $linha): ?>
-                                    <option value="<?php echo $linha['id_estado']; ?>" <?php echo (isset($funcionarios['id_estado']) && $funcionarios['id_estado'] == $linha['id_estado']) ? 'selected' : ''; ?>>
-                                        <?php echo $linha['sigla_estado']; ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-
-                        <div class="mt-4 text-center">
-                            <button type="submit" class="btn btn-lg" style="background: #ffcea6; color: #9a5c1f; font-weight: bold; border-radius: 12px;">Salvar</button>
-                            <button type="button" class="btn btn-lg" style="background: #ffd8b9; color: #9a5c1f; font-weight: bold; border-radius: 12px;">Cancelar</button>
-                        </div>
+                    <div class="mt-4 text-center">
+                        <button type="submit" class="btn btn-lg" style="background: #ffcea6; color: #9a5c1f; font-weight: bold; border-radius: 12px;">Salvar</button>
+                        <button type="button" class="btn btn-lg" style="background: #ffd8b9; color: #9a5c1f; font-weight: bold; border-radius: 12px;">Cancelar</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    </div>
 </form>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const visualizarImg = document.getElementById('preview-img');
-        const arquivo = document.getElementById('foto_funcionario');
+        const arquivo = document.getElementById('foto_produto');
 
         visualizarImg.addEventListener('click', function() {
             arquivo.click();

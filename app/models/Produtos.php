@@ -122,7 +122,6 @@ class Produtos extends Model
         return $stmt->execute();
     }
 
-
     public function getProdutoById($id)
     {
 
@@ -134,4 +133,6 @@ class Produtos extends Model
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    
 }
