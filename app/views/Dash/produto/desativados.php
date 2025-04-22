@@ -29,43 +29,45 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     <tr>
         <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Foto</th>
         <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Nome</th>
-        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Email</th>
-        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Telefone</th>
-        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Estado</th>
+        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Descricao</th>
+        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Preço</th>
+        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Categoria</th>
+        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Fornecedor</th>
         <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Editar</th>
         <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Ativar</th>
     </tr>
 </thead>
 
             <tbody>
-                <?php foreach ($funcionarios as $linha): ?>
+                <?php foreach ($produtos as $linha): ?>
                     <tr class="fw-semibold">
-                        <td class="img-funcionario">
+                        <td class="img-produto">
                             <img src="<?php
-                                $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $linha['foto_funcionario'];
+                                $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $linha['foto_produto'];
 
-                                if ($linha['foto_funcionario'] != "") {
+                                if ($linha['foto_produto'] != "") {
                                     if (file_exists($caminhoArquivo)) {
-                                        echo ("http://localhost/exfe/public/uploads/" . htmlspecialchars($linha['foto_funcionario'], ENT_QUOTES, 'UTF-8'));
+                                        echo ("http://localhost/exfe/public/uploads/" . htmlspecialchars($linha['foto_produto'], ENT_QUOTES, 'UTF-8'));
                                     } else {
-                                        echo ("http://localhost/exfe/public/uploads/funcionario/sem-foto-funcionario.jpg");
+                                        echo ("http://localhost/exfe/public/uploads/produto/sem-foto-produto.jpg");
                                     }
                                 } else {
-                                    echo ("http://localhost/exfe/public/uploads/funcionario/sem-foto-funcionario.jpg");
+                                    echo ("http://localhost/exfe/public/uploads/produto/sem-foto-produto.jpg");
                                 }
                             ?>" alt="" class="rounded-circle" style="width: 50px; height: 50px;">
                         </td>
-                        <td><?php echo htmlspecialchars($linha['nome_funcionario']); ?></td>
-                        <td><?php echo htmlspecialchars($linha['email_funcionario']); ?></td>
-                        <td><?php echo htmlspecialchars($linha['telefone_funcionario']); ?></td>
-                        <td><?php echo htmlspecialchars($linha['sigla_estado']); ?></td>
+                        <td><?php echo htmlspecialchars($linha['nome_produto']); ?></td>
+                        <td><?php echo htmlspecialchars($linha['descricao_produto']); ?></td>
+                        <td><?php echo htmlspecialchars($linha['preco_produto']); ?></td>
+                        <td><?php echo htmlspecialchars($linha['id_categoria']); ?></td>
+                        <td><?php echo htmlspecialchars($linha['nome_fornecedor']);?></td>
                         <td>
-                            <a href="http://localhost/exfe/public/funcionarios/editar/<?php echo $linha['id_funcionario']; ?>" title="Editar">
+                            <a href="http://localhost/exfe/public/produtos/editar/<?php echo $linha['id_produto']; ?>" title="Editar">
                                 <i class="fa fa-pencil-alt" style="font-size: 20px; color: #9a5c1f;"></i>
                             </a>
                         </td>
                         <td>
-                        <a href="#" class="btn " title="Desativar" onclick="abrirModalAtivar(<?php echo $linha['id_funcionario'];  ?>)">
+                        <a href="#" class="btn " title="Ativar" onclick="abrirModalAtivar(<?php echo $linha['id_produto'];  ?>)">
                             <i class="fa fa-check-circle" style="font-size: 20px; color: #28a745;"></i>
                             </a>
                         </td>
@@ -76,9 +78,9 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     </div>
 
     <div class="text-center mt-4">
-        <h3 style="color: #9a5c1fad;">Não encontrou o funcionario? Cadastre abaixo</h3>
-        <a href="http://localhost/exfe/public/funcionarios/adicionar" class="btn fw-bold px-4 py-2" style="background:#9a5c1fad; color: #ffffff; border-radius: 8px;">
-            Adicionar Funcionario
+        <h3 style="color: #9a5c1fad;">Não encontrou o produto? Cadastre abaixo</h3>
+        <a href="http://localhost/exfe/public/protudos/adicionar" class="btn fw-bold px-4 py-2" style="background:#9a5c1fad; color: #ffffff; border-radius: 8px;">
+            Adicionar Produto
         </a>
     </div>
 </div>
@@ -87,21 +89,21 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
 
 <!-- MODAL DESATIVAR Funcionario  -->
-<div class="modal" tabindex="-1" id="modalAtivar">
+<div class="modal" tabindex="-1" id="modalDesativar">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Ativar Funcionario</h5>
+                <h5 class="modal-title">Desativar Produto</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Tem Certeza que deseja ativar esse Funcionario?</p>
-                <input type="hidden" id="idFuncionarioAtivar" value="">
+                <p>Tem Certeza que deseja desativar esse Produto?</p>
+                <input type="hidden" id="idProdutoDesativar" value="">
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="btnConfirmar">Ativar</button>
+                <button type="button" class="btn btn-primary" id="btnConfirmar">Desativar</button>
             </div>
         </div>
     </div>
@@ -114,72 +116,51 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
 
 <script>
-    function abrirModalAtivar(idFuncionario) {
-
-
-        if ($('#modalAtivar').hasClass('show')) {
+    function abrirModalDesativar(idProduto) {
+        if ($('#modalDesativar').hasClass('show')) {
             return;
         }
 
-        document.getElementById('idFuncionarioAtivar').value = idFuncionario;
-        $('#modalAtivar').modal('show');
-
+        document.getElementById('idProdutoDesativar').value = idProduto;
+        $('#modalDesativar').modal('show');
     }
 
+    document.getElementById('btnConfirmar').addEventListener('click', function () {
+        const idProduto = document.getElementById('idProdutoDesativar').value;
+        console.log(idProduto);
 
-    document.getElementById('btnConfirmar').addEventListener('click', function() {
-        const idFuncionario = document.getElementById('idFuncionarioAtivar').value;
-        console.log(idFuncionario);
-
-        if (idFuncionario) {
-            ativarFuncionario(idFuncionario);
+        if (idProduto) {
+            desativarProduto(idProduto);
         }
-
     });
 
-    function ativarFuncionario(idFuncionario) {
-
-        fetch(`http://localhost/exfe/public/funcionarios/ativar/${idFuncionario}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-
-            })
-
-            .then(response => {
-                // Se o codigo de resposta NÃO for OK lança pra ele uma msg de ERRO
-                if (!response.ok) {
-
-                    throw new Error(`Erro HTTP: ${reponse.status}`)
-                    ''
-                }
-                return response.json();
-
-            })
-
-            .then(data => {
-
-                if (data.sucesso) {
-                    console.log('funcionario desativado com sucesso');
-                    $('#modalAtivar').modal('hide');
-                    setTimeout(() => {
-                        location.reload();
-                    }), 500;
-
-                } else {
-                    alert(data.mensagem || "Ocorreu um erro ao Ativar o funcionario");
-                }
-
-            })
-
-            .catch(erro => {
-                console.error("erro", erro);
-                alert('erro na requisicao');
-
-            })
-
-
-
+    function desativarProduto(idProduto) {
+        fetch(`http://localhost/exfe/public/produtos/desativar/${idProduto}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Erro HTTP: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.sucesso) {
+                console.log('Produto desativado com sucesso');
+                $('#modalDesativar').modal('hide');
+                setTimeout(() => {
+                    location.reload();
+                }, 500);
+            } else {
+                alert(data.mensagem || "Ocorreu um erro ao Desativar o Produto");
+            }
+        })
+        .catch(erro => {
+            console.error("erro", erro);
+            alert('Erro na requisição');
+        });
     }
 </script>

@@ -123,7 +123,6 @@
               <i class="ni ni-single-02 text-sm" style="color: #371406; opacity: 0.9;"></i>
             </div>
             <span class="nav-link-text ms-1">Clientes Desativados</span>
-
           </a>
         </li>
 
@@ -171,6 +170,17 @@
               <i class="ni ni-settings text-sm" style="color: #371406; opacity: 0.9;"></i>
             </div>
             <span class="nav-link-text ms-1">Produtos</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="http://localhost/exfe/public/produtos/desativados"
+            style="color: #371406; border-radius: 0.5rem;">
+            <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
+              style="background-color: #ffd8b9; border-radius: 0.5rem;">
+              <i class="ni ni-single-02 text-sm" style="color: #371406; opacity: 0.9;"></i>
+            </div>
+            <span class="nav-link-text ms-1">Produtos Desativados</span>
           </a>
         </li>
 

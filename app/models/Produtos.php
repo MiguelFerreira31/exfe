@@ -134,5 +134,15 @@ class Produtos extends Model
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    
+    public function getListarProdutosDesativados()
+    {
+
+        $sql = "SELECT * 
+        FROM tbl_produto AS p
+        INNER JOIN tbl_categoria AS c ON p.id_categoria = c.id_categoria
+        INNER JOIN tbl_fornecedor AS f ON p.id_fornecedor = f.id_fornecedor
+        WHERE TRIM(p.status_produto) = 'Inativo'";
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

@@ -194,6 +194,21 @@ class ProdutosController extends Controller
     }
 
 
+    public function desativados()
+    {
+        $dados = array();
+
+
+        // Carregar os clientes
+        $produtosModel = new Produtos();
+        $produtos = $produtosModel->getListarProdutosDesativados();
+        $dados['produtos'] = $produtos;
+
+        $dados['conteudo'] = 'dash/produto/desativados';
+        $this->carregarViews('dash/dashboard', $dados);
+    }
+
+
     private function uploadFoto($file)
     {
 
