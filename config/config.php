@@ -6,10 +6,10 @@ if(session_status() == PHP_SESSION_NONE){
 
 define("BASE_URL", "http://localhost/exfe/public/");
 
-define("DB_HOST", "127.0.0.1:3308");
-define("DB_NAME", "db_exfe");
-define("DB_USER", "root");
-define("DB_PASS", "");
+define("DB_HOST", "smpsistema.com.br");
+define("DB_NAME", "u283879542_exfe");
+define("DB_USER", "u283879542_exfe");
+define("DB_PASS", "Senac@exfe01");
 
 define('EMAIL_HOST', 'smtp.hostinger.com');
 define('EMAIL_PORT', '465');

@@ -21,7 +21,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 ?>
 
 <div class="container my-5">
-    <h2 class="text-center fw-bold py-3" style="background: #9a5c1fad; color: white; border-radius: 12px;">Clientes Cadastrados</h2>
+    <h2 class="text-center fw-bold py-3" style="background: #5e3c2d; color: white; border-radius: 12px;">Clientes Cadastrados</h2>
 
     <div class="table-responsive rounded-3 shadow-lg p-3" style="background: #ffffff;">
         <table class="table table-hover text-center align-middle">
@@ -61,7 +61,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                         <td><?php echo htmlspecialchars($linha['sigla_estado']); ?></td>
                         <td>
                             <a href="http://localhost/exfe/public/clientes/editar/<?php echo $linha['id_cliente']; ?>" title="Editar">
-                                <i class="fa fa-pencil-alt" style="font-size: 20px; color: #9a5c1f;"></i>
+                                <i class="fa fa-pencil-alt" style="font-size: 20px; color: #5e3c2d;"></i>
                             </a>
                         </td>
                         <td>
@@ -76,8 +76,8 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     </div>
 
     <div class="text-center mt-4">
-        <h3 style="color: #9a5c1fad;">Não encontrou o Produto? Cadastre abaixo</h3>
-        <a href="http://localhost/exfe/public/produtos/adicionar/" class="btn fw-bold px-4 py-2" style="background:#9a5c1fad; color: #ffffff; border-radius: 8px;">
+        <h3 style="color: #5e3c2dad;">Não encontrou o Produto? Cadastre abaixo</h3>
+        <a href="http://localhost/exfe/public/produtos/adicionar/" class="btn fw-bold px-4 py-2" style="background:#5e3c2d; color: #ffffff; border-radius: 8px;">
             Adicionar Produto
         </a>
     </div>

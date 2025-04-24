@@ -1,4 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+/* Faz o dropdown ocupar largura total e parecer parte do menu lateral */
+.dropdown-menu.show-on-click {
+  position: static;
+  float: none;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -770,6 +776,71 @@ html body header.scroll .site .icons svg {
 }
 html body header.scroll .site .icons svg:hover {
   transform: scale(1.08);
+}
+html body main .loader {
+  width: 35px;
+  height: 80px;
+  position: relative;
+}
+html body main .loader:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 3px 5px;
+  border-top: 1px solid #bbb6aa;
+  border-bottom: 4px solid #bbb6aa;
+  background: linear-gradient(#612329 0 0) bottom no-repeat content-box, #e4e0d7;
+  mix-blend-mode: darken;
+  animation: l1 1.5s infinite linear;
+}
+html body main .loader:before {
+  content: "";
+  position: absolute;
+  inset: -18px calc(50% - 2px) 8px;
+  background: #eb6b3e;
+  transform-origin: bottom;
+  transform: rotate(8deg);
+}
+@keyframes l1 {
+  0% {
+    background-size: 100% 100%;
+  }
+  100% {
+    background-size: 100% 5%;
+  }
+}
+html body main #loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+html body main .loading-text {
+  font-size: 1.2rem;
+  color: #5e3c2d;
+  margin-top: 10px;
+  font-weight: bold;
+}
+html body main .dot {
+  display: inline-block;
+  opacity: 0;
+  font-size: 1.5rem;
+  animation: blink4 1.2s infinite ease-in-out both;
+}
+html body main .dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+html body main .dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+@keyframes blink4 {
+  0%, 80%, 100% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
 }
 html body main #banner {
   height: 100dvh;
