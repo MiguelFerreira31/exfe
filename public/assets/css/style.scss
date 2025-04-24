@@ -2969,6 +2969,7 @@ html {
             align-items: flex-start;
             gap: 20px;
 
+
             h2 {
               width: 350px;
               color: $colorTertiary;
@@ -2984,8 +2985,8 @@ html {
                 width: 100%;
                 height: 65px;
                 font-family: $font;
-                color: $colorPrimary;
-                background: $colorSecondary;
+                color: $colorBg2;
+                background-color: #f5eee6;
                 font-size: 1.3em;
                 border: none;
                 border-radius: 25px;
@@ -2993,16 +2994,24 @@ html {
                 font-weight: bold;
 
                 &::placeholder {
-                  color: $colorPrimary;
+                  color: $colorBg2;
                 }
+
+
+                &:focus {
+                  outline: none;
+                  border: none;
+                }
+
+
               }
 
               textarea {
                 width: 100%;
                 height: 200px;
                 font-family: $font;
-                color: $colorPrimary;
-                background: $colorSecondary;
+                color: $colorBg2;
+                background-color: #f5eee6;
                 font-size: 1.3em;
                 resize: none;
                 border: none;
@@ -3011,7 +3020,12 @@ html {
                 font-weight: bold;
 
                 &::placeholder {
-                  color: $colorPrimary;
+                  color: $colorBg2;
+                }
+
+                &:focus {
+                  outline: none;
+                  border: none;
                 }
               }
             }
@@ -3039,6 +3053,32 @@ html {
 
 
       //#endregion contato
+
+      .thanks {
+        @include area();
+        @include flex-center();
+        flex-direction: column;
+
+        a {
+
+          button {
+            position: relative;
+            padding: 10px 40px;
+            background: $colorBg2;
+            font-size: 1.3em;
+            font-weight: 900;
+            color: white;
+            border: 3px solid $colorBg2;
+            border-radius: 25px;
+            box-shadow: 0 0 0 #7430008c;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+          }
+        }
+
+      }
+
+
     }
 
     .footer {

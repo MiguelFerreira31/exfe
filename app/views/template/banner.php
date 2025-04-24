@@ -1,7 +1,7 @@
 <section id="banner">
   <div class="home-container">
     <article>
-      <img src="assets/img/img-1.png" alt="">
+      <img src="http://localhost/exfe/public/assets/img/img-1.png" alt="">
       <h2 class="blinking-title">
         <span>B</span><span>e</span><span>b</span><span>a</span><span> </span>
         <span>&</span><span> </span>
@@ -23,29 +23,29 @@
         <button>
           Ver mais
           <div class="star-1">
-            <img src="assets/img/coffee-bean-button.webp" alt="">
+            <img src="http://localhost/exfe/public/assets/img/coffee-bean-button.webp" alt="">
           </div>
           <div class="star-2">
-            <img src="assets/img/coffee-bean-button.webp" alt="">
+            <img src="http://localhost/exfe/public/assets/img/coffee-bean-button.webp" alt="">
           </div>
           <div class="star-3">
-            <img src="assets/img/coffee-bean-button.webp" alt="">
+            <img src="http://localhost/exfe/public/assets/img/coffee-bean-button.webp" alt="">
           </div>
           <div class="star-4">
-            <img src="assets/img/coffee-bean-button.webp" alt="">
+            <img src="http://localhost/exfe/public/assets/img/coffee-bean-button.webp" alt="">
           </div>
           <div class="star-5">
-            <img src="assets/img/coffee-bean-button.webp" alt="">
+            <img src="http://localhost/exfe/public/assets/img/coffee-bean-button.webp" alt="">
           </div>
           <div class="star-6">
-            <img src="assets/img/coffee-bean-button.webp" alt="">
+            <img src="http://localhost/exfe/public/assets/img/coffee-bean-button.webp" alt="">
           </div>
         </button>
       </div>
 
     </article>
 
-    <figure><img src="assets/img/cup-img.webp" alt=""></figure>
+    <figure><img src="http://localhost/exfe/public/assets/img/cup-img.webp" alt=""></figure>
   </div>
 
 </section>
