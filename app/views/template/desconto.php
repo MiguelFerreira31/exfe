@@ -2,11 +2,11 @@
   <img class="coffee" src="assets/img/img_coffee_desconto.webp" alt="">
   <div class="emailCont">
     <div class="emailTitle">
-      <h2>Junte-se e Ganhe <span>15% off!</span></h2>
-      <p>Assine a Nossa Newsletter e Receba 25% de Desconto.</p>
+      <h2>Junte-se e Ganhe <span>10% off!</span></h2>
+      <p>Assine a Nossa Newsletter e Receba 10% de Desconto.</p>
     </div>
     <div class="emailItems">
-      <form action="POST">
+      <form action="http://localhost/exfe/newsletter/inscrever" method="POST">
         <input class="email" type="email" id="email" name="email" placeholder="&#9993; Endereço de E-mail" required>
 
         <div class="buttons">
@@ -32,7 +32,6 @@
             </div>
           </button>
         </div>
-
       </form>
     </div>
   </div>

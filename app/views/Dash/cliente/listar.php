@@ -25,35 +25,35 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
     <div class="table-responsive rounded-3 shadow-lg p-3" style="background: #ffffff;">
         <table class="table table-hover text-center align-middle">
-        <thead class="thead-custom">
-    <tr>
-        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Foto</th>
-        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Nome</th>
-        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Email</th>
-        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Telefone</th>
-        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Estado</th>
-        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Editar</th>
-        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Desativar</th>
-    </tr>
-</thead>
+            <thead class="thead-custom">
+                <tr>
+                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Foto</th>
+                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Nome</th>
+                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Email</th>
+                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Telefone</th>
+                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Estado</th>
+                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Editar</th>
+                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Desativar</th>
+                </tr>
+            </thead>
 
             <tbody>
                 <?php foreach ($clientes as $linha): ?>
                     <tr class="fw-semibold">
                         <td class="img-cliente">
                             <img src="<?php
-                                $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $linha['foto_cliente'];
+                                        $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $linha['foto_cliente'];
 
-                                if ($linha['foto_cliente'] != "") {
-                                    if (file_exists($caminhoArquivo)) {
-                                        echo ("http://localhost/exfe/public/uploads/" . htmlspecialchars($linha['foto_cliente'], ENT_QUOTES, 'UTF-8'));
-                                    } else {
-                                        echo ("http://localhost/exfe/public/uploads/cliente/sem-foto-cliente.jpg");
-                                    }
-                                } else {
-                                    echo ("http://localhost/exfe/public/uploads/cliente/sem-foto-cliente.jpg");
-                                }
-                            ?>" alt="" class="rounded-circle" style="width: 50px; height: 50px;">
+                                        if ($linha['foto_cliente'] != "") {
+                                            if (file_exists($caminhoArquivo)) {
+                                                echo ("http://localhost/exfe/public/uploads/" . htmlspecialchars($linha['foto_cliente'], ENT_QUOTES, 'UTF-8'));
+                                            } else {
+                                                echo ("http://localhost/exfe/public/uploads/cliente/sem-foto-cliente.jpg");
+                                            }
+                                        } else {
+                                            echo ("http://localhost/exfe/public/uploads/cliente/sem-foto-cliente.jpg");
+                                        }
+                                        ?>" alt="" class="rounded-circle" style="width: 50px; height: 50px;">
                         </td>
                         <td><?php echo htmlspecialchars($linha['nome_cliente']); ?></td>
                         <td><?php echo htmlspecialchars($linha['email_cliente']); ?></td>
