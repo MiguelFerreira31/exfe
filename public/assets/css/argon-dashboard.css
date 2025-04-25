@@ -357,6 +357,10 @@ small,
   font-size: 0.875em;
 }
 
+.bandeira img{
+  width: 45px;
+}
+
 mark,
 .mark {
   padding: 0.2em;
