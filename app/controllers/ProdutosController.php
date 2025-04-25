@@ -193,6 +193,81 @@ class ProdutosController extends Controller
         
     }
 
+    public function adicionar()
+    {
+        $dados = array();
+    
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
+            $nome_produto      = filter_input(INPUT_POST, 'nome_produto', FILTER_SANITIZE_SPECIAL_CHARS);
+            $descricao_produto = filter_input(INPUT_POST, 'descricao_produto', FILTER_SANITIZE_SPECIAL_CHARS);
+            $id_categoria      = filter_input(INPUT_POST, 'id_categoria', FILTER_SANITIZE_NUMBER_INT);
+            $id_fornecedor     = filter_input(INPUT_POST, 'id_fornecedor', FILTER_SANITIZE_NUMBER_INT);
+            $status_produto    = filter_input(INPUT_POST, 'status_produto', FILTER_SANITIZE_SPECIAL_CHARS);
+
+            $alt_foto_produto = filter_input(INPUT_POST, 'alt_foto_produto', FILTER_SANITIZE_SPECIAL_CHARS);
+            if ($alt_foto_produto === null || $alt_foto_produto === '') {
+                $alt_foto_produto = $nome_produto; // ou qualquer valor padrão
+            }
+                
+            // Converter valor monetário corretamente
+            $preco_raw = str_replace(['R$', '.', ','], ['', '', '.'], $_POST['preco_produto']);
+            $preco_produto = floatval($preco_raw);
+    
+            $foto_produto = '';
+            if (isset($_FILES['foto_produto']) && $_FILES['foto_produto']['error'] == 0) {
+                $foto_produto = $_FILES['foto_produto']['name']; // ou usar função de upload
+            }
+    
+            if ($nome_produto && $preco_produto !== false && $id_categoria && $id_fornecedor) {
+    
+                $dadosProduto = array(
+                    'nome_produto'      => $nome_produto,
+                    'descricao_produto' => $descricao_produto,
+                    'preco_produto'     => $preco_produto,
+                    'id_categoria'      => $id_categoria,
+                    'id_fornecedor'     => $id_fornecedor,
+                    'status_produto'    => $status_produto,
+                    'foto_produto'      => $foto_produto,
+                    'alt_foto_produto'  => $alt_foto_produto
+                );
+    
+                $id_produto = $this->produtosModel->addProduto($dadosProduto);
+    
+                if ($id_produto) {
+                    if (!empty($foto_produto)) {
+                        $arquivo = $this->uploadFoto($_FILES['foto_produto']);
+                        if ($arquivo) {
+                            $this->produtosModel->addFotoProduto($id_produto, $arquivo);
+                        }
+                    }
+    
+                    $_SESSION['mensagem'] = "Produto cadastrado com sucesso";
+                    $_SESSION['tipo-msg'] = "sucesso";
+                    header('Location: http://localhost/exfe/public/produtos/listar');
+                    exit;
+                } else {
+                    $dados['mensagem'] = "Erro ao adicionar produto";
+                    $dados['tipo-msg'] = "erro";
+                }
+            } else {
+                $dados['mensagem'] = "Preencha todos os campos obrigatórios";
+                $dados['tipo-msg'] = "erro";
+            }
+        }
+    
+        $categoria = new Categoria();
+        $fornecedor = new Fornecedor();
+    
+        $dados['categorias'] = $categoria->getListarCategorias();
+        $dados['fornecedores'] = $fornecedor->getListarFornecedor();
+        $dados['conteudo'] = 'dash/produto/adicionar';
+    
+        $this->carregarViews('dash/dashboard', $dados);
+    }
+    
+    
+
 
     public function desativados()
     {

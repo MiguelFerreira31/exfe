@@ -20,8 +20,7 @@
   <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
   <!-- Link para o CSS de ícones SVG personalizados -->
   <link href="http://localhost/exfe/public/assets/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- Script para carregar o Font Awesome (opcional para ícones de fontes) -->
-  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+
   <!-- Arquivo CSS principal do painel de controle (argon-dashboard) -->
   <link id="pagestyle" href="http://localhost/exfe/public/assets/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
   <!-- Arquivo CSS personalizado para o site -->
@@ -174,7 +173,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="http://localhost/exfe/public/produtos/desativados"
+          <a class="nav-link" href="http://localhost/exfe/public/produtos/desativados/"
             style="color: #371406; border-radius: 0.5rem;">
             <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
               style="background-color: #ffd8b9; border-radius: 0.5rem;">
@@ -847,11 +846,9 @@
     </div>
   </main>
 
-  <!-- Popper.js (incluído automaticamente no bundle do Bootstrap, mas pode ser usado separado se quiser) -->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2"></script>
 
   <!-- Bootstrap 5 (inclui Popper) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/script/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
   <!-- Perfect Scrollbar -->
   <script src="https://cdn.jsdelivr.net/npm/perfect-scrollbar@1.5.5/dist/perfect-scrollbar.min.js"></script>
@@ -965,8 +962,6 @@
   <!-- jQuery (necessário para Bootstrap 4) -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
   <!-- Github buttons -->
 

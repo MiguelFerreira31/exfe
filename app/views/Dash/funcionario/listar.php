@@ -31,7 +31,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
         <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Nome</th>
         <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Email</th>
         <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Telefone</th>
-        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Estado</th>
+        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Cargo</th>
         <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Editar</th>
         <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Desativar</th>
     </tr>
@@ -58,7 +58,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                         <td><?php echo htmlspecialchars($linha['nome_funcionario']); ?></td>
                         <td><?php echo htmlspecialchars($linha['email_funcionario']); ?></td>
                         <td><?php echo htmlspecialchars($linha['telefone_funcionario']); ?></td>
-                        <td><?php echo htmlspecialchars($linha['sigla_estado']); ?></td>
+                        <td><?php echo htmlspecialchars($linha['cargo_funcionario']); ?></td>
                         <td>
                             <a href="http://localhost/exfe/public/funcionarios/editar/<?php echo $linha['id_funcionario']; ?>" title="Editar">
                                 <i class="fa fa-pencil-alt" style="font-size: 20px; color: #9a5c1f;"></i>

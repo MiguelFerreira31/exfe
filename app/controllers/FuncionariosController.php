@@ -61,11 +61,7 @@ class FuncionariosController extends Controller
 
     public function listar()
     {
-
-
         $dados = array();
-
-
         // Carregar os funcionarios
         $funcionarioModel = new Funcionario();
         $funcionario = $funcionarioModel->getListarFuncionario();
