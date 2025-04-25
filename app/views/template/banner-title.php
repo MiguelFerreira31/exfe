@@ -23,11 +23,11 @@
 
     <figure>
 
-      <img src="assets/img/image.webp" alt="">
+      <img src="http://localhost/exfe/public/assets/img/image.webp" alt="">
     </figure>
 
     <figure>
-      <img src="assets/img/cup-img3.webp" alt="">
+      <img src="http://localhost/exfe/public/assets/img/cup-img3.webp" alt="">
     </figure>
 
   </div>
@@ -50,7 +50,7 @@
     </ul>
     <div class="avaliacoes-perfil">
 
-      <img src="assets/img/group-img.png" alt="">
+      <img src="http://localhost/exfe/public/assets/img/group-img.png" alt="">
 
     </div>
 

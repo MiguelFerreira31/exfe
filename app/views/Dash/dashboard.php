@@ -103,48 +103,60 @@
         </li>
 
         <!-- Novo item: Clientes -->
-        <li class="nav-item">
-          <a class="nav-link" href="http://localhost/exfe/public/clientes/listar"
+        <li class="nav-item dropdown-menu-custom">
+          <a href="#" class="nav-link dropdown-toggle-custom d-flex align-items-center justify-content-between"
             style="color: #371406; border-radius: 0.5rem;">
-            <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
-              style="background-color: #ffd8b9; border-radius: 0.5rem;">
-              <i class="ni ni-single-02 text-sm" style="color: #371406; opacity: 0.9;"></i>
+            <div class="d-flex align-items-center">
+              <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
+                style="background-color: #ffd8b9; border-radius: 0.5rem;">
+                <i class="ni ni-single-02 text-sm" style="color: #371406; opacity: 0.9;"></i>
+              </div>
+              <span>Clientes</span>
             </div>
-            <span class="nav-link-text ms-1">Clientes</span>
+            <i class="bi bi-chevron-down ms-auto"></i>
+          </a>
 
-          </a>
+          <ul class="nav flex-column submenu-custom" style="display: none; padding-left: 2rem;">
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost/exfe/public/clientes/listar" style="color: #371406;">
+                <i class="bi bi-person-check me-2" style="color: #371406;"></i> Ativos
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost/exfe/public/clientes/desativados" style="color: #371406;">
+                <i class="bi bi-person-x me-2" style="color: #371406;"></i> Desativados
+              </a>
+            </li>
+          </ul>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="http://localhost/exfe/public/clientes/desativados"
-            style="color: #371406; border-radius: 0.5rem;">
-            <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
-              style="background-color: #ffd8b9; border-radius: 0.5rem;">
-              <i class="ni ni-single-02 text-sm" style="color: #371406; opacity: 0.9;"></i>
-            </div>
-            <span class="nav-link-text ms-1">Clientes Desativados</span>
-          </a>
-        </li>
+
 
         <!-- Novo item: Funcionários -->
-        <li class="nav-item">
-          <a class="nav-link" href="http://localhost/exfe/public/funcionarios/listar"
+        <li class="nav-item dropdown-menu-custom">
+          <a href="#" class="nav-link dropdown-toggle-custom d-flex align-items-center justify-content-between"
             style="color: #371406; border-radius: 0.5rem;">
-            <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
-              style="background-color: #ffd8b9; border-radius: 0.5rem;">
-              <i class="ni ni-badge text-sm" style="color: #371406; opacity: 0.9;"></i>
+            <div class="d-flex align-items-center">
+              <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
+                style="background-color: #ffd8b9; border-radius: 0.5rem;">
+                <i class="ni ni-badge text-sm" style="color: #371406; opacity: 0.9;"></i>
+              </div>
+              <span>Funcionários</span>
             </div>
-            <span class="nav-link-text ms-1">Funcionários</span>
+            <i class="bi bi-chevron-down ms-auto"></i>
           </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="http://localhost/exfe/public/funcionarios/desativados"
-            style="color: #371406; border-radius: 0.5rem;">
-            <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
-              style="background-color: #ffd8b9; border-radius: 0.5rem;">
-              <i class="ni ni-badge text-sm" style="color: #371406; opacity: 0.9;"></i>
-            </div>
-            <span class="nav-link-text ms-1">Funcionários Desativados</span>
-          </a>
+
+          <ul class="nav flex-column submenu-custom" style="display: none; padding-left: 2rem;">
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost/exfe/public/funcionarios/listar">
+                <i class="bi bi-person-check me-2" style="color: #371406;"></i> Ativos
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost/exfe/public/funcionarios/desativados">
+                <i class="bi bi-person-x me-2" style="color: #371406;"></i> Desativados
+              </a>
+            </li>
+          </ul>
         </li>
 
 
@@ -161,19 +173,20 @@
           </a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="http://localhost/exfe/public/produtos/listar/"
-            style="color: #371406; border-radius: 0.5rem;">
-            <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
-              style="background-color: #ffd8b9; border-radius: 0.5rem;">
-              <i class="ni ni-settings text-sm" style="color: #371406; opacity: 0.9;"></i>
+        <li class="nav-item dropdown-menu-custom">
+          <a href="#" class="nav-link dropdown-toggle-custom" style="color: #371406; border-radius: 0.5rem;">
+            <div class="d-flex align-items-center">
+              <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
+                style="background-color: #ffd8b9; border-radius: 0.5rem;">
+                <i class="ni ni-settings text-sm" style="color: #371406; opacity: 0.9;"></i>
+              </div>
+              <span class="nav-link-text">Produtos</span>
             </div>
-            <span class="nav-link-text ms-1">Produtos</span>
+            <i class="bi bi-chevron-down ms-auto"></i>
           </a>
-        </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="http://localhost/exfe/public/produtos/desativados/"
+          <a class="nav-link" href="http://localhost/exfe/public/produtos/desativados"
             style="color: #371406; border-radius: 0.5rem;">
             <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
               style="background-color: #ffd8b9; border-radius: 0.5rem;">
@@ -182,6 +195,7 @@
             <span class="nav-link-text ms-1">Produtos Desativados</span>
           </a>
         </li>
+
 
         <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder"
@@ -460,14 +474,37 @@
         </div>
       </div>
 
-      <!-- Conteúdo -->
-      <?php
-      if (isset($conteudo)) {
-        $this->carregarViews($conteudo, $dados);
-      } else {
-        echo '<h2>Bem-vindo ' . $func['nome_funcionario'] . '!</h2> ';
-      }
-      ?>
+      <div class="row mt-4">
+        <div id="loader" style="display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column;">
+          <div class="loader"></div>
+          <div class="loading-text">
+            Carregando
+            <span class="dot">.</span>
+            <span class="dot">.</span>
+            <span class="dot">.</span>
+          </div>
+        </div>
+
+        <div id="conteudo" style="display: none;">
+          <?php
+          if (isset($conteudo)) {
+            $this->carregarViews($conteudo, $dados);
+          } else {
+            echo '<h2>Bem-vindo ' . $func['nome_funcionario'] . '!</h2>';
+          }
+          ?>
+        </div>
+
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(function() {
+              document.getElementById("loader").style.display = "none";
+              document.getElementById("conteudo").style.display = "block";
+            }, 1000);
+          });
+        </script>
+      </div>
+
 
 
       <div class="row mt-4">
@@ -846,6 +883,8 @@
     </div>
   </main>
 
+  <!-- Popper.js (incluído automaticamente no bundle do Bootstrap, mas pode ser usado separado se quiser) -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2"></script>
 
   <!-- Bootstrap 5 (inclui Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -966,8 +1005,10 @@
   <!-- Github buttons -->
 
   <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="http://localhost/exfe/public/assets/script/argon-dashboard.min.js"></script>
+
+  <script src="http://localhost/exfe/public/assets/script/script.js"></script>
+
+
 </body>
 
 </html>

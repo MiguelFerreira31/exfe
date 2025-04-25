@@ -152,3 +152,41 @@ document.addEventListener("DOMContentLoaded", () => {
   //#endregion
 
 });
+
+
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+    // Ativa todos os dropdowns com base nas classes padronizadas
+    const toggles = document.querySelectorAll(".dropdown-toggle-custom");
+
+    toggles.forEach(toggle => {
+      const parent = toggle.closest(".dropdown-menu-custom");
+      const submenu = parent.querySelector(".submenu-custom");
+
+      toggle.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // Fecha os outros dropdowns
+        document.querySelectorAll(".submenu-custom").forEach(menu => {
+          if (menu !== submenu) {
+            menu.style.display = "none";
+          }
+        });
+
+        // Abre ou fecha o atual
+        submenu.style.display = submenu.style.display === "block" ? "none" : "block";
+      });
+    });
+
+    // Fecha todos ao clicar fora
+    document.addEventListener("click", function (e) {
+      document.querySelectorAll(".submenu-custom").forEach(menu => {
+        if (!menu.contains(e.target)) {
+          menu.style.display = "none";
+        }
+      });
+    });
+  });
+
