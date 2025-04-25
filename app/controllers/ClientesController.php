@@ -376,12 +376,12 @@ class ClientesController extends Controller
         // Buscar os dados do cliente logado pela sessão
         $clienteModel = new Cliente();
         $cliente = $clienteModel->perfilCliente($_SESSION['userEmail']);
+        $dados['cliente'] = $cliente;
     
         // Buscar Estados
         $estadoModel = new Estado();
         $dados['estados'] = $estadoModel->getListarEstados();
     
-        $dados['cliente'] = $cliente;
     
         // View e layout
         $dados['conteudo'] = 'dash/cliente/perfil';

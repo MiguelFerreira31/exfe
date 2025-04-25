@@ -24,6 +24,8 @@
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <!-- Arquivo CSS principal do painel de controle (argon-dashboard) -->
   <link id="pagestyle" href="http://localhost/exfe/public/assets/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
   <!-- Arquivo CSS personalizado para o site -->
   <link rel="stylesheet" href="http://localhost/exfe/public/assets/css/style.css">
 
@@ -84,7 +86,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link " href="../pages/billing.html">
+          <a class="nav-link " href="http://localhost/exfe/public/avaliacao/listar/<?php echo($cliente['id_cliente']);?>">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-credit-card text-dark text-sm opacity-10"></i>
             </div>
@@ -321,10 +323,6 @@
   </div>
   </div>
 
-  <!-- Popper.js (incluído automaticamente no bundle do Bootstrap, mas pode ser usado separado se quiser) -->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2"></script>
-
-  <!-- Bootstrap 5 (inclui Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
   <!-- Perfect Scrollbar -->
@@ -336,6 +334,13 @@
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 
+  <!-- jQuery (necessário para Bootstrap 4) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  <script src="http://localhost/exfe/public/assets/script/script.js"></script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -345,10 +350,8 @@
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
   </script>
-  <!-- Github buttons -->
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../script/argon-dashboard.min.js"></script>
+
+
 </body>
 
 </html>

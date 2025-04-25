@@ -912,11 +912,6 @@
     </div>
   </main>
 
-<<<<<<< HEAD
-
-=======
-  <!-- Popper.js (incluído automaticamente no bundle do Bootstrap, mas pode ser usado separado se quiser) 
->>>>>>> 32a1aa5a2548df7885d2f4353ba64fdb01930f07
   <!-- Bootstrap 5 (inclui Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -928,6 +923,16 @@
 
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <!-- jQuery (necessário para Bootstrap 4) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  <script src="http://localhost/exfe/public/assets/script/script.js"></script>
+
+
 
   <script>
     var ctx1 = document.getElementById("chart-line").getContext("2d");
@@ -1029,16 +1034,6 @@
       Scrollbar.init(document.querySelector("#sidenav-scrollbar"), options);
     }
   </script>
-  <!-- jQuery (necessário para Bootstrap 4) -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-
-  <!-- Github buttons -->
-
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-
-  <script src="http://localhost/exfe/public/assets/script/script.js"></script>
-
 
 </body>
 
