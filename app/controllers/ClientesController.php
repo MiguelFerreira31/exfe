@@ -42,6 +42,7 @@ class ClientesController extends Controller
 
             $dados['conteudo'] = 'dash/cliente/listar';
             $this->carregarViews('dash/dashboard', $dados);
+            
         } else if ($_SESSION['id_tipo_usuario'] == '2') {
             $func = new Funcionario();
             $dadosFunc = $func->buscarfuncionario($_SESSION['userEmail']);
