@@ -1994,8 +1994,8 @@ html body main #avaliacao .swiper .swiper-slide {
   width: 20%;
 }
 html body main #avaliacao .swiper .swiper-slide .img {
-  background-image: url("../img/aroma_joe.jpg");
   background-repeat: no-repeat;
+  background-size: cover;
   width: 430px;
   height: 425px;
   border-radius: 35px;

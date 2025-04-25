@@ -553,7 +553,7 @@ html {
       }
     }
 
-   
+
     .modal {
       h1 {
         font-weight: bold;
@@ -2318,8 +2318,8 @@ html {
             width: 20%;
 
             .img {
-              background-image: url('../img/aroma_joe.jpg');
               background-repeat: no-repeat;
+              background-size: cover;
               width: 430px;
               height: 425px;
               border-radius: 35px;

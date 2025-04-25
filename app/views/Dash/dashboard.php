@@ -90,16 +90,32 @@
           </a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="../pages/billing.html"
+        <li class="nav-item dropdown-menu-custom">
+          <a href="#" class="nav-link dropdown-toggle-custom d-flex align-items-center justify-content-between"
             style="color: #371406; border-radius: 0.5rem;">
-            <div
-              class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
-              style="background-color: #ffd8b9; border-radius: 0.5rem;">
-              <i class="ni ni-credit-card text-sm" style="color: #371406; opacity: 0.9;"></i>
+            <div class="d-flex align-items-center">
+              <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
+                style="background-color: #ffd8b9; border-radius: 0.5rem;">
+                <i class="ni ni-credit-card text-sm" style="color: #371406; opacity: 0.9;"></i>
+
+              </div>
+              <span>Contatos</span>
             </div>
-            <span class="nav-link-text ms-1">Billing</span>
+            <i class="bi bi-chevron-down ms-auto"></i>
           </a>
+
+          <ul class="nav flex-column submenu-custom" style="display: none; padding-left: 2rem;">
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost/exfe/public/contato/listar" style="color: #371406;">
+                <i class="bi bi-person-check me-2" style="color: #371406;"></i> Ativos
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost/exfe/public/contato/desativados" style="color: #371406;">
+                <i class="bi bi-person-x me-2" style="color: #371406;"></i> Desativados
+              </a>
+            </li>
+          </ul>
         </li>
 
         <!-- Novo item: Clientes -->
@@ -290,7 +306,7 @@
           <ul class="navbar-nav justify-content-end">
             <li class="nav-item d-flex align-items-center">
               <a
-                href="http://localhost/exfe/public/"
+                href="http://localhost/exfe/public/auth/sair"
                 class="nav-link text-white font-weight-bold px-0"
                 style="color: #ffd8b9;">
                 <i class="fa fa-user me-sm-1"></i>

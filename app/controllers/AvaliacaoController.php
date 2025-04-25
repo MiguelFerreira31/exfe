@@ -18,17 +18,6 @@ class AvaliacaoController extends Controller
     }
 
 
-    public function index()
-    {
-
-        $dados = array();
-
-        $dados['mensagem'] = 'Avalicao';
-
-        $this->carregarViews('avalicao', $dados);
-    }
-
-
     public function listar($id)
     {
         $dados = array();

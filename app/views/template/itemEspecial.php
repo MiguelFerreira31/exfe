@@ -1,4 +1,3 @@
-  
   <section id="itemEspecial">
     <div class="title">
       <h2>Nossos itens <span>especiais</span></h2>
@@ -6,7 +5,7 @@
         accusantium quam facilis quibusdam incidunt voluptatibus voluptatem odit obcaecati reiciendis, consequuntur
         nisi aliquam. Quaerat, et aut.</p>
     </div>
-  
+
     <!-- Swiper -->
     <div class="swiper-container mySwiper">
       <div class="swiper-wrapper">
@@ -38,7 +37,7 @@
             </div>
           </div>
         </div>
-      <div class="swiper-slide">
+        <div class="swiper-slide">
           <div class="carouselItems">
             <div class="img">
               <img src="assets/img/caramelo_macchiato.png" alt="">
@@ -149,9 +148,9 @@
 
       </div>
 
- 
+
     </div>
-  
+
     <div class="itemsEspecialPosition">
       <img class="grao" src="assets/img/graos_cafe.webp" alt="">
       <img class="cup" src="assets/img/cup-img5.webp" alt="">

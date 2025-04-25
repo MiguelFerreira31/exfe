@@ -142,7 +142,7 @@
           <ul class="navbar-nav justify-content-end">
             <li class="nav-item d-flex align-items-center">
               <a
-                href="http://localhost/exfe/public/"
+                href="http://localhost/exfe/public/auth/sair"
                 class="nav-link text-white font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
                 <span class="d-sm-inline d-none">Sair</span>
