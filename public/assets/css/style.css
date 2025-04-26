@@ -116,10 +116,222 @@ html {
   scroll-behavior: smooth;
   font-family: "Poppis", sans-serif;
 }
-html body {
-  background-image: url("../img/hero-bg.png");
+html body.light-mode {
+  background-image: url("http://localhost/exfe/public/assets/img/hero-bg.png");
   background-attachment: fixed;
   background-position: center;
+}
+html body.light-mode h2 {
+  color: #371406;
+}
+html body.light-mode p {
+  color: #b3b3b3;
+}
+html body.light-mode .one {
+  background: linear-gradient(90deg, #9e675f -9.62%, #371406 101.5%);
+}
+html body.light-mode input[type=checkbox] {
+  display: none;
+}
+html body.light-mode .toggle {
+  height: 32px;
+  width: 52px;
+  border-radius: 16px;
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  border: 2px solid #371406;
+  background: linear-gradient(to bottom, rgba(158, 103, 95, 0.662745098) 0%, #371406 100%);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+html body.light-mode .toggle::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-image: url("http://localhost/exfe/public/assets/img/sun.png");
+  background-position: center;
+  background-size: cover;
+  box-shadow: 0 1px 2px rgba(44, 44, 44, 0.2);
+  transition: all 0.2s cubic-bezier(0.5, 0.1, 0.75, 1.35);
+}
+html body.light-mode input[type=checkbox]:checked + .toggle {
+  border: 1px solid white;
+}
+html body.light-mode input[type=checkbox]:checked + .toggle::after {
+  transform: translateX(20px) scale(1.02);
+}
+html body.light-mode .site {
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+html body.light-mode .site a {
+  color: #371406;
+}
+html body.light-mode header.scroll {
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+html body.light-mode header.scroll a {
+  color: #371406;
+}
+html body.light-mode #banner h2 {
+  color: #371406;
+}
+html body.light-mode #banner figure {
+  background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
+}
+html body.light-mode #banner span {
+  animation: blink-light 3.5s infinite;
+  transition: 0.5s ease;
+}
+@keyframes blink-light {
+  0%, 100% {
+    color: #371406;
+    font-size: 1.05em;
+  }
+  50% {
+    color: #7b361b;
+  }
+}
+html body.light-mode .avaliacoes-perfil {
+  background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
+}
+html body.light-mode #graos {
+  background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
+}
+html body.light-mode #itemEspecial .img {
+  background: linear-gradient(to top, #f2e0db 1.57%, #fff 128.95%);
+}
+html body.light-mode #qualidade {
+  background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
+}
+html body.light-mode #desconto {
+  background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
+}
+html body.light-mode .blogCont {
+  background: linear-gradient(to top, #f2e0db 1.57%, #fff 128.95%);
+}
+html body.light-mode .footer {
+  background: linear-gradient(to top, #f2e0db 1.57%, #fff 128.95%);
+}
+html body.dark-mode {
+  background-image: url("http://localhost/exfe/public/assets/img/hero-bg2.png");
+  background-attachment: fixed;
+  background-position: center;
+  color: rgba(191, 161, 143, 0.6352941176);
+}
+html body.dark-mode .one {
+  background: linear-gradient(to left, #402920 1.57%, #774a38 128.95%);
+}
+html body.dark-mode .site {
+  background: rgba(53, 28, 11, 0.1);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+html body.dark-mode .site a {
+  color: rgba(242, 224, 219, 0.4470588235);
+}
+html body.dark-mode .site a:hover {
+  color: rgba(242, 224, 219, 0.8078431373);
+}
+html body.dark-mode header.scroll {
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+html body.dark-mode input[type=checkbox] {
+  display: none;
+}
+html body.dark-mode .toggle {
+  height: 32px;
+  width: 52px;
+  border-radius: 16px;
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  border: 2px solid #7f432c;
+  background: linear-gradient(to top, rgba(158, 103, 95, 0.662745098) 0%, #371406 100%);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+html body.dark-mode .toggle::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-image: url("http://localhost/exfe/public/assets/img/moon.png");
+  background-position: center;
+  background-size: cover;
+  box-shadow: 0 1px 2px rgba(44, 44, 44, 0.2);
+  transition: all 0.2s cubic-bezier(0.5, 0.1, 0.75, 1.35);
+}
+html body.dark-mode input[type=checkbox]:checked + .toggle {
+  border: 2px solid #c59b8a;
+}
+html body.dark-mode input[type=checkbox]:checked + .toggle::after {
+  transform: translateX(20px) scale(1.02);
+}
+html body.dark-mode h2 {
+  color: #ffcea6;
+}
+html body.dark-mode #banner span {
+  animation: blink-dark 3.5s infinite;
+  transition: 0.5s ease;
+}
+html body.dark-mode #banner figure {
+  background: linear-gradient(to left, #402920 1.57%, #774a38 128.95%);
+}
+html body.dark-mode #banner .content {
+  color: #e2b6a4;
+}
+html body.dark-mode #banner h2 {
+  color: #402920;
+}
+@keyframes blink-dark {
+  0%, 100% {
+    color: #774a38;
+    font-size: 1.05em;
+  }
+  50% {
+    color: rgba(64, 41, 32, 0.6039215686);
+  }
+}
+html body.dark-mode .avaliacoes-perfil {
+  background: linear-gradient(to left, #5d2610 1.57%, #431604 128.95%);
+}
+html body.dark-mode #graos {
+  background: linear-gradient(to left, #402920 1.57%, #774a38 128.95%);
+}
+html body.dark-mode #itemEspecial .img {
+  background: linear-gradient(to top, #402920 1.57%, #774a38 128.95%);
+}
+html body.dark-mode #qualidade {
+  background: linear-gradient(to left, #402920 1.57%, #b87b62 128.95%);
+}
+html body.dark-mode #desconto {
+  background: linear-gradient(to left, #402920 1.57%, #774a38 128.95%);
+}
+html body.dark-mode .blogCont {
+  background: linear-gradient(to top, #402920 1.57%, #774a38 128.95%);
+}
+html body.dark-mode .footer {
+  background: linear-gradient(to top, #402920 1.57%, #774a38 128.95%);
 }
 html body header {
   width: 100%;
@@ -211,9 +423,12 @@ html body header .one .info01 .card .socialContainer:hover .socialSvg {
   }
 }
 html body header .one .info02 {
+  width: 5%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  justify-content: space-evenly;
 }
 html body header .one .info02 a svg {
   width: 25px;
@@ -223,16 +438,18 @@ html body header .one .info02 a svg {
 html body header .one .info02 a svg:hover {
   transform: scale(1.08);
 }
+html body header .one .info02 label {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 html body header .site {
   width: 100dvw;
   height: 10dvh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.1);
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   gap: 600px;
 }
@@ -255,17 +472,13 @@ html body header .site nav ul li {
   transition: 0.5s;
 }
 html body header .site nav ul li a {
-  color: #371406;
   font-weight: bold;
   font-size: 20px;
   transition: 0.5s;
   text-decoration: none;
 }
-html body header .site nav ul li a:hover {
-  color: #181818;
-}
 html body header .site nav ul li a.ativo {
-  color: #181818;
+  color: #402920;
 }
 html body header .site nav ul li a::after {
   content: "";
@@ -342,7 +555,6 @@ html body header .site .icons .sidebar .titleCart {
 html body header .site .icons .sidebar .titleCart h2 {
   font-size: 2em;
   font-weight: bold;
-  color: #371406;
 }
 html body header .site .icons .sidebar .titleCart h3 {
   font-size: 2em;
@@ -701,9 +913,6 @@ html body header.scroll .site {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.1);
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   gap: 600px;
@@ -727,7 +936,6 @@ html body header.scroll .site nav ul li {
   transition: 0.5s;
 }
 html body header.scroll .site nav ul li a {
-  color: #371406;
   font-weight: bold;
   font-size: 20px;
   transition: 0.5s;
@@ -875,10 +1083,8 @@ html body main #banner .home-container article h2 {
   width: 100%;
   font-size: 8em;
   font-weight: 800;
-  color: #371406;
 }
 html body main #banner .home-container article h2 span {
-  animation: blink3 3.5s infinite;
   transition: 0.5s ease;
 }
 html body main #banner .home-container article h2 span:nth-child(1) {
@@ -941,20 +1147,10 @@ html body main #banner .home-container article h2 span:nth-child(19) {
 html body main #banner .home-container article h2 span:nth-child(20) {
   animation-delay: 5s;
 }
-@keyframes blink3 {
-  0%, 100% {
-    color: #371406;
-    font-size: 1.05em;
-  }
-  50% {
-    color: #7b361b;
-  }
-}
 html body main #banner .home-container article .content {
   overflow: hidden;
   font-family: "Poppis", sans-serif;
   font-size: 1.9em;
-  color: #371406;
 }
 html body main #banner .home-container article .content__container {
   font-weight: 600;
@@ -1001,7 +1197,6 @@ html body main #banner .home-container article .content__container__list__item {
   }
 }
 html body main #banner .home-container article p {
-  color: #b3b3b3;
   font-size: 2em;
 }
 html body main #banner .home-container article .buttons {
@@ -1154,7 +1349,6 @@ html body main #banner .home-container figure {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
   border-radius: 120px 0px 0px 120px;
 }
 html body main #banner .home-container figure img {
@@ -1293,7 +1487,6 @@ html body main #banner-title .home-container .avaliacao-coffe .avaliacoes-perfil
   justify-content: center;
   padding: 1%;
   border-radius: 60px;
-  background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
 }
 html body main #sobre {
   width: 100%;
@@ -1316,11 +1509,9 @@ html body main #sobre .sobreLeft {
 }
 html body main #sobre .sobreLeft h2 {
   font-weight: bold;
-  color: #371406;
 }
 html body main #sobre .sobreLeft p {
   font-size: 1.5em;
-  color: #b3b3b3;
 }
 html body main #sobre .sobreLeft img {
   width: 600px;
@@ -1346,7 +1537,6 @@ html body main #sobre .sobreRight h3 {
 }
 html body main #sobre .sobreRight p {
   font-size: 1.5em;
-  color: #b3b3b3;
 }
 html body main #sobre .sobrePosition {
   position: absolute;
@@ -1381,7 +1571,6 @@ html body main #produtosEmDestaque .title {
 }
 html body main #produtosEmDestaque .title h2 {
   font-weight: 900;
-  color: #371406;
   width: 36%;
 }
 html body main #produtosEmDestaque .title h2 span {
@@ -1393,7 +1582,6 @@ html body main #produtosEmDestaque .title img {
   transform: rotate(-20deg);
 }
 html body main #produtosEmDestaque .title p {
-  color: #b3b3b3;
   font-size: 1.5em;
   width: 700px;
 }
@@ -1438,7 +1626,6 @@ html body main #produtosEmDestaque .produtosCont .produtosItems .produtosContIte
   font-weight: 900;
 }
 html body main #produtosEmDestaque .produtosCont .produtosItems .produtosContItems .info p {
-  color: #b3b3b3;
   font-size: 1.3em;
 }
 html body main #produtosEmDestaque .produtosCont .produtosItems .produtosContItems .info h4 {
@@ -1446,7 +1633,6 @@ html body main #produtosEmDestaque .produtosCont .produtosItems .produtosContIte
   color: #946926;
 }
 html body main #produtosEmDestaque .produtosCont .produtosItems .produtosContItems .info h4 span {
-  color: #b3b3b3;
   text-decoration: line-through !important;
 }
 html body main #produtosEmDestaque .produtosCont .produtosPosition {
@@ -1484,7 +1670,6 @@ html body main #graos {
   height: 400px;
   justify-content: space-around;
   margin-top: 7%;
-  background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
   border-radius: 50px;
 }
 html body main #graos .graosTitle h3 {
@@ -1687,7 +1872,6 @@ html body main #itemEspecial .title {
   gap: 10px;
 }
 html body main #itemEspecial .title h2 {
-  color: #371406;
   font-weight: 900;
 }
 html body main #itemEspecial .title h2 span {
@@ -1697,7 +1881,6 @@ html body main #itemEspecial .title p {
   text-align: center;
   font-size: 1.3em;
   width: 860px;
-  color: #b3b3b3;
 }
 html body main #itemEspecial .swiper-container {
   display: flex;
@@ -1719,7 +1902,6 @@ html body main #itemEspecial .swiper-container .swiper-slide .img {
   justify-content: center;
   width: 350px;
   height: 370px;
-  background: linear-gradient(to top, #f2e0db 1.57%, #fff 128.95%);
   border-radius: 25px;
 }
 html body main #itemEspecial .swiper-container .swiper-slide .carouselItems {
@@ -1965,7 +2147,6 @@ html body main #avaliacao .title {
   gap: 10px;
 }
 html body main #avaliacao .title h2 {
-  color: #371406;
   font-weight: 900;
 }
 html body main #avaliacao .title h2 span {
@@ -1975,7 +2156,6 @@ html body main #avaliacao .title p {
   text-align: center;
   font-size: 1.3em;
   width: 830px;
-  color: #b3b3b3;
 }
 html body main #avaliacao .swiper {
   display: flex;
@@ -2036,7 +2216,6 @@ html body main #avaliacao .swiper .swiper-slide .img .imgItems ul {
 }
 html body main #avaliacao .swiper .swiper-slide .img .imgItems P {
   font-size: 1.3em;
-  color: #b3b3b3;
   margin: 10% 0% 18% 0%;
 }
 html body main #avaliacao .swiper .swiper-slide .img .imgItems h3 {
@@ -2045,7 +2224,6 @@ html body main #avaliacao .swiper .swiper-slide .img .imgItems h3 {
   font-size: 1.8em;
 }
 html body main #avaliacao .swiper .swiper-slide .img .imgItems h4 {
-  color: #b3b3b3;
   font-size: 1.2em;
 }
 html body main #avaliacao .swiper .swiper-slide .img:hover .imgItems {
@@ -2095,7 +2273,6 @@ html body main #qualidade {
   align-items: center;
   justify-content: center;
   max-width: 100dvw !important;
-  background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
   gap: 70px;
   margin-top: 5%;
 }
@@ -2119,14 +2296,12 @@ html body main #qualidade .qualidadeCont .title {
 }
 html body main #qualidade .qualidadeCont .title h2 {
   font-weight: 900;
-  color: #371406;
   letter-spacing: -2px;
 }
 html body main #qualidade .qualidadeCont .title h2 span {
   color: #946926;
 }
 html body main #qualidade .qualidadeCont .title p {
-  color: #b3b3b3;
   font-size: 1.3em;
   margin-top: 2%;
 }
@@ -2176,7 +2351,6 @@ html body main #qualidade .qualidadeCont .qualidadeItems .qualidadeContItems .it
   width: 420px;
 }
 html body main #qualidade .qualidadeCont .qualidadeItems .qualidadeContItems .itemsQualidade div p {
-  color: #b3b3b3;
   font-size: 1.3em;
   width: 380px;
 }
@@ -2200,14 +2374,12 @@ html body main #blog .title {
 }
 html body main #blog .title h2 {
   font-weight: 900;
-  color: #371406;
   letter-spacing: -2px;
 }
 html body main #blog .title h2 span {
   color: #946926;
 }
 html body main #blog .title p {
-  color: #b3b3b3;
   font-size: 1.3em;
   margin-top: 2%;
   text-align: center;
@@ -2225,7 +2397,6 @@ html body main #blog .blogContainer .blogCont {
   justify-content: center;
   flex-direction: column;
   gap: 30px;
-  background: linear-gradient(to top, #f2e0db 1.57%, #fff 128.95%);
   border-radius: 40px;
   padding: 0.5%;
 }
@@ -2257,7 +2428,6 @@ html body main #blog .blogContainer .blogCont .blogItems .blogItemsCont svg {
   height: auto;
 }
 html body main #blog .blogContainer .blogCont .blogItems .blogItemsCont p {
-  color: #b3b3b3;
   font-size: 1.3em;
 }
 html body main #blog .blogContainer .blogCont .blogItems .blogItemsCont hr {
@@ -2282,7 +2452,6 @@ html body main #blog .blogContainer .blogCont .blogItems .blogTitle h4 {
   width: 400px;
 }
 html body main #blog .blogContainer .blogCont .blogItems .blogTitle p {
-  color: #b3b3b3;
   font-size: 1.3em;
   width: 400px;
 }
@@ -2363,7 +2532,6 @@ html body main #desconto {
   overflow: hidden;
   height: 450px;
   gap: 20px;
-  background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
   border-radius: 70px;
   margin-top: 5%;
 }
@@ -2390,7 +2558,6 @@ html body main #desconto .emailCont .emailTitle {
   gap: 10px;
 }
 html body main #desconto .emailCont .emailTitle h2 {
-  color: #371406;
   font-weight: 900;
   width: 810px;
   letter-spacing: -2px;
@@ -2609,7 +2776,6 @@ html body main #contato .formContent form {
 }
 html body main #contato .formContent form h2 {
   width: 350px;
-  color: #371406;
   border-bottom: solid 1px #946926;
   margin-bottom: 5%;
 }
@@ -2705,7 +2871,6 @@ html body .footer {
   justify-content: center;
   flex-direction: column;
   gap: 15px;
-  background: linear-gradient(to top, #f2e0db 1.57%, #fff 128.95%);
 }
 html body .footer .footer-container {
   width: 100%;
@@ -2726,7 +2891,6 @@ html body .footer .footer-container .footer-logo {
 html body .footer .footer-container .footer-logo h3 {
   font-size: 1.3em;
   width: 400px;
-  color: #b3b3b3;
 }
 html body .footer .footer-container .footer-logo img {
   width: 250px;

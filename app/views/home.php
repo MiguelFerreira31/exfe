@@ -17,7 +17,7 @@
   <title>Exfé</title>
 </head>
 
-<body>
+<body class="light-mode">
 
 
   <?php require_once('template/header.php') ?>
@@ -48,12 +48,8 @@
   </main>
 
   <?php require_once('template/footer.php') ?>
-
-
   <script type="text/javascript" src="//code.jquery.com/jquery-3.7.1.min.js"></script>
   <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.4.1.min.js"></script>
-
-
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 

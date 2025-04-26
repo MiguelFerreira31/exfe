@@ -176,9 +176,320 @@ html {
 
   body {
 
-    background-image: url("../img/hero-bg.png");
-    background-attachment: fixed;
-    background-position: center;
+    &.light-mode {
+
+      h2 {
+        color: #371406;
+      }
+
+      p {
+        color: #b3b3b3;
+      }
+
+      background-image: url("http://localhost/exfe/public/assets/img/hero-bg.png");
+      background-attachment: fixed;
+      background-position: center;
+
+      // #region header 
+      .one {
+        background: linear-gradient(90deg, #9e675f -9.62%, #371406 101.5%);
+      }
+
+      input[type="checkbox"] {
+        display: none;
+      }
+
+      .toggle {
+        height: 32px;
+        width: 52px;
+        border-radius: 16px;
+        display: inline-block;
+        position: relative;
+        margin: 0;
+        border: 2px solid #371406;
+        background: linear-gradient(to bottom, #9e675fa9 0%, #371406 100%);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .toggle::after {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background-image: url('http://localhost/exfe/public/assets/img/sun.png');
+        background-position: center;
+        background-size: cover;
+        box-shadow: 0 1px 2px rgba(44, 44, 44, 0.2);
+        transition: all 0.2s cubic-bezier(0.5, 0.1, 0.75, 1.35);
+      }
+
+      input[type="checkbox"]:checked+.toggle {
+        border: 1px solid white;
+      }
+
+      input[type="checkbox"]:checked+.toggle::after {
+        transform: translateX(20px) scale(1.02);
+      }
+
+      .site {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+
+        a {
+          color: $colorBg2;
+        }
+      }
+
+
+      header.scroll {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+
+
+        a {
+          color: $colorBg2;
+        }
+
+      }
+
+      // #endregion
+
+
+      #banner {
+        h2 {
+          color: #371406;
+        }
+
+        figure {
+          background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
+        }
+
+        span {
+          animation: blink-light 3.5s infinite;
+          transition: 0.5s ease;
+        }
+
+
+        @keyframes blink-light {
+
+          0%,
+          100% {
+            color: #371406;
+            font-size: 1.05em;
+          }
+
+          50% {
+            color: #7b361b;
+
+          }
+        }
+
+
+      }
+
+      .avaliacoes-perfil {
+
+        background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
+      }
+
+      #graos {
+
+        background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
+
+      }
+
+      #itemEspecial {
+
+
+        .img {
+          background: linear-gradient(to top, #f2e0db 1.57%, #fff 128.95%);
+        }
+      }
+
+
+      #qualidade {
+        background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
+      }
+
+
+      #desconto {
+        background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
+      }
+
+
+      .blogCont {
+        background: linear-gradient(to top, #f2e0db 1.57%, #fff 128.95%);
+
+      }
+
+      .footer {
+        background: linear-gradient(to top, #f2e0db 1.57%, #fff 128.95%);
+      }
+
+    }
+
+    &.dark-mode {
+      background-image: url("http://localhost/exfe/public/assets/img/hero-bg2.png");
+      background-attachment: fixed;
+      background-position: center;
+
+      // #region header 
+      .one {
+        background: linear-gradient(to left, #402920 1.57%, #774a38 128.95%);
+      }
+
+      .site {
+        background: rgba(53, 28, 11, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+
+        a {
+          color: #f2e0db72;
+
+          &:hover {
+            color: #f2e0dbce;
+          }
+        }
+      }
+
+      header.scroll {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      input[type="checkbox"] {
+        display: none;
+      }
+
+      .toggle {
+        height: 32px;
+        width: 52px;
+        border-radius: 16px;
+        display: inline-block;
+        position: relative;
+        margin: 0;
+        border: 2px solid #7f432c;
+        background: linear-gradient(to top, #9e675fa9 0%, #371406 100%);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .toggle::after {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background-image: url('http://localhost/exfe/public/assets/img/moon.png');
+        background-position: center;
+        background-size: cover;
+        box-shadow: 0 1px 2px rgba(44, 44, 44, 0.2);
+        transition: all 0.2s cubic-bezier(0.5, 0.1, 0.75, 1.35);
+      }
+
+      input[type="checkbox"]:checked+.toggle {
+        border: 2px solid #c59b8a;
+
+      }
+
+      input[type="checkbox"]:checked+.toggle::after {
+        transform: translateX(20px) scale(1.02);
+
+      }
+
+      // #endregion 
+
+      h2 {
+        color: #ffcea6;
+      }
+
+      color: #bfa18fa2;
+
+      #banner {
+
+        span {
+          animation: blink-dark 3.5s infinite;
+          transition: 0.5s ease;
+        }
+
+        figure {
+
+          background: linear-gradient(to left, #402920 1.57%, #774a38 128.95%);
+
+        }
+
+        .content {
+          color: #e2b6a4;
+        }
+
+        h2 {
+          color: #402920;
+        }
+
+        @keyframes blink-dark {
+
+          0%,
+          100% {
+            color: #774a38;
+            font-size: 1.05em;
+          }
+
+          50% {
+            color: #4029209a;
+
+          }
+        }
+
+      }
+
+
+      .avaliacoes-perfil {
+        background: linear-gradient(to left, #5d2610 1.57%, #431604 128.95%);
+      }
+
+
+      #graos {
+        background: linear-gradient(to left, #402920 1.57%, #774a38 128.95%);
+      }
+
+      #itemEspecial {
+        .img {
+          background: linear-gradient(to top, #402920 1.57%, #774a38 128.95%);
+        }
+
+      }
+
+      #qualidade {
+        background: linear-gradient(to left, #402920 1.57%, #b87b62 128.95%);
+
+      }
+
+      #desconto {
+        background: linear-gradient(to left, #402920 1.57%, #774a38 128.95%);
+      }
+
+      .blogCont {
+        background: linear-gradient(to top, #402920 1.57%, #774a38 128.95%);
+      }
+
+      .footer {
+        background: linear-gradient(to top, #402920 1.57%, #774a38 128.95%);
+
+      }
+
+    }
+
 
     header {
       width: 100%;
@@ -273,7 +584,11 @@ html {
         }
 
         .info02 {
+          width: 5%;
+          height: 100%;
+
           @include flex-center();
+          justify-content: space-evenly;
 
           a {
             svg {
@@ -286,6 +601,12 @@ html {
               transform: scale(1.08);
             }
           }
+
+          label {
+
+            height: 100%;
+            @include flex-center();
+          }
         }
       }
 
@@ -293,9 +614,7 @@ html {
         width: 100dvw;
         height: 10dvh;
         @include flex-center();
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         gap: 600px;
 
@@ -321,19 +640,16 @@ html {
               transition: 0.5s;
 
               a {
-                color: $colorTertiary;
+
                 font-weight: bold;
                 font-size: 20px;
                 transition: 0.5s;
                 text-decoration: none;
               }
 
-              a:hover {
-                color: #181818;
-              }
 
               a.ativo {
-                color: #181818;
+                color: #402920;
               }
 
               a::after {
@@ -416,7 +732,7 @@ html {
               h2 {
                 font-size: 2em;
                 font-weight: bold;
-                color: $colorTertiary;
+
               }
 
               h3 {
@@ -821,8 +1137,7 @@ html {
         width: 100dvw;
         height: 10dvh;
         @include flex-center();
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
+
         border: 1px solid rgba(255, 255, 255, 0.2);
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         gap: 600px;
@@ -849,7 +1164,7 @@ html {
               transition: 0.5s;
 
               a {
-                color: $colorTertiary;
+
                 font-weight: bold;
                 font-size: 20px;
                 transition: 0.5s;
@@ -1029,13 +1344,10 @@ html {
             h2 {
               width: 100%;
               font-size: 8em;
-
               font-weight: 800;
-              color: #371406;
-
 
               span {
-                animation: blink3 3.5s infinite;
+
                 transition: 0.5s ease;
               }
 
@@ -1046,31 +1358,13 @@ html {
               }
             }
 
-            @keyframes blink3 {
-
-              0%,
-              100% {
-                color: #371406;
-                font-size: 1.05em;
-              }
-
-              50% {
-                color: #7b361b;
-
-              }
-            }
-
-
-
-
-
 
             .content {
               overflow: hidden;
 
               font-family: $font;
               font-size: 1.9em;
-              color: $colorTertiary;
+
 
               &__container {
                 font-weight: 600;
@@ -1238,7 +1532,7 @@ html {
             }
 
             p {
-              color: #b3b3b3;
+
               font-size: 2em;
             }
 
@@ -1405,7 +1699,7 @@ html {
             width: 35%;
             height: 75%;
             @include flex-center();
-            background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
+
             border-radius: 120px 0px 0px 120px;
 
             img {
@@ -1561,7 +1855,7 @@ html {
               @include flex-center();
               padding: 1%;
               border-radius: 60px;
-              background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
+
             }
           }
         }
@@ -1581,12 +1875,12 @@ html {
 
           h2 {
             font-weight: bold;
-            color: $colorTertiary;
+
           }
 
           p {
             font-size: 1.5em;
-            color: $colorQuartenary;
+
           }
 
           img {
@@ -1615,7 +1909,7 @@ html {
 
           p {
             font-size: 1.5em;
-            color: $colorQuartenary;
+
           }
         }
 
@@ -1649,7 +1943,7 @@ html {
 
           h2 {
             font-weight: 900;
-            color: $colorTertiary;
+
             width: 36%;
 
             span {
@@ -1664,7 +1958,7 @@ html {
           }
 
           p {
-            color: $colorQuartenary;
+
             font-size: 1.5em;
             width: 700px;
           }
@@ -1709,7 +2003,7 @@ html {
                 }
 
                 p {
-                  color: $colorQuartenary;
+
                   font-size: 1.3em;
                 }
 
@@ -1718,7 +2012,7 @@ html {
                   color: $colorSecondary;
 
                   span {
-                    color: $colorQuartenary;
+
                     text-decoration: line-through !important;
                   }
                 }
@@ -1763,7 +2057,7 @@ html {
         height: 400px;
         justify-content: space-around;
         margin-top: 7%;
-        background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
+
         border-radius: 50px;
 
         .graosTitle {
@@ -1984,7 +2278,7 @@ html {
           gap: 10px;
 
           h2 {
-            color: $colorTertiary;
+
             font-weight: 900;
 
             span {
@@ -1996,7 +2290,7 @@ html {
             text-align: center;
             font-size: 1.3em;
             width: 860px;
-            color: $colorQuartenary;
+
           }
         }
 
@@ -2014,7 +2308,6 @@ html {
               @include flex-center();
               width: 350px;
               height: 370px;
-              background: linear-gradient(to top, #f2e0db 1.57%, #fff 128.95%);
               border-radius: 25px;
             }
 
@@ -2289,7 +2582,7 @@ html {
           gap: 10px;
 
           h2 {
-            color: $colorTertiary;
+
             font-weight: 900;
 
             span {
@@ -2301,7 +2594,7 @@ html {
             text-align: center;
             font-size: 1.3em;
             width: 830px;
-            color: $colorQuartenary;
+
           }
         }
 
@@ -2358,7 +2651,7 @@ html {
 
                 P {
                   font-size: 1.3em;
-                  color: $colorQuartenary;
+
                   margin: 10% 0% 18% 0%;
                 }
 
@@ -2369,7 +2662,7 @@ html {
                 }
 
                 h4 {
-                  color: $colorQuartenary;
+
                   font-size: 1.2em;
                 }
               }
@@ -2427,7 +2720,7 @@ html {
         @include container();
         @include flex-center();
         max-width: 100dvw !important;
-        background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
+
         gap: 70px;
         margin-top: 5%;
 
@@ -2448,7 +2741,7 @@ html {
 
             h2 {
               font-weight: 900;
-              color: $colorTertiary;
+
               letter-spacing: -2px;
 
               span {
@@ -2457,7 +2750,7 @@ html {
             }
 
             p {
-              color: $colorQuartenary;
+
               font-size: 1.3em;
               margin-top: 2%;
             }
@@ -2501,7 +2794,7 @@ html {
                   }
 
                   p {
-                    color: $colorQuartenary;
+
                     font-size: 1.3em;
                     width: 380px;
                   }
@@ -2525,7 +2818,7 @@ html {
 
           h2 {
             font-weight: 900;
-            color: $colorTertiary;
+
             letter-spacing: -2px;
 
             span {
@@ -2534,7 +2827,7 @@ html {
           }
 
           p {
-            color: $colorQuartenary;
+
             font-size: 1.3em;
             margin-top: 2%;
             text-align: center;
@@ -2550,7 +2843,6 @@ html {
             @include flex-center();
             flex-direction: column;
             gap: 30px;
-            background: linear-gradient(to top, #f2e0db 1.57%, #fff 128.95%);
             border-radius: 40px;
             padding: 0.5%;
 
@@ -2580,7 +2872,7 @@ html {
                 }
 
                 p {
-                  color: $colorQuartenary;
+
                   font-size: 1.3em;
                 }
 
@@ -2607,7 +2899,7 @@ html {
                 }
 
                 p {
-                  color: $colorQuartenary;
+
                   font-size: 1.3em;
                   width: 400px;
                 }
@@ -2703,7 +2995,7 @@ html {
         overflow: hidden;
         height: 450px;
         gap: 20px;
-        background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
+
         border-radius: 70px;
         margin-top: 5%;
 
@@ -2728,7 +3020,7 @@ html {
             gap: 10px;
 
             h2 {
-              color: $colorTertiary;
+
               font-weight: 900;
               width: 810px;
               letter-spacing: -2px;
@@ -2973,7 +3265,7 @@ html {
 
             h2 {
               width: 350px;
-              color: $colorTertiary;
+
               border-bottom: solid 1px $colorSecondary;
               margin-bottom: 5%;
             }
@@ -3087,7 +3379,7 @@ html {
       @include flex-center();
       flex-direction: column;
       gap: 15px;
-      background: linear-gradient(to top, #f2e0db 1.57%, #fff 128.95%);
+
 
       .footer-container {
         width: 100%;
@@ -3104,7 +3396,7 @@ html {
           h3 {
             font-size: 1.3em;
             width: 400px;
-            color: $colorQuartenary;
+
           }
 
           img {

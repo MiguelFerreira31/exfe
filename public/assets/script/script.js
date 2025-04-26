@@ -156,37 +156,76 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-  document.addEventListener("DOMContentLoaded", function () {
-    // Ativa todos os dropdowns com base nas classes padronizadas
-    const toggles = document.querySelectorAll(".dropdown-toggle-custom");
+document.addEventListener("DOMContentLoaded", function () {
+  // Ativa todos os dropdowns com base nas classes padronizadas
+  const toggles = document.querySelectorAll(".dropdown-toggle-custom");
 
-    toggles.forEach(toggle => {
-      const parent = toggle.closest(".dropdown-menu-custom");
-      const submenu = parent.querySelector(".submenu-custom");
+  toggles.forEach(toggle => {
+    const parent = toggle.closest(".dropdown-menu-custom");
+    const submenu = parent.querySelector(".submenu-custom");
 
-      toggle.addEventListener("click", function (e) {
-        e.preventDefault();
-        e.stopPropagation();
+    toggle.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
 
-        // Fecha os outros dropdowns
-        document.querySelectorAll(".submenu-custom").forEach(menu => {
-          if (menu !== submenu) {
-            menu.style.display = "none";
-          }
-        });
-
-        // Abre ou fecha o atual
-        submenu.style.display = submenu.style.display === "block" ? "none" : "block";
-      });
-    });
-
-    // Fecha todos ao clicar fora
-    document.addEventListener("click", function (e) {
+      // Fecha os outros dropdowns
       document.querySelectorAll(".submenu-custom").forEach(menu => {
-        if (!menu.contains(e.target)) {
+        if (menu !== submenu) {
           menu.style.display = "none";
         }
       });
+
+      // Abre ou fecha o atual
+      submenu.style.display = submenu.style.display === "block" ? "none" : "block";
     });
   });
 
+  // Fecha todos ao clicar fora
+  document.addEventListener("click", function (e) {
+    document.querySelectorAll(".submenu-custom").forEach(menu => {
+      if (!menu.contains(e.target)) {
+        menu.style.display = "none";
+      }
+    });
+  });
+});
+
+
+const themeToggle = document.querySelector('.theme-toggle-button');
+const body = document.body;
+
+// Função para alternar o tema baseado no checkbox
+function toggleThemeFromCheckbox() {
+  if (themeToggle.checked) {
+    // Se o checkbox estiver marcado, aplicamos o modo escuro
+    body.classList.remove('light-mode');
+    body.classList.add('dark-mode');
+  } else {
+    // Se o checkbox não estiver marcado, aplicamos o modo claro
+    body.classList.remove('dark-mode');
+    body.classList.add('light-mode');
+  }
+}
+
+// Função para inicializar o tema com base na hora do dia
+function switchMode() {
+  const hour = new Date().getHours();
+  if (hour >= 18 || hour < 6) {
+    body.classList.remove('light-mode');
+    body.classList.add('dark-mode');
+    themeToggle.checked = true; // Marcar o checkbox para modo escuro
+  } else {
+    body.classList.remove('dark-mode');
+    body.classList.add('light-mode');
+    themeToggle.checked = false; // Desmarcar o checkbox para modo claro
+  }
+}
+
+// Inicializa o tema ao carregar
+switchMode();
+
+// Atualiza a cada 6 minutos (360000ms)
+setInterval(switchMode, 360000);
+
+// Adiciona o evento de mudança para alternar o tema com o checkbox
+themeToggle.addEventListener('change', toggleThemeFromCheckbox);
