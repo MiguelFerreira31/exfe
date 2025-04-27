@@ -42,7 +42,6 @@ class ClientesController extends Controller
 
             $dados['conteudo'] = 'dash/cliente/listar';
             $this->carregarViews('dash/dashboard', $dados);
-            
         } else if ($_SESSION['id_tipo_usuario'] == '2') {
             $func = new Funcionario();
             $dadosFunc = $func->buscarfuncionario($_SESSION['userEmail']);
@@ -63,23 +62,20 @@ class ClientesController extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-
-
             // TBL Cliente
-            $email_cliente                  = filter_input(INPUT_POST, 'email_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
+           // TBL Cliente
+            $email_cliente                  = filter_input(INPUT_POST, 'email_cliente', FILTER_SANITIZE_EMAIL);
             $nome_cliente                   = filter_input(INPUT_POST, 'nome_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
-            $foto_cliente                   = filter_input(INPUT_POST, 'foto_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
-            $nasc_cliente                   = filter_input(INPUT_POST, 'nasc_cliente', FILTER_SANITIZE_NUMBER_FLOAT);
-            $senha_cliente                  = filter_input(INPUT_POST, 'senha_cliente', FILTER_SANITIZE_NUMBER_FLOAT);
-            $cpf_cnpj                       = filter_input(INPUT_POST, 'cpf_cnpj', FILTER_SANITIZE_SPECIAL_CHARS);
-            $status_cliente                 = filter_input(INPUT_POST, 'status_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
-            $telefone_cliente               = filter_input(INPUT_POST, 'telefone_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
-            $endereco_cliente               = filter_input(INPUT_POST, 'endereco_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
-            $bairro_cliente                 = filter_input(INPUT_POST, 'bairro_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
-            $cidade_cliente                 = filter_input(INPUT_POST, 'cidade_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
-            $tipo_cliente                   = filter_input(INPUT_POST, 'tipo_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
-            $id_estado                      = filter_input(INPUT_POST, 'id_estado', FILTER_SANITIZE_SPECIAL_CHARS);
-
+            $nasc_cliente                   = filter_input(INPUT_POST, 'nasc_cliente', FILTER_SANITIZE_STRING);  // Para data, o tipo é string
+            $senha_cliente                  = filter_input(INPUT_POST, 'senha_cliente', FILTER_SANITIZE_STRING);
+                    
+            // Preferências de Café
+            $id_produto                     = filter_input(INPUT_POST, 'id_produto', FILTER_SANITIZE_NUMBER_INT);
+            $id_intensidade                 = filter_input(INPUT_POST, 'id_intensidade', FILTER_SANITIZE_NUMBER_INT);
+            $id_acompanhamento              = filter_input(INPUT_POST, 'id_acompanhamento', FILTER_SANITIZE_NUMBER_INT);
+            $prefere_leite_vegetal         = filter_input(INPUT_POST, 'prefere_leite_vegetal', FILTER_SANITIZE_STRING);
+            $id_tipo_leite                  = filter_input(INPUT_POST, 'id_tipo_leite', FILTER_SANITIZE_NUMBER_INT);
+            $observacoes_cliente            = filter_input(INPUT_POST, 'observacoes_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
 
 
 
@@ -89,20 +85,16 @@ class ClientesController extends Controller
                 // 3 Preparar Dados 
 
                 $dadosCliente = array(
-
                     'nome_cliente'                => $nome_cliente,
-                    'foto_cliente'                => $foto_cliente,
-                    'cpf_cnpj'                    => $cpf_cnpj,
                     'email_cliente'               => $email_cliente,
                     'nasc_cliente'                => $nasc_cliente,
                     'senha_cliente'               => $senha_cliente,
-                    'tipo_cliente'                => $tipo_cliente,
-                    'status_cliente'              => $status_cliente,
-                    'telefone_cliente'            => $telefone_cliente,
-                    'endereco_cliente'            => $endereco_cliente,
-                    'bairro_cliente'              => $bairro_cliente,
-                    'cidade_cliente'              => $cidade_cliente,
-                    'id_estado'                   => $id_estado,
+                    'id_produto'                  => $id_produto,
+                    'id_intensidade'              => $id_intensidade,
+                    'id_acompanhamento'           => $id_acompanhamento,
+                    'prefere_leite_vegetal'      => $prefere_leite_vegetal,
+                    'id_tipo_leite'               => $id_tipo_leite,
+                    'observacoes_cliente'         => $observacoes_cliente,
 
                 );
 
@@ -147,9 +139,22 @@ class ClientesController extends Controller
         }
 
 
-        // Buscar Estado
-        $estados = new Estado();
-        $dados['estados'] = $estados->getListarEstados();
+  
+        // Buscar Produto
+        $produtos = new Produtos();
+        $dados['produtos'] = $produtos->getListarProdutos();
+
+
+        $tiposLeite = new Leites();  
+        $dados['tiposLeite'] = $tiposLeite->getListarLeites();
+
+
+        $acompanhamentos = new Acompanhamento();  
+        $dados['acompanhamentos'] = $acompanhamentos->getListarAcompanhamentos();
+
+
+        $intensidades = new Intensidade(); 
+        $dados['intensidades'] = $intensidades->getListarIntensidades();
 
         $dados['conteudo'] = 'dash/cliente/adicionar';
 
@@ -169,37 +174,41 @@ class ClientesController extends Controller
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // TBL Cliente
-            $email_cliente                  = filter_input(INPUT_POST, 'email_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
-            $nome_cliente                   = filter_input(INPUT_POST, 'nome_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
-            $foto_cliente                   = filter_input(INPUT_POST, 'foto_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
-            $nasc_cliente                   = filter_input(INPUT_POST, 'nasc_cliente', FILTER_SANITIZE_NUMBER_FLOAT);
-            $senha_cliente                  = filter_input(INPUT_POST, 'senha_cliente', FILTER_SANITIZE_NUMBER_FLOAT);
-            $cpf_cnpj                       = filter_input(INPUT_POST, 'cpf_cnpj', FILTER_SANITIZE_SPECIAL_CHARS);
-            $status_cliente                 = filter_input(INPUT_POST, 'status_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
-            $telefone_cliente               = filter_input(INPUT_POST, 'telefone_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
-            $endereco_cliente               = filter_input(INPUT_POST, 'endereco_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
-            $bairro_cliente                 = filter_input(INPUT_POST, 'bairro_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
-            $cidade_cliente                 = filter_input(INPUT_POST, 'cidade_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
-            $id_estado                      = filter_input(INPUT_POST, 'id_estado', FILTER_SANITIZE_SPECIAL_CHARS);
+               // TBL Cliente
+           // TBL Cliente
+           $email_cliente                  = filter_input(INPUT_POST, 'email_cliente', FILTER_SANITIZE_EMAIL);
+           $nome_cliente                   = filter_input(INPUT_POST, 'nome_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
+           $nasc_cliente                   = filter_input(INPUT_POST, 'nasc_cliente', FILTER_SANITIZE_STRING);  // Para data, o tipo é string
+           $senha_cliente                  = filter_input(INPUT_POST, 'senha_cliente', FILTER_SANITIZE_STRING);
+                   
+           // Preferências de Café
+           $id_produto                     = filter_input(INPUT_POST, 'id_produto', FILTER_SANITIZE_NUMBER_INT);
+           $id_intensidade                 = filter_input(INPUT_POST, 'id_intensidade', FILTER_SANITIZE_NUMBER_INT);
+           $id_acompanhamento              = filter_input(INPUT_POST, 'id_acompanhamento', FILTER_SANITIZE_NUMBER_INT);
+           $prefere_leite_vegetal         = filter_input(INPUT_POST, 'prefere_leite_vegetal', FILTER_SANITIZE_STRING);
+           $id_tipo_leite                  = filter_input(INPUT_POST, 'id_tipo_leite', FILTER_SANITIZE_NUMBER_INT);
+           $observacoes_cliente            = filter_input(INPUT_POST, 'observacoes_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
 
-            if ($nome_cliente && $email_cliente && $senha_cliente !== false) {
-                // 3 Preparar Dados 
-                $dadosCliente = array(
-                    'nome_cliente'                => $nome_cliente,
-                    'foto_cliente'                => $foto_cliente,
-                    'cpf_cnpj'                    => $cpf_cnpj,
-                    'email_cliente'               => $email_cliente,
-                    'nasc_cliente'                => $nasc_cliente,
-                    'senha_cliente'               => $senha_cliente,
 
-                    'status_cliente'              => $status_cliente,
-                    'telefone_cliente'            => $telefone_cliente,
-                    'endereco_cliente'            => $endereco_cliente,
-                    'bairro_cliente'              => $bairro_cliente,
-                    'cidade_cliente'              => $cidade_cliente,
-                    'id_estado'                   => $id_estado,
-                );
+
+           if ($nome_cliente && $email_cliente && $senha_cliente !== false) {
+
+
+               // 3 Preparar Dados 
+
+               $dadosCliente = array(
+                   'nome_cliente'                => $nome_cliente,
+                   'email_cliente'               => $email_cliente,
+                   'nasc_cliente'                => $nasc_cliente,
+                   'senha_cliente'               => $senha_cliente,
+                   'id_produto'                  => $id_produto,
+                   'id_intensidade'              => $id_intensidade,
+                   'id_acompanhamento'           => $id_acompanhamento,
+                   'prefere_leite_vegetal'      => $prefere_leite_vegetal,
+                   'id_tipo_leite'               => $id_tipo_leite,
+                   'observacoes_cliente'         => $observacoes_cliente,
+
+               );
 
                 // 4 Atualizar Cliente
                 $id_cliente = $this->clienteModel->updateCliente($id, $dadosCliente);
@@ -227,11 +236,24 @@ class ClientesController extends Controller
 
         $dados = array();
         $clientes = $this->clienteModel->getClienteById($id);
-        $dados['clientes'] = $clientes;
+        $dados['cliente'] = $clientes;
 
-        // Buscar Estado
-        $estados = new Estado();
-        $dados['estados'] = $estados->getListarEstados();
+        // Buscar Produto
+        $produtos = new Produtos();
+        $dados['produtos'] = $produtos->getListarProdutos();
+
+
+        $tiposLeite = new Leites();  
+        $dados['tiposLeite'] = $tiposLeite->getListarLeites();
+
+
+        $acompanhamentos = new Acompanhamento();  
+        $dados['acompanhamentos'] = $acompanhamentos->getListarAcompanhamentos();
+
+
+        $intensidades = new Intensidade(); 
+        $dados['intensidades'] = $intensidades->getListarIntensidades();
+
 
 
 
@@ -370,22 +392,21 @@ class ClientesController extends Controller
     public function perfil()
     {
         $dados = array();
-    
+
         $dados['titulo'] = 'Perfil';
-    
+
         // Buscar os dados do cliente logado pela sessão
         $clienteModel = new Cliente();
         $cliente = $clienteModel->perfilCliente($_SESSION['userEmail']);
         $dados['cliente'] = $cliente;
-    
+
         // Buscar Estados
         $estadoModel = new Estado();
         $dados['estados'] = $estadoModel->getListarEstados();
-    
-    
+
+
         // View e layout
         $dados['conteudo'] = 'dash/cliente/perfil';
         $this->carregarViews('dash/dashboard-cliente', $dados);
     }
-    
 }

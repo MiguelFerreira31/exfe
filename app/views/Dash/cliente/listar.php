@@ -29,9 +29,9 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                 <tr>
                     <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Foto</th>
                     <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Nome</th>
-                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Email</th>
-                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Telefone</th>
-                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Estado</th>
+                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Café</th>
+                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Intensidade</th>
+                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Acompanhamento</th>
                     <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Editar</th>
                     <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Desativar</th>
                 </tr>
@@ -56,9 +56,9 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                                         ?>" alt="" class="rounded-circle" style="width: 50px; height: 50px;">
                         </td>
                         <td><?php echo htmlspecialchars($linha['nome_cliente']); ?></td>
-                        <td><?php echo htmlspecialchars($linha['email_cliente']); ?></td>
-                        <td><?php echo htmlspecialchars($linha['telefone_cliente']); ?></td>
-                        <td><?php echo htmlspecialchars($linha['sigla_estado']); ?></td>
+                        <td><?php echo htmlspecialchars($linha['nome_produto']); ?></td>
+                        <td><?php echo htmlspecialchars($linha['nivel_intensidade']); ?></td>
+                        <td><?php echo htmlspecialchars($linha['nome_acompanhamento']); ?></td>
                         <td>
                             <a href="http://localhost/exfe/public/clientes/editar/<?php echo $linha['id_cliente']; ?>" title="Editar">
                                 <i class="fa fa-pencil-alt" style="font-size: 20px; color: #5e3c2d;"></i>
@@ -76,9 +76,9 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     </div>
 
     <div class="text-center mt-4">
-        <h3 style="color: #5e3c2dad;">Não encontrou o Produto? Cadastre abaixo</h3>
-        <a href="http://localhost/exfe/public/produtos/adicionar/" class="btn fw-bold px-4 py-2" style="background:#5e3c2d; color: #ffffff; border-radius: 8px;">
-            Adicionar Produto
+        <h3 style="color: #5e3c2dad;">Não encontrou o Cliente? Cadastre abaixo</h3>
+        <a href="http://localhost/exfe/public/clientes/adicionar/" class="btn fw-bold px-4 py-2" style="background:#5e3c2d; color: #ffffff; border-radius: 8px;">
+            Adicionar Cliente
         </a>
     </div>
 </div>

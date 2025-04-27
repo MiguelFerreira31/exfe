@@ -25,24 +25,70 @@ class Cliente extends Model
 
     public function getListarCliente()
     {
+        $sql = " SELECT 
+                c.id_cliente, 
+                c.nome_cliente, 
+                c.email_cliente, 
+                c.id_tipo_usuario, 
+                c.senha_cliente, 
+                c.status_cliente, 
+                c.foto_cliente, 
+                c.nasc_cliente, 
+                p.nome_produto, 
+                i.nivel_intensidade, 
+                a.nome_acompanhamento, 
+                c.prefere_leite_vegetal, 
+                l.nome_tipo_leite, 
+                c.observacoes_cliente
+            FROM 
+                tbl_cliente c
+            INNER JOIN 
+                tbl_produto p ON c.id_produto = p.id_produto
+            INNER JOIN 
+                tbl_intensidade_cafe i ON c.id_intensidade = i.id_intensidade
+            INNER JOIN 
+                tbl_tipo_leite l ON c.id_tipo_leite = l.id_tipo_leite  
+            INNER JOIN 
+                tbl_acompanhamento a ON c.id_acompanhamento = a.id_acompanhamento
+            WHERE 
+                TRIM(c.status_cliente) = 'Ativo';
+        ";
 
-        $sql = "SELECT * 
-                FROM tbl_cliente AS a
-                INNER JOIN tbl_estado AS e 
-                ON a.id_estado = e.id_estado
-                WHERE TRIM(a.status_cliente) = 'Ativo'";
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+
     public function getListarClienteDesativados()
     {
 
-        $sql = "SELECT * 
-                FROM tbl_cliente AS a
-                INNER JOIN tbl_estado AS e 
-                ON a.id_estado = e.id_estado
-                WHERE TRIM(a.status_cliente) = 'Inativo'";
+        $sql = "SELECT 
+                c.id_cliente, 
+                c.nome_cliente, 
+                c.email_cliente, 
+                c.id_tipo_usuario, 
+                c.senha_cliente, 
+                c.status_cliente, 
+                c.foto_cliente, 
+                c.nasc_cliente, 
+                p.nome_produto, 
+                i.nivel_intensidade, 
+                a.nome_acompanhamento, 
+                c.prefere_leite_vegetal, 
+                l.nome_tipo_leite, 
+                c.observacoes_cliente
+            FROM 
+                tbl_cliente c
+            INNER JOIN 
+                tbl_produto p ON c.id_produto = p.id_produto
+            INNER JOIN 
+                tbl_intensidade_cafe i ON c.id_intensidade = i.id_intensidade
+            INNER JOIN 
+                tbl_tipo_leite l ON c.id_tipo_leite = l.id_tipo_leite  
+            INNER JOIN 
+                tbl_acompanhamento a ON c.id_acompanhamento = a.id_acompanhamento
+            WHERE 
+                TRIM(c.status_cliente) = 'Inativo'";
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -50,99 +96,121 @@ class Cliente extends Model
     public function addCliente($dados)
     {
         $sql = "INSERT INTO tbl_cliente (
-                nome_cliente, 
-                email_cliente, 
-                telefone_cliente, 
-                cpf_cnpj,
-                id_endereco, 
-                id_tipo_usuario, 
-                senha_cliente, 
-                status_cliente, 
-                id_estado, 
-                foto_cliente, 
-                nasc_cliente, 
-                endereco_cliente, 
-                bairro_cliente,
-                cidade_cliente
-            ) VALUES (
-                :nome_cliente,
-                :email_cliente,
-                :telefone_cliente,
-                :cpf_cnpj,
-                :id_endereco,
-                :id_tipo_usuario,
-                :senha_cliente,
-                :status_cliente,
-                :id_estado,
-                :foto_cliente,
-                :nasc_cliente,
-                :endereco_cliente,
-                :bairro_cliente,
-                :cidade_cliente
-            );";
-
+                    nome_cliente, 
+                    email_cliente, 
+                    senha_cliente, 
+                    nasc_cliente, 
+                    id_produto, 
+                    id_intensidade, 
+                    id_acompanhamento, 
+                    prefere_leite_vegetal, 
+                    id_tipo_leite, 
+                    observacoes_cliente, 
+                    id_tipo_usuario,
+                    status_cliente
+                ) VALUES (
+                    :nome_cliente,
+                    :email_cliente,
+                    :senha_cliente,
+                    :nasc_cliente,
+                    :id_produto,
+                    :id_intensidade,
+                    :id_acompanhamento,
+                    :prefere_leite_vegetal,
+                    :id_tipo_leite,
+                    :observacoes_cliente,
+                    :id_tipo_usuario,
+                    :status_cliente
+                );";
+    
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':nome_cliente', $dados['nome_cliente']);
         $stmt->bindValue(':email_cliente', $dados['email_cliente']);
-        $stmt->bindValue(':telefone_cliente', $dados['telefone_cliente']);
-        $stmt->bindValue(':cpf_cnpj', $dados['cpf_cnpj']);
-        $stmt->bindValue(':id_endereco', $dados['id_endereco']);
-        $stmt->bindValue(':id_tipo_usuario', 3); // valor fixo
         $stmt->bindValue(':senha_cliente', $dados['senha_cliente']);
-        $stmt->bindValue(':status_cliente', $dados['status_cliente']);
-        $stmt->bindValue(':id_estado', $dados['id_estado']);
-        $stmt->bindValue(':foto_cliente', $dados['foto_cliente']);
         $stmt->bindValue(':nasc_cliente', $dados['nasc_cliente']);
-        $stmt->bindValue(':endereco_cliente', $dados['endereco_cliente']);
-        $stmt->bindValue(':bairro_cliente', $dados['bairro_cliente']);
-        $stmt->bindValue(':cidade_cliente', $dados['cidade_cliente']);
-
+        $stmt->bindValue(':id_produto', $dados['id_produto']);
+        $stmt->bindValue(':id_intensidade', $dados['id_intensidade']);
+        $stmt->bindValue(':id_acompanhamento', $dados['id_acompanhamento']);
+        $stmt->bindValue(':prefere_leite_vegetal', $dados['prefere_leite_vegetal']);
+        $stmt->bindValue(':id_tipo_leite', $dados['id_tipo_leite']);
+        $stmt->bindValue(':observacoes_cliente', $dados['observacoes_cliente']);
+        $stmt->bindValue(':id_tipo_usuario', 3);  // Valor fixo 3 para id_tipo_usuario
+        $stmt->bindValue(':status_cliente', 'Ativo');  // Valor fixo 3 para id_tipo_usuario
+    
         $stmt->execute();
         return $this->db->lastInsertId();
     }
-
+    
 
     public function updateCliente($id, $dados)
     {
+        // Atualizando apenas os campos relevantes
         $sql = "UPDATE tbl_cliente SET 
                 nome_cliente = :nome_cliente, 
                 email_cliente = :email_cliente, 
-                telefone_cliente = :telefone_cliente, 
-                cpf_cnpj = :cpf_cnpj, 
                 senha_cliente = :senha_cliente, 
-                status_cliente = :status_cliente, 
-                id_estado = :id_estado, 
-                foto_cliente = :foto_cliente, 
                 nasc_cliente = :nasc_cliente, 
-                endereco_cliente = :endereco_cliente, 
-                bairro_cliente = :bairro_cliente, 
-                cidade_cliente = :cidade_cliente 
+                id_produto = :id_produto,
+                id_intensidade = :id_intensidade,
+                id_acompanhamento = :id_acompanhamento,
+                prefere_leite_vegetal = :prefere_leite_vegetal,
+                id_tipo_leite = :id_tipo_leite,
+                observacoes_cliente = :observacoes_cliente
                 WHERE id_cliente = :id_cliente";
-
+    
+        // Preparar a execução da consulta
         $stmt = $this->db->prepare($sql);
-
+    
+        // Vincular os dados recebidos para os parâmetros da consulta
         $stmt->bindValue(':nome_cliente', $dados['nome_cliente']);
         $stmt->bindValue(':email_cliente', $dados['email_cliente']);
-        $stmt->bindValue(':telefone_cliente', $dados['telefone_cliente']);
-        $stmt->bindValue(':cpf_cnpj', $dados['cpf_cnpj']);
         $stmt->bindValue(':senha_cliente', $dados['senha_cliente']);
-        $stmt->bindValue(':status_cliente', $dados['status_cliente']);
-        $stmt->bindValue(':id_estado', $dados['id_estado']);
-        $stmt->bindValue(':foto_cliente', $dados['foto_cliente']);
         $stmt->bindValue(':nasc_cliente', $dados['nasc_cliente']);
-        $stmt->bindValue(':endereco_cliente', $dados['endereco_cliente']);
-        $stmt->bindValue(':bairro_cliente', $dados['bairro_cliente']);
-        $stmt->bindValue(':cidade_cliente', $dados['cidade_cliente']);
+        $stmt->bindValue(':id_produto', $dados['id_produto']);
+        $stmt->bindValue(':id_intensidade', $dados['id_intensidade']);
+        $stmt->bindValue(':id_acompanhamento', $dados['id_acompanhamento']);
+        $stmt->bindValue(':prefere_leite_vegetal', $dados['prefere_leite_vegetal']);
+        $stmt->bindValue(':id_tipo_leite', $dados['id_tipo_leite']);
+        $stmt->bindValue(':observacoes_cliente', $dados['observacoes_cliente']);
         $stmt->bindValue(':id_cliente', $id);
-
+    
+        // Executar a consulta
         return $stmt->execute();
     }
-
+    
     public function getClienteById($id)
     {
 
-        $sql = "SELECT * FROM tbl_cliente
-                WHERE id_cliente = :id_cliente;";
+        $sql = "SELECT 
+                 c.id_cliente, 
+                    c.nome_cliente, 
+                    c.email_cliente, 
+                    c.id_tipo_usuario, 
+                    c.senha_cliente, 
+                    c.status_cliente, 
+                    c.foto_cliente, 
+                    c.nasc_cliente, 
+                    c.id_produto,            
+                    p.nome_produto, 
+                    c.id_intensidade,        
+                    i.nivel_intensidade, 
+                    c.id_acompanhamento,     
+                    a.nome_acompanhamento, 
+                    c.prefere_leite_vegetal, 
+                    c.id_tipo_leite,         
+                    l.nome_tipo_leite, 
+                    c.observacoes_cliente
+            FROM 
+                tbl_cliente c
+            INNER JOIN 
+                tbl_produto p ON c.id_produto = p.id_produto
+            INNER JOIN 
+                tbl_intensidade_cafe i ON c.id_intensidade = i.id_intensidade
+            INNER JOIN 
+                tbl_tipo_leite l ON c.id_tipo_leite = l.id_tipo_leite  
+            INNER JOIN 
+                tbl_acompanhamento a ON c.id_acompanhamento = a.id_acompanhamento
+                WHERE id_cliente = :id_cliente";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':id_cliente', $id, PDO::PARAM_INT);
         $stmt->execute();
@@ -173,20 +241,18 @@ class Cliente extends Model
 
     public function perfilCliente($email)
     {
-        $sql = "SELECT a.*, e.sigla_estado, e.nome_estado 
-                FROM tbl_cliente AS a
-                INNER JOIN tbl_estado AS e 
-                ON a.id_estado = e.id_estado
-                WHERE a.email_cliente = :email
+        $sql = "SELECT *
+                FROM tbl_cliente 
+                WHERE email_cliente = :email
                 LIMIT 1";
-    
+
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
-    
+
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-    
+
 
 
     // 6 Método para add FOTO GALERIA 

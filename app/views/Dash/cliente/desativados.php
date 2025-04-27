@@ -25,48 +25,48 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
     <div class="table-responsive rounded-3 shadow-lg p-3" style="background: #ffffff;">
         <table class="table table-hover text-center align-middle">
-        <thead class="thead-custom">
-    <tr>
-        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Foto</th>
-        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Nome</th>
-        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Email</th>
-        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Telefone</th>
-        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Estado</th>
-        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Editar</th>
-        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Ativar</th>
-    </tr>
-</thead>
+            <thead class="thead-custom">
+                <tr>
+                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Foto</th>
+                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Nome</th>
+                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Café</th>
+                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Intensidade</th>
+                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Acompanhamento</th>
+                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Editar</th>
+                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Desativar</th>
+                </tr>
+            </thead>
 
             <tbody>
                 <?php foreach ($clientes as $linha): ?>
                     <tr class="fw-semibold">
                         <td class="img-cliente">
                             <img src="<?php
-                                $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $linha['foto_cliente'];
+                                        $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $linha['foto_cliente'];
 
-                                if ($linha['foto_cliente'] != "") {
-                                    if (file_exists($caminhoArquivo)) {
-                                        echo ("http://localhost/exfe/public/uploads/" . htmlspecialchars($linha['foto_cliente'], ENT_QUOTES, 'UTF-8'));
-                                    } else {
-                                        echo ("http://localhost/exfe/public/uploads/cliente/sem-foto-cliente.jpg");
-                                    }
-                                } else {
-                                    echo ("http://localhost/exfe/public/uploads/cliente/sem-foto-cliente.jpg");
-                                }
-                            ?>" alt="" class="rounded-circle" style="width: 50px; height: 50px;">
+                                        if ($linha['foto_cliente'] != "") {
+                                            if (file_exists($caminhoArquivo)) {
+                                                echo ("http://localhost/exfe/public/uploads/" . htmlspecialchars($linha['foto_cliente'], ENT_QUOTES, 'UTF-8'));
+                                            } else {
+                                                echo ("http://localhost/exfe/public/uploads/cliente/sem-foto-cliente.jpg");
+                                            }
+                                        } else {
+                                            echo ("http://localhost/exfe/public/uploads/cliente/sem-foto-cliente.jpg");
+                                        }
+                                        ?>" alt="" class="rounded-circle" style="width: 50px; height: 50px;">
                         </td>
                         <td><?php echo htmlspecialchars($linha['nome_cliente']); ?></td>
-                        <td><?php echo htmlspecialchars($linha['email_cliente']); ?></td>
-                        <td><?php echo htmlspecialchars($linha['telefone_cliente']); ?></td>
-                        <td><?php echo htmlspecialchars($linha['sigla_estado']); ?></td>
+                        <td><?php echo htmlspecialchars($linha['nome_produto']); ?></td>
+                        <td><?php echo htmlspecialchars($linha['nivel_intensidade']); ?></td>
+                        <td><?php echo htmlspecialchars($linha['nome_acompanhamento']); ?></td>
                         <td>
                             <a href="http://localhost/exfe/public/clientes/editar/<?php echo $linha['id_cliente']; ?>" title="Editar">
                                 <i class="fa fa-pencil-alt" style="font-size: 20px; color: #9a5c1f;"></i>
                             </a>
                         </td>
                         <td>
-                        <a href="#" class="btn " title="Desativar" onclick="abrirModalAtivar(<?php echo $linha['id_cliente'];  ?>)">
-                            <i class="fa fa-check-circle" style="font-size: 20px; color: #28a745;"></i>
+                            <a href="#" class="btn " title="Desativar" onclick="abrirModalAtivar(<?php echo $linha['id_cliente'];  ?>)">
+                                <i class="fa fa-check-circle" style="font-size: 20px; color: #28a745;"></i>
                             </a>
                         </td>
                     </tr>
