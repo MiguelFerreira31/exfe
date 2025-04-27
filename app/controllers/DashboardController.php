@@ -17,7 +17,6 @@ class DashboardController extends Controller
             $dados['titulo']        = 'Perfil';
             $dados['cliente'] = $dadosCliente;
             $this->carregarViews('dash/dashboard-cliente', $dados);
-
         } else if ($_SESSION['id_tipo_usuario'] == '2') {
             $func = new Funcionario();
             $dadosFunc = $func->buscarFuncionario($_SESSION['userEmail']);
@@ -29,6 +28,11 @@ class DashboardController extends Controller
             $dadosFunc = $func->buscarFuncionario($_SESSION['userEmail']);
             $dados['titulo']        = 'Dashboard - Gerente';
             $dados['func'] = $dadosFunc;
+
+            // Carregar os funcionarios
+           
+           
+
             $this->carregarViews('dash/dashboard', $dados);
         }
     }

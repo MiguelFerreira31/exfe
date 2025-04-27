@@ -35,6 +35,12 @@
 </head>
 
 
+<?php 
+$totalClienteModel = new Cliente();
+$totalCliente = $totalClienteModel->getContarCliente();
+$dados['totalCliente'] = $totalCliente;
+?>
+
 <body class="g-sidenav-show bg-gray-100">
   <div class="min-height-300 position-absolute w-100" style="background-color: #371406;"></div>
 
@@ -89,7 +95,7 @@
             <span class="nav-link-text ms-1">Tabelas</span>
           </a>
 
-          
+
         </li>
 
 
@@ -479,11 +485,8 @@
                     <p class="text-sm mb-0 text-uppercase" style="color: #9a5c1fad; font-weight: bold;">
                       Novos Clientes
                     </p>
-                    <h5 class="font-weight-bolder" style="color: #9a5c1fad;">+3,462</h5>
-                    <p class="mb-0" style="color: #7a4f2f;">
-                      <span class="text-danger text-sm font-weight-bolder">-2%</span>
-                      Desde o último trimestre
-                    </p>
+                    <h5 class="font-weight-bolder" style="color: #9a5c1fad;">+<?php echo $totalCliente['total_clientes']; ?></h5>
+
                   </div>
                 </div>
                 <div class="col-4 text-end">
