@@ -19,28 +19,70 @@ class NewsletterController extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $email = trim($_POST['email']);
 
-            // Verifica se o email já está cadastrado
             if ($this->newsletterModel->emailExistente($email)) {
                 $_SESSION['erro'] = "Este e-mail já está cadastrado!";
-                header('Location: http://localhost/exfe/public/ ,'); // Redireciona de volta para o formulário
+                header('Location: http://localhost/exfe/public/');
                 exit;
             }
 
-            // Cadastra o e-mail na tabela newsletter
             if ($this->newsletterModel->cadastrar($email)) {
-                // Envia o cupom para o e-mail
-                $this->enviarCupom($email);
 
-                $_SESSION['mensagem'] = "Inscrição feita com sucesso! Cupom enviado.";
-                header('Location: http://localhost/exfe/public/'); // Página de agradecimento ou sucesso
-                exit;
+                // Gera o cupom fixo (ou poderia ser aleatório se preferir)
+                $cupom = 'EXFE10';
+
+                // Requerendo PHPMailer
+                require_once("vendors/phpmailer/PHPMailer.php");
+                require_once("vendors/phpmailer/SMTP.php");
+                require_once("vendors/phpmailer/Exception.php");
+
+                $phpmail = new PHPMailer\PHPMailer\PHPMailer();
+
+                try {
+                    $phpmail->isSMTP();
+                    $phpmail->SMTPDebug = 2; // para debug
+                    $phpmail->Host = EMAIL_HOST;
+                    $phpmail->Port = EMAIL_PORT;
+                    $phpmail->SMTPSecure = 'ssl'; // ou 'tls' dependendo do seu servidor
+                    $phpmail->SMTPAuth = true;
+                    $phpmail->Username = EMAIL_USER;
+                    $phpmail->Password = EMAIL_PASS;
+
+                    $phpmail->CharSet = 'UTF-8';
+                    $phpmail->IsHTML(true);
+                    $phpmail->setFrom(EMAIL_USER, 'EXFÉ');
+                    $phpmail->addAddress($email);
+
+                    $phpmail->Subject = "Bem-vindo(a) à EXFÉ! Seu Cupom de Desconto";
+                    $phpmail->msgHTML("
+    <h2>Obrigado por se inscrever na nossa newsletter!</h2>
+    <p>Estamos felizes em ter você conosco.</p>
+    <p>Use este cupom para ganhar 10% de desconto na sua próxima compra:</p>
+    <h3 style='color: #FF6600;'>$cupom</h3>
+    <p>Até breve!</p>
+");
+                    $phpmail->AltBody = "Obrigado por se inscrever! Seu cupom é: $cupom";
+
+
+                    $phpmail->send();
+
+                    $_SESSION['mensagem'] = "Inscrição feita com sucesso! Verifique seu e-mail para receber o cupom.";
+                    header('Location: http://localhost/exfe/public/');
+                    exit;
+                } catch (Exception $e) {
+                    error_log('Erro ao enviar e-mail de cupom: ' . $phpmail->ErrorInfo);
+                    $_SESSION['erro'] = "Inscrição feita, mas houve um erro ao enviar o e-mail.";
+                    header('Location: http://localhost/exfe/public/');
+                    exit;
+                }
             } else {
                 $_SESSION['erro'] = "Erro ao inscrever-se. Tente novamente.";
-                header('Location: http://localhost/exfe/public/'); // Redireciona de volta para o formulário
+                header('Location: http://localhost/exfe/public/');
                 exit;
             }
         }
     }
+
+
 
     // Lista todos os inscritos (admin)
     public function listar()
