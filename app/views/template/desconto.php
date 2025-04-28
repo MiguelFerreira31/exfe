@@ -6,7 +6,7 @@
       <p>Assine a Nossa Newsletter e Receba 10% de Desconto.</p>
     </div>
     <div class="emailItems">
-      <form action="http://localhost/exfe/newsletter/inscrever" method="POST">
+      <form action="http://localhost/exfe/public/newsletter/inscrever" method="POST">
         <input class="email" type="email" id="email" name="email" placeholder="&#9993; Endereço de E-mail" required>
 
         <div class="buttons">

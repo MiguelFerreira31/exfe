@@ -28,11 +28,7 @@ class DashboardController extends Controller
             $dadosFunc = $func->buscarFuncionario($_SESSION['userEmail']);
             $dados['titulo']        = 'Dashboard - Gerente';
             $dados['func'] = $dadosFunc;
-
             // Carregar os funcionarios
-           
-           
-
             $this->carregarViews('dash/dashboard', $dados);
         }
     }

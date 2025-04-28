@@ -5,7 +5,7 @@
         <div class="card-header pb-0">
           <div class="d-flex align-items-center">
             <p class="mb-0">Editar Perfil</p>
-            <button class="btn btn-primary btn-sm ms-auto">Segurança</button>
+            <button class="btn btn-primary btn-sm ms-auto" data-bs-toggle="modal" data-bs-target="#senhaModal">Privacidade</button>
           </div>
         </div>
 
@@ -127,3 +127,83 @@
 
   </div>
 </div>
+
+<!-- Modal de Verificação de Senha -->
+<div class="modal fade" id="senhaModal" tabindex="-1" aria-labelledby="senhaModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="senhaModalLabel">Verifique sua senha</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Formulário para verificar senha -->
+        <form id="verificarSenhaForm">
+          <div class="mb-3">
+            <label for="senha_usuario" class="form-label">Digite sua senha</label>
+            <input type="password" class="form-control" id="senha_usuario" required>
+          </div>
+          <div class="d-flex justify-content-end">
+            <button type="button" class="btn btn-primary" id="verificarSenhaBtn">Verificar</button>
+            <button type="button" class="btn btn-secondary ms-2" data-bs-dismiss="modal">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Configuração -->
+<div class="modal fade" id="configModal" tabindex="-1" aria-labelledby="configModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="configModalLabel">Editar Informações Privadas</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Formulário para editar dados privados -->
+        <form action="path_to_your_update_method" method="POST">
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email_cliente" value="<?= $cliente['email_cliente'] ?>" required>
+          </div>
+          <div class="mb-3">
+            <label for="cpf" class="form-label">CPF</label>
+            <input type="text" class="form-control" id="cpf" name="cpf_cnpj_cliente" value="<?= $cliente['cpf_cnpj'] ?>" required>
+          </div>
+          <div class="mb-3">
+            <label for="senha" class="form-label">Senha</label>
+            <input type="password" class="form-control" id="senha" name="senha_cliente" value="<?= $cliente['senha_cliente'] ?>" required>
+          </div>
+          <!-- Botões para salvar e fechar -->
+          <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <button type="button" class="btn btn-secondary ms-2" data-bs-dismiss="modal">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Lógica para verificar a senha antes de abrir o modal de configuração
+  document.getElementById("verificarSenhaBtn").addEventListener("click", function() {
+    var senhaUsuario = document.getElementById("senha_usuario").value;
+
+    // Aqui você faria uma requisição para o backend para verificar se a senha está correta
+    // Vou simular a verificação com um exemplo de senha
+    var senhaCorreta = "senha123"; // Simule aqui a senha correta, você vai verificar isso no backend
+
+    if (senhaUsuario === senhaCorreta) {
+      // Se a senha estiver correta, abre o modal de configuração
+      var senhaModal = new bootstrap.Modal(document.getElementById('senhaModal'));
+      senhaModal.hide(); // Fecha o modal de senha
+      var configModal = new bootstrap.Modal(document.getElementById('configModal'));
+      configModal.show(); // Abre o modal de configuração
+    } else {
+      alert("Senha incorreta! Tente novamente.");
+    }
+  });
+</script>

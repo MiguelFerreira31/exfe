@@ -4,11 +4,13 @@ class Newsletter extends Model
 {
     public function cadastrar($email)
     {
-        $query = "INSERT INTO tbl_newsletter (email) VALUES (:email)";
+        $query = "INSERT INTO tbl_newsletter (email, status_newsletter) VALUES (:email, :status_newsletter)";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':email', $email);
+        $stmt->bindValue(':status_newsletter', 'Ativo');
         return $stmt->execute();
     }
+    
 
     public function listarNewsletter()
     {
