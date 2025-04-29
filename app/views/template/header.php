@@ -189,7 +189,7 @@ function getActive($rota)
 
       <div class="modal-body container" id="container" style="max-width: none; width: 850px; height: 630px;">
         <div class="form-container sign-up-container">
-          <form action="#">
+          <form method="POST" action="http://localhost/exfe/public/auth/cadastrar">
 
             <h1>Criar Conta</h1>
 
@@ -212,10 +212,10 @@ function getActive($rota)
             </div>
 
             <span>Use seu e-mail para se registrar</span>
-            <input type="text" placeholder="Name" />
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <button>Cadastrar-se</button>
+            <input type="text" placeholder="Name" name="nome" />
+            <input type="email" placeholder="Email" name="email" />
+            <input type="password" placeholder="Password" name="senha" />
+            <button type="submit">Cadastrar-se</button>
           </form>
         </div>
 

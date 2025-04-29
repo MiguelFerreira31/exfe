@@ -127,6 +127,76 @@ html body.light-mode h2 {
 html body.light-mode p {
   color: #b3b3b3;
 }
+html body.light-mode #loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  flex-direction: column;
+  background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
+}
+html body.light-mode .loader {
+  width: 35px;
+  height: 80px;
+  position: relative;
+}
+html body.light-mode .loader:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 3px 5px;
+  border-top: 1px solid #bbb6aa;
+  border-bottom: 4px solid #bbb6aa;
+  background: linear-gradient(#612329 0 0) bottom no-repeat content-box, #e4e0d7;
+  mix-blend-mode: darken;
+  animation: l1 1.5s infinite linear;
+}
+html body.light-mode .loader:before {
+  content: "";
+  position: absolute;
+  inset: -18px calc(50% - 2px) 8px;
+  background: #eb6b3e;
+  transform-origin: bottom;
+  transform: rotate(8deg);
+}
+@keyframes l1 {
+  0% {
+    background-size: 100% 100%;
+  }
+  100% {
+    background-size: 100% 5%;
+  }
+}
+html body.light-mode .loading-text {
+  font-size: 1.2rem;
+  color: #5e3c2d;
+  margin-top: 10px;
+  font-weight: bold;
+}
+html body.light-mode .dot {
+  display: inline-block;
+  opacity: 0;
+  font-size: 1.5rem;
+  animation: blink4 1.2s infinite ease-in-out both;
+}
+html body.light-mode .dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+html body.light-mode .dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+@keyframes blink4 {
+  0%, 80%, 100% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+html body.light-mode #conteudo {
+  display: none;
+}
 html body.light-mode .one {
   background: linear-gradient(90deg, #9e675f -9.62%, #371406 101.5%);
 }
@@ -229,6 +299,76 @@ html body.dark-mode {
   background-attachment: fixed;
   background-position: center;
   color: rgba(191, 161, 143, 0.6352941176);
+}
+html body.dark-mode #loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  flex-direction: column;
+  background: linear-gradient(to left, #402920 1.57%, #774a38 128.95%);
+}
+html body.dark-mode .loader {
+  width: 35px;
+  height: 80px;
+  position: relative;
+}
+html body.dark-mode .loader:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 3px 5px;
+  border-top: 1px solid #bbb6aa;
+  border-bottom: 4px solid #bbb6aa;
+  background: linear-gradient(#612329 0 0) bottom no-repeat content-box, #e4e0d7;
+  mix-blend-mode: darken;
+  animation: l1 1.5s infinite linear;
+}
+html body.dark-mode .loader:before {
+  content: "";
+  position: absolute;
+  inset: -18px calc(50% - 2px) 8px;
+  background: #eb6b3e;
+  transform-origin: bottom;
+  transform: rotate(8deg);
+}
+@keyframes l1 {
+  0% {
+    background-size: 100% 100%;
+  }
+  100% {
+    background-size: 100% 5%;
+  }
+}
+html body.dark-mode .loading-text {
+  font-size: 1.2rem;
+  color: #5e3c2d;
+  margin-top: 10px;
+  font-weight: bold;
+}
+html body.dark-mode .dot {
+  display: inline-block;
+  opacity: 0;
+  font-size: 1.5rem;
+  animation: blink4 1.2s infinite ease-in-out both;
+}
+html body.dark-mode .dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+html body.dark-mode .dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+@keyframes blink4 {
+  0%, 80%, 100% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+html body.dark-mode #conteudo {
+  display: none;
 }
 html body.dark-mode .one {
   background: linear-gradient(to left, #402920 1.57%, #774a38 128.95%);
@@ -2788,7 +2928,7 @@ html body main #contato .formContent form .formItens input {
   height: 65px;
   font-family: "Poppis", sans-serif;
   color: #371406;
-  background-color: #f5eee6;
+  background-color: rgba(245, 238, 230, 0.4666666667);
   font-size: 1.3em;
   border: none;
   border-radius: 25px;
@@ -2810,7 +2950,7 @@ html body main #contato .formContent form .formItens textarea {
   height: 200px;
   font-family: "Poppis", sans-serif;
   color: #371406;
-  background-color: #f5eee6;
+  background-color: rgba(245, 238, 230, 0.4666666667);
   font-size: 1.3em;
   resize: none;
   border: none;
@@ -2842,6 +2982,7 @@ html body main #contato .formContent form .buttonContato input {
   border: none;
   border-radius: 25px;
   font-weight: bold;
+  cursor: pointer;
 }
 html body main .thanks {
   height: 100dvh;

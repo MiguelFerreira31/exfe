@@ -176,6 +176,7 @@ html {
 
   body {
 
+
     &.light-mode {
 
       h2 {
@@ -189,6 +190,98 @@ html {
       background-image: url("http://localhost/exfe/public/assets/img/hero-bg.png");
       background-attachment: fixed;
       background-position: center;
+
+      // #region preloader 
+
+      #loader {
+        @include flex-center();
+        height: 100vh;
+        width: 100%;
+        flex-direction: column;
+        background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
+      }
+
+      .loader {
+        width: 35px;
+        height: 80px;
+        position: relative;
+      }
+
+      .loader:after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        padding: 3px 5px;
+        border-top: 1px solid #bbb6aa;
+        border-bottom: 4px solid #bbb6aa;
+        background: linear-gradient(#612329 0 0) bottom no-repeat content-box, #e4e0d7;
+        mix-blend-mode: darken;
+        animation: l1 1.5s infinite linear;
+      }
+
+      .loader:before {
+        content: "";
+        position: absolute;
+        inset: -18px calc(50% - 2px) 8px;
+        background: #eb6b3e;
+        transform-origin: bottom;
+        transform: rotate(8deg);
+      }
+
+      @keyframes l1 {
+        0% {
+          background-size: 100% 100%;
+        }
+
+        100% {
+          background-size: 100% 5%;
+        }
+      }
+
+      .loading-text {
+        font-size: 1.2rem;
+        color: #5e3c2d;
+        margin-top: 10px;
+        font-weight: bold;
+      }
+
+      .dot {
+        display: inline-block;
+        opacity: 0;
+        font-size: 1.5rem;
+        animation: blink4 1.2s infinite ease-in-out both;
+      }
+
+      .dot:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+
+      .dot:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+
+      @keyframes blink4 {
+
+        0%,
+        80%,
+        100% {
+          opacity: 0;
+        }
+
+        40% {
+          opacity: 1;
+        }
+      }
+
+      #conteudo {
+        display: none;
+        
+      }
+
+
+
+      // #endregion
+
 
       // #region header 
       .one {
@@ -339,6 +432,102 @@ html {
       background-image: url("http://localhost/exfe/public/assets/img/hero-bg2.png");
       background-attachment: fixed;
       background-position: center;
+
+
+      // #region preloader 
+
+      #loader {
+        @include flex-center();
+        height: 100vh;
+        width: 100%;
+        flex-direction: column;
+        background: linear-gradient(to left, #402920 1.57%, #774a38 128.95%);
+      }
+
+      .loader {
+        width: 35px;
+        height: 80px;
+        position: relative;
+      }
+
+      .loader:after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        padding: 3px 5px;
+        border-top: 1px solid #bbb6aa;
+        border-bottom: 4px solid #bbb6aa;
+        background: linear-gradient(#612329 0 0) bottom no-repeat content-box, #e4e0d7;
+        mix-blend-mode: darken;
+        animation: l1 1.5s infinite linear;
+      }
+
+      .loader:before {
+        content: "";
+        position: absolute;
+        inset: -18px calc(50% - 2px) 8px;
+        background: #eb6b3e;
+        transform-origin: bottom;
+        transform: rotate(8deg);
+      }
+
+      @keyframes l1 {
+        0% {
+          background-size: 100% 100%;
+        }
+
+        100% {
+          background-size: 100% 5%;
+        }
+      }
+
+      .loading-text {
+        font-size: 1.2rem;
+        color: #5e3c2d;
+        margin-top: 10px;
+        font-weight: bold;
+      }
+
+      .dot {
+        display: inline-block;
+        opacity: 0;
+        font-size: 1.5rem;
+        animation: blink4 1.2s infinite ease-in-out both;
+      }
+
+      .dot:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+
+      .dot:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+
+      @keyframes blink4 {
+
+        0%,
+        80%,
+        100% {
+          opacity: 0;
+        }
+
+        40% {
+          opacity: 1;
+        }
+      }
+
+      #conteudo {
+        display: none;
+        
+      }
+
+
+
+      // #endregion
+
+
+
+
 
       // #region header 
       .one {
@@ -3279,7 +3468,7 @@ html {
                 height: 65px;
                 font-family: $font;
                 color: $colorBg2;
-                background-color: #f5eee6;
+                background-color: #f5eee677;
                 font-size: 1.3em;
                 border: none;
                 border-radius: 25px;
@@ -3304,7 +3493,7 @@ html {
                 height: 200px;
                 font-family: $font;
                 color: $colorBg2;
-                background-color: #f5eee6;
+                background-color: #f5eee677;
                 font-size: 1.3em;
                 resize: none;
                 border: none;
@@ -3337,6 +3526,8 @@ html {
                 border: none;
                 border-radius: 25px;
                 font-weight: bold;
+                cursor: pointer;
+
               }
             }
           }

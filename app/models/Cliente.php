@@ -255,7 +255,36 @@ class Cliente extends Model
 
 
 
-    // 6 Método para add FOTO GALERIA 
+    public function cadastrarCliente($dados)
+    {
+        $sql = "INSERT INTO tbl_cliente (
+                    nome_cliente, 
+                    email_cliente, 
+                    senha_cliente, 
+                    id_tipo_usuario,
+                    status_cliente
+                ) VALUES (
+                    :nome_cliente,
+                    :email_cliente,
+                    :senha_cliente,
+                    :id_tipo_usuario,
+                    :status_cliente
+                );";
+    
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':nome_cliente', $dados['nome_cliente']);
+        $stmt->bindValue(':email_cliente', $dados['email_cliente']);
+        $stmt->bindValue(':senha_cliente', $dados['senha_cliente']);
+        $stmt->bindValue(':id_tipo_usuario', 3);  
+        $stmt->bindValue(':status_cliente', 'Ativo');  
+        $stmt->execute();
+        return $this->db->lastInsertId();
+    }
+    
+
+
+
+    // 6 Método para add FOTO Cliente 
 
     public function addFotocliente($id_cliente, $arquivo)
     {
