@@ -202,7 +202,7 @@ $dados['totalCliente'] = $totalCliente;
 
           <ul class="nav flex-column submenu-custom" style="display: none; padding-left: 2rem;">
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost/exfe/public/mesas/listar/">
+              <a class="nav-link" href="http://localhost/exfe/public/mesa/listar">
                 <i class="bi bi-box-seam me-2" style="color: #371406;"></i> Ativos
               </a>
             </li>
