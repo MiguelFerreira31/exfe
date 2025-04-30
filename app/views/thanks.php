@@ -16,25 +16,49 @@
     <title>Thanks</title>
 </head>
 
-<body>
+<body class="light-mode">
 
-
-    <?php require_once('template/header.php') ?>
-
-    <main>
-
-        <div class="thanks">
-
-            <h2>Obrigado por enviar o contato</h2>
-            <a href="http://localhost/exfe/public/home"><button>Voltar</button></a>
+    <div id="loader">
+        <div class="loader"></div>
+        <div class="loading-text">
+            Carregando
+            <span class="dot">.</span>
+            <span class="dot">.</span>
+            <span class="dot">.</span>
         </div>
+    </div>
 
-    </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(function() {
+                document.getElementById("loader").style.display = "none";
+                document.getElementById("conteudo").style.display = "block";
+            }, 1000);
+        });
+    </script>
+
+    <div id="conteudo">
+
+        <?php require_once('template/header.php') ?>
+
+        <main>
+
+            <div class="thanks">
+
+                <h2>Obrigado por enviar o contato</h2>
+                <a href="http://localhost/exfe/public/home"><button>Voltar</button></a>
+            </div>
+
+        </main>
 
 
 
 
-    <?php require_once('template/footer.php') ?>
+        <?php require_once('template/footer.php') ?>
+
+
+    </div>
+
 
     <script type="text/javascript" src="//code.jquery.com/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.4.1.min.js"></script>

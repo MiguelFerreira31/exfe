@@ -1,10 +1,5 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-/* Faz o dropdown ocupar largura total e parecer parte do menu lateral */
-.dropdown-menu.show-on-click {
-  position: static;
-  float: none;
-}
-
 * {
   padding: 0;
   margin: 0;
@@ -115,6 +110,21 @@ hr {
 html {
   scroll-behavior: smooth;
   font-family: "Poppis", sans-serif;
+}
+html body {
+  /* #region dashboard  */
+  /* Faz o dropdown ocupar largura total e parecer parte do menu lateral */
+  /* Plano de fundo principal */
+  /* Estilização do sidenav */
+  /* Ícone para fechar o menu */
+  /* Marca do topo */
+  /* Linha divisória */
+  /* Links ativos */
+  /* Estilo dos ícones de cada item */
+  /* Estilo geral dos links */
+  /* Título das seções */
+  /* Submenus */
+  /*  #endregion  */
 }
 html body.light-mode {
   background-image: url("http://localhost/exfe/public/assets/img/hero-bg.png");
@@ -3320,11 +3330,6 @@ html body .footer .chat-boot #chat-container .enviar #send-button:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 10px 0 #d3b8ae;
 }
-html body .footer .chat-boot #chat-container .message-container {
-  margin: 20px;
-  padding: 10px;
-  border-radius: 5px;
-}
 html body .footer .chat-boot #chat-container .user-message {
   background: #d3b8ae;
   color: #5e3c2d;
@@ -3347,33 +3352,82 @@ html body .footer .chat-boot #chat-container .bot-message i {
   border-radius: 50%;
   color: white;
 }
-html body .footer .loader {
+html body .footer .chat-boot #chat-container .bot-message {
+  background: #fff8f1;
+  color: #5e3c2d;
+  box-shadow: 0 8px 20px 0 rgba(163, 106, 79, 0.6);
+  padding: 10px 20px;
+  /* Ajuste do padding */
+  border-radius: 8px;
+  margin-bottom: 15px;
+  max-width: 80%;
+  /* Limita a largura da mensagem */
+  word-wrap: break-word;
+  /* Garante que o texto longo não quebre o layout */
+}
+html body .footer .chat-boot #chat-container .message-container {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
   display: inline-block;
-  width: 20px;
-  height: 10px;
-  text-align: center;
+  /* As mensagens vão se ajustar no layout */
+}
+html body .footer .chat-boot #chat-container .message-container strong {
+  display: inline-block;
+  font-weight: bold;
+}
+html body .footer .chat-boot #chat-container .message-container i {
+  margin-right: 5px;
+}
+html body .footer .chat-boot #chat-container .loader {
+  display: flex;
+  justify-content: space-between;
+  width: 50px;
+}
+html body .footer .chat-boot #chat-container .loader span {
+  width: 8px;
+  height: 8px;
+  background-color: #a36a4f;
+  border-radius: 50%;
+  animation: loaderAnimation 1s infinite ease-in-out;
+  margin: 2px;
+}
+@keyframes loaderAnimation {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+}
+html body .footer .loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
 }
 html body .footer .loader span {
-  display: inline-block;
-  width: 4px;
-  height: 4px;
-  margin: 0 1px;
-  background: #371406;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  animation: blink2 1.2s infinite ease-in-out both;
+  background-color: #a36a4f;
+  animation: bounce 1.5s infinite ease-in-out;
+}
+html body .footer .loader span:nth-child(1) {
+  animation-delay: 0s;
 }
 html body .footer .loader span:nth-child(2) {
-  animation-delay: 0.2s;
+  animation-delay: 0.3s;
 }
 html body .footer .loader span:nth-child(3) {
-  animation-delay: 0.4s;
+  animation-delay: 0.6s;
 }
-@keyframes blink2 {
-  0%, 80%, 100% {
-    opacity: 0;
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(1);
   }
-  40% {
-    opacity: 1;
+  50% {
+    transform: scale(1.5);
   }
 }
 html body .footer #scrollToTopBtn {
@@ -3406,4 +3460,57 @@ html body .footer #scrollToTopBtn .arrow {
 }
 html body .footer #scrollToTopBtn:hover {
   transform: scale(1.08);
+}
+html body .dropdown-menu.show-on-click {
+  position: static;
+  float: none;
+}
+html body .bg-custom-gradient {
+  background: linear-gradient(to top, #f2e0db 1.57%, #fff 128.95%);
+}
+html body #sidenav-main {
+  background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(57, 24, 10, 0.15);
+  border: 2px solid #f0c9a9;
+}
+html body #iconSidenav {
+  color: #9e675f;
+  opacity: 0.5;
+}
+html body .navbar-brand span {
+  color: #371406;
+}
+html body hr.horizontal {
+  border-color: #d3c2b5;
+  opacity: 0.7;
+}
+html body .nav-link.active {
+  color: #9e675f;
+  background-color: #fdf6ee;
+  border-radius: 0.5rem;
+}
+html body .nav-link .icon {
+  background-color: #ffd8b9;
+  border-radius: 0.5rem;
+}
+html body .nav-link i {
+  color: #371406;
+  opacity: 0.9;
+}
+html body .nav-link-text,
+html body .nav-link {
+  color: #371406;
+  border-radius: 0.5rem;
+}
+html body .text-uppercase.text-xs.font-weight-bolder {
+  color: #9e675f;
+  opacity: 0.85;
+}
+html body .submenu-custom .nav-link {
+  color: #371406;
+  border-radius: 0.4rem;
+}
+html body .submenu-custom i {
+  color: #371406;
 }/*# sourceMappingURL=style.css.map */

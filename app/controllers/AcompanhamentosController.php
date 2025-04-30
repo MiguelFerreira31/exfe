@@ -1,0 +1,293 @@
+<?php
+
+class AcompanhamentosController extends Controller
+{
+
+    private $acompanhamentosModel;
+
+    public function __construct()
+    {
+
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        // Instaciar o modelo acompanhamentos
+        $this->acompanhamentosModel =new Acompanhamento();
+    }
+
+    
+    public function listar()
+    {
+        $dados = array();
+
+        // Carregar os funcionarios
+        $acompanhamentosModel =new Acompanhamento();
+        $acompanhamentos = $acompanhamentosModel->getListarAcompanhamentos();
+        $dados['acompanhamentos'] = $acompanhamentos;
+
+
+        $dados['conteudo'] = 'dash/acompanhamentos/listar';
+
+        if ($_SESSION['id_tipo_usuario'] == '1') {
+
+            $func = new Funcionario();
+            $dadosFunc = $func->buscarfuncionario($_SESSION['userEmail']);
+            $dados['func'] = $dadosFunc;
+
+            $dados['conteudo'] = 'dash/acompanhamento/listar';
+            $this->carregarViews('dash/dashboard', $dados);
+        } else if ($_SESSION['id_tipo_usuario'] == '2') {
+            $func = new Funcionario();
+            $dadosFunc = $func->buscarfuncionario($_SESSION['userEmail']);
+            $dados['func'] = $dadosFunc;
+
+
+            $dados['conteudo'] = 'dash/acompanhamento/listar';
+            $this->carregarViews('dash/dashboard-funcionario', $dados);
+        }
+    }
+
+    public function desativar($id = null)
+    {
+        if ($id === null) {
+            http_response_code(400);
+            echo json_encode(['sucesso' => false, "mensagem" => "ID Invalido."]);
+            exit;
+        }
+
+        $resultado = $this->acompanhamentosModel->desativarAcompanhamento($id);
+
+        header('Content-Type: application/json');
+
+        if ($resultado) {
+            $_SESSION['mensagem'] = "acompanhamento Desativado com Sucesso";
+
+            $_SESSION['tipo-msg'] = "sucesso";
+
+            echo json_encode(['sucesso' => true]);
+        } else {
+            $_SESSION['mensagem'] = "falha ao Desativar ";
+
+            $_SESSION['tipo-msg'] = "erro";
+
+
+            echo json_encode(['sucesso' => false, "mensagem" => 'falha ao desativar acompanhamento']);
+        }
+    }
+
+    public function editar($id = null)
+    {
+        $dados = array();
+        $dados['conteudo'] = 'dash/acompanhamento/editar';
+
+        if ($id === null) {
+            header('Location:http://localhost/exfe/public/acompanhamentos/listar');
+            exit;
+        }
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            // TBL Funcionario
+            $nome_acompanhamento        = filter_input(INPUT_POST, 'nome_acompanhamento', FILTER_SANITIZE_SPECIAL_CHARS);
+            $descricao_acompanhamento   = filter_input(INPUT_POST, 'descricao_acompanhamento', FILTER_SANITIZE_SPECIAL_CHARS);
+            $preco_acompanhamento       = filter_input(INPUT_POST, 'preco_acompanhamento', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+            $id_categoria        = filter_input(INPUT_POST, 'id_categoria', FILTER_SANITIZE_NUMBER_INT);
+            $id_fornecedor       = filter_input(INPUT_POST, 'id_fornecedor', FILTER_SANITIZE_NUMBER_INT);
+            $status_acompanhamento      = filter_input(INPUT_POST, 'status_acompanhamento', FILTER_SANITIZE_SPECIAL_CHARS);
+            if (empty($status_acompanhamento)) {
+                $status_acompanhamento = 'ativo'; // valor padrão caso não venha nada
+            }            
+            $foto_acompanhamento        = filter_input(INPUT_POST, 'foto_acompanhamento', FILTER_SANITIZE_SPECIAL_CHARS);
+            $alt_foto_acompanhamento    = filter_input(INPUT_POST, 'alt_foto_acompanhamento', FILTER_SANITIZE_SPECIAL_CHARS);
+
+
+
+            if ($nome_acompanhamento && $descricao_acompanhamento && $preco_acompanhamento !== false) {
+
+                // 3 Preparar Dados 
+
+                $dadosacompanhamento = array(
+                    'nome_acompanhamento'       => $nome_acompanhamento,
+                    'descricao_acompanhamento'  => $descricao_acompanhamento,
+                    'preco_acompanhamento'      => $preco_acompanhamento,
+                    'id_categoria'       => $id_categoria,
+                    'id_fornecedor'      => $id_fornecedor,
+                    'status_acompanhamento'     => $status_acompanhamento,
+                    'foto_acompanhamento'       => $foto_acompanhamento,
+                    'alt_foto_acompanhamento'   => $alt_foto_acompanhamento
+                );
+
+                // 4 Inserir Funcionario
+
+                $id_acompanhamento = $this->acompanhamentosModel->updateAcompanhamento($id, $dadosacompanhamento);
+
+
+
+                if ($id) {
+                    if (isset($_FILES['foto_acompanhamento']) && $_FILES['foto_acompanhamento']['error'] == 0) {
+                        $arquivo = $this->uploadFoto($_FILES['foto_acompanhamento']);
+                        if ($arquivo) {
+                            //Inserir na galeria
+                            $this->acompanhamentosModel->addFotoaAcompanhamento($id, $arquivo, $nome_acompanhamento);
+                        }
+                    }
+                    // Mensagem de SUCESSO 
+                    $_SESSION['mensagem'] = "acompanhamento Atualizado Com Sucesso";
+                    $_SESSION['tipo-msg'] = "sucesso";
+                    header('Location: http://localhost/exfe/public/acompanhamentos/listar');
+                    exit;
+                } else {
+                    $dados['mensagem'] = "Erro ao Atalizar acompanhamento";
+                    $dados['tipo-msg'] = "erro";
+                }
+            } else {
+                $dados['mensagem'] = "Preencha todos os campos obrigatórios";
+                $dados['tipo-msg'] = "erro";
+            }
+        }
+        $dados = array();
+        $acompanhamentos = $this->acompanhamentosModel->getAcompanhamentoById($id);
+        $dados['acompanhamentos'] = $acompanhamentos;
+
+          // Buscar Fornecedor
+          $fornecedor = new Fornecedor();
+          $dados['fornecedor'] = $fornecedor->getListarFornecedor();
+
+       
+        if (isset($_SESSION['id_tipo_usuario']) && $_SESSION['id_tipo_usuario'] == '1') {
+            $acompanhamento =new Acompanhamento();
+        
+            if (isset($_SESSION['nomeacompanhamento'])) {
+                $dadosacompanhamento = $acompanhamento->buscarAcompanhamento($_SESSION['nomeacompanhamento']);
+                $dados['acompanhamento'] = $dadosacompanhamento;
+            } else {
+                $dados['acompanhamento'] = [];
+            }
+        
+            $dados['conteudo'] = 'dash/acompanhamento/editar';
+            $this->carregarViews('dash/dashboard', $dados);
+        
+        } else if (isset($_SESSION['id_tipo_usuario']) && $_SESSION['id_tipo_usuario'] == '2') {
+            $dados['conteudo'] = 'dash/acompanhamento/listar';
+            $this->carregarViews('dash/dashboard-funcionario', $dados);
+        }
+        
+    }
+
+    public function adicionar()
+    {
+        $dados = array();
+    
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
+            $nome_acompanhamento      = filter_input(INPUT_POST, 'nome_acompanhamento', FILTER_SANITIZE_SPECIAL_CHARS);
+            $descricao_acompanhamento = filter_input(INPUT_POST, 'descricao_acompanhamento', FILTER_SANITIZE_SPECIAL_CHARS);
+            $id_categoria      = filter_input(INPUT_POST, 'id_categoria', FILTER_SANITIZE_NUMBER_INT);
+            $id_fornecedor     = filter_input(INPUT_POST, 'id_fornecedor', FILTER_SANITIZE_NUMBER_INT);
+            $status_acompanhamento    = filter_input(INPUT_POST, 'status_acompanhamento', FILTER_SANITIZE_SPECIAL_CHARS);
+
+            $alt_foto_acompanhamento = filter_input(INPUT_POST, 'alt_foto_acompanhamento', FILTER_SANITIZE_SPECIAL_CHARS);
+            if ($alt_foto_acompanhamento === null || $alt_foto_acompanhamento === '') {
+                $alt_foto_acompanhamento = $nome_acompanhamento; // ou qualquer valor padrão
+            }
+                
+            // Converter valor monetário corretamente
+            $preco_raw = str_replace(['R$', '.', ','], ['', '', '.'], $_POST['preco_acompanhamento']);
+            $preco_acompanhamento = floatval($preco_raw);
+    
+            $foto_acompanhamento = '';
+            if (isset($_FILES['foto_acompanhamento']) && $_FILES['foto_acompanhamento']['error'] == 0) {
+                $foto_acompanhamento = $_FILES['foto_acompanhamento']['name']; // ou usar função de upload
+            }
+    
+            if ($nome_acompanhamento && $preco_acompanhamento !== false && $id_categoria && $id_fornecedor) {
+    
+                $dadosacompanhamento = array(
+                    'nome_acompanhamento'      => $nome_acompanhamento,
+                    'descricao_acompanhamento' => $descricao_acompanhamento,
+                    'preco_acompanhamento'     => $preco_acompanhamento,
+                    'id_categoria'      => $id_categoria,
+                    'id_fornecedor'     => $id_fornecedor,
+                    'status_acompanhamento'    => $status_acompanhamento,
+                    'foto_acompanhamento'      => $foto_acompanhamento,
+                    'alt_foto_acompanhamento'  => $alt_foto_acompanhamento
+                );
+    
+                $id_acompanhamento = $this->acompanhamentosModel->addAcompanhamento($dadosacompanhamento);
+    
+                if ($id_acompanhamento) {
+                    if (!empty($foto_acompanhamento)) {
+                        $arquivo = $this->uploadFoto($_FILES['foto_acompanhamento']);
+                        if ($arquivo) {
+                            $this->acompanhamentosModel->addFotoacompanhamento($id_acompanhamento, $arquivo);
+                        }
+                    }
+    
+                    $_SESSION['mensagem'] = "acompanhamento cadastrado com sucesso";
+                    $_SESSION['tipo-msg'] = "sucesso";
+                    header('Location: http://localhost/exfe/public/acompanhamentos/listar');
+                    exit;
+                } else {
+                    $dados['mensagem'] = "Erro ao adicionar acompanhamento";
+                    $dados['tipo-msg'] = "erro";
+                }
+            } else {
+                $dados['mensagem'] = "Preencha todos os campos obrigatórios";
+                $dados['tipo-msg'] = "erro";
+            }
+        }
+    
+        $categoria = new Categoria();
+        $fornecedor = new Fornecedor();
+    
+        $dados['categorias'] = $categoria->getListarCategorias();
+        $dados['fornecedores'] = $fornecedor->getListarFornecedor();
+        $dados['conteudo'] = 'dash/acompanhamento/adicionar';
+    
+        $this->carregarViews('dash/dashboard', $dados);
+    }
+    
+
+    public function desativados()
+    {
+        $dados = array();
+
+
+        // Carregar os clientes
+        $acompanhamentosModel =new Acompanhamento();
+        $acompanhamentos = $acompanhamentosModel->getListarAcompanhamentosDesativados();
+        $dados['acompanhamentos'] = $acompanhamentos;
+
+        $dados['conteudo'] = 'dash/acompanhamento/desativados';
+        $this->carregarViews('dash/dashboard', $dados);
+    }
+
+
+    private function uploadFoto($file)
+    {
+
+        $dir = '../public/uploads/acompanhamento/';
+
+        // Verifica se o diretório existe, caso contrário cria o diretório
+        if (!file_exists($dir)) {
+            mkdir($dir, 0755, true);
+        }
+
+        // Obter a extensão do arquivo
+        $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+
+        // Gera um nome único para o arquivo
+        $nome_arquivo = uniqid() . '.' . $ext;
+
+        // Caminho completo para salvar o arquivo
+        $caminho_arquivo = $dir . $nome_arquivo;
+
+        // Move o arquivo para o diretório
+        if (move_uploaded_file($file['tmp_name'], $caminho_arquivo)) {
+            return 'acompanhamento/' . $nome_arquivo; // Caminho relativo
+        }
+
+        // Retorna falso caso o upload falhe
+        return false;
+    }
+}

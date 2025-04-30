@@ -3,12 +3,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 // #region config
-/* Faz o dropdown ocupar largura total e parecer parte do menu lateral */
-.dropdown-menu.show-on-click {
-  position: static;
-  float: none;
-}
-
 
 
 // Reset
@@ -175,7 +169,7 @@ html {
   font-family: $font;
 
   body {
-
+    // #region dark e light 
 
     &.light-mode {
 
@@ -275,7 +269,7 @@ html {
 
       #conteudo {
         display: none;
-        
+
       }
 
 
@@ -518,7 +512,7 @@ html {
 
       #conteudo {
         display: none;
-        
+
       }
 
 
@@ -679,6 +673,9 @@ html {
 
     }
 
+    // #endregion 
+
+    // #region header 
 
     header {
       width: 100%;
@@ -1058,7 +1055,6 @@ html {
       }
     }
 
-
     .modal {
       h1 {
         font-weight: bold;
@@ -1415,6 +1411,8 @@ html {
         }
       }
     }
+
+    // #endregion 
 
     main {
 
@@ -3897,11 +3895,7 @@ html {
             }
           }
 
-          .message-container {
-            margin: 20px;
-            padding: 10px;
-            border-radius: 5px;
-          }
+
 
           .user-message {
             background: #d3b8ae;
@@ -3918,6 +3912,7 @@ html {
 
           .bot-message {
             background: #fff8f1;
+
             color: #5e3c2d;
             box-shadow: 0 8px 20px 0 rgba(163, 106, 79, 0.6);
 
@@ -3928,44 +3923,109 @@ html {
               color: white;
             }
           }
+
+
+          .bot-message {
+            background: #fff8f1;
+            color: #5e3c2d;
+            box-shadow: 0 8px 20px 0 rgba(163, 106, 79, 0.6);
+            padding: 10px 20px;
+            /* Ajuste do padding */
+            border-radius: 8px;
+            margin-bottom: 15px;
+            max-width: 80%;
+            /* Limita a largura da mensagem */
+            word-wrap: break-word;
+            /* Garante que o texto longo não quebre o layout */
+          }
+
+          .message-container {
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            /* As mensagens vão se ajustar no layout */
+          }
+
+          .message-container strong {
+            display: inline-block;
+            font-weight: bold;
+          }
+
+          .message-container i {
+            margin-right: 5px;
+          }
+
+          .loader {
+            display: flex;
+            justify-content: space-between;
+            width: 50px;
+          }
+
+          .loader span {
+            width: 8px;
+            height: 8px;
+            background-color: #a36a4f;
+            border-radius: 50%;
+            animation: loaderAnimation 1s infinite ease-in-out;
+            margin: 2px;
+          }
+
+          @keyframes loaderAnimation {
+
+            0%,
+            100% {
+              transform: scale(1);
+            }
+
+            50% {
+              transform: scale(1.5);
+            }
+          }
+
+
+
+
+
         }
       }
 
       .loader {
-        display: inline-block;
-        width: 20px;
-        height: 10px;
-        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
       }
 
       .loader span {
-        display: inline-block;
-        width: 4px;
-        height: 4px;
-        margin: 0 1px;
-        background: #371406;
+        width: 10px;
+        height: 10px;
         border-radius: 50%;
-        animation: blink2 1.2s infinite ease-in-out both;
+        background-color: #a36a4f;
+        animation: bounce 1.5s infinite ease-in-out;
+      }
+
+      .loader span:nth-child(1) {
+        animation-delay: 0s;
       }
 
       .loader span:nth-child(2) {
-        animation-delay: 0.2s;
+        animation-delay: 0.3s;
       }
 
       .loader span:nth-child(3) {
-        animation-delay: 0.4s;
+        animation-delay: 0.6s;
       }
 
-      @keyframes blink2 {
+      @keyframes bounce {
 
         0%,
-        80%,
         100% {
-          opacity: 0;
+          transform: scale(1);
         }
 
-        40% {
-          opacity: 1;
+        50% {
+          transform: scale(1.5);
         }
       }
 
@@ -3977,12 +4037,9 @@ html {
         right: 30px;
         width: 60px;
         height: 60px;
-        background: conic-gradient($colorTertiary 0%,
-            #e0e0e0 0%);
+        background: conic-gradient($colorTertiary 0%, #e0e0e0 0%);
         border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @include flex-center();
         font-size: 30px;
         color: #0a0a23;
         cursor: pointer;
@@ -4006,5 +4063,93 @@ html {
         }
       }
     }
+
+
+
+    /* #region dashboard  */
+    /* Faz o dropdown ocupar largura total e parecer parte do menu lateral */
+    .dropdown-menu.show-on-click {
+      position: static;
+      float: none;
+    }
+
+    /* Plano de fundo principal */
+    .bg-custom-gradient {
+      background: linear-gradient(to top, #f2e0db 1.57%, #fff 128.95%);
+    }
+
+    /* Estilização do sidenav */
+    #sidenav-main {
+      background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
+      border-radius: 1rem;
+      box-shadow: 0 4px 12px rgba(57, 24, 10, 0.15);
+      border: 2px solid #f0c9a9;
+    }
+
+    /* Ícone para fechar o menu */
+    #iconSidenav {
+      color: #9e675f;
+      opacity: 0.5;
+    }
+
+    /* Marca do topo */
+    .navbar-brand span {
+      color: #371406;
+    }
+
+    /* Linha divisória */
+    hr.horizontal {
+      border-color: #d3c2b5;
+      opacity: 0.7;
+    }
+
+    /* Links ativos */
+    .nav-link.active {
+      color: #9e675f;
+      background-color: #fdf6ee;
+      border-radius: 0.5rem;
+    }
+
+    /* Estilo dos ícones de cada item */
+    .nav-link .icon {
+      background-color: #ffd8b9;
+      border-radius: 0.5rem;
+    }
+
+    .nav-link i {
+      color: #371406;
+      opacity: 0.9;
+    }
+
+    /* Estilo geral dos links */
+    .nav-link-text,
+    .nav-link {
+      color: #371406;
+      border-radius: 0.5rem;
+    }
+
+    /* Título das seções */
+    .text-uppercase.text-xs.font-weight-bolder {
+      color: #9e675f;
+      opacity: 0.85;
+    }
+
+    /* Submenus */
+    .submenu-custom .nav-link {
+      color: #371406;
+      border-radius: 0.4rem;
+    }
+
+    .submenu-custom i {
+      color: #371406;
+    }
+
+    /*  #endregion  */
+
+
+
+
+
+
   }
 }

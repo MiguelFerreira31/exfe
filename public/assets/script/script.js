@@ -76,7 +76,6 @@ document.addEventListener("DOMContentLoaded", () => {
     container.classList.remove("right-panel-active")
   );
   //#endregion
-
   //#region 💬 Chatboot
   const chatIcon = document.getElementById('chat-icon');
   const chatContainer = document.getElementById('chat-container');
@@ -109,20 +108,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const msg = userInput.value.trim().toLowerCase();
     if (!msg) return;
 
+    // Envia a mensagem do usuário
     addMessage('Você', msg);
     userInput.value = '';
 
-    const loader = document.createElement('div');
-    loader.className = 'message-container bot-message';
-    loader.id = 'loader';
-    loader.innerHTML = `
-      <strong><i class="bx bxs-bot"></i> Atendimento:</strong> 
-      <div class="loader"><span></span><span></span><span></span></div>`;
-    chatMessages.appendChild(loader);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-
+    // Resposta do bot após um pequeno intervalo
     setTimeout(() => {
-      loader.remove();
       const response = botMessages[msg] || "Desculpe, não entendi 🥲. Digite 'ajuda' para ver os comandos disponíveis.";
       addMessage('Atendimento', response);
     }, 500);
@@ -231,8 +222,8 @@ setInterval(switchMode, 360000);
 themeToggle.addEventListener('change', toggleThemeFromCheckbox);
 
 
-document.addEventListener("DOMContentLoaded", function() {
-  setTimeout(function() {
+document.addEventListener("DOMContentLoaded", function () {
+  setTimeout(function () {
     document.getElementById("loader").style.display = "none";
     document.getElementById("conteudo").style.display = "block";
   }, 1000);

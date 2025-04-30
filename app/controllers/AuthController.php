@@ -74,8 +74,11 @@ class AuthController extends Controller
         exit;
     }
 
-    // 2- Método para cadastrar cliente 
+ 
 
+    
+
+    // 2- Método para cadastrar cliente 
 
     public function cadastrar()
     {
@@ -99,8 +102,26 @@ class AuthController extends Controller
                 // Inserir Cliente
                 $id_cliente = $this->clienteModel->cadastrarCliente($dadosCliente);
     
-             
-                header("Location: " );
+                // Verifica se cadastrou corretamente
+                if ($id_cliente) {
+                    // Buscar cliente cadastrado
+                    $usuario = $this->clienteModel->buscarCliente($email_cliente);
+    
+                    if ($usuario && $usuario['senha_cliente'] === $senha_cliente) {
+                        $_SESSION['userId']           = $usuario['id_cliente'];
+                        $_SESSION['userTipo']         = 'cliente';
+                        $_SESSION['userNome']         = $usuario['nome_cliente'];
+                        $_SESSION['userEmail']        = $usuario['email_cliente'];
+                        $_SESSION['id_tipo_usuario']  = $usuario['id_tipo_usuario'];
+    
+                        header('Location: ' . BASE_URL . 'dashboard');
+                        exit;
+                    }
+                }
+    
+         
+                $_SESSION['login-erro'] = 'Erro ao cadastrar ou logar';
+                header('Location: ' . BASE_URL . '?login-erro=1');
                 exit;
     
             } else {
@@ -110,7 +131,6 @@ class AuthController extends Controller
         }
     }
     
-
 
     public function sair()
     {

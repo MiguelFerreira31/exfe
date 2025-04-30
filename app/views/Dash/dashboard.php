@@ -42,7 +42,7 @@ $dados['totalCliente'] = $totalCliente;
 ?>
 
 <body class="g-sidenav-show bg-gray-100">
-  <div class="min-height-300 position-absolute w-100" style="background-color: #371406;"></div>
+  <div class="min-height-300 position-absolute w-100" style="background: linear-gradient(to top, #f2e0db 1.57%, #fff 128.95%);"></div>
 
   <aside
     class="sidenav navbar navbar-vertical navbar-expand-xs border-0 my-3 fixed-start ms-4"
@@ -228,13 +228,13 @@ $dados['totalCliente'] = $totalCliente;
 
           <ul class="nav flex-column submenu-custom" style="display: none; padding-left: 2rem;">
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost/exfe/public/produtos/listar/">
-                <i class="bi bi-box-seam me-2" style="color: #371406;"></i> Ativos
+              <a class="nav-link" href="http://localhost/exfe/public/cafes/listar/">
+                <i class="bi bi-box-seam me-2" style="color: #371406;"></i> Bebidas
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost/exfe/public/produtos/desativados">
-                <i class="bi bi-boxes me-2" style="color: #371406;"></i> Desativados
+              <a class="nav-link" href="http://localhost/exfe/public/acompanhamentos/listar">
+                <i class="bi bi-boxes me-2" style="color: #371406;"></i> Acompanhamentos
               </a>
             </li>
           </ul>

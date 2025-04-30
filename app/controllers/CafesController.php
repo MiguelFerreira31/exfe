@@ -1,6 +1,6 @@
 <?php
 
-class ProdutosController extends Controller
+class CafesController extends Controller
 {
 
     private $produtosModel;
