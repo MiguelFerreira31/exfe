@@ -1,222 +1,115 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- BOX ICONS  -->
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  
-  <!-- Swiper CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Preloader</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
 
-  <link rel="stylesheet" href="http://localhost/exfe/public/assets/css/style.css">
+    #loader {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      background: #fff;
+    }
 
-  <title>Document</title>
+    .loader {
+      width: 35px;
+      height: 80px;
+      position: relative;
+    }
+
+    .loader:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 3px 5px;
+      border-top: 1px solid #bbb6aa;
+      border-bottom: 4px solid #bbb6aa;
+      background: linear-gradient(#612329 0 0) bottom no-repeat content-box, #e4e0d7;
+      mix-blend-mode: darken;
+      animation: l1 1.5s infinite linear;
+    }
+
+    .loader:before {
+      content: "";
+      position: absolute;
+      inset: -18px calc(50% - 2px) 8px;
+      background: #eb6b3e;
+      transform-origin: bottom;
+      transform: rotate(8deg);
+    }
+
+    @keyframes l1 {
+      0% {
+        background-size: 100% 100%;
+      }
+      100% {
+        background-size: 100% 5%;
+      }
+    }
+
+    .loading-text {
+      font-size: 1.2rem;
+      color: #5e3c2d;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .dot {
+      display: inline-block;
+      opacity: 0;
+      font-size: 1.5rem;
+      animation: blink4 1.2s infinite ease-in-out both;
+    }
+
+    .dot:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .dot:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes blink4 {
+      0%, 80%, 100% {
+        opacity: 0;
+      }
+      40% {
+        opacity: 1;
+      }
+    }
+
+    #conteudo {
+      display: none;
+      padding: 2rem;
+      text-align: center;
+    }
+  </style>
 </head>
-
 <body>
 
-<main>
-
   
-  <section id="itemEspecial">
-    <div class="title">
-      <h2>Nossos itens <span>especiais</span></h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta dicta quod veniam inventore nesciunt
-        accusantium quam facilis quibusdam incidunt voluptatibus voluptatem odit obcaecati reiciendis, consequuntur
-        nisi aliquam. Quaerat, et aut.</p>
-    </div>
-  
-    <!-- Swiper -->
-    <div class="swiper-container mySwiper">
-      <div class="swiper-wrapper">
 
-        <div class="swiper-slide">
-          <div class="carouselItems">
-            <div class="img">
-              <img src="assets/img/caramelo_macchiato.png" alt="">
-            </div>
-            <ul>
-              <li>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-              </li>
-            </ul>
-            <h3>Caramelo Macchiato</h3>
-            <h4><span>R$2,00</span> R$10,00</h4>
-            <div class="buttons">
-              <button>
-                Add Carrinho
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                  <path fill="#fff"
-                    d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      <div class="swiper-slide">
-          <div class="carouselItems">
-            <div class="img">
-              <img src="assets/img/caramelo_macchiato.png" alt="">
-            </div>
-            <ul>
-              <li>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-              </li>
-            </ul>
-            <h3>Caramelo Macchiato</h3>
-            <h4><span>R$2,00</span> R$10,00</h4>
-            <div class="buttons">
-              <button>
-                Add Carrinho
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                  <path fill="#fff"
-                    d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="carouselItems">
-            <div class="img">
-              <img src="assets/img/caramelo_macchiato.png" alt="">
-            </div>
-            <ul>
-              <li>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-              </li>
-            </ul>
-            <h3>Caramelo Macchiato</h3>
-            <h4><span>R$2,00</span> R$10,00</h4>
-            <div class="buttons">
-              <button>
-                Add Carrinho
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                  <path fill="#fff"
-                    d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="carouselItems">
-            <div class="img">
-              <img src="assets/img/caramelo_macchiato.png" alt="">
-            </div>
-            <ul>
-              <li>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-              </li>
-            </ul>
-            <h3>Caramelo Macchiato</h3>
-            <h4><span>R$2,00</span> R$10,00</h4>
-            <div class="buttons">
-              <button>
-                Add Carrinho
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                  <path fill="#fff"
-                    d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="carouselItems">
-            <div class="img">
-              <img src="assets/img/caramelo_macchiato.png" alt="">
-            </div>
-            <ul>
-              <li>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-              </li>
-            </ul>
-            <h3>Caramelo Macchiato</h3>
-            <h4><span>R$2,00</span> R$10,00</h4>
-            <div class="buttons">
-              <button>
-                Add Carrinho
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                  <path fill="#fff"
-                    d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
+  <div id="conteudo">
+    <h1>Conteúdo carregado!</h1>
+    <p>Este é o conteúdo principal da página.</p>
+  </div>
 
-      </div>
-
- 
-    </div>
-  
-    <div class="itemsEspecialPosition">
-      <img class="grao" src="assets/img/graos_cafe.webp" alt="">
-      <img class="cup" src="assets/img/cup-img5.webp" alt="">
-    </div>
-  </section>
-
-</main>
-
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-<!-- Seu script -->
-<script>
-  const swiper = new Swiper(".mySwiper", {
-    slidesPerView: 4,
-    spaceBetween: 30,
-    loop: true,
-    autoplay: {
-      delay: 2000,
-      disableOnInteraction: false,
-    },
-    breakpoints: {
-      1024: {
-        slidesPerView: 4,
-      },
-      768: {
-        slidesPerView: 2,
-      },
-      320: {
-        slidesPerView: 1,
-      }
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    }
-  });
-</script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      setTimeout(function () {
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("conteudo").style.display = "block";
+      }, 1000); // simula carregamento de 1s
+    });
+  </script>
 
 </body>
-
 </html>

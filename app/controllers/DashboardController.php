@@ -16,6 +16,7 @@ class DashboardController extends Controller
             $dadosCliente = $cliente->buscarCliente($_SESSION['userEmail']);
             $dados['titulo']        = 'Perfil';
             $dados['cliente'] = $dadosCliente;
+            
             $this->carregarViews('dash/dashboard-cliente', $dados);
         } else if ($_SESSION['id_tipo_usuario'] == '2') {
             $func = new Funcionario();

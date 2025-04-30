@@ -229,3 +229,11 @@ setInterval(switchMode, 360000);
 
 // Adiciona o evento de mudança para alternar o tema com o checkbox
 themeToggle.addEventListener('change', toggleThemeFromCheckbox);
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  setTimeout(function() {
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("conteudo").style.display = "block";
+  }, 1000);
+});

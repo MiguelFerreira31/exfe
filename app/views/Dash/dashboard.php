@@ -35,7 +35,7 @@
 </head>
 
 
-<?php 
+<?php
 $totalClienteModel = new Cliente();
 $totalCliente = $totalClienteModel->getContarCliente();
 $dados['totalCliente'] = $totalCliente;

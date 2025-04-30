@@ -26,13 +26,6 @@ class Newsletter extends Model
         return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
 
-    public function inscreverNewsletter($email)
-    {
-        $query = "INSERT INTO tbl_newsletter (email, status_newsletter, data_inscricao) VALUES (?, 'ativo', NOW())";
-        $stmt = $this->db->prepare($query);
-        $stmt->execute([$email]);
-    }
-
     public function emailExistente($email)
     {
         $query = "SELECT * FROM tbl_newsletter WHERE email = ?";

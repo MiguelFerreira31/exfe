@@ -19,35 +19,60 @@
 
 <body class="light-mode">
 
+  <div id="loader">
+    <div class="loader"></div>
+    <div class="loading-text">
+      Carregando
+      <span class="dot">.</span>
+      <span class="dot">.</span>
+      <span class="dot">.</span>
+    </div>
+  </div>
 
-  <?php require_once('template/header.php') ?>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+  setTimeout(function() {
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("conteudo").style.display = "block";
+  }, 1000);
+});
+  </script>
+
+  <div id="conteudo">
 
 
-  <main>
 
-    <?php require_once('template/banner.php') ?>
+    <?php require_once('template/header.php') ?>
 
-    <?php require_once('template/banner-title.php') ?>
 
-    <?php require_once('template/sobre.php') ?>
+    <main>
 
-    <?php require_once('template/produtosEmDestaque.php') ?>
+      <?php require_once('template/banner.php') ?>
 
-    <?php require_once('template/graos.php') ?>
+      <?php require_once('template/banner-title.php') ?>
 
-    <?php require_once('template/itemEspecial.php') ?>
+      <?php require_once('template/sobre.php') ?>
 
-    <?php require_once('template/avaliacao.php') ?>
+      <?php require_once('template/produtosEmDestaque.php') ?>
 
-    <?php require_once('template/qualidade.php') ?>
+      <?php require_once('template/graos.php') ?>
 
-    <?php require_once('template/blog.php') ?>
+      <?php require_once('template/itemEspecial.php') ?>
 
-    <?php require_once('template/desconto.php') ?>
+      <?php require_once('template/avaliacao.php') ?>
 
-  </main>
+      <?php require_once('template/qualidade.php') ?>
 
-  <?php require_once('template/footer.php') ?>
+      <?php require_once('template/blog.php') ?>
+
+      <?php require_once('template/desconto.php') ?>
+
+    </main>
+
+    <?php require_once('template/footer.php') ?>
+
+  </div>
+
   <script type="text/javascript" src="//code.jquery.com/jquery-3.7.1.min.js"></script>
   <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.4.1.min.js"></script>
   <!-- Swiper JS -->
@@ -58,7 +83,7 @@
 
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script src="assets/script/script.js"></script>
+  <script src="http://localhost/exfe/public/assets/script/script.js"></script>
 </body>
 
 </html>
