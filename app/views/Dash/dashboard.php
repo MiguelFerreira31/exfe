@@ -41,8 +41,8 @@ $totalCliente = $totalClienteModel->getContarCliente();
 $dados['totalCliente'] = $totalCliente;
 ?>
 
-<body class="g-sidenav-show bg-gray-100">
-  <div class="min-height-300 position-absolute w-100" style="background: linear-gradient(to top, #f2e0db 1.57%, #fff 128.95%);"></div>
+<body class="g-sidenav-show light-mode">
+  <div class="bg-dash min-height-300 position-absolute w-100" ></div>
 
   <aside
     class="sidenav navbar navbar-vertical navbar-expand-xs border-0 my-3 fixed-start ms-4"
@@ -73,8 +73,8 @@ $dados['totalCliente'] = $totalCliente;
       <ul class="navbar-nav">
 
         <li class="nav-item">
-          <a class="nav-link active" href="http://localhost/exfe/public/dashboard"
-            style="color: #9e675f; background-color: #fdf6ee; border-radius: 0.5rem;">
+          <a class="nav-link " href="http://localhost/exfe/public/dashboard"
+            style=" border-radius: 0.5rem;">
             <div
               class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
               style="background-color: #ffd8b9; border-radius: 0.5rem;">
@@ -86,11 +86,11 @@ $dados['totalCliente'] = $totalCliente;
 
         <li class="nav-item">
           <a class="nav-link" href="../Dash/tables.html"
-            style="color: #371406; border-radius: 0.5rem;">
+            style=" border-radius: 0.5rem;">
             <div
               class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
               style="background-color: #ffd8b9; border-radius: 0.5rem;">
-              <i class="ni ni-calendar-grid-58 text-sm" style="color: #371406; opacity: 0.9;"></i>
+              <i class="ni ni-calendar-grid-58 text-sm" style=" opacity: 0.9;"></i>
             </div>
             <span class="nav-link-text ms-1">Tabelas</span>
           </a>
@@ -102,11 +102,11 @@ $dados['totalCliente'] = $totalCliente;
 
         <li class="nav-item dropdown-menu-custom">
           <a href="#" class="nav-link dropdown-toggle-custom d-flex align-items-center justify-content-between"
-            style="color: #371406; border-radius: 0.5rem;">
+            style=" border-radius: 0.5rem;">
             <div class="d-flex align-items-center">
               <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
                 style="background-color: #ffd8b9; border-radius: 0.5rem;">
-                <i class="ni ni-credit-card text-sm" style="color: #371406; opacity: 0.9;"></i>
+                <i class="ni ni-credit-card text-sm" style="opacity: 0.9;"></i>
 
               </div>
               <span>Contatos</span>
@@ -117,7 +117,7 @@ $dados['totalCliente'] = $totalCliente;
           <ul class="nav flex-column submenu-custom" style="display: none; padding-left: 2rem;">
             <li class="nav-item">
               <a class="nav-link" href="http://localhost/exfe/public/contato/listar" style="color: #371406;">
-                <i class="bi bi-person-check me-2" style="color: #371406;"></i> Ativos
+                <i class="bi bi-person-check me-2" ></i> Ativos
               </a>
             </li>
             <li class="nav-item">

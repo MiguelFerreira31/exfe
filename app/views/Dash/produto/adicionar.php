@@ -62,7 +62,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
           </div>
 
           <div class="row g-3">
-            <!-- Data de Nascimento -->
+    
             <div class="col-12 col-md-3">
               <label for="valor_produto" class="form-label fw-bold" style="color: #9a5c1f;">Valor Produto:</label>
               <input type="text" class="form-control dinheiro" id="preco_produto" name="preco_produto" value="<?php echo isset($produtos['preco_produto']) ? 'R$ ' . number_format($produtos['preco_produto'], 2, ',', '.') : ''; ?>" required>

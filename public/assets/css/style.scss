@@ -171,6 +171,9 @@ html {
   body {
     // #region dark e light 
 
+
+
+
     &.light-mode {
 
       h2 {
@@ -180,6 +183,101 @@ html {
       p {
         color: #b3b3b3;
       }
+
+
+
+
+
+
+      /* #region dashboard  */
+      /* Faz o dropdown ocupar largura total e parecer parte do menu lateral */
+      .dropdown-menu.show-on-click {
+        position: static;
+        float: none;
+      }
+
+
+      /* Estilização do sidenav */
+
+      .bg-dash {
+        background: linear-gradient(to top, #f2e0db 1.57%, #fff 128.95%);
+      }
+
+      #sidenav-main {
+        background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
+        border-radius: 1rem;
+        box-shadow: 0 4px 12px rgba(57, 24, 10, 0.15);
+        border: 2px solid #f0c9a9;
+      }
+
+
+      /* Ícone para fechar o menu */
+      #iconSidenav {
+        color: #9e675f;
+        opacity: 0.5;
+      }
+
+      /* Marca do topo */
+      .navbar-brand span {
+        color: #371406;
+      }
+
+      /* Linha divisória */
+      hr.horizontal {
+        border-color: #d3c2b5;
+        opacity: 0.7;
+      }
+
+      /* Links ativos */
+      .nav-link.active {
+        color: #9e675f;
+        background-color: #fdf6ee;
+        border-radius: 0.5rem;
+      }
+
+      /* Estilo dos ícones de cada item */
+      .nav-link .icon {
+        background-color: #ffd8b9;
+        border-radius: 0.5rem;
+      }
+
+      .nav-link i {
+        color: #371406;
+        opacity: 0.9;
+      }
+
+      /* Estilo geral dos links */
+      .nav-link-text,
+      .nav-link {
+        color: #371406;
+        border-radius: 0.5rem;
+      }
+
+      /* Título das seções */
+      .text-uppercase.text-xs.font-weight-bolder {
+        color: #9e675f;
+        opacity: 0.85;
+      }
+
+      /* Submenus */
+      .submenu-custom .nav-link {
+        color: #371406;
+        border-radius: 0.4rem;
+      }
+
+      .submenu-custom i {
+        color: #371406;
+      }
+
+      /*  #endregion  */
+
+
+
+
+
+
+
+
 
       background-image: url("http://localhost/exfe/public/assets/img/hero-bg.png");
       background-attachment: fixed;
@@ -427,6 +525,100 @@ html {
       background-attachment: fixed;
       background-position: center;
 
+   
+
+
+
+
+      /* #region dashboard  */
+      /* Faz o dropdown ocupar largura total e parecer parte do menu lateral */
+      .dropdown-menu.show-on-click {
+        position: static;
+        float: none;
+      }
+
+
+      /* Estilização do sidenav */
+
+      .bg-dash {
+        background: linear-gradient(to bottom, #402920 1.57%, #774a38 128.95%);
+      }
+
+      #sidenav-main {
+        background: linear-gradient(to bottom, #402920 1.57%, #774a38 128.95%);
+        border-radius: 1rem;
+        box-shadow: 0 4px 12px rgba(57, 24, 10, 0.15);
+        border: 2px solid #f0c9a9;
+        color: #f0c9a9;
+      }
+
+  
+
+      /* Ícone para fechar o menu */
+      #iconSidenav {
+        color: #9e675f;
+        opacity: 0.5;
+      }
+
+      /* Marca do topo */
+      .navbar-brand span {
+        color: #f0c9a9;
+      }
+
+      /* Linha divisória */
+      hr.horizontal {
+        border-color: #d3c2b5;
+        opacity: 0.7;
+      }
+
+      /* Links ativos */
+      .nav-link.active {
+        color: #9e675f;
+        background-color: #fdf6ee;
+        border-radius: 0.5rem;
+      }
+
+      /* Estilo dos ícones de cada item */
+      .nav-link .icon {
+        background-color: #ffd8b9;
+        border-radius: 0.5rem;
+        color: #3e2518;
+      }
+
+      .nav-link  {
+        color: #f0c9a9 !important;
+        opacity: 0.9;
+      }
+
+      /* Estilo geral dos links */
+      .nav-link-text,
+      .nav-link {
+        color: #f0c9a9;
+        border-radius: 0.5rem;
+      }
+
+      /* Título das seções */
+      .text-uppercase.text-xs.font-weight-bolder {
+        color: #9e675f;
+        opacity: 0.85;
+      }
+
+      /* Submenus */
+      .submenu-custom .nav-link {
+        color: #f0c9a9;
+        border-radius: 0.4rem;
+      }
+
+      .submenu-custom i {
+        color: #9e675f !important;
+      }
+
+      /*  #endregion  */
+
+
+
+
+
 
       // #region preloader 
 
@@ -435,7 +627,6 @@ html {
         height: 100vh;
         width: 100%;
         flex-direction: column;
-        background: linear-gradient(to left, #402920 1.57%, #774a38 128.95%);
       }
 
       .loader {
@@ -4063,89 +4254,6 @@ html {
         }
       }
     }
-
-
-
-    /* #region dashboard  */
-    /* Faz o dropdown ocupar largura total e parecer parte do menu lateral */
-    .dropdown-menu.show-on-click {
-      position: static;
-      float: none;
-    }
-
-    /* Plano de fundo principal */
-    .bg-custom-gradient {
-      background: linear-gradient(to top, #f2e0db 1.57%, #fff 128.95%);
-    }
-
-    /* Estilização do sidenav */
-    #sidenav-main {
-      background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
-      border-radius: 1rem;
-      box-shadow: 0 4px 12px rgba(57, 24, 10, 0.15);
-      border: 2px solid #f0c9a9;
-    }
-
-    /* Ícone para fechar o menu */
-    #iconSidenav {
-      color: #9e675f;
-      opacity: 0.5;
-    }
-
-    /* Marca do topo */
-    .navbar-brand span {
-      color: #371406;
-    }
-
-    /* Linha divisória */
-    hr.horizontal {
-      border-color: #d3c2b5;
-      opacity: 0.7;
-    }
-
-    /* Links ativos */
-    .nav-link.active {
-      color: #9e675f;
-      background-color: #fdf6ee;
-      border-radius: 0.5rem;
-    }
-
-    /* Estilo dos ícones de cada item */
-    .nav-link .icon {
-      background-color: #ffd8b9;
-      border-radius: 0.5rem;
-    }
-
-    .nav-link i {
-      color: #371406;
-      opacity: 0.9;
-    }
-
-    /* Estilo geral dos links */
-    .nav-link-text,
-    .nav-link {
-      color: #371406;
-      border-radius: 0.5rem;
-    }
-
-    /* Título das seções */
-    .text-uppercase.text-xs.font-weight-bolder {
-      color: #9e675f;
-      opacity: 0.85;
-    }
-
-    /* Submenus */
-    .submenu-custom .nav-link {
-      color: #371406;
-      border-radius: 0.4rem;
-    }
-
-    .submenu-custom i {
-      color: #371406;
-    }
-
-    /*  #endregion  */
-
 
 
 
