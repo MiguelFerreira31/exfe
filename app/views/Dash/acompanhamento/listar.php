@@ -21,11 +21,13 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 ?>
 
 <div class="container my-5">
-    <h2 class="text-center fw-bold py-3" style="background:#5e3c2d; color: white; border-radius: 12px;">Acompanhamentos Cadastrados</h2>
-    <a href="http://localhost/exfe/public/acompanhamentos/desativados"><button>Ver Inativos</button></a>
+    <h2 class="text-center fw-bold py-3" style="background: linear-gradient(to bottom, #402920 1.57%, #774a38 128.95%); color: white; border-radius: 12px;">Acompanhamentos Cadastrados</h2>
+    <a href="http://localhost/exfe/public/acompanhamentos/desativados">
+        <button class="btn btn-outline-dark" style="background: #ffd8b9; color: #9a5c1f; font-weight: bold; border-radius: 12px;">Ver Inativos</button>
+    </a>
     <div class="table-responsive rounded-3 shadow-lg p-3" style="background: #ffffff;">
         <table class="table table-hover text-center align-middle">
-            <thead class="thead-custom">
+            <thead class="thead-custom" style="background-color: #fac6a0;">
                 <tr>
                     <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Foto</th>
                     <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Nome</th>
@@ -64,7 +66,6 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                             <a href="#" title="Desativar" onclick="abrirModalDesativar(<?php echo $linha['id_acompanhamento']; ?>, '<?php echo addslashes($linha['nome_acompanhamento']); ?>')">
                                 <i class="fa fa-ban" style="font-size: 20px; color: #ff4d4d;"></i>
                             </a>
-
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -73,11 +74,12 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     </div>
 
     <div class="text-center mt-4">
-        <h3 style="color: #9a5c1fad;">Não encontrou o acompanhamento? Cadastre abaixo</h3>
-        <a href="http://localhost/exfe/public/acompanhamentos/adicionar/" class="btn fw-bold px-4 py-2" style="background:#9a5c1fad; color: #ffffff; border-radius: 8px;">
-            Adicionar Acompanhamento
-        </a>
-    </div>
+    <h3 class="fw-bold" style="color: #402920;">Não encontrou o acompanhamento? Cadastre abaixo</h3>
+    <a href="http://localhost/exfe/public/acompanhamentos/adicionar/" class="btn fw-bold px-4 py-2" style="background: linear-gradient(to bottom, #402920 1.57%, #774a38 128.95%); color: #ffffff; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
+        Adicionar Acompanhamento
+    </a>
+</div>
+
 </div>
 
 

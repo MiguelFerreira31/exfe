@@ -32,18 +32,12 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
                     $fotoFuncionario = $funcionarios['foto_funcionario'];
                     $fotoPath = "http://localhost/exfe/public/uploads/" . $fotoFuncionario;
-                    $fotoDefault = "http://localhost/exfe/public/assets/img/login-img.png";
+                    $fotoDefault = "http://localhost/exfe/public/assets/img/hero-bg3.png";
 
                     $imagePath = (file_exists($_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $fotoFuncionario) && !empty($fotoFuncionario))
                         ? $fotoPath
                         : $fotoDefault;
                     ?>
-
-
-
-
-
-
 
                     <img src="<?php echo $imagePath ?>" alt="exfe Logo" class="img-fluid" id="preview-img" style="cursor: pointer; border-radius: 12px;">
                 </div>

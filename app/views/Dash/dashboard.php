@@ -42,7 +42,7 @@ $dados['totalCliente'] = $totalCliente;
 ?>
 
 <body class="g-sidenav-show light-mode">
-  <div class="bg-dash min-height-300 position-absolute w-100" ></div>
+  <div class="bg-dash min-height-300 position-absolute w-100"></div>
 
   <aside
     class="sidenav navbar navbar-vertical navbar-expand-xs border-0 my-3 fixed-start ms-4"
@@ -117,7 +117,7 @@ $dados['totalCliente'] = $totalCliente;
           <ul class="nav flex-column submenu-custom" style="display: none; padding-left: 2rem;">
             <li class="nav-item">
               <a class="nav-link" href="http://localhost/exfe/public/contato/listar" style="color: #371406;">
-                <i class="bi bi-person-check me-2" ></i> Ativos
+                <i class="bi bi-person-check me-2"></i> Ativos
               </a>
             </li>
             <li class="nav-item">
@@ -260,7 +260,7 @@ $dados['totalCliente'] = $totalCliente;
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="../Dash/profile.html"
+          <a class="nav-link" href="http://localhost/exfe/public/funcionarios/perfil"
             style="color: #371406; border-radius: 0.5rem;">
             <div
               class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
@@ -580,6 +580,8 @@ $dados['totalCliente'] = $totalCliente;
           <div class="card card-carousel overflow-hidden h-100 p-0" style="border-radius: 20px; box-shadow: 0 4px 15px rgba(55, 20, 6, 0.15); border: 2px solid #fac6a0;">
             <div id="carouselExampleCaptions" class="carousel slide h-100" data-bs-ride="carousel">
               <div class="carousel-inner border-radius-lg h-100">
+
+
                 <div class="carousel-item h-100 active" style="background-image: url('http://localhost/exfe/public/assets/imgDash/macchiato-interna.jpg'); background-size: cover;">
                   <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5" style="background: rgba(0, 0, 0, 0.4); padding: 1rem 1.5rem; border-radius: 0 15px 0 0;">
                     <div class="icon icon-shape icon-sm text-center border-radius-md mb-3" style="background-color: #ffffff; color: #371406; border: 2px solid #ffd8b9;">
@@ -591,28 +593,34 @@ $dados['totalCliente'] = $totalCliente;
                     </p>
                   </div>
                 </div>
-                <div class="carousel-item h-100" style="background-image: url('http://localhost/exfe/public/assets/imgDash/affBanner.webp'); background-size: cover;">
-                  <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5" style="background: rgba(0, 0, 0, 0.4); padding: 1rem 1.5rem; border-radius: 0 15px 0 0;">
-                    <div class="icon icon-shape icon-sm text-center border-radius-md mb-3" style="background-color: #ffffff; color: #371406; border: 2px solid #ffd8b9;">
-                      <i class="ni ni-bulb-61 text-dark opacity-10"></i>
+                <?php foreach ($acompanhamentos as $linha): ?>
+                  <div class="carousel-item h-100" style="
+                  background-image: url(<?php
+                                        $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $linha['foto_acompanhamento'];
+
+                                        if ($linha['foto_acompanhamento'] != "") {
+                                          if (file_exists($caminhoArquivo)) {
+                                            echo ("http://localhost/exfe/public/uploads/" . htmlspecialchars($linha['foto_acompanhamento'], ENT_QUOTES, 'UTF-8'));
+                                          } else {
+                                            echo ("http://localhost/exfe/public/uploads/acompanhamento/sem-foto-acompanhamento.jpg");
+                                          }
+                                        } else {
+                                          echo ("http://localhost/exfe/public/uploads/acompanhamento/sem-foto-acompanhamento.jpg");
+                                        }
+                                        ?>); background-size: cover;">
+                    <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5" style="background: rgba(0, 0, 0, 0.4); padding: 1rem 1.5rem; border-radius: 0 15px 0 0;">
+                      <div class="icon icon-shape icon-sm text-center border-radius-md mb-3" style="background-color: #ffffff; color: #371406; border: 2px solid #ffd8b9;">
+                        <i class="ni ni-bulb-61 text-dark opacity-10"></i>
+                      </div>
+                      <h5 class="mb-1" style="color: #ffffff; font-weight: bold;"><?php echo htmlspecialchars($linha['nome_acompanhamento']); ?></h5>
+                      <p style="color: #ffffff; font-size: 0.9rem;">
+                      <?php echo htmlspecialchars($linha['descricao_acompanhamento']); ?>
+                      </p>
                     </div>
-                    <h5 class="mb-1" style="color: #ffffff; font-weight: bold;">Affogato</h5>
-                    <p style="color: #ffffff; font-size: 0.9rem;">
-                      Sobremesa italiana que combina sorvete de baunilha com café espresso quente. Cremoso, intenso e refrescante — ideal para quem ama café com um toque doce.
-                    </p>
                   </div>
-                </div>
-                <div class="carousel-item h-100" style="background-image: url('http://localhost/exfe/public/assets/imgDash/frappuBanner.jpg'); background-size: cover;">
-                  <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5" style="background: rgba(0, 0, 0, 0.4); padding: 1rem 1.5rem; border-radius: 0 15px 0 0;">
-                    <div class="icon icon-shape icon-sm text-center border-radius-md mb-3" style="background-color: #ffffff; color: #371406; border: 2px solid #ffd8b9;">
-                      <i class="ni ni-trophy text-dark opacity-10"></i>
-                    </div>
-                    <h5 class="mb-1" style="color: #ffffff; font-weight: bold;">Frappuccino</h5>
-                    <p style="color: #ffffff; font-size: 0.9rem;">
-                      Bebida gelada à base de café, gelo batido e leite, geralmente finalizada com calda e chantilly. Cremoso, refrescante e versátil, é perfeito para os dias quentes ou para quem gosta de um café com um toque mais doce e moderno.
-                    </p>
-                  </div>
-                </div>
+
+                <?php endforeach; ?>
+             
               </div>
               <button class="carousel-control-prev w-5 me-3" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: invert(100%);"></span>

@@ -107,65 +107,53 @@ class AcompanhamentosController extends Controller
     public function editar($id = null)
     {
         $dados = array();
-        $dados['conteudo'] = 'dash/acompanhamento/editar';
-
+    
         if ($id === null) {
-            header('Location:http://localhost/exfe/public/acompanhamentos/listar');
+            header('Location: http://localhost/exfe/public/acompanhamentos/listar');
             exit;
         }
+    
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-            // TBL Funcionario
-            $nome_acompanhamento        = filter_input(INPUT_POST, 'nome_acompanhamento', FILTER_SANITIZE_SPECIAL_CHARS);
-            $descricao_acompanhamento   = filter_input(INPUT_POST, 'descricao_acompanhamento', FILTER_SANITIZE_SPECIAL_CHARS);
-            $preco_acompanhamento       = filter_input(INPUT_POST, 'preco_acompanhamento', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-            $id_categoria        = filter_input(INPUT_POST, 'id_categoria', FILTER_SANITIZE_NUMBER_INT);
-            $id_fornecedor       = filter_input(INPUT_POST, 'id_fornecedor', FILTER_SANITIZE_NUMBER_INT);
-            $status_acompanhamento      = filter_input(INPUT_POST, 'status_acompanhamento', FILTER_SANITIZE_SPECIAL_CHARS);
+            $nome_acompanhamento      = filter_input(INPUT_POST, 'nome_acompanhamento', FILTER_SANITIZE_SPECIAL_CHARS);
+            $descricao_acompanhamento = filter_input(INPUT_POST, 'descricao_acompanhamento', FILTER_SANITIZE_SPECIAL_CHARS);
+            $preco_raw = str_replace(['R$', '.', ','], ['', '', '.'], $_POST['preco_acompanhamento'] ?? '');
+            $preco_acompanhamento = floatval($preco_raw);
+    
+            $foto_acompanhamento  = '';
+            if (isset($_FILES['foto_acompanhamento']) && $_FILES['foto_acompanhamento']['error'] === 0) {
+                $foto_acompanhamento = $_FILES['foto_acompanhamento']['name'];
+            }
+    
+            $status_acompanhamento = filter_input(INPUT_POST, 'status_acompanhamento', FILTER_SANITIZE_SPECIAL_CHARS);
             if (empty($status_acompanhamento)) {
-                $status_acompanhamento = 'ativo'; // valor padrão caso não venha nada
-            }            
-            $foto_acompanhamento        = filter_input(INPUT_POST, 'foto_acompanhamento', FILTER_SANITIZE_SPECIAL_CHARS);
-            $alt_foto_acompanhamento    = filter_input(INPUT_POST, 'alt_foto_acompanhamento', FILTER_SANITIZE_SPECIAL_CHARS);
-
-
-
+                $status_acompanhamento = 'Ativo';
+            }
+    
             if ($nome_acompanhamento && $descricao_acompanhamento && $preco_acompanhamento !== false) {
-
-                // 3 Preparar Dados 
-
-                $dadosacompanhamento = array(
-                    'nome_acompanhamento'       => $nome_acompanhamento,
-                    'descricao_acompanhamento'  => $descricao_acompanhamento,
-                    'preco_acompanhamento'      => $preco_acompanhamento,
-                    'id_categoria'       => $id_categoria,
-                    'id_fornecedor'      => $id_fornecedor,
-                    'status_acompanhamento'     => $status_acompanhamento,
-                    'foto_acompanhamento'       => $foto_acompanhamento,
-                    'alt_foto_acompanhamento'   => $alt_foto_acompanhamento
+                $dadosAcompanhamento = array(
+                    'nome_acompanhamento'      => $nome_acompanhamento,
+                    'descricao_acompanhamento' => $descricao_acompanhamento,
+                    'preco_acompanhamento'     => $preco_acompanhamento,
+                    'status_acompanhamento'    => $status_acompanhamento,
+                    'foto_acompanhamento'      => $foto_acompanhamento
                 );
-
-                // 4 Inserir Funcionario
-
-                $id_acompanhamento = $this->acompanhamentosModel->updateAcompanhamento($id, $dadosacompanhamento);
-
-
-
-                if ($id) {
-                    if (isset($_FILES['foto_acompanhamento']) && $_FILES['foto_acompanhamento']['error'] == 0) {
+    
+                $atualizado = $this->acompanhamentosModel->updateAcompanhamento($id, $dadosAcompanhamento);
+    
+                if ($atualizado) {
+                    if (!empty($foto_acompanhamento)) {
                         $arquivo = $this->uploadFoto($_FILES['foto_acompanhamento']);
                         if ($arquivo) {
-                            //Inserir na galeria
-                            $this->acompanhamentosModel->addFotoaAcompanhamento($id, $arquivo, $nome_acompanhamento);
+                            $this->acompanhamentosModel->addFotoAcompanhamento($id, $arquivo);
                         }
                     }
-                    // Mensagem de SUCESSO 
-                    $_SESSION['mensagem'] = "acompanhamento Atualizado Com Sucesso";
+    
+                    $_SESSION['mensagem'] = "Acompanhamento atualizado com sucesso";
                     $_SESSION['tipo-msg'] = "sucesso";
                     header('Location: http://localhost/exfe/public/acompanhamentos/listar');
                     exit;
                 } else {
-                    $dados['mensagem'] = "Erro ao Atalizar acompanhamento";
+                    $dados['mensagem'] = "Erro ao atualizar acompanhamento";
                     $dados['tipo-msg'] = "erro";
                 }
             } else {
@@ -173,35 +161,20 @@ class AcompanhamentosController extends Controller
                 $dados['tipo-msg'] = "erro";
             }
         }
-        $dados = array();
-        $acompanhamentos = $this->acompanhamentosModel->getAcompanhamentoById($id);
-        $dados['acompanhamentos'] = $acompanhamentos;
-
-          // Buscar Fornecedor
-          $fornecedor = new Fornecedor();
-          $dados['fornecedor'] = $fornecedor->getListarFornecedor();
-
-       
-        if (isset($_SESSION['id_tipo_usuario']) && $_SESSION['id_tipo_usuario'] == '1') {
-            $acompanhamento =new Acompanhamento();
-        
-            if (isset($_SESSION['nomeacompanhamento'])) {
-                $dadosacompanhamento = $acompanhamento->buscarAcompanhamento($_SESSION['nomeacompanhamento']);
-                $dados['acompanhamento'] = $dadosacompanhamento;
-            } else {
-                $dados['acompanhamento'] = [];
-            }
-        
-            $dados['conteudo'] = 'dash/acompanhamento/editar';
-            $this->carregarViews('dash/dashboard', $dados);
-        
-        } else if (isset($_SESSION['id_tipo_usuario']) && $_SESSION['id_tipo_usuario'] == '2') {
-            $dados['conteudo'] = 'dash/acompanhamento/listar';
+    
+        // Recuperar dados para exibir no formulário
+        $dados['acompanhamentos'] = $this->acompanhamentosModel->getAcompanhamentoById($id);
+        $dados['conteudo'] = 'dash/acompanhamento/editar';
+    
+        // Verifica o tipo de usuário
+        if (isset($_SESSION['id_tipo_usuario']) && $_SESSION['id_tipo_usuario'] == '2') {
             $this->carregarViews('dash/dashboard-funcionario', $dados);
+        } else {
+            $this->carregarViews('dash/dashboard', $dados);
         }
-        
-    }
 
+    }
+    
     public function adicionar()
     {
         $dados = array();

@@ -11,6 +11,12 @@ class DashboardController extends Controller
         $dados['titulo']        = 'Dashboard - EXFé';
 
 
+     // Carregar os funcionarios
+     $acompanhamentosModel =new Acompanhamento();
+     $acompanhamentos = $acompanhamentosModel->getListarAcompanhamentos();
+     $dados['acompanhamentos'] = $acompanhamentos;
+
+
         if ($_SESSION['id_tipo_usuario'] == '3') {
             $cliente = new Cliente();
             $dadosCliente = $cliente->buscarCliente($_SESSION['userEmail']);
