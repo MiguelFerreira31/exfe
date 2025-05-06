@@ -126,7 +126,7 @@ class ClientesController extends Controller
                     // Mensagem de SUCESSO 
                     $_SESSION['mensagem'] = "Cliente Cadastrado com Sucesso";
                     $_SESSION['tipo-msg'] = "sucesso";
-                    header('Location: http://localhost/exfe/public/clientes/listar');
+                    header('Location:'. BASE_URL .' clientes/listar');
                     exit;
                 } else {
                     $dados['mensagem'] = "Erro ao adicionar Ao adcionar cliente";
@@ -169,7 +169,7 @@ class ClientesController extends Controller
         $dados['conteudo'] = 'dash/cliente/editar';
 
         if ($id === null) {
-            header('Location:http://localhost/exfe/public/clientes/listar');
+            header('Location'. BASE_URL .' clientes/listar');
             exit;
         }
 

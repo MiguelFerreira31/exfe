@@ -46,12 +46,12 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
                                 if ($linha['foto_cliente'] != "") {
                                     if (file_exists($caminhoArquivo)) {
-                                        echo ("http://localhost/exfe/public/uploads/" . htmlspecialchars($linha['foto_cliente'], ENT_QUOTES, 'UTF-8'));
-                                    } else {
-                                        echo ("http://localhost/exfe/public/uploads/cliente/sem-foto-cliente.jpg");
+                                        echo ( BASE_URL . "uploads/" . htmlspecialchars($linha['foto_cliente'], ENT_QUOTES, 'UTF-8'));
+                                    } else { 
+                                        echo ( BASE_URL ."uploads/cliente/sem-foto-cliente.jpg");
                                     }
                                 } else {
-                                    echo ("http://localhost/exfe/public/uploads/cliente/sem-foto-cliente.jpg");
+                                    echo ( BASE_URL ."uploads/cliente/sem-foto-cliente.jpg");
                                 }
                             ?>" alt="" class="rounded-circle" style="width: 50px; height: 50px;">
                         </td>
@@ -60,7 +60,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                         <td><?php echo htmlspecialchars($linha['telefone_cliente']); ?></td>
                         <td><?php echo htmlspecialchars($linha['sigla_estado']); ?></td>
                         <td>
-                            <a href="http://localhost/exfe/public/clientes/editar/<?php echo $linha['id_cliente']; ?>" title="Editar">
+                            <a href="<?= BASE_URL ?>clientes/editar/<?php echo $linha['id_cliente']; ?>" title="Editar">
                                 <i class="fa fa-pencil-alt" style="font-size: 20px; color: #9a5c1f;"></i>
                             </a>
                         </td>
@@ -77,7 +77,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
     <div class="text-center mt-4">
         <h3 style="color: #9a5c1fad;">Não encontrou o cliente? Cadastre abaixo</h3>
-        <a href="http://localhost/exfe/public/clientes/adicionar" class="btn fw-bold px-4 py-2" style="background:#9a5c1fad; color: #ffffff; border-radius: 8px;">
+        <a href="<?= BASE_URL ?>clientes/adicionar" class="btn fw-bold px-4 py-2" style="background:#9a5c1fad; color: #ffffff; border-radius: 8px;">
             Adicionar Cliente
         </a>
     </div>
@@ -139,7 +139,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
     function ativarCliente(idCliente) {
 
-        fetch(`http://localhost/exfe/public/clientes/ativar/${idCliente}`, {
+        fetch(`<?= BASE_URL ?>clientes/ativar/${idCliente}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
