@@ -21,7 +21,7 @@ class Newsletter extends Model
 
     public function getAllEmails()
     {
-        $query = "SELECT email_newsletter FROM tbl_newsletter WHERE status_newsletter = 'Ativo'";
+        $query = "SELECT email FROM tbl_newsletter WHERE status_newsletter = 'Ativo'";
         $stmt = $this->db->query($query);
         return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }

@@ -82,10 +82,6 @@ class NewsletterController extends Controller
         }
     }
     
-
-
-
-
     // Lista todos os inscritos (admin)
     public function listar()
     {
@@ -120,18 +116,50 @@ class NewsletterController extends Controller
         mail($email, $assunto, $mensagem); // Pode substituir por PHPMailer para maior confiabilidade
     }
 
-    // Envio em massa
     public function enviarParaTodos()
-    {
+{
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $assunto = trim($_POST['assunto']);
+        $mensagem = trim($_POST['mensagem']);
+
         $emails = $this->newsletterModel->getAllEmails();
 
+        require_once("vendors/phpmailer/PHPMailer.php");
+        require_once("vendors/phpmailer/SMTP.php");
+        require_once("vendors/phpmailer/Exception.php");
+
         foreach ($emails as $email) {
-            $assunto = "Novidade da nossa cafeteria!";
-            $mensagem = "Confira nossas promoções: café especial com 20% OFF esta semana!";
-            mail($email, $assunto, $mensagem); // Substituir por PHPMailer se preferir
+            $mail = new PHPMailer\PHPMailer\PHPMailer();
+
+            try {
+                $mail->isSMTP();
+                $mail->Host       = 'smtp.gmail.com';
+                $mail->Port       = 465;
+                $mail->SMTPAuth   = true;
+                $mail->SMTPSecure = 'ssl';
+                $mail->Username   = 'devcyclesz@gmail.com';
+                $mail->Password   = 'tpep xlgg hgzw wyef';
+                $mail->CharSet    = 'UTF-8';
+
+                $mail->setFrom('devcyclesz@gmail.com', 'EXFÉ');
+                $mail->addAddress($email);
+
+                $mail->isHTML(true);
+                $mail->Subject = $assunto;
+                $mail->Body    = nl2br($mensagem);
+                $mail->AltBody = $mensagem;
+
+                $mail->send();
+            } catch (Exception $e) {
+                error_log("Erro ao enviar e-mail para $email: " . $mail->ErrorInfo);
+                // Continue tentando com os outros emails
+            }
         }
 
-        $_SESSION['mensagem'] = "Mensagem enviada com sucesso para todos os inscritos!";
-        header('Location: dash/newsletter/listar');
+        $_SESSION['mensagem'] = "E-mails enviados com sucesso para todos os inscritos!";
+        header('Location: http://localhost/exfe/public/newsletter/listar');
+        exit;
     }
+}
+
 }
