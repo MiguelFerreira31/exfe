@@ -5,9 +5,8 @@
     <div class="alert alert-danger text-center"><?php echo $_SESSION['erro']; unset($_SESSION['erro']); ?></div>
 <?php endif; ?>
 
-
 <div class="container my-5">
-    <h2 class="text-center fw-bold py-3" style="background: #5e3c2d; color: white; border-radius: 12px;">Clientes Cadastrados na Newsletter</h2>
+    <h2 class="text-center fw-bold py-3" style="background: #5e3c2d; color: white; border-radius: 12px;">Clientes Cadastrados na News</h2>
 
     <div class="table-responsive rounded-3 shadow-lg p-3" style="background: #ffffff;">
         <table class="table table-hover text-center align-middle">
@@ -27,9 +26,12 @@
                         <td><?php echo htmlspecialchars($linha['data_inscricao']); ?></td>
                         <td><?php echo htmlspecialchars($linha['status_newsletter']); ?></td>
                         <td>
-                            <a href="#" title="Desativar" onclick="abrirModalDesativar(<?php echo $linha['id_newsletter'];  ?>)">
-                                <i class="fa fa-ban" style="font-size: 20px; color: #ff4d4d;"></i>
-                            </a>
+                            <form method="POST" action="http://localhost/exfe/public/newsletter/deletar" style="display:inline;" onsubmit="return confirm('Deseja realmente desativar este email da newsletter?')">
+                                <input type="hidden" name="id_newsletter" value="<?php echo $linha['id_newsletter']; ?>">
+                                <button type="submit" class="btn btn-link p-0 m-0" title="Desativar">
+                                    <i class="fa fa-ban" style="font-size: 20px; color: #ff4d4d;"></i>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -43,11 +45,9 @@
             Enviar
         </button>
     </div>
-
 </div>
 
-
-
+<!-- Modal Enviar Email -->
 <div class="modal fade" id="modalEnviarEmail" tabindex="-1" aria-labelledby="modalEnviarEmailLabel" aria-hidden="true">
   <div class="modal-dialog">
     <form method="POST" action="http://localhost/exfe/public/newsletter/enviarParaTodos">

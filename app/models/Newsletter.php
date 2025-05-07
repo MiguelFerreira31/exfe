@@ -33,4 +33,13 @@ class Newsletter extends Model
         $stmt->execute([$email]);
         return $stmt->rowCount() > 0;
     }
+
+    public function deletarNewsletter($id)
+    {
+        $sql = "DELETE FROM tbl_newsletter WHERE id_newsletter = ?";
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([$id]);
+    }
+    
+
 }
