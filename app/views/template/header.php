@@ -5,8 +5,10 @@ function getActive($rota)
   $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
   // Remove a parte '/exfe/public/' do começo
-  $base = '/exfe/public/';
-  $pagina = str_replace($base, '', $path);
+  $basePath = '/devcycle/exfe/public/';
+  $pagina = str_replace($basePath, '', $path);
+
+
 
   // Se for vazio, está na raiz => considera como 'home'
   if ($pagina === '') {
@@ -18,6 +20,7 @@ function getActive($rota)
 ?>
 
 <header class="header">
+
 
   <div class="one">
     <div class="info01">
@@ -66,25 +69,25 @@ function getActive($rota)
   <section class="site">
     <div class="logoHeader">
       <a href="">
-        <img src="http://localhost/exfe/public/assets/img/coffee-cup.png" alt="Logo">
+        <img src="<?= BASE_URL ?>assets/img/coffee-cup.png" alt="Logo">
       </a>
     </div>
     <nav>
       <ul>
         <li>
-          <a class="<?= getActive('home') ?>" href="http://localhost/exfe/public/home">Home</a>
+        <a class="<?= getActive('home') ?>" href="<?= BASE_URL ?>home">home</a>
         </li>
         <li>
-          <a class="<?= getActive('menu') ?>" href="http://localhost/exfe/public/menu">Menu</a>
+          <a class="<?= getActive('menu') ?>" href="<?= BASE_URL ?>menu">Menu</a>
         </li>
         <li>
-          <a class="<?= getActive('loja') ?>" href="http://localhost/exfe/public/loja">Loja</a>
+          <a class="<?= getActive('loja') ?>" href="<?= BASE_URL ?>loja">Loja</a>
         </li>
         <li>
-          <a class="<?= getActive('blog') ?>" href="http://localhost/exfe/public/blog">Blog</a>
+          <a class="<?= getActive('blog') ?>" href="<?= BASE_URL ?>blog">Blog</a>
         </li>
         <li>
-          <a class="<?= getActive('contato') ?>" href="http://localhost/exfe/public/contato">Contato</a>
+          <a class="<?= getActive('contato') ?>" href="<?= BASE_URL ?>contato">Contato</a>
         </li>
       </ul>
     </nav>
@@ -189,7 +192,7 @@ function getActive($rota)
 
       <div class="modal-body container" id="container" style="max-width: none; width: 850px; height: 630px;">
         <div class="form-container sign-up-container">
-          <form method="POST" action="http://localhost/exfe/public/auth/cadastrar">
+          <form method="POST" action="<?= BASE_URL ?>auth/cadastrar">
 
             <h1>Criar Conta</h1>
 
@@ -220,7 +223,7 @@ function getActive($rota)
         </div>
 
         <div class="form-container sign-in-container">
-          <form method="POST" action="http://localhost/exfe/public/auth/login">
+          <form method="POST" action="<?= BASE_URL ?>auth/login">
             <h1>Entrar</h1>
 
             <div class="card">

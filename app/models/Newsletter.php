@@ -21,7 +21,7 @@ class Newsletter extends Model
 
     public function getAllEmails()
     {
-        $query = "SELECT email_newsletter FROM tbl_newsletter WHERE status_newsletter = 'Ativo'";
+        $query = "SELECT email FROM tbl_newsletter WHERE status_newsletter = 'Ativo'";
         $stmt = $this->db->query($query);
         return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
@@ -33,4 +33,13 @@ class Newsletter extends Model
         $stmt->execute([$email]);
         return $stmt->rowCount() > 0;
     }
+
+    public function deletarNewsletter($id)
+    {
+        $sql = "DELETE FROM tbl_newsletter WHERE id_newsletter = ?";
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([$id]);
+    }
+    
+
 }

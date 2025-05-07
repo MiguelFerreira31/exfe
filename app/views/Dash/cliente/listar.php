@@ -42,25 +42,26 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                     <tr class="fw-semibold">
                         <td class="img-cliente">
                             <img src="<?php
-                                        $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $linha['foto_cliente'];
+                                        $caminhoArquivo = BASE_URL  . "uploads/" . $linha['foto_cliente'];
 
+                                       
                                         if ($linha['foto_cliente'] != "") {
                                             if (file_exists($caminhoArquivo)) {
-                                                echo ("http://localhost/exfe/public/uploads/" . htmlspecialchars($linha['foto_cliente'], ENT_QUOTES, 'UTF-8'));
+                                                echo (BASE_URL . "uploads/" . htmlspecialchars($linha['foto_cliente'], ENT_QUOTES, 'UTF-8'));
                                             } else {
-                                                echo ("http://localhost/exfe/public/uploads/cliente/sem-foto-cliente.jpg");
+                                                echo (BASE_URL . "uploads/cliente/sem-foto-cliente.jpg");
                                             }
                                         } else {
-                                            echo ("http://localhost/exfe/public/uploads/cliente/sem-foto-cliente.jpg");
+                                            echo (BASE_URL . "uploads/cliente/sem-foto-cliente.jpg");
                                         }
                                         ?>" alt="" class="rounded-circle" style="width: 50px; height: 50px;">
                         </td>
-                        <td><?php echo htmlspecialchars($linha['nome_cliente']); ?></td>
+                        <td><?php echo $_SERVER['DOCUMENT_ROOT']; ?></td>
                         <td><?php echo htmlspecialchars($linha['nome_produto']); ?></td>
                         <td><?php echo htmlspecialchars($linha['nivel_intensidade']); ?></td>
                         <td><?php echo htmlspecialchars($linha['nome_acompanhamento']); ?></td>
                         <td>
-                            <a href="http://localhost/exfe/public/clientes/editar/<?php echo $linha['id_cliente']; ?>" title="Editar">
+                            <a href="<?= BASE_URL ?>clientes/editar/<?php echo $linha['id_cliente']; ?>" title="Editar">
                                 <i class="fa fa-pencil-alt" style="font-size: 20px; color: #5e3c2d;"></i>
                             </a>
                         </td>
@@ -77,7 +78,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
     <div class="text-center mt-4">
         <h3 style="color: #5e3c2dad;">Não encontrou o Cliente? Cadastre abaixo</h3>
-        <a href="http://localhost/exfe/public/clientes/adicionar/" class="btn fw-bold px-4 py-2" style="background:#5e3c2d; color: #ffffff; border-radius: 8px;">
+        <a href="<?= BASE_URL ?>clientes/adicionar/" class="btn fw-bold px-4 py-2" style="background:#5e3c2d; color: #ffffff; border-radius: 8px;">
             Adicionar Cliente
         </a>
     </div>
@@ -161,14 +162,14 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
             .then(data => {
 
                 if (data.sucesso) {
-                    console.log('Curso desativado com sucesso');
+                    console.log('Cliente desativado com sucesso');
                     $('#modalDesativar').modal('hide');
                     setTimeout(() => {
                         location.reload();
                     }), 500;
 
                 } else {
-                    alert(data.mensagem || "Ocorreu um erro ao Desativar o Curso");
+                    alert(data.mensagem || "Ocorreu um erro ao Desativar o Cliente");
                 }
 
             })

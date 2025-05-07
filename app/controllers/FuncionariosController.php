@@ -189,7 +189,7 @@ class FuncionariosController extends Controller
         $estados = new Estado();
         $dados['estados'] = $estados->getListarEstados();
 
-        
+
 
         $dados['conteudo'] = 'dash/funcionario/adicionar';
 
@@ -260,7 +260,7 @@ class FuncionariosController extends Controller
 
                 // 4 Inserir Funcionario
 
-                $id_funcionario = $this->funcionarioModel->updateFuncionario($id,$dadosFuncionario);
+                $id_funcionario = $this->funcionarioModel->updateFuncionario($id, $dadosFuncionario);
 
 
 
@@ -315,18 +315,15 @@ class FuncionariosController extends Controller
         } else if ($_SESSION['id_tipo_usuario'] == '2') {
             $func = new Funcionario();
             $dadosFunc = $func->buscarFuncionario($_SESSION['userEmail']);
-         
+
             $dados['func'] = $dadosFunc;
 
             $dados['conteudo'] = 'dash/funcionario/editar';
             $this->carregarViews('dash/dashboard-funcionario', $dados);
-        } 
-
-
-
+        }
     }
 
-    
+
     // 4- Método para desativar o serviço
     public function desativar($id = null)
     {
@@ -366,19 +363,19 @@ class FuncionariosController extends Controller
     public function desativados()
     {
 
-       
-        $dados = array();
-       
 
-    
+        $dados = array();
+
+
+
         // Buscar Estado
         $estados = new Estado();
         $dados['estados'] = $estados->getListarEstados();
 
-       // Carregar os funcionarios
-       $funcionarioModel = new Funcionario();
-       $funcionario = $funcionarioModel->getListarFuncionarioDesativados();
-       $dados['funcionarios'] = $funcionario;
+        // Carregar os funcionarios
+        $funcionarioModel = new Funcionario();
+        $funcionario = $funcionarioModel->getListarFuncionarioDesativados();
+        $dados['funcionarios'] = $funcionario;
 
 
 
@@ -458,38 +455,35 @@ class FuncionariosController extends Controller
     }
 
 
- // Método para exibir o perfil do cliente logado
- public function perfil()
- {
-     $dados = array();
+    // Método para exibir o perfil do cliente logado
+    public function perfil()
+    {
+        $dados = array();
 
-     $dados['titulo'] = 'Perfil';
-
- 
-     // Buscar Estados
-     $estadoModel = new Estado();
-     $dados['estados'] = $estadoModel->getListarEstados();
+        $dados['titulo'] = 'Perfil';
 
 
-     if ($_SESSION['id_tipo_usuario'] == '2') {
-        $func = new Funcionario();
-        $dadosFunc = $func->buscarFuncionario($_SESSION['userEmail']);
-        $dados['titulo']        = 'Dashboard - Funcionário';
-        $dados['funcionario'] = $dadosFunc;
-              // View e layout
-              $dados['conteudo'] = 'dash/funcionario/perfil';
-        $this->carregarViews('dash/dashboard-funcionario', $dados);
-    } else if ($_SESSION['id_tipo_usuario'] == '1') {
-        $func = new Funcionario();
-        $dadosFunc = $func->buscarFuncionario($_SESSION['userEmail']);
-        $dados['titulo']        = 'Dashboard - Gerente';
-        $dados['funcionario'] = $dadosFunc;
-          // View e layout
-          $dados['conteudo'] = 'dash/funcionario/perfil';
-        $this->carregarViews('dash/dashboard', $dados);
+        // Buscar Estados
+        $estadoModel = new Estado();
+        $dados['estados'] = $estadoModel->getListarEstados();
+
+
+        if ($_SESSION['id_tipo_usuario'] == '2') {
+            $func = new Funcionario();
+            $dadosFunc = $func->buscarFuncionario($_SESSION['userEmail']);
+            $dados['titulo']        = 'Dashboard - Funcionário';
+            $dados['funcionario'] = $dadosFunc;
+            // View e layout
+            $dados['conteudo'] = 'dash/funcionario/perfil';
+            $this->carregarViews('dash/dashboard-funcionario', $dados);
+        } else if ($_SESSION['id_tipo_usuario'] == '1') {
+            $func = new Funcionario();
+            $dadosFunc = $func->buscarFuncionario($_SESSION['userEmail']);
+            $dados['titulo']        = 'Dashboard - Gerente';
+            $dados['funcionario'] = $dadosFunc;
+            // View e layout
+            $dados['conteudo'] = 'dash/funcionario/perfil';
+            $this->carregarViews('dash/dashboard', $dados);
+        }
     }
- }
-
-
-
 } //FIM DA CLASSE

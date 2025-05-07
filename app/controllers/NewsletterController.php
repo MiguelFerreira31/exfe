@@ -17,24 +17,24 @@ class NewsletterController extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $email = trim($_POST['email']);
-    
+
             if ($this->newsletterModel->emailExistente($email)) {
                 $_SESSION['erro'] = "Este e-mail já está cadastrado!";
                 header('Location: http://localhost/exfe/public/');
                 exit;
             }
-    
+
             if ($this->newsletterModel->cadastrar($email)) {
                 // Gera o cupom fixo
                 $cupom = 'EXFE10';
-    
+
                 // Requerendo PHPMailer
                 require_once("vendors/phpmailer/PHPMailer.php");
                 require_once("vendors/phpmailer/SMTP.php");
                 require_once("vendors/phpmailer/Exception.php");
-    
+
                 $mail = new PHPMailer\PHPMailer\PHPMailer();
-    
+
                 try {
                     // Configuração para Gmail
                     $mail->isSMTP();
@@ -44,13 +44,13 @@ class NewsletterController extends Controller
                     $mail->SMTPSecure = 'ssl'; // Pode usar 'tls' se preferir (e mudar a porta para 587)
                     $mail->Username   = 'devcyclesz@gmail.com';         // SEU GMAIL
                     $mail->Password   = 'tpep xlgg hgzw wyef';       // SENHA DE APP
-    
+
                     $mail->CharSet = 'UTF-8';
                     $mail->Encoding = 'base64';
-    
+
                     $mail->setFrom('devcyclesz@gmail.com', 'EXFÉ');
                     $mail->addAddress($email);
-    
+
                     $mail->isHTML(true);
                     $mail->Subject = "Bem-vindo(a) à EXFÉ! Seu Cupom de Desconto";
                     $mail->msgHTML("
@@ -61,13 +61,12 @@ class NewsletterController extends Controller
                         <p>Até breve!</p>
                     ");
                     $mail->AltBody = "Obrigado por se inscrever! Seu cupom é: $cupom";
-    
+
                     $mail->send();
-    
+
                     $_SESSION['mensagem'] = "Inscrição feita com sucesso! Verifique seu e-mail para receber o cupom.";
                     header('Location: http://localhost/exfe/public/');
                     exit;
-    
                 } catch (Exception $e) {
                     error_log('Erro ao enviar e-mail de cupom: ' . $mail->ErrorInfo);
                     $_SESSION['erro'] = "Inscrição feita, mas houve um erro ao enviar o e-mail.";
@@ -81,12 +80,8 @@ class NewsletterController extends Controller
             }
         }
     }
-    
 
-
-
-
-    // Lista todos os inscritos (admin)
+    // Lista todos os inscritos
     public function listar()
     {
         $dados = array();
@@ -112,26 +107,78 @@ class NewsletterController extends Controller
         }
     }
 
-    // Envia cupom individual
-    private function enviarCupom($email)
-    {
-        $assunto = "Seu cupom de desconto!";
-        $mensagem = "Obrigado por se inscrever! Use o cupom CAFEDESCONTO10 na sua próxima compra.";
-        mail($email, $assunto, $mensagem); // Pode substituir por PHPMailer para maior confiabilidade
-    }
-
-    // Envio em massa
+    // Enviar e-mail para todos os inscritos na newsletter
     public function enviarParaTodos()
     {
-        $emails = $this->newsletterModel->getAllEmails();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $assunto = trim($_POST['assunto']);
+            $mensagem = trim($_POST['mensagem']);
 
-        foreach ($emails as $email) {
-            $assunto = "Novidade da nossa cafeteria!";
-            $mensagem = "Confira nossas promoções: café especial com 20% OFF esta semana!";
-            mail($email, $assunto, $mensagem); // Substituir por PHPMailer se preferir
+            $emails = $this->newsletterModel->getAllEmails();
+
+            require_once("vendors/phpmailer/PHPMailer.php");
+            require_once("vendors/phpmailer/SMTP.php");
+            require_once("vendors/phpmailer/Exception.php");
+
+            foreach ($emails as $email) {
+                $mail = new PHPMailer\PHPMailer\PHPMailer();
+
+                try {
+                    $mail->isSMTP();
+                    $mail->Host       = 'smtp.gmail.com';
+                    $mail->Port       = 465;
+                    $mail->SMTPAuth   = true;
+                    $mail->SMTPSecure = 'ssl';
+                    $mail->Username   = 'devcyclesz@gmail.com';
+                    $mail->Password   = 'tpep xlgg hgzw wyef';
+                    $mail->CharSet    = 'UTF-8';
+
+                    $mail->setFrom('devcyclesz@gmail.com', 'EXFÉ');
+                    $mail->addAddress($email);
+
+                    $mail->isHTML(true);
+                    $mail->Subject = $assunto;
+                    $mail->Body    = nl2br($mensagem);
+                    $mail->AltBody = $mensagem;
+
+                    $mail->send();
+                } catch (Exception $e) {
+                    error_log("Erro ao enviar e-mail para $email: " . $mail->ErrorInfo);
+                    // Continue tentando com os outros emails
+                }
+            }
+
+            $_SESSION['mensagem'] = "E-mails enviados com sucesso para todos os inscritos!";
+            header('Location: newsletter/listar');
+            exit;
         }
-
-        $_SESSION['mensagem'] = "Mensagem enviada com sucesso para todos os inscritos!";
-        header('Location: dash/newsletter/listar');
     }
+
+    public function deletar()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id_newsletter'] ?? null;
+    
+            if (!$id) {
+                $_SESSION['erro'] = "ID inválido.";
+                header("Location: " . BASE_URL . "newsletter");
+                exit;
+            }
+    
+            $resultado = $this->newsletterModel->deletarNewsletter($id);
+    
+            if ($resultado) {
+                $_SESSION['mensagem'] = "Email removido da newsletter com sucesso!";
+            } else {
+                $_SESSION['erro'] = "Falha ao remover email da newsletter.";
+            }
+    
+            header("Location: " . BASE_URL . "newsletter");
+            exit;
+        } else {
+            http_response_code(405); // Método não permitido
+            echo "Método não permitido";
+        }
+    }
+    
 }

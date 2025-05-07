@@ -1,4 +1,4 @@
-<form method="POST" action="http://localhost/exfe/public/avaliacao/adicionar">
+<form method="POST" action="<?= BASE_URL ?>avaliacao/adicionar">
   <div class="container my-5">
     <div class="row justify-content-center">
       <div class="col-12 col-md-8">
@@ -6,7 +6,7 @@
         <!-- Imagem Responsiva Centralizada -->
         <div class="text-center mb-4">
           <div class="image-container mx-auto" style="width: 100%; max-width: 200px; aspect-ratio: 1/1; overflow: hidden;">
-            <img src="http://localhost/exfe/public/assets/img/coffee-cup.png" alt="Imagem do Produto" class="img-fluid" id="preview-img" style="border-radius: 16px;">
+            <img src="<?= BASE_URL ?>assets/img/coffee-cup.png" alt="Imagem do Produto" class="img-fluid" id="preview-img" style="border-radius: 16px;">
           </div>
         </div>
 
@@ -48,7 +48,7 @@
           <!-- Botões -->
           <div class="mt-4 text-center d-grid gap-2 d-md-flex justify-content-md-center">
             <button type="submit" class="btn btn-lg px-5" style="background: #5e3c2d; color: white; font-weight: bold; border-radius: 12px;">Salvar Avaliação</button>
-            <a href="http://localhost/exfe/public/avaliacao/listar" class="btn btn-lg px-5" style="background: #5e3c2d; color: white; font-weight: bold; border-radius: 12px;">Cancelar</a>
+            <a href="<?= BASE_URL ?>avaliacao/listar" class="btn btn-lg px-5" style="background: #5e3c2d; color: white; font-weight: bold; border-radius: 12px;">Cancelar</a>
           </div>
         </div>
 

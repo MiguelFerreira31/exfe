@@ -7,9 +7,9 @@
   <!-- Ícone da aplicação para dispositivos Apple -->
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
   <!-- Link para o arquivo CSS do painel de controle (style personalizado) -->
-  <link rel="stylesheet" href="http://localhost/exfe/public/assets/css/dash.css">
+  <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/dash.css">
   <!-- Ícone do site (para abas do navegador) -->
-  <link rel="icon" type="image/png" href="http://localhost/exfe/public/assets/imgDash/coffeBranco.png" />
+  <link rel="icon" type="image/png" href="<?= BASE_URL ?>assets/imgDash/coffeBranco.png" />
   <!-- Link para a biblioteca de ícones do Bootstrap -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css" integrity="sha256-Qsx5lrStHZyR9REqhUF8iQt73X06c8LGIUPzpOhwRrI=" crossorigin="anonymous">
   <!-- Link para a biblioteca Font Awesome (para ícones adicionais) -->
@@ -19,15 +19,15 @@
   <!-- Nucleo Icons para ícones gráficos (usado no tema Argon) -->
   <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
   <!-- Link para o CSS de ícones SVG personalizados -->
-  <link href="http://localhost/exfe/public/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="<?= BASE_URL ?>assets/css/nucleo-svg.css" rel="stylesheet" />
 
   <!-- Arquivo CSS principal do painel de controle (argon-dashboard) -->
-  <link id="pagestyle" href="http://localhost/exfe/public/assets/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
+  <link id="pagestyle" href="<?= BASE_URL ?>assets/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
   <!-- Arquivo CSS personalizado para o site -->
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <link rel="stylesheet" href="http://localhost/exfe/public/assets/css/style.css">
+  <link rel="stylesheet" href="<?= BASE_URL ?>assets/css/style.css">
 
   <!-- Título da página -->
   <title>EXFE</title>
@@ -58,7 +58,7 @@ $dados['totalCliente'] = $totalCliente;
 
       <a class="navbar-brand m-0" href="https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html" target="_blank">
         <img
-          src="http://localhost/exfe/public/assets/imgDash/coffeLogo.png"
+          src="<?= BASE_URL ?>assets/imgDash/coffeLogo.png"
           width="26px"
           height="26px"
           class="navbar-brand-img h-100"
@@ -73,7 +73,7 @@ $dados['totalCliente'] = $totalCliente;
       <ul class="navbar-nav">
 
         <li class="nav-item">
-          <a class="nav-link " href="http://localhost/exfe/public/dashboard"
+          <a class="nav-link " href="<?= BASE_URL ?>dashboard"
             style=" border-radius: 0.5rem;">
             <div
               class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
@@ -116,12 +116,12 @@ $dados['totalCliente'] = $totalCliente;
 
           <ul class="nav flex-column submenu-custom" style="display: none; padding-left: 2rem;">
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost/exfe/public/contato/listar" style="color: #371406;">
+              <a class="nav-link" href="<?= BASE_URL ?>contato/listar" style="color: #371406;">
                 <i class="bi bi-person-check me-2"></i> Ativos
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost/exfe/public/contato/desativados" style="color: #371406;">
+              <a class="nav-link" href="<?= BASE_URL ?>contato/desativados" style="color: #371406;">
                 <i class="bi bi-person-x me-2" style="color: #371406;"></i> Desativados
               </a>
             </li>
@@ -144,12 +144,12 @@ $dados['totalCliente'] = $totalCliente;
 
           <ul class="nav flex-column submenu-custom" style="display: none; padding-left: 2rem;">
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost/exfe/public/clientes/listar" style="color: #371406;">
+              <a class="nav-link" href="<?= BASE_URL ?>clientes/listar" style="color: #371406;">
                 <i class="bi bi-person-check me-2" style="color: #371406;"></i> Ativos
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost/exfe/public/clientes/desativados" style="color: #371406;">
+              <a class="nav-link" href="<?= BASE_URL ?>clientes/desativados" style="color: #371406;">
                 <i class="bi bi-person-x me-2" style="color: #371406;"></i> Desativados
               </a>
             </li>
@@ -173,12 +173,12 @@ $dados['totalCliente'] = $totalCliente;
 
           <ul class="nav flex-column submenu-custom" style="display: none; padding-left: 2rem;">
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost/exfe/public/funcionarios/listar">
+              <a class="nav-link" href="<?= BASE_URL ?>funcionarios/listar">
                 <i class="bi bi-person-check me-2" style="color: #371406;"></i> Ativos
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost/exfe/public/funcionarios/desativados">
+              <a class="nav-link" href="<?= BASE_URL ?>funcionarios/desativados">
                 <i class="bi bi-person-x me-2" style="color: #371406;"></i> Desativados
               </a>
             </li>
@@ -202,12 +202,12 @@ $dados['totalCliente'] = $totalCliente;
 
           <ul class="nav flex-column submenu-custom" style="display: none; padding-left: 2rem;">
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost/exfe/public/mesa/listar">
+              <a class="nav-link" href="<?= BASE_URL ?>mesa/listar">
                 <i class="bi bi-box-seam me-2" style="color: #371406;"></i> Ativos
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost/exfe/public/produtos/desativados">
+              <a class="nav-link" href="<?= BASE_URL ?>produtos/desativados">
                 <i class="bi bi-boxes me-2" style="color: #371406;"></i> Desativados
               </a>
             </li>
@@ -228,12 +228,12 @@ $dados['totalCliente'] = $totalCliente;
 
           <ul class="nav flex-column submenu-custom" style="display: none; padding-left: 2rem;">
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost/exfe/public/cafes/listar/">
+              <a class="nav-link" href="<?= BASE_URL ?>cafes/listar/">
                 <i class="bi bi-box-seam me-2" style="color: #371406;"></i> Bebidas
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost/exfe/public/acompanhamentos/listar">
+              <a class="nav-link" href="<?= BASE_URL ?>acompanhamentos/listar">
                 <i class="bi bi-boxes me-2" style="color: #371406;"></i> Acompanhamentos
               </a>
             </li>
@@ -241,7 +241,7 @@ $dados['totalCliente'] = $totalCliente;
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="http://localhost/exfe/public/newsletter/listar"
+          <a class="nav-link" href="<?= BASE_URL ?>newsletter/listar"
             style="color: #371406; border-radius: 0.5rem;">
             <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
               style="background-color: #ffd8b9; border-radius: 0.5rem;">
@@ -260,7 +260,7 @@ $dados['totalCliente'] = $totalCliente;
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="http://localhost/exfe/public/funcionarios/perfil"
+          <a class="nav-link" href="<?= BASE_URL ?>funcionarios/perfil"
             style="color: #371406; border-radius: 0.5rem;">
             <div
               class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
@@ -316,7 +316,7 @@ $dados['totalCliente'] = $totalCliente;
           <ul class="navbar-nav justify-content-end">
             <li class="nav-item d-flex align-items-center">
               <a
-                href="http://localhost/exfe/public/auth/sair"
+                href="<?= BASE_URL ?>auth/sair"
                 class="nav-link text-white font-weight-bold px-0"
                 style="color: #ffd8b9;">
                 <i class="fa fa-user me-sm-1"></i>
@@ -582,7 +582,7 @@ $dados['totalCliente'] = $totalCliente;
               <div class="carousel-inner border-radius-lg h-100">
 
 
-                <div class="carousel-item h-100 active" style="background-image: url('http://localhost/exfe/public/assets/imgDash/macchiato-interna.jpg'); background-size: cover;">
+                <div class="carousel-item h-100 active" style="background-image: url('<?= BASE_URL ?>assets/imgDash/macchiato-interna.jpg'); background-size: cover;">
                   <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5" style="background: rgba(0, 0, 0, 0.4); padding: 1rem 1.5rem; border-radius: 0 15px 0 0;">
                     <div class="icon icon-shape icon-sm text-center border-radius-md mb-3" style="background-color: #ffffff; color: #371406; border: 2px solid #ffd8b9;">
                       <i class="ni ni-camera-compact text-dark opacity-10"></i>
@@ -600,12 +600,12 @@ $dados['totalCliente'] = $totalCliente;
 
                                         if ($linha['foto_acompanhamento'] != "") {
                                           if (file_exists($caminhoArquivo)) {
-                                            echo ("http://localhost/exfe/public/uploads/" . htmlspecialchars($linha['foto_acompanhamento'], ENT_QUOTES, 'UTF-8'));
+                                            echo ("<?= BASE_URL ?>uploads/" . htmlspecialchars($linha['foto_acompanhamento'], ENT_QUOTES, 'UTF-8'));
                                           } else {
-                                            echo ("http://localhost/exfe/public/uploads/acompanhamento/sem-foto-acompanhamento.jpg");
+                                            echo ("<?= BASE_URL ?>uploads/acompanhamento/sem-foto-acompanhamento.jpg");
                                           }
                                         } else {
-                                          echo ("http://localhost/exfe/public/uploads/acompanhamento/sem-foto-acompanhamento.jpg");
+                                          echo ("<?= BASE_URL ?>uploads/acompanhamento/sem-foto-acompanhamento.jpg");
                                         }
                                         ?>); background-size: cover;">
                     <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5" style="background: rgba(0, 0, 0, 0.4); padding: 1rem 1.5rem; border-radius: 0 15px 0 0;">
@@ -651,7 +651,7 @@ $dados['totalCliente'] = $totalCliente;
                       <div class="d-flex px-2 py-1 align-items-center">
                         <div class="bandeira">
                           <img
-                            src="http://localhost/exfe/public/assets/imgDash/minas.png"
+                            src="<?= BASE_URL ?>assets/imgDash/minas.png"
                             alt="Country flag" />
                         </div>
                         <div class="ms-4">
@@ -685,7 +685,7 @@ $dados['totalCliente'] = $totalCliente;
                     <td class="w-30">
                       <div class="d-flex px-2 py-1 align-items-center">
                         <div class="bandeira">
-                          <img src="http://localhost/exfe/public/assets/imgDash/mato-grosso-do-sul.png" alt="">
+                          <img src="<?= BASE_URL ?>assets/imgDash/mato-grosso-do-sul.png" alt="">
                         </div>
                         <div class="ms-4">
                           <p class="text-xs font-weight-bold mb-0">
@@ -719,7 +719,7 @@ $dados['totalCliente'] = $totalCliente;
                       <div class="d-flex px-2 py-1 align-items-center">
                         <div class="bandeira">
                           <img
-                            src="http://localhost/exfe/public/assets/imgDash/mato-grosso.png"
+                            src="<?= BASE_URL ?>assets/imgDash/mato-grosso.png"
                             alt="Country flag" />
                         </div>
                         <div class="ms-4">
@@ -754,7 +754,7 @@ $dados['totalCliente'] = $totalCliente;
                       <div class="d-flex px-2 py-1 align-items-center">
                         <div class="bandeira">
                           <img
-                            src="http://localhost/exfe/public/assets/imgDash/rio-de-janeiro.png"
+                            src="<?= BASE_URL ?>assets/imgDash/rio-de-janeiro.png"
                             alt="Country flag" />
                         </div>
                         <div class="ms-4">
@@ -961,7 +961,7 @@ $dados['totalCliente'] = $totalCliente;
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
 
-  <script src="http://localhost/exfe/public/assets/script/script.js"></script>
+  <script src="<?= BASE_URL ?>assets/script/script.js"></script>
 
 
 
