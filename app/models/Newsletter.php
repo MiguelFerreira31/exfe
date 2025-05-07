@@ -34,12 +34,13 @@ class Newsletter extends Model
         return $stmt->rowCount() > 0;
     }
 
-    public function deletarNewsletter($id)
+    public function excluir($id)
     {
-        $sql = "DELETE FROM tbl_newsletter WHERE id_newsletter = ?";
-        $stmt = $this->db->prepare($sql);
-        return $stmt->execute([$id]);
+        $stmt = $this->db->prepare("DELETE FROM tbl_newsletter WHERE id_newsletter = :id");
+        $stmt->bindParam(':id', $id);
+        return $stmt->execute();
     }
+    
     
 
 }

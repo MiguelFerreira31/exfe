@@ -156,29 +156,16 @@ class NewsletterController extends Controller
 
     public function deletar()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $id = $_POST['id_newsletter'] ?? null;
-    
-            if (!$id) {
-                $_SESSION['erro'] = "ID inválido.";
-                header("Location: " . BASE_URL . "newsletter");
-                exit;
-            }
-    
-            $resultado = $this->newsletterModel->deletarNewsletter($id);
-    
-            if ($resultado) {
-                $_SESSION['mensagem'] = "Email removido da newsletter com sucesso!";
-            } else {
-                $_SESSION['erro'] = "Falha ao remover email da newsletter.";
-            }
-    
-            header("Location: " . BASE_URL . "newsletter");
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_newsletter'])) {
+            $id = $_POST['id_newsletter'];
+            $newsletter = new Newsletter();
+            $newsletter->excluir($id);
+            header('Location: /devcycle/exfe/public/newsletter');
             exit;
         } else {
-            http_response_code(405); // Método não permitido
-            echo "Método não permitido";
+            echo "Requisição inválida!";
         }
     }
+    
     
 }

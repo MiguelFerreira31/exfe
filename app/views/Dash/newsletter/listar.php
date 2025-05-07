@@ -26,7 +26,7 @@
                         <td><?php echo htmlspecialchars($linha['data_inscricao']); ?></td>
                         <td><?php echo htmlspecialchars($linha['status_newsletter']); ?></td>
                         <td>
-                            <form method="POST" action="http://localhost/exfe/public/newsletter/deletar" style="display:inline;" onsubmit="return confirm('Deseja realmente desativar este email da newsletter?')">
+                            <form method="POST" action="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/newsletter/deletar" style="display:inline;" onsubmit="return confirm('Deseja realmente desativar este email da newsletter?')">
                                 <input type="hidden" name="id_newsletter" value="<?php echo $linha['id_newsletter']; ?>">
                                 <button type="submit" class="btn btn-link p-0 m-0" title="Desativar">
                                     <i class="fa fa-ban" style="font-size: 20px; color: #ff4d4d;"></i>
