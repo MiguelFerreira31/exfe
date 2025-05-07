@@ -136,9 +136,6 @@ class Funcionario extends Model
     $stmt->execute();
     return $this->db->lastInsertId();
 }
-
-
-
     // 6 Método para add FOTO GALERIA 
 
     public function addFotoFuncionario($id_funcionario, $arquivo)
