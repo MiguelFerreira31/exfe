@@ -20,38 +20,33 @@ class ClientesController extends Controller
     // 1- Método para listar todos os serviços
     public function listar()
     {
-
-
+        $status = isset($_GET['status']) ? $_GET['status'] : 'Ativo';  // Pega o status da URL ou usa 'Ativo' por padrão
         $dados = array();
-
-
-        // Carregar os clientes
+    
+        // Carregar os clientes com base no status
         $clienteModel = new Cliente();
-        $cliente = $clienteModel->getListarCliente();
+        $cliente = $clienteModel->getListarCliente($status);
         $dados['clientes'] = $cliente;
-
-
+    
         $dados['conteudo'] = 'dash/cliente/listar';
-
+    
         if ($_SESSION['id_tipo_usuario'] == '1') {
-
-
             $func = new Funcionario();
             $dadosFunc = $func->buscarfuncionario($_SESSION['userEmail']);
             $dados['func'] = $dadosFunc;
-
+    
             $dados['conteudo'] = 'dash/cliente/listar';
             $this->carregarViews('dash/dashboard', $dados);
         } else if ($_SESSION['id_tipo_usuario'] == '2') {
             $func = new Funcionario();
             $dadosFunc = $func->buscarfuncionario($_SESSION['userEmail']);
             $dados['func'] = $dadosFunc;
-
-
+    
             $dados['conteudo'] = 'dash/cliente/listar';
             $this->carregarViews('dash/dashboard-funcionario', $dados);
         }
     }
+    
 
     // 2- Método para adicionar Alunos
     public function adicionar()
@@ -283,7 +278,6 @@ class ClientesController extends Controller
         }
     }
 
-
     // 4- Método para desativar o serviço
     public function desativar($id = null)
     {
@@ -313,30 +307,6 @@ class ClientesController extends Controller
             echo json_encode(['sucesso' => false, "mensagem" => 'falha ao desativar Cliente']);
         }
     }
-
-    // Pagina desativados
-    public function desativados()
-    {
-        $dados = array();
-
-
-
-        // Buscar Estado
-        $estados = new Estado();
-        $dados['estados'] = $estados->getListarEstados();
-
-        // Carregar os clientes
-        $clienteModel = new Cliente();
-        $cliente = $clienteModel->getListarClienteDesativados();
-        $dados['clientes'] = $cliente;
-
-
-
-
-        $dados['conteudo'] = 'dash/cliente/desativados';
-        $this->carregarViews('dash/dashboard', $dados);
-    }
-
 
     // 5- Método para sativar o serviço
     public function ativar($id = null)

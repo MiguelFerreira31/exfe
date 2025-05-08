@@ -160,7 +160,7 @@ class NewsletterController extends Controller
             $id = $_POST['id_newsletter'];
             $newsletter = new Newsletter();
             $newsletter->excluir($id);
-            header('Location: /devcycle/exfe/public/newsletter');
+            header('Location: /devcycle/exfe/public/newsletter/listar');
             exit;
         } else {
             echo "Requisição inválida!";

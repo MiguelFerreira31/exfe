@@ -1,186 +1,138 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+if (session_status() === PHP_SESSION_NONE) session_start();
 
-if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
-
-    $mensagem = $_SESSION['mensagem'];
-    $tipo = $_SESSION['tipo-msg'];
-
-    // Exibir a mensagem
-    $classeAlerta = ($tipo == 'sucesso') ? 'alert-success' : 'alert-danger';
+if (isset($_SESSION['mensagem'], $_SESSION['tipo-msg'])) {
+    $classeAlerta = ($_SESSION['tipo-msg'] === 'sucesso') ? 'alert-success' : 'alert-danger';
     echo '<div class="alert ' . $classeAlerta . ' text-center fw-bold" role="alert">'
-        . htmlspecialchars($mensagem, ENT_QUOTES, 'UTF-8') .
+        . htmlspecialchars($_SESSION['mensagem'], ENT_QUOTES, 'UTF-8') .
         '</div>';
-
-    // Limpar variáveis de sessão
-    unset($_SESSION['mensagem']);
-    unset($_SESSION['tipo-msg']);
+    unset($_SESSION['mensagem'], $_SESSION['tipo-msg']);
 }
+
+$status = $_GET['status'] ?? 'Ativo';
 ?>
 
 <div class="container my-5">
-    <h2 class="text-center fw-bold py-3" style="background: #5e3c2d; color: white; border-radius: 12px;">Clientes Cadastrados</h2>
+    <h2 class="text-center fw-bold py-3" style="background: #5e3c2d; color: white; border-radius: 12px;">
+        Clientes Cadastrados (<?= ucfirst($status) ?>)
+    </h2>
 
-    <div class="table-responsive rounded-3 shadow-lg p-3" style="background: #ffffff;">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <a href="?status=Ativo" class="btn btn-success me-2">Ativo</a>
+            <a href="?status=Inativo" class="btn btn-danger">Inativo</a>
+        </div>
+        <?php if ($status !== 'inativo'): ?>
+            <a href="<?= BASE_URL ?>clientes/adicionar" class="btn btn-primary">Adicionar Cliente</a>
+        <?php endif; ?>
+    </div>
+
+    <div class="table-responsive rounded-3 shadow-lg p-3 bg-white">
         <table class="table table-hover text-center align-middle">
-            <thead class="thead-custom">
+            <thead>
                 <tr>
-                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Foto</th>
-                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Nome</th>
-                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Café</th>
-                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Intensidade</th>
-                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Acompanhamento</th>
-                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Editar</th>
-                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Desativar</th>
+                    <th>Foto</th>
+                    <th>Nome</th>
+                    <th>Café</th>
+                    <th>Intensidade</th>
+                    <th>Acompanhamento</th>
+                    <th>Editar</th>
+                    <th><?= $status === 'Inativo' ? 'Ativar' : 'Desativar' ?></th>
                 </tr>
             </thead>
-
             <tbody>
                 <?php foreach ($clientes as $linha): ?>
-                    <tr class="fw-semibold">
-                        <td class="img-cliente">
-                            <img src="<?php
-                                        $caminhoArquivo = BASE_URL  . "uploads/" . $linha['foto_cliente'];
-
-                                       
-                                        if ($linha['foto_cliente'] != "") {
-                                            if (file_exists($caminhoArquivo)) {
-                                                echo (BASE_URL . "uploads/" . htmlspecialchars($linha['foto_cliente'], ENT_QUOTES, 'UTF-8'));
-                                            } else {
-                                                echo (BASE_URL . "uploads/cliente/sem-foto-cliente.jpg");
-                                            }
-                                        } else {
-                                            echo (BASE_URL . "uploads/cliente/sem-foto-cliente.jpg");
-                                        }
-                                        ?>" alt="" class="rounded-circle" style="width: 50px; height: 50px;">
-                        </td>
-                        <td><?php echo $_SERVER['DOCUMENT_ROOT']; ?></td>
-                        <td><?php echo htmlspecialchars($linha['nome_produto']); ?></td>
-                        <td><?php echo htmlspecialchars($linha['nivel_intensidade']); ?></td>
-                        <td><?php echo htmlspecialchars($linha['nome_acompanhamento']); ?></td>
+                    <tr id="cliente_<?= $linha['id_cliente'] ?>" class="fw-semibold">
                         <td>
-                            <a href="<?= BASE_URL ?>clientes/editar/<?php echo $linha['id_cliente']; ?>" title="Editar">
-                                <i class="fa fa-pencil-alt" style="font-size: 20px; color: #5e3c2d;"></i>
+                            <?php
+                            $caminhoFoto = $_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $linha['foto_cliente'];
+                            $urlFoto = (!empty($linha['foto_cliente']) && file_exists($caminhoFoto))
+                                ? BASE_URL . "uploads/" . htmlspecialchars($linha['foto_cliente'], ENT_QUOTES, 'UTF-8')
+                                : BASE_URL . "uploads/cliente/sem-foto-cliente.jpg";
+                            ?>
+                            <img src="<?= $urlFoto ?>" alt="Foto Cliente" class="rounded-circle" style="width: 50px; height: 50px;">
+                        </td>
+                        <td><?= htmlspecialchars($linha['nome_cliente']) ?></td>
+                        <td><?= htmlspecialchars($linha['nome_produto']) ?></td>
+                        <td><?= htmlspecialchars($linha['nivel_intensidade']) ?></td>
+                        <td><?= htmlspecialchars($linha['nome_acompanhamento']) ?></td>
+                        <td>
+                            <a href="<?= BASE_URL ?>clientes/editar/<?= $linha['id_cliente'] ?>" title="Editar">
+                                <i class="fa fa-pencil-alt text-primary" style="font-size: 20px;"></i>
                             </a>
                         </td>
-                        <td>
-                            <a href="#" title="Desativar" onclick="abrirModalDesativar(<?php echo $linha['id_cliente'];  ?>)">
-                                <i class="fa fa-ban" style="font-size: 20px; color: #ff4d4d;"></i>
-                            </a>
+                        <td class="status-cliente">
+                            <?php if ($linha['status_cliente'] === 'Ativo'): ?>
+                                <a href="#" class="status-action" title="Desativar" onclick="alterarStatusCliente(<?= $linha['id_cliente'] ?>, 'desativar')">
+                                    <i class="fas fa-ban text-danger" style="font-size: 20px;"></i>
+                                </a>
+                            <?php else: ?>
+                                <a href="#" class="status-action" title="Ativar" onclick="alterarStatusCliente(<?= $linha['id_cliente'] ?>, 'ativar')">
+                                    <i class="fas fa-check text-success" style="font-size: 20px;"></i>
+                                </a>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
     </div>
-
-    <div class="text-center mt-4">
-        <h3 style="color: #5e3c2dad;">Não encontrou o Cliente? Cadastre abaixo</h3>
-        <a href="<?= BASE_URL ?>clientes/adicionar/" class="btn fw-bold px-4 py-2" style="background:#5e3c2d; color: #ffffff; border-radius: 8px;">
-            Adicionar Cliente
-        </a>
-    </div>
 </div>
 
-
-
-
-<!-- MODAL DESATIVAR Cliente  -->
-<div class="modal" tabindex="-1" id="modalDesativar">
+<!-- Modal -->
+<div class="modal fade" id="modalAlterarStatusCliente" tabindex="-1" aria-labelledby="modalTitulo" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Desativar Cliente</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 id="modalTitulo" class="modal-title"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
             </div>
             <div class="modal-body">
-                <p>Tem Certeza que deseja desativar esse Cliente?</p>
-                <input type="hidden" id="idClienteDesativar" value="">
-
+                <p id="modalTexto"></p>
+                <input type="hidden" id="idClienteAlterar">
+                <input type="hidden" id="acaoCliente">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="btnConfirmar">Desativar</button>
+                <button type="button" class="btn btn-primary" id="btnConfirmarCliente">Confirmar</button>
             </div>
         </div>
     </div>
 </div>
 
-
-
-
-
-
-
 <script>
-    function abrirModalDesativar(idCliente) {
+    function alterarStatusCliente(idCliente, acao) {
+        const url = `<?= BASE_URL ?>clientes/${acao}/${idCliente}`; // URL que chama os métodos de ativação ou desativação no controller
 
-
-        if ($('#modalDesativar').hasClass('show')) {
-            return;
-        }
-
-        document.getElementById('idClienteDesativar').value = idCliente;
-        $('#modalDesativar').modal('show');
-
-    }
-
-
-    document.getElementById('btnConfirmar').addEventListener('click', function() {
-        const idCliente = document.getElementById('idClienteDesativar').value;
-        console.log(idCliente);
-
-        if (idCliente) {
-            desativarCliente(idCliente);
-        }
-
-    });
-
-    function desativarCliente(idCliente) {
-
-        fetch(`http://localhost/exfe/public/clientes/desativar/${idCliente}`, {
+        // Realizando a requisição AJAX
+        fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 }
-
             })
-
-            .then(response => {
-                // Se o codigo de resposta NÃO for OK lança pra ele uma msg de ERRO
-                if (!response.ok) {
-
-                    throw new Error(`Erro HTTP: ${reponse.status}`)
-                    ''
-                }
-                return response.json();
-
-            })
-
+            .then(response => response.json()) // Resposta JSON
             .then(data => {
-
                 if (data.sucesso) {
-                    console.log('Cliente desativado com sucesso');
-                    $('#modalDesativar').modal('hide');
-                    setTimeout(() => {
-                        location.reload();
-                    }), 500;
+                    // Atualizando a interface sem recarregar a página
+                    const clienteRow = document.getElementById('cliente_' + idCliente);
+                    const statusColumn = clienteRow.querySelector('.status-cliente');
 
+                    if (acao === 'ativar') {
+                        statusColumn.innerHTML = 'Ativo';
+                        // Atualizar ícone ou status para 'Desativar'
+                        clienteRow.querySelector('.status-action').innerHTML = `<a href="#" title="Desativar" onclick="alterarStatusCliente(${idCliente}, 'desativar')">
+                    <i class="fas fa-ban text-danger" style="font-size: 20px;"></i></a>`;
+                    } else {
+                        statusColumn.innerHTML = 'Inativo';
+                        // Atualizar ícone ou status para 'Ativar'
+                        clienteRow.querySelector('.status-action').innerHTML = `<a href="#" title="Ativar" onclick="alterarStatusCliente(${idCliente}, 'ativar')">
+                    <i class="fas fa-check text-success" style="font-size: 20px;"></i></a>`;
+                    }
                 } else {
-                    alert(data.mensagem || "Ocorreu um erro ao Desativar o Cliente");
+                    alert(data.mensagem || 'Erro ao alterar o status do cliente.');
                 }
-
             })
-
-            .catch(erro => {
-                console.error("erro", erro);
-                alert('erro na requisicao');
-
-            })
-
-
-
+            .catch(() => alert('Erro na requisição.'));
     }
 </script>
