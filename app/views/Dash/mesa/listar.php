@@ -50,7 +50,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                         </td>
 
                         <td>
-                            <a href="http://localhost/exfe/public/mesa/editar/<?php echo $linha['id_mesa']; ?>" title="Editar">
+                            <a href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/editar/<?php echo $linha['id_mesa']; ?>" title="Editar">
                                 <i class="fa fa-pencil-alt" style="font-size: 20px; color: #9a5c1f;"></i>
                             </a>
                         </td>
@@ -68,7 +68,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
     <div class="text-center mt-4">
         <h3 style="color: #9a5c1fad;">Cadastre uma mesa abaixo</h3>
-        <a href="http://localhost/exfe/public/mesa/adicionar/" class="btn fw-bold px-4 py-2" style="background:#9a5c1fad; color: #ffffff; border-radius: 8px;">
+        <a href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/adicionar/" class="btn fw-bold px-4 py-2" style="background:#9a5c1fad; color: #ffffff; border-radius: 8px;">
             Adicionar Mesa
         </a>
     </div>
@@ -109,7 +109,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     });
 
     function desativarMesa(idMesa) {
-        fetch(`http://localhost/exfe/public/mesa/desativar/${idMesa}`, {
+        fetch(`https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/desativar/${idMesa}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' }
         })
@@ -126,7 +126,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     }
 
     function atualizarStatusMesa(id, status) {
-        fetch(`http://localhost/exfe/public/mesa/atualizarStatusMesa/${id}/${status}`, {
+        fetch(`https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/atualizarStatusMesa/${id}/${status}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' }
         })
@@ -139,11 +139,11 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                 alert(data.mensagem || "Erro ao desativar mesa");
             }
         })
-        .catch(() => alert('Erro na requisição'));
+        .catch(() => alert('Erro na requisição 2'));
     }
 
     function atualizacampo(id){
-        fetch(`http://localhost/exfe/public/mesa/statusMesa/${id}`, {
+        fetch(`https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/statusMesa/${id}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' }
         })

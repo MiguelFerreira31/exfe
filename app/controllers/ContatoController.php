@@ -125,34 +125,28 @@ class ContatoController extends Controller
     public function listar()
     {
         $dados = array();
-        // Carregar os Contatos
+    
+        $status = isset($_GET['status']) ? $_GET['status'] : null;
+    
         $contatoModel = new Contato();
-        $contato = $contatoModel->getListarContato();
-        $dados['contatos'] = $contato;
-
-
-
-
+        $contatos = $contatoModel->getListarContato($status);
+        $dados['contatos'] = $contatos;
+    
         $dados['conteudo'] = 'dash/contato/listar';
-
+    
         if ($_SESSION['id_tipo_usuario'] == '1') {
-
             $func = new Funcionario();
             $dadosFunc = $func->buscarfuncionario($_SESSION['userEmail']);
             $dados['func'] = $dadosFunc;
-
-            $dados['conteudo'] = 'dash/contato/listar';
             $this->carregarViews('dash/dashboard', $dados);
         } else if ($_SESSION['id_tipo_usuario'] == '2') {
             $func = new Funcionario();
             $dadosFunc = $func->buscarfuncionario($_SESSION['userEmail']);
             $dados['func'] = $dadosFunc;
-
-
-            $dados['conteudo'] = 'dash/contato/listar';
             $this->carregarViews('dash/dashboard-funcionario', $dados);
         }
     }
+    
 
 
    public function desativar($id = null)
@@ -193,42 +187,4 @@ class ContatoController extends Controller
 
 
    }
-
-
-   public function desativados()
-   {
-    $dados = array();
-    // Carregar os Contatos
-    $contatoModel = new Contato();
-    $contato = $contatoModel->getListarContatoDesativado();
-    $dados['contatos'] = $contato;
-
-
-
-
-    $dados['conteudo'] = 'dash/contato/desativados';
-
-    if ($_SESSION['id_tipo_usuario'] == '1') {
-
-        $func = new Funcionario();
-        $dadosFunc = $func->buscarfuncionario($_SESSION['userEmail']);
-        $dados['func'] = $dadosFunc;
-
-        $dados['conteudo'] = 'dash/contato/desativados';
-        $this->carregarViews('dash/dashboard', $dados);
-    } else if ($_SESSION['id_tipo_usuario'] == '2') {
-        $func = new Funcionario();
-        $dadosFunc = $func->buscarfuncionario($_SESSION['userEmail']);
-        $dados['func'] = $dadosFunc;
-
-
-        $dados['conteudo'] = 'dash/contato/desativados';
-        $this->carregarViews('dash/dashboard-funcionario', $dados);
-    }
-   }
-
-
-
-
-
 }

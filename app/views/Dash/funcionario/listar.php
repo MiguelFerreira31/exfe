@@ -1,73 +1,91 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
+if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
-
+// Mensagem de feedback
+if (!empty($_SESSION['mensagem']) && !empty($_SESSION['tipo-msg'])) {
     $mensagem = $_SESSION['mensagem'];
     $tipo = $_SESSION['tipo-msg'];
-
-    // Exibir a mensagem
-    $classeAlerta = ($tipo == 'sucesso') ? 'alert-success' : 'alert-danger';
+    $classeAlerta = ($tipo === 'sucesso') ? 'alert-success' : 'alert-danger';
     echo '<div class="alert ' . $classeAlerta . ' text-center fw-bold" role="alert">'
-        . htmlspecialchars($mensagem, ENT_QUOTES, 'UTF-8') .
-        '</div>';
-
-    // Limpar variáveis de sessão
-    unset($_SESSION['mensagem']);
-    unset($_SESSION['tipo-msg']);
+        . htmlspecialchars($mensagem, ENT_QUOTES, 'UTF-8') . '</div>';
+    unset($_SESSION['mensagem'], $_SESSION['tipo-msg']);
 }
+
+$status = ucfirst(strtolower($_GET['status'] ?? 'Ativo'));
 ?>
 
 <div class="container my-5">
-    <h2 class="text-center fw-bold py-3" style="background: #5e3c2d; color: white; border-radius: 12px;">Funcionarios Cadastrados</h2>
+    <h2 class="text-center fw-bold py-3" style="background: #5e3c2d; color: white; border-radius: 12px;">
+        Funcionários Cadastrados (<?= $status ?>)
+    </h2>
 
-    <div class="table-responsive rounded-3 shadow-lg p-3" style="background: #ffffff;">
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+        <form method="get" action="" class="d-flex align-items-center mb-2 mb-md-0">
+            <label for="statusFiltro" class="me-2">Filtrar por status:</label>
+            <select name="status" id="statusFiltro" onchange="this.form.submit()" class="form-select w-auto">
+                <option value="">Todos</option>
+                <option value="Ativo" <?= $status === 'Ativo' ? 'selected' : '' ?>>Ativos</option>
+                <option value="Inativo" <?= $status === 'Inativo' ? 'selected' : '' ?>>Inativos</option>
+            </select>
+        </form>
+
+        <?php if ($status !== 'Inativo'): ?>
+            <a href="<?= BASE_URL ?>funcionarios/adicionar" class="btn btn-primary">Adicionar Funcionário</a>
+        <?php endif; ?>
+    </div>
+
+    <div class="table-responsive rounded-3 shadow-lg p-3 bg-white">
         <table class="table table-hover text-center align-middle">
-        <thead class="thead-custom">
-    <tr>
-        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Foto</th>
-        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Nome</th>
-        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Email</th>
-        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Telefone</th>
-        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Cargo</th>
-        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Editar</th>
-        <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Desativar</th>
-    </tr>
-</thead>
-
+            <thead class="table-light">
+                <tr>
+                    <th>Foto</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>Cargo</th>
+                    <th>Editar</th>
+                    <?php if ($status !== 'Inativo'): ?>
+                        <th>Desativar</th>
+                    <?php else: ?>
+                        <th>Ativar</th>
+                    <?php endif; ?>
+                </tr>
+            </thead>
             <tbody>
                 <?php foreach ($funcionarios as $linha): ?>
                     <tr class="fw-semibold">
-                        <td class="img-funcionario">
-                            <img src="<?php
-                                $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $linha['foto_funcionario'];
-
-                                if ($linha['foto_funcionario'] != "") {
-                                    if (file_exists($caminhoArquivo)) {
-                                        echo ("http://localhost/exfe/public/uploads/" . htmlspecialchars($linha['foto_funcionario'], ENT_QUOTES, 'UTF-8'));
-                                    } else {
-                                        echo ("http://localhost/exfe/public/uploads/funcionario/sem-foto-funcionario.jpg");
-                                    }
-                                } else {
-                                    echo ("http://localhost/exfe/public/uploads/funcionario/sem-foto-funcionario.jpg");
-                                }
-                            ?>" alt="" class="rounded-circle" style="width: 50px; height: 50px;">
-                        </td>
-                        <td><?php echo htmlspecialchars($linha['nome_funcionario']); ?></td>
-                        <td><?php echo htmlspecialchars($linha['email_funcionario']); ?></td>
-                        <td><?php echo htmlspecialchars($linha['telefone_funcionario']); ?></td>
-                        <td><?php echo htmlspecialchars($linha['cargo_funcionario']); ?></td>
                         <td>
-                            <a href="http://localhost/exfe/public/funcionarios/editar/<?php echo $linha['id_funcionario']; ?>" title="Editar">
+                            <?php
+                            $nomeFoto = htmlspecialchars($linha['foto_funcionario'] ?? '', ENT_QUOTES, 'UTF-8');
+                            $caminhoAbsoluto = $_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $nomeFoto;
+                            $urlFoto = (!empty($nomeFoto) && file_exists($caminhoAbsoluto))
+                                ? BASE_URL . "uploads/{$nomeFoto}"
+                                : BASE_URL . "uploads/funcionario/sem-foto-funcionario.jpg";
+                            ?>
+                            <img src="<?= $urlFoto ?>" class="rounded-circle" style="width: 50px; height: 50px;"
+                                alt="<?= htmlspecialchars($linha['nome_funcionario']) ?>">
+                        </td>
+                        <td><?= htmlspecialchars($linha['nome_funcionario']) ?></td>
+                        <td><?= htmlspecialchars($linha['email_funcionario']) ?></td>
+                        <td><?= htmlspecialchars($linha['telefone_funcionario']) ?></td>
+                        <td><?= htmlspecialchars($linha['cargo_funcionario']) ?></td>
+                        <td>
+                            <a href="<?= BASE_URL ?>funcionarios/editar/<?= $linha['id_funcionario'] ?>" title="Editar">
                                 <i class="fa fa-pencil-alt" style="font-size: 20px; color: #9a5c1f;"></i>
                             </a>
                         </td>
                         <td>
-                            <a href="#" title="Desativar" onclick="abrirModalDesativar(<?php echo $linha['id_funcionario'];  ?>)">
-                                <i class="fa fa-ban" style="font-size: 20px; color: #ff4d4d;"></i>
-                            </a>
+                            <?php if ($status !== 'Inativo'): ?>
+                                <a href="#" title="Desativar" onclick="abrirModalDesativar(<?= $linha['id_funcionario'] ?>)">
+                                    <i class="fa fa-ban" style="font-size: 20px; color: #ff4d4d;"></i>
+                                </a>
+                            <?php else: ?>
+                                <a href="#" title="Ativar" onclick="abrirModalAtivar(<?= $linha['id_funcionario']; ?>)">
+                                    <i class="fa fa-check-circle" style="font-size: 20px; color: #4CAF50;"></i>
+                                </a>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -75,111 +93,122 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
         </table>
     </div>
 
-    <div class="text-center mt-4">
-        <h3 style="color: #9a5c1fad;">Não encontrou o funcionario? Cadastre abaixo</h3>
-        <a href="http://localhost/exfe/public/funcionarios/adicionar" class="btn fw-bold px-4 py-2" style="background:#9a5c1fad; color: #ffffff; border-radius: 8px;">
-            Adicionar Funcionario
-        </a>
-    </div>
+    <?php if ($status !== 'Inativo'): ?>
+        <div class="text-center mt-4">
+            <h3 style="color: #9a5c1fad;">Não encontrou o funcionário? Cadastre abaixo</h3>
+            <a href="<?= BASE_URL ?>funcionarios/adicionar" class="btn fw-bold px-4 py-2" style="background:#9a5c1fad; color: #ffffff; border-radius: 8px;">
+                Adicionar Funcionário
+            </a>
+        </div>
+    <?php endif; ?>
 </div>
 
-
-
-
-<!-- MODAL DESATIVAR Funcionario  -->
-<div class="modal" tabindex="-1" id="modalDesativar">
+<!-- Modal Desativar -->
+<div class="modal fade" tabindex="-1" id="modalDesativar">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Desativar Funcionario</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title">Desativar Funcionário</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
             </div>
             <div class="modal-body">
-                <p>Tem Certeza que deseja desativar esse Funcionario?</p>
-                <input type="hidden" id="idFuncionarioDesativar" value="">
-
+                <p>Tem certeza que deseja desativar este funcionário?</p>
+                <input type="hidden" id="idFuncionarioDesativar">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="btnConfirmar">Desativar</button>
+                <button type="button" class="btn btn-danger" id="btnConfirmarDesativar">Desativar</button>
             </div>
         </div>
     </div>
 </div>
 
-
-
-
-
-
+<!-- Modal Ativar -->
+<div class="modal fade" tabindex="-1" id="modalAtivar">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ativar Funcionário</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza que deseja ativar este funcionário?</p>
+                <input type="hidden" id="idFuncionarioAtivar">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-success" id="btnConfirmarAtivar">Ativar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
-    function abrirModalDesativar(idFuncionario) {
-
-
-        if ($('#modalDesativar').hasClass('show')) {
-            return;
-        }
-
-        document.getElementById('idFuncionarioDesativar').value = idFuncionario;
-        $('#modalDesativar').modal('show');
-
+    // Desativar
+    function abrirModalDesativar(id) {
+        document.getElementById('idFuncionarioDesativar').value = id;
+        const modal = new bootstrap.Modal(document.getElementById('modalDesativar'));
+        modal.show();
     }
 
-
-    document.getElementById('btnConfirmar').addEventListener('click', function() {
-        const idFuncionario = document.getElementById('idFuncionarioDesativar').value;
-        console.log(idFuncionario);
-
-        if (idFuncionario) {
-            desativarFuncionario(idFuncionario);
-        }
-
+    document.getElementById('btnConfirmarDesativar').addEventListener('click', function () {
+        const id = document.getElementById('idFuncionarioDesativar').value;
+        if (id) desativarFuncionario(id);
     });
 
-    function desativarFuncionario(idFuncionario) {
+    function desativarFuncionario(id) {
+        fetch(`<?= BASE_URL ?>funcionarios/desativar/${id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.sucesso) {
+                bootstrap.Modal.getInstance(document.getElementById('modalDesativar')).hide();
+                setTimeout(() => location.reload(), 500);
+            } else {
+                alert(data.mensagem || "Erro ao desativar funcionário.");
+            }
+        })
+        .catch(error => {
+            console.error("Erro:", error);
+            alert('Erro na requisição.');
+        });
+    }
 
-        fetch(`http://localhost/exfe/public/funcionarios/desativar/${idFuncionario}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
+    // Ativar
+    function abrirModalAtivar(id) {
+        document.getElementById('idFuncionarioAtivar').value = id;
+        const modal = new bootstrap.Modal(document.getElementById('modalAtivar'));
+        modal.show();
+    }
 
-            })
+    document.getElementById('btnConfirmarAtivar').addEventListener('click', function () {
+        const id = document.getElementById('idFuncionarioAtivar').value;
+        if (id) ativarFuncionario(id);
+    });
 
-            .then(response => {
-                // Se o codigo de resposta NÃO for OK lança pra ele uma msg de ERRO
-                if (!response.ok) {
-
-                    throw new Error(`Erro HTTP: ${reponse.status}`)
-                    ''
-                }
-                return response.json();
-
-            })
-
-            .then(data => {
-
-                if (data.sucesso) {
-                    console.log('Curso desativado com sucesso');
-                    $('#modalDesativar').modal('hide');
-                    setTimeout(() => {
-                        location.reload();
-                    }), 500;
-
-                } else {
-                    alert(data.mensagem || "Ocorreu um erro ao Desativar o Curso");
-                }
-
-            })
-
-            .catch(erro => {
-                console.error("erro", erro);
-                alert('erro na requisicao');
-
-            })
-
-
-
+    function ativarFuncionario(id) {
+        fetch(`<?= BASE_URL ?>funcionarios/ativar/${id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.sucesso) {
+                bootstrap.Modal.getInstance(document.getElementById('modalAtivar')).hide();
+                setTimeout(() => location.reload(), 500);
+            } else {
+                alert(data.mensagem || "Erro ao ativar funcionário.");
+            }
+        })
+        .catch(error => {
+            console.error("Erro:", error);
+            alert('Erro na requisição.');
+        });
     }
 </script>

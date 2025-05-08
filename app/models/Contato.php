@@ -20,15 +20,23 @@ class Contato extends Model
     }
 
 
-    public function getListarContato()
+    public function getListarContato($status = null)
     {
-
-        $sql = "SELECT * FROM tbl_contato
-                WHERE status_contato = 'ativo'
-                ORDER BY data_contato DESC";
-        $stmt = $this->db->query($sql);
+        $sql = "SELECT * FROM tbl_contato";
+    
+        if ($status) {
+            $sql .= " WHERE status_contato = :status";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(":status", $status);
+        } else {
+            $stmt = $this->db->prepare($sql);
+        }
+    
+        $sql .= " ORDER BY data_contato DESC";
+        $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
 
     // Desativar Contato 
     public function desativarContato($id)
@@ -41,13 +49,4 @@ class Contato extends Model
     }
 
 
-    public function getListarContatoDesativado()
-    {
-
-        $sql = "SELECT * FROM tbl_contato
-                WHERE status_contato = 'Inativo'
-                ORDER BY data_contato DESC";
-        $stmt = $this->db->query($sql);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
 }
