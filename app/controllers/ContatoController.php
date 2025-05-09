@@ -134,18 +134,17 @@ class ContatoController extends Controller
     
         $dados['conteudo'] = 'dash/contato/listar';
     
+        $func = new Funcionario();
+        $dadosFunc = $func->buscarfuncionario($_SESSION['userEmail']);
+        $dados['func'] = $dadosFunc;
+    
         if ($_SESSION['id_tipo_usuario'] == '1') {
-            $func = new Funcionario();
-            $dadosFunc = $func->buscarfuncionario($_SESSION['userEmail']);
-            $dados['func'] = $dadosFunc;
             $this->carregarViews('dash/dashboard', $dados);
         } else if ($_SESSION['id_tipo_usuario'] == '2') {
-            $func = new Funcionario();
-            $dadosFunc = $func->buscarfuncionario($_SESSION['userEmail']);
-            $dados['func'] = $dadosFunc;
             $this->carregarViews('dash/dashboard-funcionario', $dados);
         }
     }
+    
     
 
 

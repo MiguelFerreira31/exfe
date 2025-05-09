@@ -19,23 +19,26 @@ class Contato extends Model
         return $stmt->execute();
     }
 
-
     public function getListarContato($status = null)
     {
         $sql = "SELECT * FROM tbl_contato";
-    
-        if ($status) {
+        
+        if (!empty($status)) {
             $sql .= " WHERE status_contato = :status";
-            $stmt = $this->db->prepare($sql);
-            $stmt->bindValue(":status", $status);
-        } else {
-            $stmt = $this->db->prepare($sql);
         }
     
-        $sql .= " ORDER BY data_contato DESC";
+        $sql .= " ORDER BY data_contato DESC"; // agora está na ordem certa
+    
+        $stmt = $this->db->prepare($sql);
+    
+        if (!empty($status)) {
+            $stmt->bindValue(":status", $status);
+        }
+    
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
     
 
     // Desativar Contato 

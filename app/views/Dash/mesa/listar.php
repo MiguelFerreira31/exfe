@@ -43,9 +43,9 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                         <td>
                             <select class="form-select fw-bold text-center" 
                                     onchange="atualizarStatusMesa(<?php echo $linha['id_mesa']; ?>, this.value)">
-                                <option value="disponivel" <?php echo $linha['status_mesa'] == 'disponivel' ? 'selected' : ''; ?>>Disponível</option>
-                                <option value="reservada" <?php echo $linha['status_mesa'] == 'reservada' ? 'selected' : ''; ?>>Reservada</option>
-                                <option value="ocupada" <?php echo $linha['status_mesa'] == 'ocupada' ? 'selected' : ''; ?>>Ocupada</option>
+                                <option value="Disponivel" <?php echo $linha['status_mesa'] == 'Disponivel' ? 'selected' : ''; ?>>Disponível</option>
+                                <option value="Reservada" <?php echo $linha['status_mesa'] == 'Reservada' ? 'selected' : ''; ?>>Reservada</option>
+                                <option value="Ocupada" <?php echo $linha['status_mesa'] == 'Ocupada' ? 'selected' : ''; ?>>Ocupada</option>
                             </select>
                         </td>
 

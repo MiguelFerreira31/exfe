@@ -22,19 +22,20 @@ $status = ucfirst(strtolower($_GET['status'] ?? 'Ativo'));
     </h2>
 
     <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
-        <form method="get" action="" class="d-flex align-items-center mb-2 mb-md-0">
-            <label for="statusFiltro" class="me-2">Filtrar por status:</label>
-            <select name="status" id="statusFiltro" onchange="this.form.submit()" class="form-select w-auto">
-                <option value="">Todos</option>
-                <option value="Ativo" <?= $status === 'Ativo' ? 'selected' : '' ?>>Ativos</option>
-                <option value="Inativo" <?= $status === 'Inativo' ? 'selected' : '' ?>>Inativos</option>
-            </select>
-        </form>
+    <form method="get" action="" class="d-flex align-items-center mb-2 mb-md-0">
+        <label for="statusFiltro" class="me-2">Filtrar por status:</label>
+        <select name="status" id="statusFiltro" onchange="this.form.submit()" class="form-select w-auto">
+            <option value="" <?= $status === null || $status === '' ? 'selected' : '' ?>>Todos</option>
+            <option value="Ativo" <?= $status === 'Ativo' ? 'selected' : '' ?>>Ativos</option>
+            <option value="Inativo" <?= $status === 'Inativo' ? 'selected' : '' ?>>Inativos</option>
+        </select>
+    </form>
 
-        <?php if ($status !== 'Inativo'): ?>
-            <a href="<?= BASE_URL ?>funcionarios/adicionar" class="btn btn-primary">Adicionar Funcionário</a>
-        <?php endif; ?>
-    </div>
+    <?php if ($status !== 'Inativo'): ?>
+        <a href="<?= BASE_URL ?>funcionarios/adicionar" class="btn btn-primary">Adicionar Funcionário</a>
+    <?php endif; ?>
+</div>
+
 
     <div class="table-responsive rounded-3 shadow-lg p-3 bg-white">
         <table class="table table-hover text-center align-middle">

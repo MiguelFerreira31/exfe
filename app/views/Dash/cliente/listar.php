@@ -18,16 +18,17 @@ $status = $_GET['status'] ?? 'Ativo';
     </h2>
 
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <div class="d-flex justify-content-end mb-3">
-            <form method="get" action="">
-                <label for="statusFiltro">Filtrar por status:</label>
-                <select name="status" id="statusFiltro" onchange="this.form.submit()" class="form-select d-inline w-auto ms-2">
-                    <option value="">Todos</option>
-                    <option value="ativo" <?= isset($_GET['status']) && $_GET['status'] == 'Ativo' ? 'selected' : '' ?>>Ativos</option>
-                    <option value="inativo" <?= isset($_GET['status']) && $_GET['status'] == 'Inativo' ? 'selected' : '' ?>>Inativos</option>
-                </select>
-            </form>
-        </div>
+    <div class="d-flex justify-content-end mb-3">
+    <form method="get" action="">
+        <label for="statusFiltro">Filtrar por status:</label>
+        <select name="status" id="statusFiltro" onchange="this.form.submit()" class="form-select d-inline w-auto ms-2">
+            <option value="" <?= !isset($_GET['status']) || $_GET['status'] == '' ? 'selected' : '' ?>>Todos</option>
+            <option value="ativo" <?= isset($_GET['status']) && $_GET['status'] == 'ativo' ? 'selected' : '' ?>>Ativos</option>
+            <option value="inativo" <?= isset($_GET['status']) && $_GET['status'] == 'inativo' ? 'selected' : '' ?>>Inativos</option>
+        </select>
+    </form>
+</div>
+
         <?php if ($status !== 'inativo'): ?>
             <a href="<?= BASE_URL ?>clientes/adicionar" class="btn btn-primary">Adicionar Cliente</a>
         <?php endif; ?>
