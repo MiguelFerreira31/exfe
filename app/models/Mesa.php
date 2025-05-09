@@ -75,5 +75,20 @@ class Mesa extends Model
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    
+    // Método para obter todos os status das mesas
+    public function getTodosStatus()
+    {
+        // Query SQL para buscar os status da mesa
+        $sql = "SELECT DISTINCT status_mesa FROM tbl_mesa";  // Substitua "mesas" pelo nome correto da sua tabela de mesas
+
+        // Preparar e executar a consulta
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+
+        // Buscar os resultados
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Retornar os resultados
+        return $result;
+    }
 }

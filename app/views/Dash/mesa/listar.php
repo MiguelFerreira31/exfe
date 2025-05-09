@@ -35,7 +35,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                                 alt="Mesa <?php echo $linha['id_mesa']; ?>" 
                                 style="width:100px; height:auto; border-radius: 10px;">
                             
-                            <div class="mt-2 fw-bold text-center" style="color: #5e3c2d;">
+                            <div class="mt-2 fw-bold text-center" style="color: #5e3c2d;" id="legenda<?php echo $linha['id_mesa']; ?>">
                                 Status: <?php echo htmlspecialchars($linha['status_mesa']); ?>
                             </div>
                         </td>
@@ -43,14 +43,14 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                         <td>
                             <select class="form-select fw-bold text-center" 
                                     onchange="atualizarStatusMesa(<?php echo $linha['id_mesa']; ?>, this.value)">
-                                <option value="disponivel" <?php echo $linha['status_mesa'] == 'disponivel' ? 'selected' : ''; ?>>Disponível</option>
-                                <option value="reservada" <?php echo $linha['status_mesa'] == 'reservada' ? 'selected' : ''; ?>>Reservada</option>
-                                <option value="ocupada" <?php echo $linha['status_mesa'] == 'ocupada' ? 'selected' : ''; ?>>Ocupada</option>
+                                <option value="Disponivel" <?php echo $linha['status_mesa'] == 'Disponivel' ? 'selected' : ''; ?>>Disponível</option>
+                                <option value="Reservada" <?php echo $linha['status_mesa'] == 'Reservada' ? 'selected' : ''; ?>>Reservada</option>
+                                <option value="Ocupada" <?php echo $linha['status_mesa'] == 'Ocupada' ? 'selected' : ''; ?>>Ocupada</option>
                             </select>
                         </td>
 
                         <td>
-                            <a href="http://localhost/exfe/public/mesa/editar/<?php echo $linha['id_mesa']; ?>" title="Editar">
+                            <a href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/editar/<?php echo $linha['id_mesa']; ?>" title="Editar">
                                 <i class="fa fa-pencil-alt" style="font-size: 20px; color: #9a5c1f;"></i>
                             </a>
                         </td>
@@ -68,7 +68,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
     <div class="text-center mt-4">
         <h3 style="color: #9a5c1fad;">Cadastre uma mesa abaixo</h3>
-        <a href="http://localhost/exfe/public/mesa/adicionar/" class="btn fw-bold px-4 py-2" style="background:#9a5c1fad; color: #ffffff; border-radius: 8px;">
+        <a href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/adicionar/" class="btn fw-bold px-4 py-2" style="background:#9a5c1fad; color: #ffffff; border-radius: 8px;">
             Adicionar Mesa
         </a>
     </div>
@@ -109,7 +109,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     });
 
     function desativarMesa(idMesa) {
-        fetch(`http://localhost/exfe/public/mesa/desativar/${idMesa}`, {
+        fetch(`https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/desativar/${idMesa}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' }
         })
@@ -118,6 +118,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
             if (data.sucesso) {
                 $('#modalDesativar').modal('hide');
                 setTimeout(() => location.reload(), 500);
+                
             } else {
                 alert(data.mensagem || "Erro ao desativar mesa");
             }
@@ -126,15 +127,15 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     }
 
     function atualizarStatusMesa(id, status) {
-        fetch(`http://localhost/exfe/public/mesa/atualizarStatusMesa/${id}/${status}`, {
+        fetch(`https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/atualizarStatusMesa/${id}/${status}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' }
         })
         .then(response => response.json())
         .then(data => {
             if (data.status) {
-                //atualizacampo(id)
-                location.reload()
+                atualizacampo(id, status)
+                //location.reload()
             } else {
                 alert(data.mensagem || "Erro ao desativar mesa");
             }
@@ -142,22 +143,12 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
         .catch(() => alert('Erro na requisição'));
     }
 
-    function atualizacampo(id){
-        fetch(`http://localhost/exfe/public/mesa/statusMesa/${id}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status) {
-                
+    function atualizacampo(id,status){
+        const idcampo = document.getElementById(`imgMesa${id}`)
+        const legenda = document.getElementById(`legenda${id}`)
+              idcampo.src = `/exfe/public/imagens/mesas/${status}.png`
+              legenda.textContent = status
                 //aqui iria atualizar o campo
-
-            } else {
-                alert(data.mensagem || "Erro ao desativar mesa");
-            }
-        })
-        .catch(() => alert('Erro na requisição'));
-        statusMesa(id)
+           
     }
 </script>

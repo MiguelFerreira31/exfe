@@ -31,6 +31,10 @@ class MesaController extends Controller
         $this->carregarViews('dash/dashboard', $dados);
     }
 
+  // Se não estiver usando autoload, inclua a classe Status manualmente
+// require_once 'caminho/para/Status.php'; // Adapte o caminho conforme necessário
+
+
     public function adicionar()
     {
         $dados = array();
@@ -38,51 +42,108 @@ class MesaController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // TBL Mesa
-            $numero_mesa        = filter_input(INPUT_POST, 'numero_mesa', FILTER_SANITIZE_SPECIAL_CHARS);
-            $capacidade   = filter_input(INPUT_POST, 'capacidade', FILTER_SANITIZE_NUMBER_INT);
-            $status_mesa        = filter_input(INPUT_POST, 'status_mesa', FILTER_SANITIZE_SPECIAL_CHARS);
-            $foto_mesa   = filter_input(INPUT_POST, 'foto_mesa', FILTER_SANITIZE_SPECIAL_CHARS);
+            $numero_mesa = filter_input(INPUT_POST, 'numero_mesa', FILTER_SANITIZE_SPECIAL_CHARS);
+            $capacidade = filter_input(INPUT_POST, 'capacidade', FILTER_SANITIZE_NUMBER_INT);
+            $status_mesa = filter_input(INPUT_POST, 'status_mesa', FILTER_SANITIZE_SPECIAL_CHARS);
 
-            if ($numero_mesa && $capacidade !== false) {
+            // Verificação de campos obrigatórios
+            if ($numero_mesa && $capacidade !== false && $status_mesa) {
 
-                // 3 Preparar Dados
+                // Preparar dados da mesa para inserção
                 $dadosMesa = array(
-                    'numero_mesa'      => $numero_mesa,
-                    'capacidade'  => $capacidade,
-                    'status_mesa'      => $status_mesa,
-                    'foto_mesa' => $foto_mesa,
+                    'numero_mesa' => $numero_mesa,
+                    'capacidade' => $capacidade,
+                    'status_mesa' => $status_mesa,
                 );
 
-                // 4 Inserir Funcionario
-
+                // 4 Inserir Mesa no banco de dados
                 $id_mesa = $this->mesaModel->addMesa($dadosMesa);
 
-
-
                 if ($id_mesa) {
+                    // Verificar se a foto foi enviada
                     if (isset($_FILES['foto_mesa']) && $_FILES['foto_mesa']['error'] == 0) {
-
-
+                        // Chamar função de upload de foto
                         $arquivo = $this->uploadFoto($_FILES['foto_mesa']);
 
-
                         if ($arquivo) {
-                            //Inserir na galeria
-
+                            // Inserir na galeria de fotos
                             $this->mesaModel->addFotoMesa($id_mesa, $arquivo);
                         } else {
-                            //Definir uma mensagem informando que não pode ser salva
+                            // Definir uma mensagem de erro se a foto não puder ser salva
+                            $dados['mensagem'] = "Erro ao salvar a foto da mesa.";
+                            $dados['tipo-msg'] = "erro";
                         }
                     }
 
-
-                    // Mensagem de SUCESSO 
-                    $_SESSION['mensagem'] = "Mesa Cadastrado com Sucesso";
+                    // Mensagem de SUCESSO
+                    $_SESSION['mensagem'] = "Mesa cadastrada com sucesso!";
                     $_SESSION['tipo-msg'] = "sucesso";
-                    header('Location: http://localhost/exfe/public/mesa/listar');
+                    header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/listar');
                     exit;
-                }  else {
-                    $dados['mensagem'] = "Erro ao adicionar mesa";
+                } else {
+                    // Mensagem de erro ao adicionar a mesa
+                    $dados['mensagem'] = "Erro ao adicionar mesa.";
+                    $dados['tipo-msg'] = "erro";
+                }
+            } else {
+                // Mensagem se campos obrigatórios não foram preenchidos
+                $dados['mensagem'] = "Preencha todos os campos obrigatórios.";
+                $dados['tipo-msg'] = "erro";
+            }
+        }
+
+        // Buscar status das mesas para preencher o select
+        // Certifique-se de que a classe Status foi incluída corretamente
+        $statusModel = new Status();
+        $dados['status'] = $statusModel->getListarStatus();
+
+        // Carregar a view
+        $dados['conteudo'] = 'dash/mesa/adicionar';
+        $this->carregarViews('dash/dashboard', $dados);
+    }
+
+    public function editar($id = null)
+    {
+        $dados = array();
+        $dados['conteudo'] = 'dash/mesa/editar';
+
+        if ($id === null) {
+            header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/listar');
+            exit;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $numero_mesa = filter_input(INPUT_POST, 'numero_mesa', FILTER_SANITIZE_NUMBER_INT);
+            $capacidade = filter_input(INPUT_POST, 'capacidade', FILTER_SANITIZE_NUMBER_INT);
+            $status_mesa = filter_input(INPUT_POST, 'status_mesa', FILTER_SANITIZE_SPECIAL_CHARS);
+
+            if (!empty($numero_mesa) && !empty($capacidade) && $status_mesa !== false) {
+                $dadosMesa = array(
+                    'numero_mesa' => $numero_mesa,
+                    'capacidade' => $capacidade,
+                    'status_mesa' => $status_mesa
+                );
+
+                if (isset($_FILES['foto_mesa']) && $_FILES['foto_mesa']['error'] === 0) {
+                    $arquivo = $this->uploadFoto($_FILES['foto_mesa']);
+
+                    if ($arquivo) {
+                        $dadosMesa['foto_mesa'] = $arquivo;
+                    } else {
+                        $dados['mensagem'] = "Erro ao fazer upload da imagem.";
+                        $dados['tipo-msg'] = "erro";
+                    }
+                }
+
+                $atualizado = $this->mesaModel->updateMesa($id, $dadosMesa);
+
+                if ($atualizado) {
+                    $_SESSION['mensagem'] = "Mesa atualizada com sucesso";
+                    $_SESSION['tipo-msg'] = "sucesso";
+                    header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/listar');
+                    exit;
+                } else {
+                    $dados['mensagem'] = "Erro ao atualizar mesa";
                     $dados['tipo-msg'] = "erro";
                 }
             } else {
@@ -91,12 +152,20 @@ class MesaController extends Controller
             }
         }
 
-        // Buscar Estado
-        $mesas = new Status();
-        $dados['status'] = $mesas->getListarStatus();
+        // Carrega dados atuais da mesa
+        $mesa = $this->mesaModel->getMesaById($id);
+        if ($mesa) {
+            $dados['mesa'] = $mesa;
+        } else {
+            $_SESSION['mensagem'] = "Mesa não encontrada";
+            $_SESSION['tipo-msg'] = "erro";
+            header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/listar');
+            exit;
+        }
 
-        $dados['conteudo'] = 'dash/mesa/adicionar';
-
+        // 👉 Carrega lista de status (corrige o problema do <select>)
+        $status = $this->mesaModel->getTodosStatus(); // essa função deve retornar um array de status
+        $dados['status'] = $status;
 
         $this->carregarViews('dash/dashboard', $dados);
     }
@@ -124,98 +193,31 @@ class MesaController extends Controller
     public function atualizarStatusMesa($id, $status_mesa)
     {
         // Busca os dados atuais
-        try{
+        try {
             $mesaAtual = $this->mesaModel->getMesaById($id);
-    
+
             $dados = array(
                 'numero_mesa' => $mesaAtual['numero_mesa'],
                 'capacidade' => $mesaAtual['capacidade'],
                 'status_mesa' => $status_mesa,
                 'foto_mesa' => $mesaAtual['foto_mesa']
             );
-        
+
             $this->mesaModel->updateMesa($id, $dados);
-            echo json_encode(['status'=> true, "message"=> "sucesso"]);
-        }catch(Exception $e){
-              echo $e->getMessage();
-        }
-        
-    }
-    
-    public function statusMesa($id){
-        try{
-            $result= $this->mesaModel->getMesaById($id);
-             echo json_encode(["mesa"=> $result]);
-        }catch(Exception $e){
+            echo json_encode(['status' => true, "message" => "sucesso"]);
+        } catch (Exception $e) {
             echo $e->getMessage();
-
-        }
-       
-
-
-    }
-
-
-    public function editar($id = null)
-{
-    $dados = array();
-    $dados['conteudo'] = 'dash/mesa/editar';
-
-    if ($id === null) {
-        header('Location: http://localhost/exfe/public/mesa/listar');
-        exit;
-    }
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-        $numero_mesa = filter_input(INPUT_POST, 'numero_mesa', FILTER_SANITIZE_NUMBER_INT);
-        $capacidade = filter_input(INPUT_POST, 'capacidade', FILTER_SANITIZE_NUMBER_INT);
-        $status_mesa = filter_input(INPUT_POST, 'status_mesa', FILTER_SANITIZE_SPECIAL_CHARS);
-        $foto_mesa = filter_input(INPUT_POST, 'foto_mesa', FILTER_SANITIZE_SPECIAL_CHARS);
-
-        if ($numero_mesa && $capacidade && $status_mesa !== false) {
-
-            $dadosMesa = array(
-                'numero_mesa' => $numero_mesa,
-                'capacidade' => $capacidade,
-                'status_mesa' => $status_mesa,
-                'foto_mesa' => $foto_mesa,
-            );
-
-            // Atualizar mesa
-            $atualizado = $this->mesaModel->updateMesa($id, $dadosMesa);
-
-            if ($atualizado) {
-                // Se imagem enviada, faz upload
-                if (isset($_FILES['foto_mesa']) && $_FILES['foto_mesa']['error'] === 0) {
-                    $arquivo = $this->uploadFoto($_FILES['foto_mesa']);
-
-                    if ($arquivo) {
-                        $this->mesaModel->addFotoMesa($id, $arquivo);
-                    } else {
-                        // Mensagem de erro opcional aqui
-                    }
-                }
-
-                $_SESSION['mensagem'] = "Mesa atualizada com sucesso";
-                $_SESSION['tipo-msg'] = "sucesso";
-                header('Location: http://localhost/exfe/public/mesa/listar');
-                exit;
-            } else {
-                $dados['mensagem'] = "Erro ao atualizar mesa";
-                $dados['tipo-msg'] = "erro";
-            }
-        } else {
-            $dados['mensagem'] = "Preencha todos os campos obrigatórios";
-            $dados['tipo-msg'] = "erro";
         }
     }
 
-    // Carregar dados atuais da mesa
-    $mesa = $this->mesaModel->getMesaById($id);
-    $dados['conteudo'] = 'dash/mesa/editar';
-    $this->carregarViews('dash/dashboard', $dados);
-
-}
+    public function statusMesa($id)
+    {
+        try {
+            $result = $this->mesaModel->getMesaById($id);
+            echo json_encode(["mesa" => $result]);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
 
 }
