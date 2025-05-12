@@ -39,6 +39,12 @@
 $totalClienteModel = new Cliente();
 $totalCliente = $totalClienteModel->getContarCliente();
 $dados['totalCliente'] = $totalCliente;
+
+
+     $acompanhamentosModel =new Acompanhamento();
+     $acompanhamentos = $acompanhamentosModel->getListarAcompanhamentos();
+     $dados['acompanhamentos'] = $acompanhamentos;
+
 ?>
 
 <body class="g-sidenav-show light-mode">

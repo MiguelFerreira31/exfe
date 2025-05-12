@@ -1,4 +1,4 @@
-<form method="POST" action="http://localhost/exfe/public/clientes/adicionar" enctype="multipart/form-data">
+<form method="POST" action="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/clientes/adicionar" enctype="multipart/form-data">
   <div class="container-fluid py-4">
     <div class="row">
       <div class="col-md-8">
@@ -204,7 +204,7 @@
 
                     <div class="col-12 col-md-4 text-center mb-3 mb-md-0">
                       <div class="image-container" style="width: 100%; max-width: 200px; aspect-ratio: 1/1; overflow: hidden; border-radius: 50%; margin: auto;">
-                        <img src="http://localhost/exfe/public/assets/img/hero-bg2.png" alt="exfe Logo" class="img-fluid" id="preview-img" style="cursor:pointer; border-radius:12px;">
+                        <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/hero-bg2.png" alt="exfe Logo" class="img-fluid" id="preview-img" style="cursor:pointer; border-radius:12px;">
                       </div>
                       <input type="file" name="foto_cliente" id="foto_cliente" style="display: none;" accept="image/*">
                     </div>

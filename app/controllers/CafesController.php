@@ -98,7 +98,7 @@ class CafesController extends Controller
         $dados['conteudo'] = 'dash/produto/editar';
 
         if ($id === null) {
-            header('Location:http://localhost/exfe/public/produtos/listar');
+            header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/produtos/listar');
             exit;
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -150,7 +150,7 @@ class CafesController extends Controller
                     // Mensagem de SUCESSO 
                     $_SESSION['mensagem'] = "Produto Atualizado Com Sucesso";
                     $_SESSION['tipo-msg'] = "sucesso";
-                    header('Location: http://localhost/exfe/public/produtos/listar');
+                    header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/produtos/listar');
                     exit;
                 } else {
                     $dados['mensagem'] = "Erro ao Atalizar Produto";
@@ -244,7 +244,7 @@ class CafesController extends Controller
     
                     $_SESSION['mensagem'] = "Produto cadastrado com sucesso";
                     $_SESSION['tipo-msg'] = "sucesso";
-                    header('Location: http://localhost/exfe/public/produtos/listar');
+                    header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/produtos/listar');
                     exit;
                 } else {
                     $dados['mensagem'] = "Erro ao adicionar produto";

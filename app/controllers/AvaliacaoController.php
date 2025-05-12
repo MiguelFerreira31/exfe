@@ -74,7 +74,7 @@ class AvaliacaoController extends Controller
                 if ($inserido) {
                     $_SESSION['mensagem'] = "Avaliação registrada com sucesso!";
                     $_SESSION['tipo-msg'] = "sucesso";
-                    header('Location: http://localhost/exfe/public/avaliacao/listar/'. $id_cliente);
+                    header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/avaliacao/listar/'. $id_cliente);
                     exit;
                 } else {
                     $dados['mensagem'] = "Erro ao registrar a avaliação.";
@@ -102,7 +102,7 @@ class AvaliacaoController extends Controller
         $dados['conteudo'] = 'dash/avaliacao/editar';
     
         if ($id === null) {
-            header('Location:http://localhost/exfe/public/avaliacao/listar');
+            header('Location:https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/avaliacao/listar');
             exit;
         }
     
@@ -115,7 +115,7 @@ class AvaliacaoController extends Controller
         if (!$avaliacao) {
             $_SESSION['mensagem'] = "Avaliação não encontrada.";
             $_SESSION['tipo-msg'] = "erro";
-            header('Location: http://localhost/exfe/public/avaliacao/listar');
+            header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/avaliacao/listar');
             exit;
         }
 
@@ -157,7 +157,7 @@ class AvaliacaoController extends Controller
                 if ($atualizado) {
                     $_SESSION['mensagem'] = "Avaliação atualizada com sucesso!";
                     $_SESSION['tipo-msg'] = "sucesso";
-                    header('Location: http://localhost/exfe/public/avaliacao/listar/' . $id_cliente);
+                    header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/avaliacao/listar/' . $id_cliente);
                     exit;
                 } else {
                     $dados['mensagem'] = "Erro ao atualizar a avaliação.";

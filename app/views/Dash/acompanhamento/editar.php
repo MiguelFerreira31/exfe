@@ -19,7 +19,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     unset($_SESSION['tipo-msg']);
 }
 ?>
-<form method="POST" action="http://localhost/exfe/public/acompanhamentos/editar/<?php echo $acompanhamentos['id_acompanhamento']; ?>" enctype="multipart/form-data">
+<form method="POST" action="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/acompanhamentos/editar/<?php echo $acompanhamentos['id_acompanhamento']; ?>" enctype="multipart/form-data">
     <div class="container my-5">
         <div class="row justify-content-center">
             <!-- Imagem -->
@@ -28,8 +28,8 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                     <?php
 
                     $fotoAcompanhamento = $acompanhamentos['foto_acompanhamento'];
-                    $fotoPath = "http://localhost/exfe/public/uploads/" . $fotoAcompanhamento;
-                    $fotoDefault = "http://localhost/exfe/public/assets/img/hero-bg3.png";
+                    $fotoPath = "https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/uploads/" . $fotoAcompanhamento;
+                    $fotoDefault = "https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/hero-bg3.png";
 
                     $imagePath = (file_exists($_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $fotoAcompanhamento) && !empty($fotoProduto))
                         ? $fotoPath

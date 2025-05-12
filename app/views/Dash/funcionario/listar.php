@@ -22,19 +22,19 @@ $status = ucfirst(strtolower($_GET['status'] ?? 'Ativo'));
     </h2>
 
     <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
-    <form method="get" action="" class="d-flex align-items-center mb-2 mb-md-0">
-        <label for="statusFiltro" class="me-2">Filtrar por status:</label>
-        <select name="status" id="statusFiltro" onchange="this.form.submit()" class="form-select w-auto">
-            <option value="" <?= $status === null || $status === '' ? 'selected' : '' ?>>Todos</option>
-            <option value="Ativo" <?= $status === 'Ativo' ? 'selected' : '' ?>>Ativos</option>
-            <option value="Inativo" <?= $status === 'Inativo' ? 'selected' : '' ?>>Inativos</option>
-        </select>
-    </form>
+        <form method="get" action="" class="d-flex align-items-center mb-2 mb-md-0">
+            <label for="statusFiltro" class="me-2">Filtrar por status:</label>
+            <select name="status" id="statusFiltro" onchange="this.form.submit()" class="form-select w-auto">
+                <option value="" <?= $status === null || $status === '' ? 'selected' : '' ?>>Todos</option>
+                <option value="Ativo" <?= $status === 'Ativo' ? 'selected' : '' ?>>Ativos</option>
+                <option value="Inativo" <?= $status === 'Inativo' ? 'selected' : '' ?>>Inativos</option>
+            </select>
+        </form>
 
-    <?php if ($status !== 'Inativo'): ?>
-        <a href="<?= BASE_URL ?>funcionarios/adicionar" class="btn btn-primary">Adicionar Funcionário</a>
-    <?php endif; ?>
-</div>
+        <?php if ($status !== 'Inativo'): ?>
+            <a href="<?= BASE_URL ?>funcionarios/adicionar" class="btn btn-primary">Adicionar Funcionário</a>
+        <?php endif; ?>
+    </div>
 
 
     <div class="table-responsive rounded-3 shadow-lg p-3 bg-white">
@@ -57,16 +57,22 @@ $status = ucfirst(strtolower($_GET['status'] ?? 'Ativo'));
             <tbody>
                 <?php foreach ($funcionarios as $linha): ?>
                     <tr class="fw-semibold">
+                       
                         <td>
                             <?php
-                            $nomeFoto = htmlspecialchars($linha['foto_funcionario'] ?? '', ENT_QUOTES, 'UTF-8');
-                            $caminhoAbsoluto = $_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $nomeFoto;
-                            $urlFoto = (!empty($nomeFoto) && file_exists($caminhoAbsoluto))
-                                ? BASE_URL . "uploads/{$nomeFoto}"
-                                : BASE_URL . "uploads/funcionario/sem-foto-funcionario.jpg";
+                            $caminhoArquivo = BASE_URL . "uploads/" . $linha['foto_funcionario'];
+                            $img = BASE_URL . "uploads/sem-foto.jpg"; // Caminho padrão corrigido
+                            // $alt_foto = "imagem sem foto $index";
+
+                            if (!empty($linha['foto_funcionario'])) {
+                                $headers = @get_headers($caminhoArquivo);
+                                if ($headers && strpos($headers[0], '200') !== false) {
+                                    $img = $caminhoArquivo;
+                                }
+                            }
+
                             ?>
-                            <img src="<?= $urlFoto ?>" class="rounded-circle" style="width: 50px; height: 50px;"
-                                alt="<?= htmlspecialchars($linha['nome_funcionario']) ?>">
+                            <img src="<?php echo $img; ?>" alt="Foto funcionario" class="rounded-circle" style="width: 50px; height: 50px;">
                         </td>
                         <td><?= htmlspecialchars($linha['nome_funcionario']) ?></td>
                         <td><?= htmlspecialchars($linha['email_funcionario']) ?></td>
@@ -152,31 +158,31 @@ $status = ucfirst(strtolower($_GET['status'] ?? 'Ativo'));
         modal.show();
     }
 
-    document.getElementById('btnConfirmarDesativar').addEventListener('click', function () {
+    document.getElementById('btnConfirmarDesativar').addEventListener('click', function() {
         const id = document.getElementById('idFuncionarioDesativar').value;
         if (id) desativarFuncionario(id);
     });
 
     function desativarFuncionario(id) {
         fetch(`<?= BASE_URL ?>funcionarios/desativar/${id}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.sucesso) {
-                bootstrap.Modal.getInstance(document.getElementById('modalDesativar')).hide();
-                setTimeout(() => location.reload(), 500);
-            } else {
-                alert(data.mensagem || "Erro ao desativar funcionário.");
-            }
-        })
-        .catch(error => {
-            console.error("Erro:", error);
-            alert('Erro na requisição.');
-        });
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.sucesso) {
+                    bootstrap.Modal.getInstance(document.getElementById('modalDesativar')).hide();
+                    setTimeout(() => location.reload(), 500);
+                } else {
+                    alert(data.mensagem || "Erro ao desativar funcionário.");
+                }
+            })
+            .catch(error => {
+                console.error("Erro:", error);
+                alert('Erro na requisição.');
+            });
     }
 
     // Ativar
@@ -186,30 +192,30 @@ $status = ucfirst(strtolower($_GET['status'] ?? 'Ativo'));
         modal.show();
     }
 
-    document.getElementById('btnConfirmarAtivar').addEventListener('click', function () {
+    document.getElementById('btnConfirmarAtivar').addEventListener('click', function() {
         const id = document.getElementById('idFuncionarioAtivar').value;
         if (id) ativarFuncionario(id);
     });
 
     function ativarFuncionario(id) {
         fetch(`<?= BASE_URL ?>funcionarios/ativar/${id}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.sucesso) {
-                bootstrap.Modal.getInstance(document.getElementById('modalAtivar')).hide();
-                setTimeout(() => location.reload(), 500);
-            } else {
-                alert(data.mensagem || "Erro ao ativar funcionário.");
-            }
-        })
-        .catch(error => {
-            console.error("Erro:", error);
-            alert('Erro na requisição.');
-        });
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.sucesso) {
+                    bootstrap.Modal.getInstance(document.getElementById('modalAtivar')).hide();
+                    setTimeout(() => location.reload(), 500);
+                } else {
+                    alert(data.mensagem || "Erro ao ativar funcionário.");
+                }
+            })
+            .catch(error => {
+                console.error("Erro:", error);
+                alert('Erro na requisição.');
+            });
     }
 </script>

@@ -124,7 +124,7 @@ html body.light-mode {
   /* Título das seções */
   /* Submenus */
   /*  #endregion  */
-  background-image: url("http://localhost/exfe/public/assets/img/hero-bg.png");
+  background-image: url("https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/hero-bg.png");
   background-attachment: fixed;
   background-position: center;
 }
@@ -284,7 +284,7 @@ html body.light-mode .toggle::after {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background-image: url("http://localhost/exfe/public/assets/img/sun.png");
+  background-image: url("https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/sun.png");
   background-position: center;
   background-size: cover;
   box-shadow: 0 1px 2px rgba(44, 44, 44, 0.2);
@@ -355,7 +355,7 @@ html body.light-mode .footer {
   background: linear-gradient(to top, #f2e0db 1.57%, #fff 128.95%);
 }
 html body.dark-mode {
-  background-image: url("http://localhost/exfe/public/assets/img/hero-bg2.png");
+  background-image: url("https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/hero-bg2.png");
   background-attachment: fixed;
   background-position: center;
   /* #region dashboard  */
@@ -541,7 +541,7 @@ html body.dark-mode .toggle::after {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background-image: url("http://localhost/exfe/public/assets/img/moon.png");
+  background-image: url("https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/moon.png");
   background-position: center;
   background-size: cover;
   box-shadow: 0 1px 2px rgba(44, 44, 44, 0.2);

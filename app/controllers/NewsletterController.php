@@ -20,7 +20,7 @@ class NewsletterController extends Controller
 
             if ($this->newsletterModel->emailExistente($email)) {
                 $_SESSION['erro'] = "Este e-mail já está cadastrado!";
-                header('Location: http://localhost/exfe/public/');
+                header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/');
                 exit;
             }
 
@@ -65,17 +65,17 @@ class NewsletterController extends Controller
                     $mail->send();
 
                     $_SESSION['mensagem'] = "Inscrição feita com sucesso! Verifique seu e-mail para receber o cupom.";
-                    header('Location: http://localhost/exfe/public/');
+                    header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/');
                     exit;
                 } catch (Exception $e) {
                     error_log('Erro ao enviar e-mail de cupom: ' . $mail->ErrorInfo);
                     $_SESSION['erro'] = "Inscrição feita, mas houve um erro ao enviar o e-mail.";
-                    header('Location: http://localhost/exfe/public/');
+                    header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/');
                     exit;
                 }
             } else {
                 $_SESSION['erro'] = "Erro ao inscrever-se. Tente novamente.";
-                header('Location: http://localhost/exfe/public/');
+                header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/');
                 exit;
             }
         }

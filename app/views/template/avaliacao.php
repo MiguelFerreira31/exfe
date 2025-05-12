@@ -21,12 +21,12 @@
 
                                                           if ($linha['foto_cliente'] != "") {
                                                             if (file_exists($caminhoArquivo)) {
-                                                              echo ("http://localhost/exfe/public/uploads/" . htmlspecialchars($linha['foto_cliente'], ENT_QUOTES, 'UTF-8'));
+                                                              echo ("https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/uploads/" . htmlspecialchars($linha['foto_cliente'], ENT_QUOTES, 'UTF-8'));
                                                             } else {
-                                                              echo ("http://localhost/exfe/public/uploads/cliente/sem-foto-cliente.jpg");
+                                                              echo ("https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/uploads/cliente/sem-foto-cliente.jpg");
                                                             }
                                                           } else {
-                                                            echo ("http://localhost/exfe/public/uploads/cliente/sem-foto-cliente.jpg");
+                                                            echo ("https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/uploads/cliente/sem-foto-cliente.jpg");
                                                           }
                                                           ?>); ">
               <div class="imgItems">

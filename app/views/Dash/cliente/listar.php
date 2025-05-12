@@ -52,12 +52,19 @@ $status = $_GET['status'] ?? 'Ativo';
                     <tr id="cliente_<?= $linha['id_cliente'] ?>" class="fw-semibold">
                         <td>
                             <?php
-                            $caminhoFoto = $_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $linha['foto_cliente'];
-                            $urlFoto = (!empty($linha['foto_cliente']) && file_exists($caminhoFoto))
-                                ? BASE_URL . "uploads/" . htmlspecialchars($linha['foto_cliente'], ENT_QUOTES, 'UTF-8')
-                                : BASE_URL . "uploads/cliente/sem-foto-cliente.jpg";
-                            ?>
-                            <img src="<?= $urlFoto ?>" alt="Foto Cliente" class="rounded-circle" style="width: 50px; height: 50px;">
+                    $caminhoArquivo = BASE_URL . "uploads/" . $linha['foto_cliente'];
+                    $img = BASE_URL . "uploads/sem-foto.jpg"; // Caminho padrão corrigido
+                    // $alt_foto = "imagem sem foto $index";
+
+                    if (!empty($linha['foto_cliente'])) {
+                        $headers = @get_headers($caminhoArquivo);
+                        if ($headers && strpos($headers[0], '200') !== false) {
+                            $img = $caminhoArquivo;
+                        }
+                    }
+                    
+                    ?>
+                            <img src="<?php echo $img; ?>" alt="Foto Cliente" class="rounded-circle" style="width: 50px; height: 50px;">
                         </td>
                         <td><?= htmlspecialchars($linha['nome_cliente']) ?></td>
                         <td><?= htmlspecialchars($linha['nome_produto']) ?></td>

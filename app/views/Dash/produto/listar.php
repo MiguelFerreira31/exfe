@@ -22,7 +22,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
 <div class="container my-5">
     <h2 class="text-center fw-bold py-3" style="background:#5e3c2d; color: white; border-radius: 12px;">Cafés Cadastrados</h2>
-    <a href="http://localhost/exfe/public/cafes/desativados"><button>Ver Inativos</button></a>
+    <a href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/cafes/desativados"><button>Ver Inativos</button></a>
     <div class="table-responsive rounded-3 shadow-lg p-3" style="background: #ffffff;">
         <table class="table table-hover text-center align-middle">
             <thead class="thead-custom">
@@ -42,19 +42,21 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                 <?php foreach ($produtos as $linha): ?>
                     <tr class="fw-semibold">
                         <td class="img-produto">
-                            <img src="<?php
-                                        $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $linha['foto_produto'];
 
-                                        if ($linha['foto_produto'] != "") {
-                                            if (file_exists($caminhoArquivo)) {
-                                                echo ("http://localhost/exfe/public/uploads/" . htmlspecialchars($linha['foto_produto'], ENT_QUOTES, 'UTF-8'));
-                                            } else {
-                                                echo ("http://localhost/exfe/public/uploads/produto/sem-foto-produto.jpg");
-                                            }
-                                        } else {
-                                            echo ("http://localhost/exfe/public/uploads/produto/sem-foto-produto.jpg");
-                                        }
-                                        ?>" alt="" class="rounded-circle" style="width: 50px; height: 50px;">
+                            <?php
+                            $caminhoArquivo = BASE_URL . "uploads/" . $linha['foto_produto'];
+                            $img = BASE_URL . "uploads/sem-foto.jpg"; // Caminho padrão corrigido
+                            // $alt_foto = "imagem sem foto $index";
+
+                            if (!empty($linha['foto_produto'])) {
+                                $headers = @get_headers($caminhoArquivo);
+                                if ($headers && strpos($headers[0], '200') !== false) {
+                                    $img = $caminhoArquivo;
+                                }
+                            }
+
+                            ?>
+                            <img src="<?php echo $img; ?>" alt="Foto produto" class="rounded-circle" style="width: 50px; height: 50px;">
                         </td>
                         <td><?php echo htmlspecialchars($linha['nome_produto']); ?></td>
                         <td><?php echo htmlspecialchars($linha['descricao_produto']); ?></td>
@@ -62,7 +64,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                         <td><?php echo htmlspecialchars($linha['id_categoria']); ?></td>
                         <td><?php echo htmlspecialchars($linha['nome_fornecedor']); ?></td>
                         <td>
-                            <a href="http://localhost/exfe/public/produtos/editar/<?php echo $linha['id_produto']; ?>" title="Editar">
+                            <a href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/produtos/editar/<?php echo $linha['id_produto']; ?>" title="Editar">
                                 <i class="fa fa-pencil-alt" style="font-size: 20px; color: #9a5c1f;"></i>
                             </a>
                         </td>
@@ -80,7 +82,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
     <div class="text-center mt-4">
         <h3 style="color: #9a5c1fad;">Não encontrou o produto? Cadastre abaixo</h3>
-        <a href="http://localhost/exfe/public/cafes/adicionar/" class="btn fw-bold px-4 py-2" style="background:#9a5c1fad; color: #ffffff; border-radius: 8px;">
+        <a href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/cafes/adicionar/" class="btn fw-bold px-4 py-2" style="background:#9a5c1fad; color: #ffffff; border-radius: 8px;">
             Adicionar Produto
         </a>
     </div>
@@ -136,7 +138,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     });
 
     function desativarProduto(idProduto) {
-        fetch(`http://localhost/exfe/public/cafes/desativar/${idProduto}`, {
+        fetch(`https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/cafes/desativar/${idProduto}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

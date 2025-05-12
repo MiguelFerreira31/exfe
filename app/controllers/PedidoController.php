@@ -60,7 +60,7 @@ class PedidoController extends Controller
                 if ($inserido) {
                     $_SESSION['mensagem'] = "Pedido registrado com sucesso!";
                     $_SESSION['tipo-msg'] = "sucesso";
-                    header('Location: http://localhost/exfe/public/pedido/listar/' . $id_cliente);
+                    header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/pedido/listar/' . $id_cliente);
                     exit;
                 } else {
                     $dados['mensagem'] = "Erro ao registrar o pedido.";
@@ -76,9 +76,9 @@ class PedidoController extends Controller
         $funcionarios = $funcionarioModel->getTodosFuncionarios();
         $dados['funcionarios'] = $funcionarios;
 
-        $statusPedidoModel = new StatusPedido();
-        $statusPedidos = $statusPedidoModel->getTodosStatus();
-        $dados['statusPedidos'] = $statusPedidos;
+        // $statusPedidoModel = new StatusPedido();
+        // $statusPedidos = $statusPedidoModel->getTodosStatus();
+        // $dados['statusPedidos'] = $statusPedidos;
 
         $dados['conteudo'] = 'dash/pedido/adicionar';
         $this->carregarViews('dash/dashboard-cliente', $dados);
@@ -90,7 +90,7 @@ class PedidoController extends Controller
         $dados['conteudo'] = 'dash/pedido/editar';
 
         if ($id === null) {
-            header('Location: http://localhost/exfe/public/pedido/listar');
+            header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/pedido/listar');
             exit;
         }
 
@@ -101,7 +101,7 @@ class PedidoController extends Controller
         if (!$pedido) {
             $_SESSION['mensagem'] = "Pedido não encontrado.";
             $_SESSION['tipo-msg'] = "erro";
-            header('Location: http://localhost/exfe/public/pedido/listar');
+            header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/pedido/listar');
             exit;
         }
 
@@ -128,7 +128,7 @@ class PedidoController extends Controller
                 if ($atualizado) {
                     $_SESSION['mensagem'] = "Pedido atualizado com sucesso!";
                     $_SESSION['tipo-msg'] = "sucesso";
-                    header('Location: http://localhost/exfe/public/pedido/listar/' . $id_cliente);
+                    header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/pedido/listar/' . $id_cliente);
                     exit;
                 } else {
                     $dados['mensagem'] = "Erro ao atualizar o pedido.";
@@ -144,9 +144,9 @@ class PedidoController extends Controller
         $funcionarios = $funcionarioModel->getTodosFuncionarios();
         $dados['funcionarios'] = $funcionarios;
 
-        $statusPedidoModel = new StatusPedido();
-        $statusPedidos = $statusPedidoModel->getTodosStatus();
-        $dados['statusPedidos'] = $statusPedidos;
+        // $statusPedidoModel = new StatusPedido();
+        // $statusPedidos = $statusPedidoModel->getTodosStatus();
+        // $dados['statusPedidos'] = $statusPedidos;
 
         $this->carregarViews('dash/dashboard-cliente', $dados);
     }

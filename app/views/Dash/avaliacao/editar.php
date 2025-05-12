@@ -1,5 +1,5 @@
 
-<form method="POST" action="http://localhost/exfe/public/avaliacao/editar/<?php echo $avaliacao['id_avaliacao']; ?>">
+<form method="POST" action="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/avaliacao/editar/<?php echo $avaliacao['id_avaliacao']; ?>">
   <div class="container my-5">
     <div class="row justify-content-center">
       <div class="col-12 col-md-8">
@@ -7,7 +7,7 @@
         <!-- Imagem Responsiva Centralizada -->
         <div class="text-center mb-4">
           <div class="image-container mx-auto" style="width: 100%; max-width: 200px; aspect-ratio: 1/1; overflow: hidden;">
-            <img src="http://localhost/exfe/public/assets/img/coffee-cup.png" alt="Imagem do Produto" class="img-fluid" id="preview-img" style="border-radius: 16px;">
+            <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/coffee-cup.png" alt="Imagem do Produto" class="img-fluid" id="preview-img" style="border-radius: 16px;">
           </div>
         </div>
 
@@ -50,7 +50,7 @@
           <!-- Botões -->
           <div class="mt-4 text-center d-grid gap-2 d-md-flex justify-content-md-center">
             <button type="submit" class="btn btn-lg px-5" style="background: #5e3c2d; color: white; font-weight: bold; border-radius: 12px;">Salvar Alterações</button>
-            <a href="http://localhost/exfe/public/avaliacao/listar/<?php echo $avaliacao['id_cliente']; ?>" class="btn btn-lg px-5" style="background: #5e3c2d; color: white; font-weight: bold; border-radius: 12px;">Cancelar</a>
+            <a href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/avaliacao/listar/<?php echo $avaliacao['id_cliente']; ?>" class="btn btn-lg px-5" style="background: #5e3c2d; color: white; font-weight: bold; border-radius: 12px;">Cancelar</a>
           </div>
         </div>
 

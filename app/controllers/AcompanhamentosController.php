@@ -109,7 +109,7 @@ class AcompanhamentosController extends Controller
         $dados = array();
     
         if ($id === null) {
-            header('Location: http://localhost/exfe/public/acompanhamentos/listar');
+            header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/acompanhamentos/listar');
             exit;
         }
     
@@ -150,7 +150,7 @@ class AcompanhamentosController extends Controller
     
                     $_SESSION['mensagem'] = "Acompanhamento atualizado com sucesso";
                     $_SESSION['tipo-msg'] = "sucesso";
-                    header('Location: http://localhost/exfe/public/acompanhamentos/listar');
+                    header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/acompanhamentos/listar');
                     exit;
                 } else {
                     $dados['mensagem'] = "Erro ao atualizar acompanhamento";
@@ -211,7 +211,7 @@ class AcompanhamentosController extends Controller
     
                     $_SESSION['mensagem'] = "Acompanhamento cadastrado com sucesso";
                     $_SESSION['tipo-msg'] = "sucesso";
-                    header('Location: http://localhost/exfe/public/acompanhamentos/listar');
+                    header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/acompanhamentos/listar');
                     exit;
                 } else {
                     $dados['mensagem'] = "Erro ao adicionar acompanhamento";

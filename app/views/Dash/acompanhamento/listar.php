@@ -22,7 +22,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
 <div class="container my-5">
     <h2 class="text-center fw-bold py-3" style="background: linear-gradient(to bottom, #402920 1.57%, #774a38 128.95%); color: white; border-radius: 12px;">Acompanhamentos Cadastrados</h2>
-    <a href="http://localhost/exfe/public/acompanhamentos/desativados">
+    <a href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/acompanhamentos/desativados">
         <button class="btn btn-outline-dark" style="background: #ffd8b9; color: #9a5c1f; font-weight: bold; border-radius: 12px;">Ver Inativos</button>
     </a>
     <div class="table-responsive rounded-3 shadow-lg p-3" style="background: #ffffff;">
@@ -41,24 +41,25 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                 <?php foreach ($acompanhamentos as $linha): ?>
                     <tr class="fw-semibold">
                         <td class="img-acompanhamento">
-                            <img src="<?php
-                                        $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $linha['foto_acompanhamento'];
+                             <?php
+                    $caminhoArquivo = BASE_URL . "uploads/" . $linha['foto_acompanhamento'];
+                    $img = BASE_URL . "uploads/sem-foto.jpg"; // Caminho padrão corrigido
+                    // $alt_foto = "imagem sem foto $index";
 
-                                        if ($linha['foto_acompanhamento'] != "") {
-                                            if (file_exists($caminhoArquivo)) {
-                                                echo ("http://localhost/exfe/public/uploads/" . htmlspecialchars($linha['foto_acompanhamento'], ENT_QUOTES, 'UTF-8'));
-                                            } else {
-                                                echo ("http://localhost/exfe/public/uploads/acompanhamento/sem-foto-acompanhamento.jpg");
-                                            }
-                                        } else {
-                                            echo ("http://localhost/exfe/public/uploads/acompanhamento/sem-foto-acompanhamento.jpg");
-                                        }
-                                        ?>" alt="" class="rounded-circle" style="width: 50px; height: 50px;">
-                        </td>
+                    if (!empty($linha['foto_acompanhamento'])) {
+                        $headers = @get_headers($caminhoArquivo);
+                        if ($headers && strpos($headers[0], '200') !== false) {
+                            $img = $caminhoArquivo;
+                        }
+                    }
+                    
+                    ?>
+                            <img src="<?php echo $img; ?>" alt="Foto acompanhamento" class="rounded-circle" style="width: 50px; height: 50px;">
+                           </td>
                         <td><?php echo htmlspecialchars($linha['nome_acompanhamento']); ?></td>
                         <td><?php echo htmlspecialchars($linha['descricao_acompanhamento']); ?></td>
                         <td>
-                            <a href="http://localhost/exfe/public/acompanhamentos/editar/<?php echo $linha['id_acompanhamento']; ?>" title="Editar">
+                            <a href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/acompanhamentos/editar/<?php echo $linha['id_acompanhamento']; ?>" title="Editar">
                                 <i class="fa fa-pencil-alt" style="font-size: 20px; color: #9a5c1f;"></i>
                             </a>
                         </td>
@@ -75,7 +76,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
     <div class="text-center mt-4">
     <h3 class="fw-bold" style="color: #402920;">Não encontrou o acompanhamento? Cadastre abaixo</h3>
-    <a href="http://localhost/exfe/public/acompanhamentos/adicionar/" class="btn fw-bold px-4 py-2" style="background: linear-gradient(to bottom, #402920 1.57%, #774a38 128.95%); color: #ffffff; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
+    <a href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/acompanhamentos/adicionar/" class="btn fw-bold px-4 py-2" style="background: linear-gradient(to bottom, #402920 1.57%, #774a38 128.95%); color: #ffffff; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
         Adicionar Acompanhamento
     </a>
 </div>
@@ -133,7 +134,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     });
 
     function desativarAcompanhamento(idAcompanhamento) {
-        fetch(`http://localhost/exfe/public/acompanhamentos/desativar/${idAcompanhamento}`, {
+        fetch(`https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/acompanhamentos/desativar/${idAcompanhamento}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

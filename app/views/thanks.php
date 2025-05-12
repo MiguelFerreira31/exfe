@@ -36,7 +36,7 @@
             <div class="thanks">
 
                 <h2>Obrigado por enviar o contato</h2>
-                <a href="http://localhost/exfe/public/home"><button>Voltar</button></a>
+                <a href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/home"><button>Voltar</button></a>
             </div>
 
         </main>

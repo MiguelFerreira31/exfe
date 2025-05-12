@@ -7,9 +7,9 @@
   <!-- Ícone da aplicação para dispositivos Apple -->
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
   <!-- Link para o arquivo CSS do painel de controle (style personalizado) -->
-  <link rel="stylesheet" href="http://localhost/exfe/public/assets/css/dash.css">
+  <link rel="stylesheet" href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/css/dash.css">
   <!-- Ícone do site (para abas do navegador) -->
-  <link rel="icon" type="image/png" href="http://localhost/exfe/public/assets/imgDash/coffeBranco.png" />
+  <link rel="icon" type="image/png" href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/imgDash/coffeBranco.png" />
   <!-- Link para a biblioteca de ícones do Bootstrap -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css" integrity="sha256-Qsx5lrStHZyR9REqhUF8iQt73X06c8LGIUPzpOhwRrI=" crossorigin="anonymous">
   <!-- Link para a biblioteca Font Awesome (para ícones adicionais) -->
@@ -19,15 +19,15 @@
   <!-- Nucleo Icons para ícones gráficos (usado no tema Argon) -->
   <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
   <!-- Link para o CSS de ícones SVG personalizados -->
-  <link href="http://localhost/exfe/public/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- Script para carregar o Font Awesome (opcional para ícones de fontes) -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <!-- Arquivo CSS principal do painel de controle (argon-dashboard) -->
-  <link id="pagestyle" href="http://localhost/exfe/public/assets/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
+  <link id="pagestyle" href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
   <!-- Arquivo CSS personalizado para o site -->
-  <link rel="stylesheet" href="http://localhost/exfe/public/assets/css/style.css">
+  <link rel="stylesheet" href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/css/style.css">
 
   <!-- Título da página -->
   <title>EXFE</title>
@@ -36,7 +36,7 @@
 
 <body class="g-sidenav-show bg-gray-100">
 
-  <div class="position-absolute w-100 min-height-300 top-0" style="background-image: url('http://localhost/exfe/public/assets/imgDash/bg_cliente.jpg'); background-position-y: 50%;">
+  <div class="position-absolute w-100 min-height-300 top-0" style="background-image: url('https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/imgDash/bg_cliente.jpg'); background-position-y: 50%;">
     <span class="mask opacity-6" style="background-color:#371406;"></span>
   </div>
 
@@ -55,7 +55,7 @@
       <ul class="navbar-nav">
 
       <li class="nav-item">
-          <a class="nav-link " href="http://localhost/exfe/public/dashboard">
+          <a class="nav-link " href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/dashboard">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-tv-2 text-dark text-sm opacity-10"></i>
             </div>
@@ -68,7 +68,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link active" href="http://localhost/exfe/public/clientes/perfil">
+          <a class="nav-link active" href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/clientes/perfil">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
             </div>
@@ -86,7 +86,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link " href="http://localhost/exfe/public/pedido/listar/<?php echo($cliente['id_cliente']);?>">
+          <a class="nav-link " href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/pedido/listar/<?php echo($cliente['id_cliente']);?>">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-calendar-grid-58 text-dark text-sm opacity-10"></i>
             </div>
@@ -95,7 +95,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link " href="http://localhost/exfe/public/avaliacao/listar/<?php echo($cliente['id_cliente']);?>">
+          <a class="nav-link " href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/avaliacao/listar/<?php echo($cliente['id_cliente']);?>">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-credit-card text-dark text-sm opacity-10"></i>
             </div>
@@ -128,7 +128,7 @@
           </div>
           <ul class="navbar-nav justify-content-end">
             <li class="nav-item d-flex align-items-center">
-              <a href="http://localhost/exfe/public/auth/sair" class="nav-link text-white font-weight-bold px-0">
+              <a href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/auth/sair" class="nav-link text-white font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
                 <span class="d-sm-inline d-none">Sair</span>
               </a>
@@ -239,12 +239,12 @@
 
                         if ($cliente['foto_cliente'] != "") {
                           if (file_exists($caminhoArquivo)) {
-                            echo ("http://localhost/exfe/public/uploads/" . htmlspecialchars($cliente['foto_cliente'], ENT_QUOTES, 'UTF-8'));
+                            echo ("https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/uploads/" . htmlspecialchars($cliente['foto_cliente'], ENT_QUOTES, 'UTF-8'));
                           } else {
-                            echo ("http://localhost/exfe/public/uploads/cliente/sem-foto-cliente.jpg");
+                            echo ("https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/uploads/cliente/sem-foto-cliente.jpg");
                           }
                         } else {
-                          echo ("http://localhost/exfe/public/uploads/cliente/sem-foto-cliente.jpg");
+                          echo ("https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/uploads/cliente/sem-foto-cliente.jpg");
                         }
                         ?>" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
             </div>
@@ -349,7 +349,7 @@
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
 
-  <script src="http://localhost/exfe/public/assets/script/script.js"></script>
+  <script src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/script/script.js"></script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {

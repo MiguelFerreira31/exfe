@@ -22,7 +22,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
 <div class="container my-5">
     <h2 class="text-center fw-bold py-3" style="background:#5e3c2d; color: white; border-radius: 12px;">Acompanhamentos Cadastrados</h2>
-    <a href="http://localhost/exfe/public/acompanhamentos/listar"><button>Ver Ativos</button></a>
+    <a href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/acompanhamentos/listar"><button>Ver Ativos</button></a>
     <div class="table-responsive rounded-3 shadow-lg p-3" style="background: #ffffff;">
         <table class="table table-hover text-center align-middle">
             <thead class="thead-custom">
@@ -44,19 +44,19 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
                                         if ($linha['foto_acompanhamento'] != "") {
                                             if (file_exists($caminhoArquivo)) {
-                                                echo ("http://localhost/exfe/public/uploads/" . htmlspecialchars($linha['foto_acompanhamento'], ENT_QUOTES, 'UTF-8'));
+                                                echo ("https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/uploads/" . htmlspecialchars($linha['foto_acompanhamento'], ENT_QUOTES, 'UTF-8'));
                                             } else {
-                                                echo ("http://localhost/exfe/public/uploads/acompanhamento/sem-foto-acompanhamento.jpg");
+                                                echo ("https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/uploads/acompanhamento/sem-foto-acompanhamento.jpg");
                                             }
                                         } else {
-                                            echo ("http://localhost/exfe/public/uploads/acompanhamento/sem-foto-acompanhamento.jpg");
+                                            echo ("https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/uploads/acompanhamento/sem-foto-acompanhamento.jpg");
                                         }
                                         ?>" alt="" class="rounded-circle" style="width: 50px; height: 50px;">
                         </td>
                         <td><?php echo htmlspecialchars($linha['nome_acompanhamento']); ?></td>
                         <td><?php echo htmlspecialchars($linha['descricao_acompanhamento']); ?></td>
                         <td>
-                            <a href="http://localhost/exfe/public/acompanhamentos/editar/<?php echo $linha['id_acompanhamento']; ?>" title="Editar">
+                            <a href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/acompanhamentos/editar/<?php echo $linha['id_acompanhamento']; ?>" title="Editar">
                                 <i class="fa fa-pencil-alt" style="font-size: 20px; color: #9a5c1f;"></i>
                             </a>
                         </td>
@@ -75,7 +75,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
     <div class="text-center mt-4">
         <h3 style="color: #9a5c1fad;">Não encontrou o acompanhamento? Cadastre abaixo</h3>
-        <a href="http://localhost/exfe/public/acompanhamentos/adicionar/" class="btn fw-bold px-4 py-2" style="background:#9a5c1fad; color: #ffffff; border-radius: 8px;">
+        <a href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/acompanhamentos/adicionar/" class="btn fw-bold px-4 py-2" style="background:#9a5c1fad; color: #ffffff; border-radius: 8px;">
             Adicionar Acompanhamento
         </a>
     </div>
@@ -137,7 +137,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     });
 
     function desativarAcompanhamento(idAcompanhamento) {
-        fetch(`http://localhost/exfe/public/acompanhamentos/ativar/${idAcompanhamento}`, {
+        fetch(`https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/acompanhamentos/ativar/${idAcompanhamento}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

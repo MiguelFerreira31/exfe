@@ -22,7 +22,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
 
 
-<form method="POST" action="http://localhost/exfe/public/funcionarios/editar/<?php echo $funcionarios['id_funcionario']; ?>" enctype="multipart/form-data">
+<form method="POST" action="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/funcionarios/editar/<?php echo $funcionarios['id_funcionario']; ?>" enctype="multipart/form-data">
     <div class="container my-5">
         <div class="row">
             <!-- Imagem do Funcionario -->
@@ -31,8 +31,8 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                     <?php
 
                     $fotoFuncionario = $funcionarios['foto_funcionario'];
-                    $fotoPath = "http://localhost/exfe/public/uploads/" . $fotoFuncionario;
-                    $fotoDefault = "http://localhost/exfe/public/assets/img/hero-bg3.png";
+                    $fotoPath = "https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/uploads/" . $fotoFuncionario;
+                    $fotoDefault = "https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/hero-bg3.png";
 
                     $imagePath = (file_exists($_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $fotoFuncionario) && !empty($fotoFuncionario))
                         ? $fotoPath

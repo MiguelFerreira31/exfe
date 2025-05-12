@@ -19,13 +19,13 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
   unset($_SESSION['tipo-msg']);
 }
 ?>
-<form method="POST" action="http://localhost/exfe/public/acompanhamentos/adicionar/" enctype="multipart/form-data">
+<form method="POST" action="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/acompanhamentos/adicionar/" enctype="multipart/form-data">
   <div class="container my-5">
     <div class="row justify-content-center">
       <!-- Imagem -->
       <div class="col-12 col-md-4 text-center mb-4">
         <div class="shadow-lg p-3 rounded-circle" style="background: #fff2e6; width: 200px; height: 200px; margin: auto; overflow: hidden;">
-          <img src="http://localhost/exfe/public/assets/img/hero-bg3.png" alt="Imagem do Acompanhamento" class="img-fluid" id="preview-img" style="cursor: pointer; height: 100%; width: 100%; object-fit: cover;">
+          <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/hero-bg3.png" alt="Imagem do Acompanhamento" class="img-fluid" id="preview-img" style="cursor: pointer; height: 100%; width: 100%; object-fit: cover;">
         </div>
         <input type="file" name="foto_acompanhamento" id="foto_acompanhamento" style="display: none;" accept="image/*">
         <small class="text-muted mt-2 d-block">Clique na imagem para alterar</small>

@@ -121,7 +121,7 @@
           <div class="col-4 col-lg-4 order-lg-2">
             <div class="mt-n4 mt-lg-n6 mb-4 mb-lg-0">
               <a href="javascript:;">
-                <img src="http://localhost/exfe/public/uploads/cliente/anaPaula.jpg" class="rounded-circle img-fluid border border-2 border-white">
+                <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/uploads/cliente/anaPaula.jpg" class="rounded-circle img-fluid border border-2 border-white">
               </a>
             </div>
           </div>

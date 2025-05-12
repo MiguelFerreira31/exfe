@@ -7,9 +7,9 @@
   <!-- Ícone da aplicação para dispositivos Apple -->
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
   <!-- Link para o arquivo CSS do painel de controle (style personalizado) -->
-  <link rel="stylesheet" href="http://localhost/exfe/public/assets/css/dash.css">
+  <link rel="stylesheet" href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/css/dash.css">
   <!-- Ícone do site (para abas do navegador) -->
-  <link rel="icon" type="image/png" href="http://localhost/exfe/public/assets/imgDash/coffeBranco.png" />
+  <link rel="icon" type="image/png" href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/imgDash/coffeBranco.png" />
   <!-- Link para a biblioteca de ícones do Bootstrap -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css" integrity="sha256-Qsx5lrStHZyR9REqhUF8iQt73X06c8LGIUPzpOhwRrI=" crossorigin="anonymous">
   <!-- Link para a biblioteca Font Awesome (para ícones adicionais) -->
@@ -19,13 +19,13 @@
   <!-- Nucleo Icons para ícones gráficos (usado no tema Argon) -->
   <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
   <!-- Link para o CSS de ícones SVG personalizados -->
-  <link href="http://localhost/exfe/public/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- Script para carregar o Font Awesome (opcional para ícones de fontes) -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <!-- Arquivo CSS principal do painel de controle (argon-dashboard) -->
-  <link id="pagestyle" href="http://localhost/exfe/public/assets/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
+  <link id="pagestyle" href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
   <!-- Arquivo CSS personalizado para o site -->
-  <link rel="stylesheet" href="http://localhost/exfe/public/assets/css/style.css">
+  <link rel="stylesheet" href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/css/style.css">
 
   <!-- Título da página -->
   <title>EXFE</title>
@@ -47,7 +47,7 @@
         href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html "
         target="_blank">
         <img
-          src="http://localhost/exfe/public/assets/imgDash/coffeLogo.png"
+          src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/imgDash/coffeLogo.png"
           width="26px"
           height="26px"
           class="navbar-brand-img h-100"
@@ -59,7 +59,7 @@
     <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" href="http://localhost/exfe/public/dashboard">
+          <a class="nav-link active" href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/dashboard">
             <div
               class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-tv-2 text-dark text-sm opacity-10"></i>
@@ -142,7 +142,7 @@
           <ul class="navbar-nav justify-content-end">
             <li class="nav-item d-flex align-items-center">
               <a
-                href="http://localhost/exfe/public/auth/sair"
+                href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/auth/sair"
                 class="nav-link text-white font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
                 <span class="d-sm-inline d-none">Sair</span>
@@ -427,7 +427,7 @@
                 <div
                   class="carousel-item h-100 active"
                   style="
-                      background-image: url('http://localhost/exfe/public/assets/imgDash/macchiato-interna.jpg');
+                      background-image: url('https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/imgDash/macchiato-interna.jpg');
                       background-size: cover;
                     ">
                   <div
@@ -446,7 +446,7 @@
                 <div
                   class="carousel-item h-100"
                   style="
-                      background-image: url('http://localhost/exfe/public/assets/imgDash/affBanner.webp');
+                      background-image: url('https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/imgDash/affBanner.webp');
                       background-size: cover;
                     ">
                   <div
@@ -466,7 +466,7 @@
                 <div
                   class="carousel-item h-100"
                   style="
-                      background-image: url('http://localhost/exfe/public/assets/imgDash/frappuBanner.jpg');
+                      background-image: url('https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/imgDash/frappuBanner.jpg');
                       background-size: cover;
                     ">
                   <div
@@ -524,7 +524,7 @@
                       <div class="d-flex px-2 py-1 align-items-center">
                         <div class="bandeira">
                           <img
-                            src="http://localhost/exfe/public/assets/imgDash/minas.png"
+                            src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/imgDash/minas.png"
                             alt="Country flag" />
                         </div>
                         <div class="ms-4">
@@ -558,7 +558,7 @@
                     <td class="w-30">
                       <div class="d-flex px-2 py-1 align-items-center">
                         <div class="bandeira">
-                          <img src="http://localhost/exfe/public/assets/imgDash/mato-grosso-do-sul.png" alt="">
+                          <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/imgDash/mato-grosso-do-sul.png" alt="">
                         </div>
                         <div class="ms-4">
                           <p class="text-xs font-weight-bold mb-0">
@@ -592,7 +592,7 @@
                       <div class="d-flex px-2 py-1 align-items-center">
                         <div class="bandeira">
                           <img
-                            src="http://localhost/exfe/public/assets/imgDash/mato-grosso.png"
+                            src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/imgDash/mato-grosso.png"
                             alt="Country flag" />
                         </div>
                         <div class="ms-4">
@@ -627,7 +627,7 @@
                       <div class="d-flex px-2 py-1 align-items-center">
                         <div class="bandeira">
                           <img
-                            src="http://localhost/exfe/public/assets/imgDash/rio-de-janeiro.png"
+                            src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/imgDash/rio-de-janeiro.png"
                             alt="Country flag" />
                         </div>
                         <div class="ms-4">
@@ -927,7 +927,7 @@
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="http://localhost/exfe/public/assets/script/argon-dashboard.min.js"></script>
+  <script src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/script/argon-dashboard.min.js"></script>
 </body>
 
 </html>

@@ -22,7 +22,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
 
 
-<form method="POST" action="http://localhost/exfe/public/clientes/editar/<?php echo $cliente['id_cliente']; ?>" enctype="multipart/form-data">
+<form method="POST" action="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/clientes/editar/<?php echo $cliente['id_cliente']; ?>" enctype="multipart/form-data">
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-md-8">
@@ -217,17 +217,19 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                                 <a href="javascript:;">
                                     <div class="image-container" style="width: 100%; max-width: 200px; aspect-ratio: 1/1; overflow: hidden; border-radius: 50%; ">
                                         <?php
+                                        $caminhoArquivo = BASE_URL . "uploads/" . $cliente['foto_cliente'];
+                                        $img = BASE_URL . "uploads/sem-foto.jpg"; // Caminho padrão corrigido
+                                        // $alt_foto = "imagem sem foto $index";
 
-                                        $fotoCliente = $cliente['foto_cliente'];
-                                        $fotoPath = "http://localhost/exfe/public/uploads/" . $fotoCliente;
-                                        $fotoDefault = "http://localhost/exfe/public/assets/img/login-img.png";
+                                        if (!empty($cliente['foto_cliente'])) {
+                                            $headers = @get_headers($caminhoArquivo);
+                                            if ($headers && strpos($headers[0], '200') !== false) {
+                                                $img = $caminhoArquivo;
+                                            }
+                                        }
 
-                                        $imagePath = (file_exists($_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $fotoCliente) && !empty($fotoCliente))
-                                            ? $fotoPath
-                                            : $fotoDefault;
                                         ?>
-
-                                        <img src="<?php echo $imagePath ?>" alt="exfe Logo" class="img-fluid" id="preview-img" style="cursor: pointer; border-radius: 12px;">
+                                        <img src="<?php echo $img; ?>" alt="Foto Cliente" class="rounded-circle" style="width: 50px; height: 50px;">
                                     </div>
                                     <input type="file" name="foto_cliente" id="foto_cliente" style="display: none;" accept="image/*">
                                 </a>

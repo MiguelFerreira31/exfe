@@ -169,7 +169,7 @@ class FuncionariosController extends Controller
                     // Mensagem de SUCESSO 
                     $_SESSION['mensagem'] = "Funcionario Cadastrado com Sucesso";
                     $_SESSION['tipo-msg'] = "sucesso";
-                    header('Location: http://localhost/exfe/public/funcionarios/listar');
+                    header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/funcionarios/listar');
                     exit;
                 } else {
                     $dados['mensagem'] = "Erro ao adicionar Ao adcionar funcionario";
@@ -202,9 +202,9 @@ class FuncionariosController extends Controller
         $dados['conteudo'] = 'dash/funcionario/editar';
 
         if ($id === null) {
-            header('Location:http://localhost/exfe/public/funcionarios/listar');
+            header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/funcionarios/listar');
             exit;
-        }
+        } 
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -281,7 +281,7 @@ class FuncionariosController extends Controller
                     // Mensagem de SUCESSO 
                     $_SESSION['mensagem'] = "Funcionario Cadastrado com Sucesso";
                     $_SESSION['tipo-msg'] = "sucesso";
-                    header('Location: http://localhost/exfe/public/funcionarios/listar');
+                    header('Location:https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/funcionarios/listar');
                     exit;
                 } else {
                     $dados['mensagem'] = "Erro ao adicionar Ao adcionar funcionario";
