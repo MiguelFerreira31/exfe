@@ -20,8 +20,9 @@ class ClientesController extends Controller
     // 1- Método para listar todos os serviços
     public function listar()
     {
-        $status = isset($_GET['status']) ? $_GET['status'] : 'Ativo';  // Pega o status da URL ou usa 'Ativo' por padrão
         $dados = array();
+
+        $status = isset($_GET['status']) ? $_GET['status'] : null;  // Pega o status da URL ou usa 'Ativo' por padrão
     
         // Carregar os clientes com base no status
         $clienteModel = new Cliente();

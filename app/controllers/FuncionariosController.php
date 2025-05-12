@@ -63,24 +63,26 @@ class FuncionariosController extends Controller
     {
         $funcionarioModel = new Funcionario();
     
-        // Captura o status da URL (GET)
+        // Captura o status da URL
         $status = isset($_GET['status']) && !empty($_GET['status']) ? $_GET['status'] : null;
     
-        // Chama o método com o parâmetro do status
+        // Carrega os funcionários de acordo com o status
         $dados['funcionarios'] = $funcionarioModel->getListarFuncionario($status);
     
-        // Informação do usuário logado
-        $dados['func'] = $funcionarioModel->buscarfuncionario($_SESSION['userEmail']);
+        // Passa também o status atual para a view (para manter o <select>)
+        $dados['status'] = $status;
     
-        // Verifica o tipo de usuário e carrega a view correspondente
+        // Dados do funcionário logado
+        $dados['func'] = $funcionarioModel->buscarfuncionario($_SESSION['userEmail']);
+        $dados['conteudo'] = 'dash/funcionario/listar';
+    
         if ($_SESSION['id_tipo_usuario'] == '1') {
-            $dados['conteudo'] = 'dash/funcionario/listar';
             $this->carregarViews('dash/dashboard', $dados);
         } else if ($_SESSION['id_tipo_usuario'] == '2') {
-            $dados['conteudo'] = 'dash/funcionario/listar';
             $this->carregarViews('dash/dashboard-funcionario', $dados);
         }
     }
+    
     
 
 

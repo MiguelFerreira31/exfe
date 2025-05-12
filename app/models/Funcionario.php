@@ -51,25 +51,24 @@ class Funcionario extends Model
 
     public function getListarFuncionario($status = null)
     {
-        if ($status !== null) {
-            $sql = "SELECT * 
-                    FROM tbl_funcionario 
-                    WHERE status_funcionario = :status
-                    ORDER BY nome_funcionario ASC";
-    
-            $stmt = $this->db->prepare($sql);
-            $stmt->bindValue(':status', $status, PDO::PARAM_STR);
-            $stmt->execute();
-        } else {
-            $sql = "SELECT * 
-                    FROM tbl_funcionario 
-                    ORDER BY nome_funcionario ASC";
-    
-            $stmt = $this->db->query($sql);
+        $sql = "SELECT * FROM tbl_funcionario";
+        
+        if (!empty($status)) {
+            $sql .= " WHERE status_funcionario = :status";
         }
     
+        $sql .= " ORDER BY nome_funcionario ASC";
+    
+        $stmt = $this->db->prepare($sql);
+    
+        if (!empty($status)) {
+            $stmt->bindValue(':status', $status, PDO::PARAM_STR);
+        }
+    
+        $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
     
 
 

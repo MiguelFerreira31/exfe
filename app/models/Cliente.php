@@ -24,41 +24,47 @@ class Cliente extends Model
 
 
     public function getListarCliente($status = null)
-    {
-        $sql = "SELECT 
-                    c.id_cliente, 
-                    c.nome_cliente, 
-                    c.email_cliente, 
-                    c.id_tipo_usuario, 
-                    c.senha_cliente, 
-                    c.status_cliente, 
-                    c.foto_cliente, 
-                    c.nasc_cliente, 
-                    p.nome_produto, 
-                    i.nivel_intensidade, 
-                    a.nome_acompanhamento, 
-                    c.prefere_leite_vegetal, 
-                    l.nome_tipo_leite, 
-                    c.observacoes_cliente
-                FROM 
-                    tbl_cliente c
-                INNER JOIN 
-                    tbl_produto p ON c.id_produto = p.id_produto
-                INNER JOIN 
-                    tbl_intensidade_cafe i ON c.id_intensidade = i.id_intensidade
-                INNER JOIN 
-                    tbl_tipo_leite l ON c.id_tipo_leite = l.id_tipo_leite  
-                INNER JOIN 
-                    tbl_acompanhamento a ON c.id_acompanhamento = a.id_acompanhamento
-                WHERE 
-                    TRIM(c.status_cliente) = :status";
+{
+    $sql = "SELECT 
+                c.id_cliente, 
+                c.nome_cliente, 
+                c.email_cliente, 
+                c.id_tipo_usuario, 
+                c.senha_cliente, 
+                c.status_cliente, 
+                c.foto_cliente, 
+                c.nasc_cliente, 
+                p.nome_produto, 
+                i.nivel_intensidade, 
+                a.nome_acompanhamento, 
+                c.prefere_leite_vegetal, 
+                l.nome_tipo_leite, 
+                c.observacoes_cliente
+            FROM 
+                tbl_cliente c
+            INNER JOIN 
+                tbl_produto p ON c.id_produto = p.id_produto
+            INNER JOIN 
+                tbl_intensidade_cafe i ON c.id_intensidade = i.id_intensidade
+            INNER JOIN 
+                tbl_tipo_leite l ON c.id_tipo_leite = l.id_tipo_leite  
+            INNER JOIN 
+                tbl_acompanhamento a ON c.id_acompanhamento = a.id_acompanhamento";
 
+    // Se o status foi passado, adiciona o filtro
+    if (!empty($status)) {
+        $sql .= " WHERE TRIM(c.status_cliente) = :status";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':status', $status, PDO::PARAM_STR);
-        $stmt->execute();
-
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } else {
+        // Sem filtro de status
+        $stmt = $this->db->prepare($sql);
     }
+
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
 
     public function addCliente($dados)

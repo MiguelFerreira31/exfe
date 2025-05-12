@@ -22,15 +22,16 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
     <!-- Filtro de status -->
     <div class="d-flex justify-content-end mb-3">
-        <form method="get" action="">
-            <label for="statusFiltro">Filtrar por status:</label>
-            <select name="status" id="statusFiltro" onchange="this.form.submit()" class="form-select d-inline w-auto ms-2">
-                <option value="">Todos</option>
-                <option value="ativo" <?= isset($_GET['status']) && $_GET['status'] == 'Ativo' ? 'selected' : '' ?>>Ativos</option>
-                <option value="inativo" <?= isset($_GET['status']) && $_GET['status'] == 'Inativo' ? 'selected' : '' ?>>Inativos</option>
-            </select>
-        </form>
-    </div>
+    <form method="get" action="">
+        <label for="statusFiltro">Filtrar por status:</label>
+        <select name="status" id="statusFiltro" onchange="this.form.submit()" class="form-select d-inline w-auto ms-2">
+            <option value="" <?= !isset($_GET['status']) || $_GET['status'] == '' ? 'selected' : '' ?>>Todos</option>
+            <option value="ativo" <?= isset($_GET['status']) && $_GET['status'] == 'ativo' ? 'selected' : '' ?>>Ativos</option>
+            <option value="inativo" <?= isset($_GET['status']) && $_GET['status'] == 'inativo' ? 'selected' : '' ?>>Inativos</option>
+        </select>
+    </form>
+</div>
+
 
     <div class="table-responsive rounded-3 shadow-lg p-3" style="background: #ffffff;">
         <table class="table table-hover text-center align-middle">
