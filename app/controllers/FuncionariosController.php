@@ -61,33 +61,28 @@ class FuncionariosController extends Controller
 
     public function listar()
     {
-        $dados = array();
-        // Carregar os funcionarios
         $funcionarioModel = new Funcionario();
-        $funcionario = $funcionarioModel->getListarFuncionario();
-        $dados['funcionarios'] = $funcionario;
-
-
-        $dados['conteudo'] = 'dash/funcionario/listar';
-
+    
+        // Captura o status da URL (GET)
+        $status = isset($_GET['status']) && !empty($_GET['status']) ? $_GET['status'] : null;
+    
+        // Chama o método com o parâmetro do status
+        $dados['funcionarios'] = $funcionarioModel->getListarFuncionario($status);
+    
+        // Informação do usuário logado
+        $dados['func'] = $funcionarioModel->buscarfuncionario($_SESSION['userEmail']);
+    
+        // Verifica o tipo de usuário e carrega a view correspondente
         if ($_SESSION['id_tipo_usuario'] == '1') {
-
-            $func = new Funcionario();
-            $dadosFunc = $func->buscarfuncionario($_SESSION['userEmail']);
-            $dados['func'] = $dadosFunc;
-
             $dados['conteudo'] = 'dash/funcionario/listar';
             $this->carregarViews('dash/dashboard', $dados);
         } else if ($_SESSION['id_tipo_usuario'] == '2') {
-            $func = new Funcionario();
-            $dadosFunc = $func->buscarfuncionario($_SESSION['userEmail']);
-            $dados['func'] = $dadosFunc;
-
-
             $dados['conteudo'] = 'dash/funcionario/listar';
             $this->carregarViews('dash/dashboard-funcionario', $dados);
         }
     }
+    
+
 
     // 2- Método para adicionar Alunos
     public function adicionar()
@@ -357,35 +352,6 @@ class FuncionariosController extends Controller
             echo json_encode(['sucesso' => false, "mensagem" => 'falha ao desativar Funcionario']);
         }
     }
-
-
-    // Pagina desativados
-    public function desativados()
-    {
-
-
-        $dados = array();
-
-
-
-        // Buscar Estado
-        $estados = new Estado();
-        $dados['estados'] = $estados->getListarEstados();
-
-        // Carregar os funcionarios
-        $funcionarioModel = new Funcionario();
-        $funcionario = $funcionarioModel->getListarFuncionarioDesativados();
-        $dados['funcionarios'] = $funcionario;
-
-
-
-
-        $dados['conteudo'] = 'dash/funcionario/desativados';
-        $this->carregarViews('dash/dashboard', $dados);
-    }
-
-
-
 
     // 5- Método para sativar o serviço
     public function ativar($id = null)

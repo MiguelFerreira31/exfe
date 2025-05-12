@@ -20,29 +20,29 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
         <table class="table table-hover text-center align-middle">
             <thead>
                 <tr>
-                <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Foto</th>
-                <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Status</th>
-                <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Editar</th>
-                <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Desativar</th>
+                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Foto</th>
+                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Status</th>
+                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Editar</th>
+                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Desativar</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($mesas as $linha): ?>
                     <tr class="fw-semibold">
                         <td class="img-produto">
-                            <img id="imgMesa<?php echo $linha['id_mesa']; ?>" 
+                            <img id="imgMesa<?php echo $linha['id_mesa']; ?>"
                                 src="/exfe/public/imagens/mesas/<?php echo $linha['status_mesa']; ?>.png"
-                                alt="Mesa <?php echo $linha['id_mesa']; ?>" 
+                                alt="Mesa <?php echo $linha['id_mesa']; ?>"
                                 style="width:100px; height:auto; border-radius: 10px;">
-                            
+
                             <div class="mt-2 fw-bold text-center" style="color: #5e3c2d;" id="legenda<?php echo $linha['id_mesa']; ?>">
                                 Status: <?php echo htmlspecialchars($linha['status_mesa']); ?>
                             </div>
                         </td>
 
                         <td>
-                            <select class="form-select fw-bold text-center" 
-                                    onchange="atualizarStatusMesa(<?php echo $linha['id_mesa']; ?>, this.value)">
+                            <select class="form-select fw-bold text-center"
+                                onchange="atualizarStatusMesa(<?php echo $linha['id_mesa']; ?>, this.value)">
                                 <option value="Disponivel" <?php echo $linha['status_mesa'] == 'Disponivel' ? 'selected' : ''; ?>>Disponível</option>
                                 <option value="Reservada" <?php echo $linha['status_mesa'] == 'Reservada' ? 'selected' : ''; ?>>Reservada</option>
                                 <option value="Ocupada" <?php echo $linha['status_mesa'] == 'Ocupada' ? 'selected' : ''; ?>>Ocupada</option>
@@ -101,7 +101,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
         $('#modalDesativar').modal('show');
     }
 
-    document.getElementById('btnConfirmar').addEventListener('click', function () {
+    document.getElementById('btnConfirmar').addEventListener('click', function() {
         const idMesa = document.getElementById('idMesaDesativar').value;
         if (idMesa) {
             desativarMesa(idMesa);
@@ -110,45 +110,49 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
     function desativarMesa(idMesa) {
         fetch(`https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/desativar/${idMesa}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.sucesso) {
-                $('#modalDesativar').modal('hide');
-                setTimeout(() => location.reload(), 500);
-                
-            } else {
-                alert(data.mensagem || "Erro ao desativar mesa");
-            }
-        })
-        .catch(() => alert('Erro na requisição'));
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.sucesso) {
+                    $('#modalDesativar').modal('hide');
+                    setTimeout(() => location.reload(), 500);
+
+                } else {
+                    alert(data.mensagem || "Erro ao desativar mesa");
+                }
+            })
+            .catch(() => alert('Erro na requisição'));
     }
 
     function atualizarStatusMesa(id, status) {
         fetch(`https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/atualizarStatusMesa/${id}/${status}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status) {
-                atualizacampo(id, status)
-                //location.reload()
-            } else {
-                alert(data.mensagem || "Erro ao desativar mesa");
-            }
-        })
-        .catch(() => alert('Erro na requisição'));
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status) {
+                    atualizacampo(id, status)
+                    //location.reload()
+                } else {
+                    alert(data.mensagem || "Erro ao desativar mesa");
+                }
+            })
+            .catch(() => alert('Erro na requisição 2'));
     }
 
-    function atualizacampo(id,status){
+    function atualizacampo(id, status) {
         const idcampo = document.getElementById(`imgMesa${id}`)
         const legenda = document.getElementById(`legenda${id}`)
-              idcampo.src = `/exfe/public/imagens/mesas/${status}.png`
-              legenda.textContent = status
-                //aqui iria atualizar o campo
-           
+        idcampo.src = `/exfe/public/imagens/mesas/${status}.png`
+        legenda.textContent = status
+        //aqui iria atualizar o campo
+
     }
 </script>

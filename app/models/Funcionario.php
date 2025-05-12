@@ -49,18 +49,28 @@ class Funcionario extends Model
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    // Médoto para o DASHBOARD - Listar todos os serviços com galeria e especialidade
-    public function getListarFuncionario()
+    public function getListarFuncionario($status = null)
     {
-
-        $sql = "SELECT * 
-            FROM tbl_funcionario 
-            WHERE status_funcionario = 'Ativo'
-            ORDER BY nome_funcionario ASC";
-
-        $stmt = $this->db->query($sql);
+        if ($status !== null) {
+            $sql = "SELECT * 
+                    FROM tbl_funcionario 
+                    WHERE status_funcionario = :status
+                    ORDER BY nome_funcionario ASC";
+    
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(':status', $status, PDO::PARAM_STR);
+            $stmt->execute();
+        } else {
+            $sql = "SELECT * 
+                    FROM tbl_funcionario 
+                    ORDER BY nome_funcionario ASC";
+    
+            $stmt = $this->db->query($sql);
+        }
+    
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
 
 
     public function getListarFuncionarioDesativados()

@@ -94,38 +94,18 @@ $dados['totalCliente'] = $totalCliente;
             </div>
             <span class="nav-link-text ms-1">Tabelas</span>
           </a>
-
-
         </li>
 
-
-
-        <li class="nav-item dropdown-menu-custom">
-          <a href="#" class="nav-link dropdown-toggle-custom d-flex align-items-center justify-content-between"
-            style=" border-radius: 0.5rem;">
-            <div class="d-flex align-items-center">
-              <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
+        <li class="nav-item">
+          <a class="nav-link" href="<?= BASE_URL ?>contato/listar"
+            style="color: #371406; border-radius: 0.5rem;">
+            <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
                 style="background-color: #ffd8b9; border-radius: 0.5rem;">
                 <i class="ni ni-credit-card text-sm" style="opacity: 0.9;"></i>
 
               </div>
-              <span>Contatos</span>
-            </div>
-            <i class="bi bi-chevron-down ms-auto"></i>
+            <span class="nav-link-text ms-1">Contatos</span>
           </a>
-
-          <ul class="nav flex-column submenu-custom" style="display: none; padding-left: 2rem;">
-            <li class="nav-item">
-              <a class="nav-link" href="<?= BASE_URL ?>contato/listar" style="color: #371406;">
-                <i class="bi bi-person-check me-2"></i> Ativos
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<?= BASE_URL ?>contato/desativados" style="color: #371406;">
-                <i class="bi bi-person-x me-2" style="color: #371406;"></i> Desativados
-              </a>
-            </li>
-          </ul>
         </li>
 
         <!-- Novo item: Clientes -->
@@ -141,35 +121,16 @@ $dados['totalCliente'] = $totalCliente;
         </li>
 
 
-        <!-- Novo item: Funcionários -->
-        <li class="nav-item dropdown-menu-custom">
-          <a href="#" class="nav-link dropdown-toggle-custom d-flex align-items-center justify-content-between"
+        <li class="nav-item">
+          <a class="nav-link" href="<?= BASE_URL ?>funcionarios/listar"
             style="color: #371406; border-radius: 0.5rem;">
-            <div class="d-flex align-items-center">
-              <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
+            <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
                 style="background-color: #ffd8b9; border-radius: 0.5rem;">
                 <i class="ni ni-badge text-sm" style="color: #371406; opacity: 0.9;"></i>
               </div>
-              <span>Funcionários</span>
-            </div>
-            <i class="bi bi-chevron-down ms-auto"></i>
+            <span class="nav-link-text ms-1">Funcionários</span>
           </a>
-
-          <ul class="nav flex-column submenu-custom" style="display: none; padding-left: 2rem;">
-            <li class="nav-item">
-              <a class="nav-link" href="<?= BASE_URL ?>funcionarios/listar">
-                <i class="bi bi-person-check me-2" style="color: #371406;"></i> Ativos
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<?= BASE_URL ?>funcionarios/desativados">
-                <i class="bi bi-person-x me-2" style="color: #371406;"></i> Desativados
-              </a>
-            </li>
-          </ul>
         </li>
-
-
 
         <!-- Novo item: Serviços -->
         <li class="nav-item dropdown-menu-custom">

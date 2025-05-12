@@ -141,6 +141,7 @@ class MesaController extends Controller
                     $_SESSION['mensagem'] = "Mesa atualizada com sucesso";
                     $_SESSION['tipo-msg'] = "sucesso";
                     header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/listar');
+                    
                     exit;
                 } else {
                     $dados['mensagem'] = "Erro ao atualizar mesa";
