@@ -16,19 +16,22 @@
         <!-- Slide -->
         <div class="swiper-slide">
           <div class="carouselCont">
-            <div class="img" style="background-image: url(<?php
-                                                          $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $linha['foto_cliente'];
 
-                                                          if ($linha['foto_cliente'] != "") {
-                                                            if (file_exists($caminhoArquivo)) {
-                                                              echo ("https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/uploads/" . htmlspecialchars($linha['foto_cliente'], ENT_QUOTES, 'UTF-8'));
-                                                            } else {
-                                                              echo ("https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/uploads/cliente/sem-foto-cliente.jpg");
-                                                            }
-                                                          } else {
-                                                            echo ("https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/uploads/cliente/sem-foto-cliente.jpg");
-                                                          }
-                                                          ?>); ">
+          <?php
+                    $caminhoArquivo = BASE_URL . "uploads/" . $linha['foto_cliente'];
+                    $img = BASE_URL . "uploads/sem-foto.jpg"; // Caminho padrão corrigido
+                    // $alt_foto = "imagem sem foto $index";
+
+                    if (!empty($linha['foto_cliente'])) {
+                        $headers = @get_headers($caminhoArquivo);
+                        if ($headers && strpos($headers[0], '200') !== false) {
+                            $img = $caminhoArquivo;
+                        }
+                    }
+                    
+                    ?>
+                      
+            <div class="img" style="background-image: url(<?php echo $img; ?>); ">
               <div class="imgItems">
                 <ul>
                   <li>
