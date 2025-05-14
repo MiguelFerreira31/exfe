@@ -18,69 +18,62 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
     <!-- Área de Posicionamento Livre -->
     <div id="area-cafeteria" class="rounded-3 shadow-lg p-4 mb-4" style="
-     
         min-height: 600px; 
         border: 2px dashed #9a5c1f;
         position: relative;
         overflow: hidden;
+        background-image: url(<?= BASE_URL . 'assets/img/planta.png' ?>);
+        background-size: 100% 100%;
+        background-position: center;
+        background-repeat: no-repeat;
     ">
-        <h4 class="text-center mb-3" style="color: #5e3c2d;">Arraste as mesas para posicioná-las</h4>
+        <h4 class="text-center mb-3" style="color: #5e3c2d; background-color: rgba(255, 255, 255, 0.7); padding: 5px; border-radius: 5px;">Arraste as mesas para posicioná-las</h4>
 
         <!-- Mesas (posicionadas absolutamente) -->
         <?php foreach ($mesas as $linha): ?>
             <div
                 class="mesa-draggable"
                 data-id="<?php echo $linha['id_mesa']; ?>"
+                data-status="<?php echo $linha['status_mesa']; ?>"
+               
                 style="
                     position: absolute;
                     left: <?php echo $linha['posicao_x'] ?? rand(20, 400); ?>px;
                     top: <?php echo $linha['posicao_y'] ?? rand(20, 400); ?>px;
-                    cursor: grab;
-                    padding: 10px;
-                    width: 200px;
+                    cursor: pointer;
+                    width: 100px;
+                    height: 100px;
+                    background-image: url(<?= BASE_URL . 'assets/img/mesa.png' ?>);
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    background-position: center;
                 ">
-                <div class="mesa-content text-center">
-
-
-                
-                    <img
-                        src="<?php echo BASE_URL . 'imagens/mesas/' .  $linha['status_mesa']; ?>.png"
-                        alt="Mesa <?php echo $linha['id_mesa']; ?>"
-                        style="width: 80px; height: auto; border-radius: 10px;">
-                    <div class="mt-2 fw-bold" style="color: #5e3c2d; font-size: 14px;">
+                <div class="mesa-content text-center" style="
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                ">
+                    <div class="mt-2 fw-bold" style="
+                        color: white; 
+                        font-size: 14px;
+                        text-shadow: 1px 1px 2px #000;
+                        background-color: rgba(94, 60, 45, 0.7);
+                        padding: 2px 5px;
+                        border-radius: 3px;
+                    "  onclick="abrirModalMesa(<?php echo $linha['id_mesa']; ?>, '<?php echo $linha['status_mesa']; ?>')">
                         Mesa <?php echo $linha['id_mesa']; ?>
                     </div>
                     <div class="status-badge mb-2">
-                        <small class="badge" style="background: 
-                            <?php echo $linha['status_mesa'] == 'Disponivel' ? '#28a745' : ($linha['status_mesa'] == 'Reservada' ? '#ffc107' : '#dc3545'); ?>">
+                        <small class="badge" style="
+                            background: <?php echo $linha['status_mesa'] == 'Disponivel' ? '#28a745' : ($linha['status_mesa'] == 'Reservada' ? '#ffc107' : '#dc3545'); ?>;
+                            text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+                        ">
                             <?php echo $linha['status_mesa']; ?>
                         </small>
-                    </div>
-
-                    <!-- Controles -->
-                    <div class="d-flex justify-content-center gap-2">
-                        <select
-                            class="form-select form-select-sm"
-                            onchange="atualizarStatusMesa(<?php echo $linha['id_mesa']; ?>, this.value)"
-                            style="width: 90px;">
-                            <option value="Disponivel" <?php echo $linha['status_mesa'] == 'Disponivel' ? 'selected' : ''; ?>>Disponível</option>
-                            <option value="Reservada" <?php echo $linha['status_mesa'] == 'Reservada' ? 'selected' : ''; ?>>Reservada</option>
-                            <option value="Ocupada" <?php echo $linha['status_mesa'] == 'Ocupada' ? 'selected' : ''; ?>>Ocupada</option>
-                        </select>
-
-                        <a
-                            href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/editar/<?php echo $linha['id_mesa']; ?>"
-                            class="btn btn-sm btn-outline-secondary"
-                            title="Editar">
-                            <i class="fa fa-pencil-alt"></i>
-                        </a>
-
-                        <button
-                            class="btn btn-sm btn-outline-danger"
-                            title="Desativar"
-                            onclick="abrirModalDesativar(<?php echo $linha['id_mesa']; ?>)">
-                            <i class="fa fa-ban"></i>
-                        </button>
                     </div>
                 </div>
             </div>
@@ -98,8 +91,35 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     </div>
 </div>
 
-<!-- MODAL DESATIVAR (mantido igual) -->
-<div class="modal" tabindex="-1" id="modalDesativar">
+<!-- MODAL DA MESA -->
+<div class="modal fade" id="modalMesa" tabindex="-1" aria-labelledby="modalMesaLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalMesaLabel">Mesa <span id="numeroMesa"></span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">Status:</label>
+                    <select id="selectStatusMesa" class="form-select">
+                        <option value="Disponivel">Disponível</option>
+                        <option value="Reservada">Reservada</option>
+                        <option value="Ocupada">Ocupada</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" onclick="editarMesa()">Editar Mesa</button>
+                <button type="button" class="btn btn-danger" onclick="confirmarDesativar()">Desativar Mesa</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL DESATIVAR -->
+<div class="modal fade" id="modalDesativar" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -107,12 +127,12 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Tem certeza que deseja desativar essa mesa?</p>
+                <p>Tem certeza que deseja desativar esta mesa?</p>
                 <input type="hidden" id="idMesaDesativar" value="">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="btnConfirmar">Desativar</button>
+                <button type="button" class="btn btn-danger" id="btnConfirmarDesativar">Desativar</button>
             </div>
         </div>
     </div>
@@ -120,176 +140,191 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
 <!-- SCRIPTS -->
 <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+
 <script>
-    // Configuração do drag com restrições
-    interact('.mesa-draggable').draggable({
-        inertia: false,
-        autoScroll: true,
-        modifiers: [
-            interact.modifiers.restrictRect({
-                restriction: 'parent', // Restringe ao elemento pai
-                endOnly: false
-            })
-        ],
-        listeners: {
-            move: dragMoveListener,
-            end: function(event) {
-                const mesa = event.target;
-                // Salva a posição final
-                const x = parseFloat(mesa.getAttribute('data-x')) || 0;
-                const y = parseFloat(mesa.getAttribute('data-y')) || 0;
+  //#region Variável global
+let mesaAtual = null;
+//#endregion
 
-                // Aplica a transformação permanentemente
-                const style = window.getComputedStyle(mesa);
-                const matrix = new DOMMatrix(style.transform);
+//#region Drag and Drop com Interact.js
+interact('.mesa-draggable').draggable({
+    inertia: false,
+    autoScroll: true,
+    modifiers: [
+        interact.modifiers.restrictRect({
+            restriction: 'parent',
+            endOnly: false
+        })
+    ],
+    listeners: {
+        move: dragMoveListener,
+        end: function(event) {
+            const mesa = event.target;
+            const x = parseFloat(mesa.getAttribute('data-x')) || 0;
+            const y = parseFloat(mesa.getAttribute('data-y')) || 0;
 
-                mesa.style.left = `${parseFloat(mesa.style.left) + matrix.m41}px`;
-                mesa.style.top = `${parseFloat(mesa.style.top) + matrix.m42}px`;
-                mesa.style.transform = 'none';
-                mesa.setAttribute('data-x', 0);
-                mesa.setAttribute('data-y', 0);
-            }
+            const style = window.getComputedStyle(mesa);
+            const matrix = new DOMMatrix(style.transform);
+
+            mesa.style.left = `${parseFloat(mesa.style.left) + matrix.m41}px`;
+            mesa.style.top = `${parseFloat(mesa.style.top) + matrix.m42}px`;
+            mesa.style.transform = 'none';
+            mesa.setAttribute('data-x', 0);
+            mesa.setAttribute('data-y', 0);
         }
+    }
+});
+
+function dragMoveListener(event) {
+    const target = event.target;
+    const x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+    const y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+    target.style.transform = `translate(${x}px, ${y}px)`;
+    target.setAttribute('data-x', x);
+    target.setAttribute('data-y', y);
+}
+//#endregion
+
+//#region Modal da Mesa
+function abrirModalMesa(idMesa, status) {
+    mesaAtual = idMesa;
+    document.getElementById('numeroMesa').textContent = idMesa;
+
+    const selectStatus = document.getElementById('selectStatusMesa');
+    selectStatus.value = status;
+
+    const modal = new bootstrap.Modal(document.getElementById('modalMesa'));
+    modal.show();
+}
+//#endregion
+
+//#region Ações do Modal da Mesa
+function editarMesa() {
+    if (mesaAtual) {
+        window.location.href = `https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/editar/${mesaAtual}`;
+    }
+}
+
+function confirmarDesativar() {
+    if (mesaAtual) {
+        document.getElementById('idMesaDesativar').value = mesaAtual;
+        const modalMesa = bootstrap.Modal.getInstance(document.getElementById('modalMesa'));
+        modalMesa.hide();
+
+        const modalDesativar = new bootstrap.Modal(document.getElementById('modalDesativar'));
+        modalDesativar.show();
+    }
+}
+//#endregion
+
+//#region Salvar Posições das Mesas
+document.getElementById('salvar-posicoes').addEventListener('click', function() {
+    const mesas = Array.from(document.querySelectorAll('.mesa-draggable')).map(mesa => {
+        return {
+            id: mesa.dataset.id,
+            posicao_x: parseInt(mesa.style.left),
+            posicao_y: parseInt(mesa.style.top)
+        };
     });
 
-    function dragMoveListener(event) {
-        const target = event.target;
-        const x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
-        const y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+    fetch('https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/salvarPosicoes', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            body: JSON.stringify({ mesas })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Layout salvo com sucesso!');
+            } else {
+                alert('Erro: ' + (data.message || ''));
+            }
+        })
+        .catch(error => console.error('Erro:', error));
+});
+//#endregion
 
-        target.style.transform = `translate(${x}px, ${y}px)`;
-        target.setAttribute('data-x', x);
-        target.setAttribute('data-y', y);
+//#region Desativar Mesa
+document.getElementById('btnConfirmarDesativar').addEventListener('click', function() {
+    const idMesa = document.getElementById('idMesaDesativar').value;
+    if (idMesa) desativarMesa(idMesa);
+});
+
+function desativarMesa(idMesa) {
+    fetch(`https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/desativar/${idMesa}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.sucesso) {
+                $('#modalDesativar').modal('hide');
+                setTimeout(() => location.reload(), 500);
+            } else {
+                alert(data.mensagem || "Erro ao desativar mesa");
+            }
+        })
+        .catch(() => alert('Erro na requisição'));
+}
+//#endregion
+
+//#region Atualizar Status da Mesa
+document.getElementById('selectStatusMesa').addEventListener('change', function() {
+    if (mesaAtual) {
+        const novoStatus = this.value;
+        atualizarStatusMesa(mesaAtual, novoStatus);
     }
+});
 
-    // Salvar Posições (atualizado para lidar com o novo sistema de posicionamento)
-    document.getElementById('salvar-posicoes').addEventListener('click', function() {
-        const mesas = Array.from(document.querySelectorAll('.mesa-draggable')).map(mesa => {
-            return {
-                id: mesa.dataset.id,
-                posicao_x: parseInt(mesa.style.left),
-                posicao_y: parseInt(mesa.style.top)
-            };
-        });
-
-        fetch('https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/salvarPosicoes', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest'
-                },
-                body: JSON.stringify({
-                    mesas
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Layout salvo com sucesso!');
-                } else {
-                    alert('Erro: ' + (data.message || ''));
-                }
-            })
-            .catch(error => console.error('Erro:', error));
-    });
-
-
-    // Funções existentes (mantidas)
-    function abrirModalDesativar(idMesa) {
-        document.getElementById('idMesaDesativar').value = idMesa;
-        $('#modalDesativar').modal('show');
-    }
-
-    document.getElementById('btnConfirmar').addEventListener('click', function() {
-        const idMesa = document.getElementById('idMesaDesativar').value;
-        if (idMesa) desativarMesa(idMesa);
-    });
-
-    function desativarMesa(idMesa) {
-        fetch(`https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/desativar/${idMesa}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.sucesso) {
-                    $('#modalDesativar').modal('hide');
-                    setTimeout(() => location.reload(), 500);
-                } else {
-                    alert(data.mensagem || "Erro ao desativar mesa");
-                }
-            })
-            .catch(() => alert('Erro na requisição'));
-    }
-
-    function atualizarStatusMesa(id, status) {
-        fetch(`https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/atualizarStatusMesa/${id}/${status}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status) {
-                    const mesa = document.querySelector(`.mesa-draggable[data-id="${id}"]`);
-                    mesa.querySelector('img').src = `/exfe/public/imagens/mesas/${status}.png`;
-                    mesa.querySelector('.badge').textContent = status;
-                    mesa.querySelector('.badge').style.background =
+function atualizarStatusMesa(id, status) {
+    fetch(`https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/atualizarStatusMesa/${id}/${status}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status) {
+                const mesaElement = document.querySelector(`.mesa-draggable[data-id="${id}"]`);
+                if (mesaElement) {
+                    mesaElement.setAttribute('data-status', status);
+                    const badge = mesaElement.querySelector('.badge');
+                    badge.textContent = status;
+                    badge.style.background =
                         status == 'Disponivel' ? '#28a745' :
                         status == 'Reservada' ? '#ffc107' : '#dc3545';
-                } else {
-                    alert(data.mensagem || "Erro ao atualizar status");
                 }
-            })
-            .catch(() => alert('Erro na requisição'));
-    }
+            } else {
+                alert(data.mensagem || "Erro ao atualizar status");
+            }
+        })
+        .catch(() => alert('Erro na requisição'));
+}
+//#endregion
+
 </script>
 
 <!-- CSS Adicional -->
 <style>
     .mesa-draggable {
         transition: transform 0.1s, box-shadow 0.2s;
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         z-index: 1;
         user-select: none;
     }
 
-    #area-cafeteria {
-        position: relative;
-        overflow: hidden;
-       background-image: url(<?= BASE_URL . 'assets/img/planta.jpg' ?>);
-       background-size:100% 100%;
-       background-position: center;
-       background-repeat: no-repeat;
-    }
-
-    .mesa-draggable {
-        touch-action: none;
-        /* Melhora o comportamento em dispositivos touch */
-    }
-
-
     .mesa-draggable:hover {
-        transform: scale(1.02);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
         z-index: 100;
-    }
-
-    .mesa-content {
-        pointer-events: none;
-        /* Permite clicar nos elementos internos */
-    }
-
-    .mesa-content select,
-    .mesa-content button,
-    .mesa-content a {
-        pointer-events: auto;
-        /* Reativa interação nos controles */
     }
 
     .status-badge .badge {
