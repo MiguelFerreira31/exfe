@@ -89,19 +89,7 @@ $dados['totalCliente'] = $totalCliente;
             <span class="nav-link-text ms-1">Dashboard</span>
           </a>
         </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="../Dash/tables.html"
-            style=" border-radius: 0.5rem;">
-            <div
-              class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
-              style="background-color: #ffd8b9; border-radius: 0.5rem;">
-              <i class="ni ni-calendar-grid-58 text-sm" style=" opacity: 0.9;"></i>
-            </div>
-            <span class="nav-link-text ms-1">Tabelas</span>
-          </a>
-        </li>
-
+        
         <li class="nav-item">
           <a class="nav-link" href="<?= BASE_URL ?>contato/listar"
             style="color: #371406; border-radius: 0.5rem;">

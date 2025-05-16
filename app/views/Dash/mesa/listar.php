@@ -59,7 +59,6 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                     </tr>
                 <?php endforeach; ?>
             </tbody>
-        </table>
     </div>
 
     <!-- Botões de Ação -->

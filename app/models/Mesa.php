@@ -39,25 +39,52 @@ class Mesa extends Model
     }
 
 
-
     public function addMesa($dados)
     {
+        // 1. Buscar o menor ID disponível
+        $sqlId = "SELECT t1.id_mesa + 1 AS id_disponivel
+        FROM tbl_mesa t1
+        LEFT JOIN tbl_mesa t2 ON t1.id_mesa + 1 = t2.id_mesa
+        WHERE t2.id_mesa IS NULL
+        ORDER BY t1.id_mesa
+        LIMIT 1 ";
+        $stmtId = $this->db->prepare($sqlId);
+        $stmtId->execute();
+        $resultado = $stmtId->fetch();
+
+        if ($resultado && $resultado['id_disponivel']) {
+            $idDisponivel = $resultado['id_disponivel'];
+        } else {
+            $sqlMax = "SELECT MAX(id_mesa) + 1 AS proximo_id FROM tbl_mesa";
+            $stmtMax = $this->db->prepare($sqlMax);
+            $stmtMax->execute();
+            $max = $stmtMax->fetch();
+            $idDisponivel = $max['proximo_id'] ?? 1;
+        }
+
+        // 2. Inserir a nova mesa com ID manual
         $sql = "INSERT INTO tbl_mesa (
+        id_mesa,
         numero_mesa,
         capacidade,
-        status_mesa) VALUES (:numero_mesa, 
+        status_mesa) VALUES (
+        :id_mesa,
+        :numero_mesa,
         :capacidade,
         :status_mesa
-    );";
+    )";
 
         $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_mesa', $idDisponivel);
         $stmt->bindValue(':numero_mesa', $dados['numero_mesa']);
         $stmt->bindValue(':capacidade', $dados['capacidade']);
         $stmt->bindValue(':status_mesa', $dados['status_mesa']);
 
         $stmt->execute();
-        return $this->db->lastInsertId();
+
+        return $idDisponivel;
     }
+
 
     public function updateMesa($id, $dados)
     {
@@ -105,5 +132,31 @@ class Mesa extends Model
 
         // Retornar os resultados
         return $result;
+    }
+
+    public function desativarMesa($id)
+    {
+        $sql = "UPDATE tbl_mesa SET ativo_mesa = 'inativo' WHERE id_mesa = :id";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+        return $stmt->execute();
+    }
+
+    public function ativarMesa($id)
+    {
+        $sql = "UPDATE tbl_mesa SET ativo_mesa = 'ativo' WHERE id_mesa = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        return $stmt->execute();
+    }
+
+    public function listarMesasAtivas()
+    {
+        $sql = "SELECT * FROM tbl_mesa WHERE ativo_mesa = 'ativo' ORDER BY numero_mesa ASC";
+
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
