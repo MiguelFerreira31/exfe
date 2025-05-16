@@ -23,6 +23,21 @@ class Mesa extends Model
         return $stmt->execute();
     }
 
+    public function atualizarPosicao($idMesa, $posX, $posY)
+    {
+        $sql = "UPDATE tbl_mesa 
+                SET posicao_x = :posX, posicao_y = :posY 
+                WHERE id_mesa = :id";
+
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':posX', $posX, \PDO::PARAM_INT);
+        $stmt->bindParam(':posY', $posY, \PDO::PARAM_INT);
+        $stmt->bindParam(':id', $idMesa, \PDO::PARAM_INT);
+
+        return $stmt->execute();
+    }
+
 
 
     public function addMesa($dados)

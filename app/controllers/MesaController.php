@@ -22,17 +22,14 @@ class MesaController extends Controller
         $mesas = $mesaModel->listarMesa();
         $dados['mesas'] = $mesas;
 
-        // Buscar dados do cliente logado pela sessão
-        $clienteModel = new Cliente();
-        $cliente = $clienteModel->perfilCliente($_SESSION['userEmail']);
-        $dados['cliente'] = $cliente;
+        
 
         $dados['conteudo'] = 'dash/mesa/listar';
         $this->carregarViews('dash/dashboard', $dados);
     }
 
-  // Se não estiver usando autoload, inclua a classe Status manualmente
-// require_once 'caminho/para/Status.php'; // Adapte o caminho conforme necessário
+    // Se não estiver usando autoload, inclua a classe Status manualmente
+    // require_once 'caminho/para/Status.php'; // Adapte o caminho conforme necessário
 
 
     public function adicionar()
@@ -103,85 +100,116 @@ class MesaController extends Controller
     }
 
     public function editar($id = null)
-{
-    $dados = array();
-    $dados['conteudo'] = 'dash/mesa/editar';
+    {
+        $dados = array();
+        $dados['conteudo'] = 'dash/mesa/editar';
 
-    // Redireciona se o ID for nulo
-    if ($id === null) {
-        header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/listar');
-        exit;
-    }
+        // Redireciona se o ID for nulo
+        if ($id === null) {
+            header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/listar');
+            exit;
+        }
 
-    // Carrega dados da mesa antes de processar o POST
-    $mesa = $this->mesaModel->getMesaById($id);
-    if ($mesa) {
-        $dados['mesa'] = $mesa;
-    } else {
-        $_SESSION['mensagem'] = "Mesa não encontrada";
-        $_SESSION['tipo-msg'] = "erro";
-        header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/listar');
-        exit;
-    }
+        // Carrega dados da mesa antes de processar o POST
+        $mesa = $this->mesaModel->getMesaById($id);
+        if ($mesa) {
+            $dados['mesa'] = $mesa;
+        } else {
+            $_SESSION['mensagem'] = "Mesa não encontrada";
+            $_SESSION['tipo-msg'] = "erro";
+            header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/listar');
+            exit;
+        }
 
-    // Processa o POST
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $numero_mesa = filter_input(INPUT_POST, 'numero_mesa', FILTER_SANITIZE_NUMBER_INT);
-        $capacidade = filter_input(INPUT_POST, 'capacidade', FILTER_SANITIZE_NUMBER_INT);
-        $status_mesa = filter_input(INPUT_POST, 'status_mesa', FILTER_SANITIZE_SPECIAL_CHARS);
+        // Processa o POST
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $numero_mesa = filter_input(INPUT_POST, 'numero_mesa', FILTER_SANITIZE_NUMBER_INT);
+            $capacidade = filter_input(INPUT_POST, 'capacidade', FILTER_SANITIZE_NUMBER_INT);
+            $status_mesa = filter_input(INPUT_POST, 'status_mesa', FILTER_SANITIZE_SPECIAL_CHARS);
 
-        if (!empty($numero_mesa) && !empty($capacidade) && $status_mesa !== false) {
-            $dadosMesa = array(
-                'numero_mesa' => $numero_mesa,
-                'capacidade' => $capacidade,
-                'status_mesa' => $status_mesa
-            );
+            if (!empty($numero_mesa) && !empty($capacidade) && $status_mesa !== false) {
+                $dadosMesa = array(
+                    'numero_mesa' => $numero_mesa,
+                    'capacidade' => $capacidade,
+                    'status_mesa' => $status_mesa
+                );
 
-            if (isset($_FILES['foto_mesa']) && $_FILES['foto_mesa']['error'] === 0) {
-                $arquivo = $this->uploadFoto($_FILES['foto_mesa']);
+                if (isset($_FILES['foto_mesa']) && $_FILES['foto_mesa']['error'] === 0) {
+                    $arquivo = $this->uploadFoto($_FILES['foto_mesa']);
 
-                if ($arquivo) {
-                    $dadosMesa['foto_mesa'] = $arquivo;
+                    if ($arquivo) {
+                        $dadosMesa['foto_mesa'] = $arquivo;
+                    } else {
+                        $dados['mensagem'] = "Erro ao fazer upload da imagem.";
+                        $dados['tipo-msg'] = "erro";
+                    }
+                }
+
+                $atualizado = $this->mesaModel->updateMesa($id, $dadosMesa);
+
+                if ($atualizado) {
+                    $_SESSION['mensagem'] = "Mesa atualizada com sucesso";
+                    $_SESSION['tipo-msg'] = "sucesso";
+                    header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/listar');
+                    exit;
                 } else {
-                    $dados['mensagem'] = "Erro ao fazer upload da imagem.";
+                    $dados['mensagem'] = "Erro ao atualizar mesa";
                     $dados['tipo-msg'] = "erro";
                 }
-            }
 
-            $atualizado = $this->mesaModel->updateMesa($id, $dadosMesa);
-
-            if ($atualizado) {
-                $_SESSION['mensagem'] = "Mesa atualizada com sucesso";
-                $_SESSION['tipo-msg'] = "sucesso";
-                header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/listar');
-                exit;
+                // Atualiza os dados da mesa no array para manter valores preenchidos na view
+                $dados['mesa']['numero_mesa'] = $numero_mesa;
+                $dados['mesa']['capacidade'] = $capacidade;
+                $dados['mesa']['status_mesa'] = $status_mesa;
             } else {
-                $dados['mensagem'] = "Erro ao atualizar mesa";
+                $dados['mensagem'] = "Preencha todos os campos obrigatórios";
                 $dados['tipo-msg'] = "erro";
+
+                // Preenche campos para manter valores no formulário após erro
+                $dados['mesa']['numero_mesa'] = $numero_mesa;
+                $dados['mesa']['capacidade'] = $capacidade;
+                $dados['mesa']['status_mesa'] = $status_mesa;
+            }
+        }
+
+        // Carrega lista de status da mesa
+        $status = $this->mesaModel->getTodosStatus();
+        $dados['status'] = $status;
+
+        // Carrega a view
+        $this->carregarViews('dash/dashboard', $dados);
+    }
+
+    public function salvarPosicoes()
+    {
+        header('Content-Type: application/json');
+
+        try {
+            $json = file_get_contents('php://input');
+            $data = json_decode($json, true);
+
+            if (empty($data['mesas'])) {
+                throw new \Exception("Nenhuma mesa enviada");
             }
 
-            // Atualiza os dados da mesa no array para manter valores preenchidos na view
-            $dados['mesa']['numero_mesa'] = $numero_mesa;
-            $dados['mesa']['capacidade'] = $capacidade;
-            $dados['mesa']['status_mesa'] = $status_mesa;
-        } else {
-            $dados['mensagem'] = "Preencha todos os campos obrigatórios";
-            $dados['tipo-msg'] = "erro";
+            $model = new Mesa();
+            foreach ($data['mesas'] as $mesa) {
+                $model->atualizarPosicao(
+                    $mesa['id'],
+                    (int)$mesa['posicao_x'],
+                    (int)$mesa['posicao_y']
+                );
+            }
 
-            // Preenche campos para manter valores no formulário após erro
-            $dados['mesa']['numero_mesa'] = $numero_mesa;
-            $dados['mesa']['capacidade'] = $capacidade;
-            $dados['mesa']['status_mesa'] = $status_mesa;
+            echo json_encode(['success' => true]);
+        } catch (\Exception $e) {
+            echo json_encode([
+                'success' => false,
+                'message' => $e->getMessage()
+            ]);
         }
     }
 
-    // Carrega lista de status da mesa
-    $status = $this->mesaModel->getTodosStatus();
-    $dados['status'] = $status;
-
-    // Carrega a view
-    $this->carregarViews('dash/dashboard', $dados);
-}
 
 
     public function uploadFoto($file)
@@ -233,5 +261,4 @@ class MesaController extends Controller
             echo $e->getMessage();
         }
     }
-
 }
