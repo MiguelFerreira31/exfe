@@ -35,7 +35,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                 class="mesa-draggable"
                 data-id="<?php echo $linha['id_mesa']; ?>"
                 data-status="<?php echo $linha['status_mesa']; ?>"
-               
+
                 style="
                     position: absolute;
                     left: <?php echo $linha['posicao_x'] ?? rand(20, 400); ?>px;
@@ -44,7 +44,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                     width: 100px;
                     height: 100px;
                     background-image: url(<?= BASE_URL . 'assets/img/mesa.png' ?>);
-                    background-size: contain;
+                    background-size: 130% 130%;
                     background-repeat: no-repeat;
                     background-position: center;
                 ">
@@ -64,7 +64,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                         background-color: rgba(94, 60, 45, 0.7);
                         padding: 2px 5px;
                         border-radius: 3px;
-                    "  onclick="abrirModalMesa(<?php echo $linha['id_mesa']; ?>, '<?php echo $linha['status_mesa']; ?>')">
+                    " onclick="abrirModalMesa(<?php echo $linha['id_mesa']; ?>, '<?php echo $linha['status_mesa']; ?>')">
                         Mesa <?php echo $linha['id_mesa']; ?>
                     </div>
                     <div class="status-badge mb-2">
@@ -142,173 +142,174 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
 
 <script>
-  //#region Variável global
-let mesaAtual = null;
-//#endregion
+    //#region Variável global
+    let mesaAtual = null;
+    //#endregion
 
-//#region Drag and Drop com Interact.js
-interact('.mesa-draggable').draggable({
-    inertia: false,
-    autoScroll: true,
-    modifiers: [
-        interact.modifiers.restrictRect({
-            restriction: 'parent',
-            endOnly: false
-        })
-    ],
-    listeners: {
-        move: dragMoveListener,
-        end: function(event) {
-            const mesa = event.target;
-            const x = parseFloat(mesa.getAttribute('data-x')) || 0;
-            const y = parseFloat(mesa.getAttribute('data-y')) || 0;
+    //#region Drag and Drop com Interact.js
+    interact('.mesa-draggable').draggable({
+        inertia: false,
+        autoScroll: true,
+        modifiers: [
+            interact.modifiers.restrictRect({
+                restriction: 'parent',
+                endOnly: false
+            })
+        ],
+        listeners: {
+            move: dragMoveListener,
+            end: function(event) {
+                const mesa = event.target;
+                const x = parseFloat(mesa.getAttribute('data-x')) || 0;
+                const y = parseFloat(mesa.getAttribute('data-y')) || 0;
 
-            const style = window.getComputedStyle(mesa);
-            const matrix = new DOMMatrix(style.transform);
+                const style = window.getComputedStyle(mesa);
+                const matrix = new DOMMatrix(style.transform);
 
-            mesa.style.left = `${parseFloat(mesa.style.left) + matrix.m41}px`;
-            mesa.style.top = `${parseFloat(mesa.style.top) + matrix.m42}px`;
-            mesa.style.transform = 'none';
-            mesa.setAttribute('data-x', 0);
-            mesa.setAttribute('data-y', 0);
+                mesa.style.left = `${parseFloat(mesa.style.left) + matrix.m41}px`;
+                mesa.style.top = `${parseFloat(mesa.style.top) + matrix.m42}px`;
+                mesa.style.transform = 'none';
+                mesa.setAttribute('data-x', 0);
+                mesa.setAttribute('data-y', 0);
+            }
         }
-    }
-});
-
-function dragMoveListener(event) {
-    const target = event.target;
-    const x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
-    const y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
-
-    target.style.transform = `translate(${x}px, ${y}px)`;
-    target.setAttribute('data-x', x);
-    target.setAttribute('data-y', y);
-}
-//#endregion
-
-//#region Modal da Mesa
-function abrirModalMesa(idMesa, status) {
-    mesaAtual = idMesa;
-    document.getElementById('numeroMesa').textContent = idMesa;
-
-    const selectStatus = document.getElementById('selectStatusMesa');
-    selectStatus.value = status;
-
-    const modal = new bootstrap.Modal(document.getElementById('modalMesa'));
-    modal.show();
-}
-//#endregion
-
-//#region Ações do Modal da Mesa
-function editarMesa() {
-    if (mesaAtual) {
-        window.location.href = `https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/editar/${mesaAtual}`;
-    }
-}
-
-function confirmarDesativar() {
-    if (mesaAtual) {
-        document.getElementById('idMesaDesativar').value = mesaAtual;
-        const modalMesa = bootstrap.Modal.getInstance(document.getElementById('modalMesa'));
-        modalMesa.hide();
-
-        const modalDesativar = new bootstrap.Modal(document.getElementById('modalDesativar'));
-        modalDesativar.show();
-    }
-}
-//#endregion
-
-//#region Salvar Posições das Mesas
-document.getElementById('salvar-posicoes').addEventListener('click', function() {
-    const mesas = Array.from(document.querySelectorAll('.mesa-draggable')).map(mesa => {
-        return {
-            id: mesa.dataset.id,
-            posicao_x: parseInt(mesa.style.left),
-            posicao_y: parseInt(mesa.style.top)
-        };
     });
 
-    fetch('https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/salvarPosicoes', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest'
-            },
-            body: JSON.stringify({ mesas })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert('Layout salvo com sucesso!');
-            } else {
-                alert('Erro: ' + (data.message || ''));
-            }
-        })
-        .catch(error => console.error('Erro:', error));
-});
-//#endregion
+    function dragMoveListener(event) {
+        const target = event.target;
+        const x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+        const y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
-//#region Desativar Mesa
-document.getElementById('btnConfirmarDesativar').addEventListener('click', function() {
-    const idMesa = document.getElementById('idMesaDesativar').value;
-    if (idMesa) desativarMesa(idMesa);
-});
-
-function desativarMesa(idMesa) {
-    fetch(`https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/desativar/${idMesa}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.sucesso) {
-                $('#modalDesativar').modal('hide');
-                setTimeout(() => location.reload(), 500);
-            } else {
-                alert(data.mensagem || "Erro ao desativar mesa");
-            }
-        })
-        .catch(() => alert('Erro na requisição'));
-}
-//#endregion
-
-//#region Atualizar Status da Mesa
-document.getElementById('selectStatusMesa').addEventListener('change', function() {
-    if (mesaAtual) {
-        const novoStatus = this.value;
-        atualizarStatusMesa(mesaAtual, novoStatus);
+        target.style.transform = `translate(${x}px, ${y}px)`;
+        target.setAttribute('data-x', x);
+        target.setAttribute('data-y', y);
     }
-});
+    //#endregion
 
-function atualizarStatusMesa(id, status) {
-    fetch(`https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/atualizarStatusMesa/${id}/${status}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status) {
-                const mesaElement = document.querySelector(`.mesa-draggable[data-id="${id}"]`);
-                if (mesaElement) {
-                    mesaElement.setAttribute('data-status', status);
-                    const badge = mesaElement.querySelector('.badge');
-                    badge.textContent = status;
-                    badge.style.background =
-                        status == 'Disponivel' ? '#28a745' :
-                        status == 'Reservada' ? '#ffc107' : '#dc3545';
+    //#region Modal da Mesa
+    function abrirModalMesa(idMesa, status) {
+        mesaAtual = idMesa;
+        document.getElementById('numeroMesa').textContent = idMesa;
+
+        const selectStatus = document.getElementById('selectStatusMesa');
+        selectStatus.value = status;
+
+        const modal = new bootstrap.Modal(document.getElementById('modalMesa'));
+        modal.show();
+    }
+    //#endregion
+
+    //#region Ações do Modal da Mesa
+    function editarMesa() {
+        if (mesaAtual) {
+            window.location.href = `https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/editar/${mesaAtual}`;
+        }
+    }
+
+    function confirmarDesativar() {
+        if (mesaAtual) {
+            document.getElementById('idMesaDesativar').value = mesaAtual;
+            const modalMesa = bootstrap.Modal.getInstance(document.getElementById('modalMesa'));
+            modalMesa.hide();
+
+            const modalDesativar = new bootstrap.Modal(document.getElementById('modalDesativar'));
+            modalDesativar.show();
+        }
+    }
+    //#endregion
+
+    //#region Salvar Posições das Mesas
+    document.getElementById('salvar-posicoes').addEventListener('click', function() {
+        const mesas = Array.from(document.querySelectorAll('.mesa-draggable')).map(mesa => {
+            return {
+                id: mesa.dataset.id,
+                posicao_x: parseInt(mesa.style.left),
+                posicao_y: parseInt(mesa.style.top)
+            };
+        });
+
+        fetch('https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/salvarPosicoes', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: JSON.stringify({
+                    mesas
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Layout salvo com sucesso!');
+                } else {
+                    alert('Erro: ' + (data.message || ''));
                 }
-            } else {
-                alert(data.mensagem || "Erro ao atualizar status");
-            }
-        })
-        .catch(() => alert('Erro na requisição'));
-}
-//#endregion
+            })
+            .catch(error => console.error('Erro:', error));
+    });
+    //#endregion
 
+    //#region Desativar Mesa
+    document.getElementById('btnConfirmarDesativar').addEventListener('click', function() {
+        const idMesa = document.getElementById('idMesaDesativar').value;
+        if (idMesa) desativarMesa(idMesa);
+    });
+
+    function desativarMesa(idMesa) {
+        fetch(`https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/desativar/${idMesa}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.sucesso) {
+                    $('#modalDesativar').modal('hide');
+                    setTimeout(() => location.reload(), 500);
+                } else {
+                    alert(data.mensagem || "Erro ao desativar mesa");
+                }
+            })
+            .catch(() => alert('Erro na requisição'));
+    }
+    //#endregion
+
+    //#region Atualizar Status da Mesa
+    document.getElementById('selectStatusMesa').addEventListener('change', function() {
+        if (mesaAtual) {
+            const novoStatus = this.value;
+            atualizarStatusMesa(mesaAtual, novoStatus);
+        }
+    });
+
+    function atualizarStatusMesa(id, status) {
+        fetch(`https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/atualizarStatusMesa/${id}/${status}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status) {
+                    const mesaElement = document.querySelector(`.mesa-draggable[data-id="${id}"]`);
+                    if (mesaElement) {
+                        mesaElement.setAttribute('data-status', status);
+                        const badge = mesaElement.querySelector('.badge');
+                        badge.textContent = status;
+                        badge.style.background =
+                            status == 'Disponivel' ? '#28a745' :
+                            status == 'Reservada' ? '#ffc107' : '#dc3545';
+                    }
+                } else {
+                    alert(data.mensagem || "Erro ao atualizar status");
+                }
+            })
+            .catch(() => alert('Erro na requisição'));
+    }
+    //#endregion
 </script>
 
 <!-- CSS Adicional -->
@@ -316,7 +317,7 @@ function atualizarStatusMesa(id, status) {
     .mesa-draggable {
         transition: transform 0.1s, box-shadow 0.2s;
         border-radius: 50%;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.3));
         z-index: 1;
         user-select: none;
     }

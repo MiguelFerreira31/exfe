@@ -22,10 +22,7 @@ class MesaController extends Controller
         $mesas = $mesaModel->listarMesa();
         $dados['mesas'] = $mesas;
 
-        // Buscar dados do cliente logado pela sessão
-        $clienteModel = new Cliente();
-        $cliente = $clienteModel->perfilCliente($_SESSION['userEmail']);
-        $dados['cliente'] = $cliente;
+        
 
         $dados['conteudo'] = 'dash/mesa/listar';
         $this->carregarViews('dash/dashboard', $dados);

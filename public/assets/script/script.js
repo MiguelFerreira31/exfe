@@ -76,6 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
     container.classList.remove("right-panel-active")
   );
   //#endregion
+
   //#region 💬 Chatboot
   const chatIcon = document.getElementById('chat-icon');
   const chatContainer = document.getElementById('chat-container');
@@ -228,3 +229,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("conteudo").style.display = "block";
   }, 1000);
 });
+
+
+

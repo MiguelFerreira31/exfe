@@ -1,25 +1,442 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
+
 <head>
-    <title>Visualizador Panorâmico</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/photo-sphere-viewer.min.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
+    <link rel="stylesheet" href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/css/dash.css">
+    <link rel="icon" type="image/png"
+        href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/imgDash/coffeBranco.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/css/nucleo-svg.css"
+        rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous" defer></script>
+    <link id="pagestyle"
+        href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/css/argon-dashboard.css?v=2.1.0"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/css/style.css">
+
     <style>
-        #viewer { width: 100%; height: 100vh; }
+        #cardapio-tv {
+            width: 100dvw;
+            height: 100dvh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .swiper-slide {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cafes-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            position: relative;
+            /* Torna o container um novo contexto de empilhamento */
+            z-index: 2;
+            /* Coloca o container acima do vídeo */
+
+        }
+
+        .card-cafe {
+            width: 25%;
+            height: 70%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            flex-direction: column;
+            opacity: 0;
+            background-color: #cdcdcd63;
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+        }
+
+
+
+
+        /* Reset animation when slide is not active */
+        .swiper-slide:not(.swiper-slide-active) .card-cafe {
+            animation: none !important;
+            opacity: 0;
+        }
+
+        .swiper-slide video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+
+        .cafe-menu {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            background: linear-gradient(to bottom, #23120bb5 1.57%, #2a1208 128.95%);
+
+            article {
+                width: 30%;
+                height: 80%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                color: white;
+                background: linear-gradient(to bottom, #4029207b 1.57%, #774a38 128.95%);
+                backdrop-filter: blur(15px);
+                border-radius: 12px;
+
+
+                ul {
+                    width: 95%;
+                    height: 95%;
+                    display: flex;
+                    justify-content: space-evenly;
+                    align-items: center;
+                    flex-direction: column;
+                    border: 2px solid #371406;
+                    padding: 0;
+                    margin: 0;
+
+                    li {
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        font-size: 1.5em;
+                        border-top: 1px dashed #371406;
+                        padding: 1%;
+
+                        h2 {
+                            font-size: 2em;
+                            letter-spacing: 2px;
+                            color: #ffffff !important;
+                            text-align: center !important;
+
+                            width: 100%;
+
+                        }
+
+                        h3 {
+                            color: #d5d5d5;
+                            font-weight: 400;
+
+                        }
+
+                        span {
+                            background: linear-gradient(to bottom, #9e675fa9 0%, #371406 100%);
+                            width: 20%;
+                            color: #dbdbdb;
+                            border-radius: 10px;
+                        }
+
+
+                    }
+
+                    li:nth-child(1) {
+                        border: none;
+                    }
+
+                }
+
+
+            }
+
+            figure {
+                width: 30%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                img {
+                    animation-name: floating;
+                    animation-duration: 5s;
+                    animation-iteration-count: infinite;
+                    animation-timing-function: ease-in-out;
+
+                    @keyframes floating {
+                        0% {
+                            transform: translate(0, 0px);
+                        }
+
+                        50% {
+                            transform: translate(0, 60px);
+                        }
+
+                        100% {
+                            transform: translate(0, -0px);
+                        }
+                    }
+                }
+
+            }
+
+        }
     </style>
 </head>
-<body>
-    <div id="viewer"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/three/build/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/photo-sphere-viewer@4/dist/photo-sphere-viewer.min.js"></script>
+<body>
+    <main>
+        <section id="cardapio-tv">
+            <div class="swiper mySwiper3">
+                <div class="swiper-wrapper">
+
+
+                    <div class="swiper-slide" style="position: relative; overflow: hidden;">
+                        <!-- Vídeo como background -->
+                        <video
+                            src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/videoTv2.mp4"
+                            autoplay muted loop playsinline></video>
+
+                        <!-- Conteúdo sobreposto -->
+                        <div class="cafes-container">
+                            <div class="cafe-menu">
+                                <article data-animation="zoomIn">
+
+                                    <ul>
+                                        <li>
+                                            <h2>Cafés</h2>
+                                        </li>
+
+                                        <li>
+                                            <h3>Café</h3> <span>R$10,20</span>
+                                        </li>
+                                        <li>
+                                            <h3>Café</h3> <span>R$10,20</span>
+                                        </li>
+                                        <li>
+                                            <h3>Café</h3> <span>R$10,20</span>
+                                        </li>
+                                        <li>
+                                            <h3>Café</h3> <span>R$10,20</span>
+                                        </li>
+                                        <li>
+                                            <h3>Café</h3> <span>R$10,20</span>
+                                        </li>
+                                        <li>
+                                            <h3>Café</h3> <span>R$10,20</span>
+                                        </li>
+                                    </ul>
+                                </article>
+                                <figure data-animation="zoomIn">
+                                    <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/cup-img.webp"
+                                        alt="Caramelo Macchiato">
+                                </figure>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+
+                    <!-- Slide 1 com animações de fade -->
+                    <div class="swiper-slide"
+                        style="background-image: url('https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/hero-bg2.png');  background-position: center;">
+                        <div class="cafes-container">
+                            <div class="card-cafe" data-animation="fadeInLeft">
+                                <figure><img
+                                        src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/caramelo_macchiato.png"
+                                        alt=""></figure>
+                                <h3>Café Capuccino especial</h3>
+                                <h4>Preço <span>R$ 10,00</span></h4>
+                            </div>
+                            <div class="card-cafe" data-animation="fadeInUp">
+                                <figure><img
+                                        src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/caramelo_macchiato.png"
+                                        alt=""></figure>
+                                <h3>Café Capuccino especial</h3>
+                                <h4>Preço <span>R$ 10,00</span></h4>
+                            </div>
+                            <div class="card-cafe" data-animation="fadeInRight">
+                                <figure><img
+                                        src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/caramelo_macchiato.png"
+                                        alt=""></figure>
+                                <h3>Café Capuccino especial</h3>
+                                <h4>Preço <span>R$ 10,00</span></h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide" style="position: relative; overflow: hidden;">
+                        <video src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/videoTv.mp4"
+                            autoplay muted loop playsinline></video>
+
+                    </div>
+
+                    <!-- Slide 2 com animações de zoom -->
+                    <div class="swiper-slide"
+                        style="background-image: url('https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/bgTv.png'); background-size: 100% 110%; background-repeat: no-repeat; background-position: center;">
+                        <div class="cafes-container">
+                            <div class="card-cafe" data-animation="zoomIn">
+                                <figure><img
+                                        src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/caramelo_macchiato.png"
+                                        alt=""></figure>
+                                <h3>Café Latte especial</h3>
+                                <h4>Preço <span>R$ 12,00</span></h4>
+                            </div>
+                            <div class="card-cafe" data-animation="zoomIn">
+                                <figure><img
+                                        src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/caramelo_macchiato.png"
+                                        alt=""></figure>
+                                <h3>Café Latte especial</h3>
+                                <h4>Preço <span>R$ 12,00</span></h4>
+                            </div>
+                            <div class="card-cafe" data-animation="zoomIn">
+                                <figure><img
+                                        src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/caramelo_macchiato.png"
+                                        alt=""></figure>
+                                <h3>Café Latte especial</h3>
+                                <h4>Preço <span>R$ 12,00</span></h4>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 com combinação de fade e zoom -->
+                    <div class="swiper-slide"
+                        style="background-image: url('https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/bgTv.png'); background-size: 100% 110%; background-repeat: no-repeat; background-position: center;">
+                        <div class="cafes-container">
+                            <div class="card-cafe" data-animation="fadeIn">
+                                <figure><img
+                                        src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/caramelo_macchiato.png"
+                                        alt=""></figure>
+                                <h3>Expresso Premium</h3>
+                                <h4>Preço <span>R$ 8,00</span></h4>
+                            </div>
+                            <div class="card-cafe" data-animation="zoomIn">
+                                <figure><img
+                                        src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/caramelo_macchiato.png"
+                                        alt=""></figure>
+                                <h3>Expresso Premium</h3>
+                                <h4>Preço <span>R$ 8,00</span></h4>
+                            </div>
+                            <div class="card-cafe" data-animation="fadeIn">
+                                <figure><img
+                                        src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/caramelo_macchiato.png"
+                                        alt=""></figure>
+                                <h3>Expresso Premium</h3>
+                                <h4>Preço <span>R$ 8,00</span></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+    </main>
+
+    <script src="//code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/script/script.js"></script>
+
     <script>
-        const viewer = new PhotoSphereViewer.Viewer({
-            container: document.getElementById('viewer'),
-panorama: 'https://i.imgur.com/8RZDQ3q.jpg',            caption: 'Praia em 360°',
-            loadingImg: 'https://photo-sphere-viewer.js.org/assets/photosphere-logo.gif',
-            defaultZoomLvl: 50,
+        document.addEventListener('DOMContentLoaded', function () {
+            var swiper = new Swiper(".mySwiper3", {
+                spaceBetween: 30,
+                loop: true,
+                effect: "fade",
+                // autoplay: {
+                //     delay: 15000, // 5 segundos por slide
+                //     disableOnInteraction: false,
+                // },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                on: {
+                    init: function () {
+                        animateCards(this.activeIndex);
+                    },
+                    slideChangeTransitionStart: function () {
+                        // Remove animações dos slides não ativos
+                        document.querySelectorAll('.swiper-slide:not(.swiper-slide-active) .card-cafe').forEach(card => {
+                            const animation = card.getAttribute('data-animation');
+                            card.classList.remove('animate__animated', `animate__${animation}`);
+                            card.style.opacity = '0';
+                        });
+                    },
+                    slideChangeTransitionEnd: function () {
+                        animateCards(this.activeIndex);
+                    }
+                }
+            });
+
+            function animateCards(activeIndex) {
+                // Pega o slide ativo (considerando o loop)
+                const slides = document.querySelectorAll('.swiper-slide');
+                const activeSlide = slides[activeIndex];
+
+                if (activeSlide) {
+                    const cards = activeSlide.querySelectorAll('.card-cafe');
+                    cards.forEach((card, index) => {
+                        // Reset antes de animar
+                        card.style.opacity = '0';
+                        const animation = card.getAttribute('data-animation');
+
+                        // Remove classes antigas (se houver)
+                        card.classList.remove('animate__animated');
+
+                        // Adiciona delay progressivo
+                        setTimeout(() => {
+                            card.classList.add('animate__animated', `animate__${animation}`);
+                            card.style.opacity = '1';
+
+                            // Configura timing personalizado
+                            if (animation === 'zoomIn') {
+                                card.style.animationDuration = '0.8s';
+                            } else {
+                                card.style.animationDuration = '0.6s';
+                            }
+
+                            // Delay entre elementos
+                            card.style.animationDelay = `${index * 0.2}s`;
+                        }, 50);
+                    });
+                }
+            }
         });
     </script>
 </body>
+
 </html>
