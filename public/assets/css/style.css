@@ -3131,6 +3131,153 @@ html body main .thanks a button {
   transition: all 0.3s ease-in-out;
   cursor: pointer;
 }
+html body main #cardapio-tv {
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Reset animation when slide is not active */
+}
+html body main #cardapio-tv .swiper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+html body main #cardapio-tv .swiper-slide {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+html body main #cardapio-tv .swiper-slide video {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+html body main #cardapio-tv .swiper-slide .cafe-menu {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background: linear-gradient(to bottom, rgba(35, 18, 11, 0.7098039216) 1.57%, #2a1208 128.95%);
+}
+html body main #cardapio-tv .swiper-slide .cafe-menu article {
+  width: 30%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  background: linear-gradient(to bottom, rgba(64, 41, 32, 0.4823529412) 1.57%, #774a38 128.95%);
+  -webkit-backdrop-filter: blur(15px);
+          backdrop-filter: blur(15px);
+  border-radius: 12px;
+}
+html body main #cardapio-tv .swiper-slide .cafe-menu article ul {
+  width: 95%;
+  height: 95%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  border: 2px solid #371406;
+  padding: 0;
+  margin: 0;
+}
+html body main #cardapio-tv .swiper-slide .cafe-menu article ul li {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.5em;
+  border-top: 1px dashed #371406;
+  padding: 1%;
+}
+html body main #cardapio-tv .swiper-slide .cafe-menu article ul li h2 {
+  font-size: 2em;
+  letter-spacing: 2px;
+  color: #ffffff !important;
+  text-align: center !important;
+  width: 100%;
+}
+html body main #cardapio-tv .swiper-slide .cafe-menu article ul li h3 {
+  color: #d5d5d5;
+  font-weight: 400;
+}
+html body main #cardapio-tv .swiper-slide .cafe-menu article ul li span {
+  background: linear-gradient(to bottom, rgba(158, 103, 95, 0.662745098) 0%, #371406 100%);
+  width: 20%;
+  color: #dbdbdb;
+  border-radius: 10px;
+}
+html body main #cardapio-tv .swiper-slide .cafe-menu article ul li:nth-child(1) {
+  border: none;
+}
+html body main #cardapio-tv .swiper-slide .cafe-menu figure {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+html body main #cardapio-tv .swiper-slide .cafe-menu figure img {
+  animation-name: floating;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+@keyframes floating {
+  0% {
+    transform: translate(0, 0px);
+  }
+  50% {
+    transform: translate(0, 60px);
+  }
+  100% {
+    transform: translate(0, 0px);
+  }
+}
+html body main #cardapio-tv .swiper-slide .cafes-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  position: relative;
+  /* Torna o container um novo contexto de empilhamento */
+  z-index: 2;
+  /* Coloca o container acima do vídeo */
+}
+html body main #cardapio-tv .swiper-slide .card-cafe {
+  width: 25%;
+  height: 70%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  opacity: 0;
+  background-color: rgba(205, 205, 205, 0.3882352941);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  border-radius: 12px;
+}
+html body main #cardapio-tv .swiper-slide:not(.swiper-slide-active) .card-cafe {
+  animation: none !important;
+  opacity: 0;
+}
 html body .footer {
   margin-top: 5%;
   display: flex;

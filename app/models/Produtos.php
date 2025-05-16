@@ -36,6 +36,23 @@ class Produtos extends Model
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+
+    public function listarCafe()
+    {
+
+        $sql = "SELECT * 
+                        FROM tbl_produto 
+                        WHERE status_produto = 'Ativo' 
+                        ORDER BY RAND() 
+                        LIMIT 5;";
+
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+
+
     public function desativarProduto($id)
     {
 
