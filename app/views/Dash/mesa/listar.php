@@ -36,48 +36,30 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                 data-id="<?php echo $linha['id_mesa']; ?>"
                 data-status="<?php echo $linha['status_mesa']; ?>"
 
-                style="
-                    position: absolute;
-                    left: <?php echo $linha['posicao_x'] ?? rand(20, 400); ?>px;
-                    top: <?php echo $linha['posicao_y'] ?? rand(20, 400); ?>px;
-                    cursor: pointer;
-                    width: 100px;
-                    height: 100px;
-                    background-image: url(<?= BASE_URL . 'assets/img/mesa.png' ?>);
-                    background-size: 130% 130%;
-                    background-repeat: no-repeat;
-                    background-position: center;
-                ">
-                <div class="mesa-content text-center" style="
-                    position: relative;
-                    width: 100%;
-                    height: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                ">
-                    <div class="mt-2 fw-bold" style="
-                        color: white; 
-                        font-size: 14px;
-                        text-shadow: 1px 1px 2px #000;
-                        background-color: rgba(94, 60, 45, 0.7);
-                        padding: 2px 5px;
-                        border-radius: 3px;
-                    " onclick="abrirModalMesa(<?php echo $linha['id_mesa']; ?>, '<?php echo $linha['status_mesa']; ?>')">
-                        Mesa <?php echo $linha['id_mesa']; ?>
-                    </div>
-                    <div class="status-badge mb-2">
-                        <small class="badge" style="
-                            background: <?php echo $linha['status_mesa'] == 'Disponivel' ? '#28a745' : ($linha['status_mesa'] == 'Reservada' ? '#ffc107' : '#dc3545'); ?>;
-                            text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
-                        ">
-                            <?php echo $linha['status_mesa']; ?>
-                        </small>
-                    </div>
-                </div>
-            </div>
-        <?php endforeach; ?>
+                        <td>
+                            <select class="form-select fw-bold text-center"
+                                onchange="atualizarStatusMesa(<?php echo $linha['id_mesa']; ?>, this.value)">
+                                <option value="Disponivel" <?php echo $linha['status_mesa'] == 'Disponivel' ? 'selected' : ''; ?>>Disponível</option>
+                                <option value="Reservada" <?php echo $linha['status_mesa'] == 'Reservada' ? 'selected' : ''; ?>>Reservada</option>
+                                <option value="Ocupada" <?php echo $linha['status_mesa'] == 'Ocupada' ? 'selected' : ''; ?>>Ocupada</option>
+                            </select>
+                        </td>
+
+                        <td>
+                            <a href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/mesa/editar/<?php echo $linha['id_mesa']; ?>" title="Editar">
+                                <i class="fa fa-pencil-alt" style="font-size: 20px; color: #9a5c1f;"></i>
+                            </a>
+                        </td>
+
+                        <td>
+                            <a href="#" title="Desativar" onclick="abrirModalDesativar(<?php echo $linha['id_mesa']; ?>)">
+                                <i class="fa fa-ban" style="font-size: 20px; color: #ff4d4d;"></i>
+                            </a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     </div>
 
     <!-- Botões de Ação -->
