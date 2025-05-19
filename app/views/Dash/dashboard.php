@@ -128,17 +128,31 @@ $dados['totalCliente'] = $totalCliente;
 
         <!-- Novo item: Serviços -->
 
-        <li class="nav-item">
-          <a class="nav-link" href="<?= BASE_URL ?>mesa/listar"
-            style="color: #371406; border-radius: 0.5rem;">
-            <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
+         <li class="nav-item dropdown-menu-custom">
+          <a href="#" class="nav-link dropdown-toggle-custom" style="color: #371406; border-radius: 0.5rem;">
+            <div class="d-flex align-items-center">
+              <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
                 style="background-color: #ffd8b9; border-radius: 0.5rem;">
-                <i class="ni ni-badge text-sm" style="color: #371406; opacity: 0.9;"></i>
+                <i class="ni ni-settings text-sm" style="color: #371406; opacity: 0.9;"></i>
               </div>
-            <span class="nav-link-text ms-1">Mesas</span>
+              <span class="nav-link-text">Mesas</span>
+            </div>
+            <i class="bi bi-chevron-down ms-auto"></i>
           </a>
-        </li>
 
+          <ul class="nav flex-column submenu-custom" style="display: none; padding-left: 2rem;">
+            <li class="nav-item">
+              <a class="nav-link" href="<?= BASE_URL ?>mesa/listar/">
+                <i class="bi bi-box-seam me-2" style="color: #371406;"></i> Ativas
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= BASE_URL ?>mesa/desativadas">
+                <i class="bi bi-boxes me-2" style="color: #371406;"></i> Inativas
+              </a>
+            </li>
+          </ul>
+        </li>
 
 
         <li class="nav-item dropdown-menu-custom">

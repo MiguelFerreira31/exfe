@@ -28,6 +28,21 @@ class MesaController extends Controller
         $this->carregarViews('dash/dashboard', $dados);
     }
 
+    public function desativadas()
+    {
+        $dados = array();
+
+        $mesaModel = new Mesa();
+        $mesas = $mesaModel->listarMesaDesativada();
+        $dados['mesas'] = $mesas;
+
+
+
+        $dados['conteudo'] = 'dash/mesa/desativadas';
+        $this->carregarViews('dash/dashboard', $dados);
+    }
+
+
     public function desativar($id = null)
     {
         if ($id === null) {
@@ -35,11 +50,11 @@ class MesaController extends Controller
             echo json_encode(['sucesso' => false, "mensagem" => "ID Inválido."]);
             exit;
         }
-    
+
         $resultado = $this->mesaModel->desativarMesa($id);
-    
+
         header('Content-Type: application/json');
-    
+
         if ($resultado) {
             $_SESSION['mensagem'] = "Mesa desativada com sucesso!";
             $_SESSION['tipo-msg'] = "sucesso";
@@ -51,20 +66,48 @@ class MesaController extends Controller
         }
     }
 
+    public function ativar($id = null)
+    {
+        if ($id === null) {
+            http_response_code(400);
+            echo json_encode(['sucesso' => false, "mensagem" => "ID Inválido."]);
+            exit;
+        }
+
+        $resultado = $this->mesaModel->ativarMesa($id);
+
+        header('Content-Type: application/json');
+
+        if ($resultado) {
+            $_SESSION['mensagem'] = "Mesa ativada com sucesso!";
+            $_SESSION['tipo-msg'] = "sucesso";
+            echo json_encode(['sucesso' => true]);
+        } else {
+            $_SESSION['mensagem'] = "Falha ao ativar a mesa.";
+            $_SESSION['tipo-msg'] = "erro";
+            echo json_encode(['sucesso' => false, "mensagem" => 'Falha ao ativar a mesa']);
+        }
+
+       
+    }
+
+
+
+
     public function adicionar()
     {
         $dados = array();
-    
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
+
             // TBL Mesa
             $numero_mesa = filter_input(INPUT_POST, 'numero_mesa', FILTER_SANITIZE_SPECIAL_CHARS);
             $capacidade = filter_input(INPUT_POST, 'capacidade', FILTER_SANITIZE_NUMBER_INT);
             $status_mesa = filter_input(INPUT_POST, 'status_mesa', FILTER_SANITIZE_SPECIAL_CHARS);
-    
+
             // Verificação de campos obrigatórios
             if ($numero_mesa && $capacidade !== false && $status_mesa) {
-    
+
                 // Preparar dados da mesa para inserção
                 $dadosMesa = array(
                     'numero_mesa' => $numero_mesa,
@@ -72,16 +115,16 @@ class MesaController extends Controller
                     'status_mesa' => $status_mesa,
                     'ativo_mesa' => 'ativo' // Adiciona a nova coluna como padrão
                 );
-    
+
                 // Inserir Mesa no banco de dados
                 $id_mesa = $this->mesaModel->addMesa($dadosMesa);
-    
+
                 if ($id_mesa) {
                     // Verificar se a foto foi enviada
                     if (isset($_FILES['foto_mesa']) && $_FILES['foto_mesa']['error'] == 0) {
                         // Chamar função de upload de foto
                         $arquivo = $this->uploadFoto($_FILES['foto_mesa']);
-    
+
                         if ($arquivo) {
                             // Inserir na galeria de fotos
                             $this->mesaModel->addFotoMesa($id_mesa, $arquivo);
@@ -91,7 +134,7 @@ class MesaController extends Controller
                             $dados['tipo-msg'] = "erro";
                         }
                     }
-    
+
                     // Mensagem de SUCESSO
                     $_SESSION['mensagem'] = "Mesa cadastrada com sucesso!";
                     $_SESSION['tipo-msg'] = "sucesso";
@@ -108,16 +151,16 @@ class MesaController extends Controller
                 $dados['tipo-msg'] = "erro";
             }
         }
-    
+
         // Buscar status das mesas para preencher o select
         $statusModel = new Status();
         $dados['status'] = $statusModel->getListarStatus();
-    
+
         // Carregar a view
         $dados['conteudo'] = 'dash/mesa/adicionar';
         $this->carregarViews('dash/dashboard', $dados);
     }
-    
+
     public function editar($id = null)
     {
         $dados = array();

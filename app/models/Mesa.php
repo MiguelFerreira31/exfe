@@ -6,13 +6,25 @@ class Mesa extends Model
 
     public function listarMesa()
     {
-        $sql = "SELECT * FROM tbl_mesa";
+        $sql = "SELECT * FROM tbl_mesa WHERE ativo_mesa = 'ativo'";
 
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function listarMesaDesativada()
+    {
+        $sql = "SELECT * FROM tbl_mesa WHERE ativo_mesa = 'inativo'";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
 
     public function addFotoMesa($id_mesa, $nomeArquivo)
     {
