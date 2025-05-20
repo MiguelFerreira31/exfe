@@ -40,6 +40,14 @@ $totalClienteModel = new Cliente();
 $totalCliente = $totalClienteModel->getContarCliente();
 $dados['totalCliente'] = $totalCliente;
 
+$totalMesaModel = new Mesa();
+$totalMesa = $totalMesaModel->getContarMesa();
+$dados['totalMesa'] = $totalMesa;
+
+$totalMesaDesoModel = new Mesa();
+$totalMesaDeso = $totalMesaDesoModel->getContarMesaDeso();
+$dados['totalMesaDeso'] = $totalMesaDeso;
+
 
 $acompanhamentosModel = new Acompanhamento();
 $acompanhamentos = $acompanhamentosModel->getListarAcompanhamentos();
@@ -102,7 +110,7 @@ $dados['acompanhamentos'] = $acompanhamentos;
           </a>
         </li>
 
- <li class="nav-item">
+        <li class="nav-item">
           <a class="nav-link" href="<?= BASE_URL ?>pedido/listar"
             style="color: #371406; border-radius: 0.5rem;">
             <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
@@ -380,24 +388,20 @@ $dados['acompanhamentos'] = $acompanhamentos;
     <div class="container-fluid py-4">
       <div class="row">
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card" style="background-color: #fffcea; border: none; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+          <div class="card" style="background-color: #fff5e1; border: none; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase" style="color: #9a5c1fad; font-weight: bold;">
-                      Mesas Ocupadas
+                      Total de Mesas
                     </p>
-                    <h5 class="font-weight-bolder" style="color: #9a5c1fad;">7</h5>
-                    <p class="mb-0" style="color: #7a4f2f;">
-                      <span class="text-success text-sm font-weight-bolder">+55%</span>
-                      Desde Ontem
-                    </p>
+                    <h5 class="font-weight-bolder" style="color: #9a5c1fad;"><?php echo $totalMesa['total_mesas']; ?></h5>
                   </div>
                 </div>
                 <div class="col-4 text-end">
                   <div class="icon icon-shape text-center rounded-circle" style="background-color: #371406; box-shadow: 0 4px 8px rgba(0,0,0,0.1); color: #fff;">
-                    <i class="ni ni-money-coins text-lg" style="opacity: 0.8;"></i>
+                    <i class="ni ni-shop text-lg" style="opacity: 0.8;"></i>
                   </div>
                 </div>
               </div>
@@ -414,16 +418,12 @@ $dados['acompanhamentos'] = $acompanhamentos;
                     <p class="text-sm mb-0 text-uppercase" style="color: #9a5c1fad; font-weight: bold;">
                       Mesas Desocupadas
                     </p>
-                    <h5 class="font-weight-bolder" style="color: #9a5c1fad;">3</h5>
-                    <p class="mb-0" style="color: #7a4f2f;">
-                      <span class="text-success text-sm font-weight-bolder">+3%</span>
-                      Desde a última semana
-                    </p>
+                    <h5 class="font-weight-bolder" style="color: #9a5c1fad;"><?php echo $totalMesaDeso['total_mesas_deso']; ?></h5>
                   </div>
                 </div>
                 <div class="col-4 text-end">
                   <div class="icon icon-shape text-center rounded-circle" style="background-color: #371406; box-shadow: 0 4px 8px rgba(0,0,0,0.1); color: #fff;">
-                    <i class="ni ni-world text-lg" style="opacity: 0.8;"></i>
+                    <i class="ni ni-shop text-lg" style="opacity: 0.8;"></i>
                   </div>
                 </div>
               </div>
@@ -440,7 +440,7 @@ $dados['acompanhamentos'] = $acompanhamentos;
                     <p class="text-sm mb-0 text-uppercase" style="color: #9a5c1fad; font-weight: bold;">
                       Novos Clientes
                     </p>
-                    <h5 class="font-weight-bolder" style="color: #9a5c1fad;">+<?php echo $totalCliente['total_clientes']; ?></h5>
+                    <h5 class="font-weight-bolder" style="color: #9a5c1fad;"><?php echo $totalCliente['total_clientes']; ?></h5>
 
                   </div>
                 </div>

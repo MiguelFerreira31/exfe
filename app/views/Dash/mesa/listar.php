@@ -33,7 +33,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
         <?php foreach ($mesas as $linha): ?>
             <div
                 class="mesa-draggable"
-                data-id="<?php echo $linha['id_mesa']; ?>"
+                data-id="<?php echo $linha['numero_mesa']; ?>"
                 data-status="<?php echo $linha['status_mesa']; ?>"
 
                 style="

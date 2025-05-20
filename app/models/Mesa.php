@@ -24,6 +24,21 @@ class Mesa extends Model
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getContarMesa()
+    {
+        $sql = "SELECT COUNT(*) AS total_mesas FROM tbl_mesa";
+        $stmt = $this->db->query($sql);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getContarMesaDeso()
+    {
+        $sql = "SELECT COUNT(*) AS total_mesas_deso FROM tbl_mesa WHERE status_mesa = 'Disponivel'";
+        $stmt = $this->db->query($sql);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+
 
 
     public function addFotoMesa($id_mesa, $nomeArquivo)

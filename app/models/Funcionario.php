@@ -52,24 +52,24 @@ class Funcionario extends Model
     public function getListarFuncionario($status = null)
     {
         $sql = "SELECT * FROM tbl_funcionario";
-        
+
         if (!empty($status)) {
             $sql .= " WHERE status_funcionario = :status";
         }
-    
+
         $sql .= " ORDER BY nome_funcionario ASC";
-    
+
         $stmt = $this->db->prepare($sql);
-    
+
         if (!empty($status)) {
             $stmt->bindValue(':status', $status, PDO::PARAM_STR);
         }
-    
+
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
-    
+
+
 
 
     public function getListarFuncionarioDesativados()
@@ -87,67 +87,65 @@ class Funcionario extends Model
     // 5 METODO DASHBOARD ADICONAR Funcionario
 
     public function addFuncionario($dados)
-{
-    $sql = "INSERT INTO tbl_funcionario (
-        nome_funcionario, 
-        foto_funcionario,
-        cpf_cnpj,
-        email_funcionario,
-        nasc_funcionario,
-        senha_funcionario,
-        id_tipo_usuario,
-        id_usuario,
-        id_endereco,
-        status_funcionario,
-        telefone_funcionario,
-        endereco_funcionario,
-        bairro_funcionario,
-        cidade_funcionario,
-        cargo_funcionario,
-        cep_funcionario,
-        id_estado
-    ) VALUES (
-        :nome_funcionario,
-        :foto_funcionario,
-        :cpf_cnpj,
-        :email_funcionario,
-        :nasc_funcionario,
-        :senha_funcionario,
-        :id_tipo_usuario,
-        :id_usuario,
-        :id_endereco,
-        :status_funcionario,
-        :telefone_funcionario,
-        :endereco_funcionario,
-        :bairro_funcionario,
-        :cidade_funcionario,
-        :cargo_funcionario,
-        :cep_funcionario,
-        :id_estado
-    );";
-
-    $stmt = $this->db->prepare($sql);
-    $stmt->bindValue(':nome_funcionario', $dados['nome_funcionario']);
-    $stmt->bindValue(':foto_funcionario', $dados['foto_funcionario']);
-    $stmt->bindValue(':cpf_cnpj', $dados['cpf_cnpj']);
-    $stmt->bindValue(':email_funcionario', $dados['email_funcionario']);
-    $stmt->bindValue(':nasc_funcionario', $dados['nasc_funcionario']);
-    $stmt->bindValue(':senha_funcionario', $dados['senha_funcionario']);
-    $stmt->bindValue(':id_tipo_usuario', $dados['id_tipo_usuario']);
-    $stmt->bindValue(':id_usuario', $dados['id_usuario']);
-    $stmt->bindValue(':id_endereco', $dados['id_endereco']);
-    $stmt->bindValue(':status_funcionario', $dados['status_funcionario']);
-    $stmt->bindValue(':telefone_funcionario', $dados['telefone_funcionario']);
-    $stmt->bindValue(':endereco_funcionario', $dados['endereco_funcionario']);
-    $stmt->bindValue(':bairro_funcionario', $dados['bairro_funcionario']);
-    $stmt->bindValue(':cidade_funcionario', $dados['cidade_funcionario']);
-    $stmt->bindValue(':cargo_funcionario', $dados['cargo_funcionario']);
-    $stmt->bindValue(':cep_funcionario', $dados['cep_funcionario']);
-    $stmt->bindValue(':id_estado', $dados['id_estado']);
-
-    $stmt->execute();
-    return $this->db->lastInsertId();
-}
+    {
+        $sql = "INSERT INTO tbl_funcionario (
+            nome_funcionario, 
+            foto_funcionario,
+            cpf_cnpj,
+            email_funcionario,
+            nasc_funcionario,
+            senha_funcionario,
+            id_tipo_usuario,
+            id_usuario,
+            status_funcionario,
+            telefone_funcionario,
+            endereco_funcionario,
+            bairro_funcionario,
+            cidade_funcionario,
+            cargo_funcionario,
+            cep_funcionario,
+            id_estado
+        ) VALUES (
+            :nome_funcionario,
+            :foto_funcionario,
+            :cpf_cnpj,
+            :email_funcionario,
+            :nasc_funcionario,
+            :senha_funcionario,
+            :id_tipo_usuario,
+            :id_usuario,
+            :status_funcionario,
+            :telefone_funcionario,
+            :endereco_funcionario,
+            :bairro_funcionario,
+            :cidade_funcionario,
+            :cargo_funcionario,
+            :cep_funcionario,
+            :id_estado
+        );";
+    
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':nome_funcionario', $dados['nome_funcionario']);
+        $stmt->bindValue(':foto_funcionario', $dados['foto_funcionario']);
+        $stmt->bindValue(':cpf_cnpj', $dados['cpf_cnpj']);
+        $stmt->bindValue(':email_funcionario', $dados['email_funcionario']);
+        $stmt->bindValue(':nasc_funcionario', $dados['nasc_funcionario']);
+        $stmt->bindValue(':senha_funcionario', $dados['senha_funcionario']);
+        $stmt->bindValue(':id_tipo_usuario', $dados['id_tipo_usuario']);
+        $stmt->bindValue(':id_usuario', $dados['id_usuario']);
+        $stmt->bindValue(':status_funcionario', $dados['status_funcionario']);
+        $stmt->bindValue(':telefone_funcionario', $dados['telefone_funcionario']);
+        $stmt->bindValue(':endereco_funcionario', $dados['endereco_funcionario']);
+        $stmt->bindValue(':bairro_funcionario', $dados['bairro_funcionario']);
+        $stmt->bindValue(':cidade_funcionario', $dados['cidade_funcionario']);
+        $stmt->bindValue(':cargo_funcionario', $dados['cargo_funcionario']);
+        $stmt->bindValue(':cep_funcionario', $dados['cep_funcionario']);
+        $stmt->bindValue(':id_estado', $dados['id_estado']);
+    
+        $stmt->execute();
+        return $this->db->lastInsertId();
+    }
+    
     // 6 Método para add FOTO GALERIA 
 
     public function addFotoFuncionario($id_funcionario, $arquivo)
