@@ -104,6 +104,7 @@ class Funcionario extends Model
         bairro_funcionario,
         cidade_funcionario,
         cargo_funcionario,
+        cep_funcionario,
         id_estado
     ) VALUES (
         :nome_funcionario,
@@ -121,6 +122,7 @@ class Funcionario extends Model
         :bairro_funcionario,
         :cidade_funcionario,
         :cargo_funcionario,
+        :cep_funcionario,
         :id_estado
     );";
 
@@ -140,6 +142,7 @@ class Funcionario extends Model
     $stmt->bindValue(':bairro_funcionario', $dados['bairro_funcionario']);
     $stmt->bindValue(':cidade_funcionario', $dados['cidade_funcionario']);
     $stmt->bindValue(':cargo_funcionario', $dados['cargo_funcionario']);
+    $stmt->bindValue(':cep_funcionario', $dados['cep_funcionario']);
     $stmt->bindValue(':id_estado', $dados['id_estado']);
 
     $stmt->execute();
@@ -165,21 +168,22 @@ class Funcionario extends Model
     public function updateFuncionario($id, $dados)
     {
         $sql = "UPDATE tbl_funcionario SET 
-                nome_funcionario = :nome_funcionario,
-                foto_funcionario = :foto_funcionario,
-                cpf_cnpj = :cpf_cnpj,
-                email_funcionario = :email_funcionario,
-                nasc_funcionario = :nasc_funcionario,
-                senha_funcionario = :senha_funcionario,
-                id_tipo_usuario = :id_tipo_usuario,
-                status_funcionario = :status_funcionario,
-                telefone_funcionario = :telefone_funcionario,
-                endereco_funcionario = :endereco_funcionario,
-                bairro_funcionario = :bairro_funcionario,
-                cidade_funcionario = :cidade_funcionario,
-                cargo_funcionario = :cargo_funcionario,
-                id_estado = :id_estado
-                WHERE id_funcionario = :id_funcionario";
+                nome_funcionario =      :nome_funcionario,
+                foto_funcionario =      :foto_funcionario,
+                cpf_cnpj =              :cpf_cnpj,
+                email_funcionario =     :email_funcionario,
+                nasc_funcionario =      :nasc_funcionario,
+                senha_funcionario =      :senha_funcionario,
+                id_tipo_usuario =       :id_tipo_usuario,
+                status_funcionario =    :status_funcionario,
+                telefone_funcionario =  :telefone_funcionario,
+                endereco_funcionario =  :endereco_funcionario,
+                bairro_funcionario =    :bairro_funcionario,
+                cidade_funcionario =    :cidade_funcionario,
+                cargo_funcionario =     :cargo_funcionario,
+                cep_funcionario =     :cep_funcionario,
+                id_estado =             :id_estado
+                WHERE id_funcionario =  :id_funcionario";
 
         $stmt = $this->db->prepare($sql);
 
@@ -196,6 +200,7 @@ class Funcionario extends Model
         $stmt->bindValue(':bairro_funcionario', $dados['bairro_funcionario']);
         $stmt->bindValue(':cidade_funcionario', $dados['cidade_funcionario']);
         $stmt->bindValue(':cargo_funcionario', $dados['cargo_funcionario']);
+        $stmt->bindValue(':cep_funcionario', $dados['cep_funcionario']);
         $stmt->bindValue(':id_estado', $dados['id_estado']);
         $stmt->bindValue(':id_funcionario', $id);
 

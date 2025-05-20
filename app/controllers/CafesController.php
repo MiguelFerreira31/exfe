@@ -39,7 +39,7 @@ class CafesController extends Controller
 
         // Carregar os funcionarios
         $produtosModel = new Produtos();
-        $produtos = $produtosModel->getListarprodutos();
+        $produtos = $produtosModel->getListarProdutos();
         $dados['produtos'] = $produtos;
 
 
@@ -92,13 +92,43 @@ class CafesController extends Controller
         }
     }
 
+
+  public function ativar($id = null)
+    {
+        if ($id === null) {
+            http_response_code(400);
+            echo json_encode(['sucesso' => false, "mensagem" => "ID Invalido."]);
+            exit;
+        }
+
+        $resultado = $this->produtosModel->ativarProduto($id);
+
+        header('Content-Type: application/json');
+
+        if ($resultado) {
+            $_SESSION['mensagem'] = "Produto ativado com Sucesso";
+
+            $_SESSION['tipo-msg'] = "sucesso";
+
+            echo json_encode(['sucesso' => true]);
+        } else {
+            $_SESSION['mensagem'] = "falha ao ativar ";
+
+            $_SESSION['tipo-msg'] = "erro";
+
+
+            echo json_encode(['sucesso' => false, "mensagem" => 'falha ao ativar Produto']);
+        }
+    }
+
+
     public function editar($id = null)
     {
         $dados = array();
         $dados['conteudo'] = 'dash/produto/editar';
 
         if ($id === null) {
-            header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/produtos/listar');
+            header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/cafes/listar');
             exit;
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -150,7 +180,7 @@ class CafesController extends Controller
                     // Mensagem de SUCESSO 
                     $_SESSION['mensagem'] = "Produto Atualizado Com Sucesso";
                     $_SESSION['tipo-msg'] = "sucesso";
-                    header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/produtos/listar');
+                    header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/cafes/listar');
                     exit;
                 } else {
                     $dados['mensagem'] = "Erro ao Atalizar Produto";

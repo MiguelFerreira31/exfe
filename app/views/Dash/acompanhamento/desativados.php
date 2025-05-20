@@ -36,22 +36,23 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
             </thead>
 
             <tbody>
-                <?php foreach ($acompanhamentos as $linha): ?>
+                <?php foreach ($acompanhamento as $linha): ?>
                     <tr class="fw-semibold">
                         <td class="img-acompanhamento">
-                            <img src="<?php
-                                        $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $linha['foto_acompanhamento'];
+                            <?php
+                            $caminhoArquivo = BASE_URL . "uploads/" . $linha['foto_acompanhamento'];
+                            $img = BASE_URL . "uploads/sem-foto.jpg"; // Caminho padrão corrigido
+                            // $alt_foto = "imagem sem foto $index";
 
-                                        if ($linha['foto_acompanhamento'] != "") {
-                                            if (file_exists($caminhoArquivo)) {
-                                                echo ("https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/uploads/" . htmlspecialchars($linha['foto_acompanhamento'], ENT_QUOTES, 'UTF-8'));
-                                            } else {
-                                                echo ("https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/uploads/acompanhamento/sem-foto-acompanhamento.jpg");
-                                            }
-                                        } else {
-                                            echo ("https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/uploads/acompanhamento/sem-foto-acompanhamento.jpg");
-                                        }
-                                        ?>" alt="" class="rounded-circle" style="width: 50px; height: 50px;">
+                            if (!empty($linha['foto_acompanhamento'])) {
+                                $headers = @get_headers($caminhoArquivo);
+                                if ($headers && strpos($headers[0], '200') !== false) {
+                                    $img = $caminhoArquivo;
+                                }
+                            }
+
+                            ?>
+                            <img src="<?php echo $img; ?>" alt="Foto acompanhamento" class="rounded-circle" style="width: 50px; height: 50px;">
                         </td>
                         <td><?php echo htmlspecialchars($linha['nome_acompanhamento']); ?></td>
                         <td><?php echo htmlspecialchars($linha['descricao_acompanhamento']); ?></td>

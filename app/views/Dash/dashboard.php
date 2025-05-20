@@ -41,9 +41,9 @@ $totalCliente = $totalClienteModel->getContarCliente();
 $dados['totalCliente'] = $totalCliente;
 
 
-     $acompanhamentosModel =new Acompanhamento();
-     $acompanhamentos = $acompanhamentosModel->getListarAcompanhamentos();
-     $dados['acompanhamentos'] = $acompanhamentos;
+$acompanhamentosModel = new Acompanhamento();
+$acompanhamentos = $acompanhamentosModel->getListarAcompanhamentos();
+$dados['acompanhamentos'] = $acompanhamentos;
 
 ?>
 
@@ -89,27 +89,41 @@ $dados['totalCliente'] = $totalCliente;
             <span class="nav-link-text ms-1">Dashboard</span>
           </a>
         </li>
-        
+
         <li class="nav-item">
           <a class="nav-link" href="<?= BASE_URL ?>contato/listar"
             style="color: #371406; border-radius: 0.5rem;">
             <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
-                style="background-color: #ffd8b9; border-radius: 0.5rem;">
-                <i class="ni ni-credit-card text-sm" style="opacity: 0.9;"></i>
+              style="background-color: #ffd8b9; border-radius: 0.5rem;">
+              <i class="ni ni-credit-card text-sm" style="opacity: 0.9;"></i>
 
-              </div>
+            </div>
             <span class="nav-link-text ms-1">Contatos</span>
           </a>
         </li>
+
+ <li class="nav-item">
+          <a class="nav-link" href="<?= BASE_URL ?>pedido/listar"
+            style="color: #371406; border-radius: 0.5rem;">
+            <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
+              style="background-color: #ffd8b9; border-radius: 0.5rem;">
+              <i class="ni ni-credit-card text-sm" style="opacity: 0.9;"></i>
+
+            </div>
+            <span class="nav-link-text ms-1">Pedidos</span>
+          </a>
+        </li>
+
+
 
         <!-- Novo item: Clientes -->
         <li class="nav-item">
           <a class="nav-link" href="<?= BASE_URL ?>clientes/listar"
             style="color: #371406; border-radius: 0.5rem;">
             <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
-                style="background-color: #ffd8b9; border-radius: 0.5rem;">
-                <i class="ni ni-single-02 text-sm" style="color: #371406; opacity: 0.9;"></i>
-              </div>
+              style="background-color: #ffd8b9; border-radius: 0.5rem;">
+              <i class="ni ni-single-02 text-sm" style="color: #371406; opacity: 0.9;"></i>
+            </div>
             <span class="nav-link-text ms-1">Clientes</span>
           </a>
         </li>
@@ -119,16 +133,16 @@ $dados['totalCliente'] = $totalCliente;
           <a class="nav-link" href="<?= BASE_URL ?>funcionarios/listar"
             style="color: #371406; border-radius: 0.5rem;">
             <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
-                style="background-color: #ffd8b9; border-radius: 0.5rem;">
-                <i class="ni ni-badge text-sm" style="color: #371406; opacity: 0.9;"></i>
-              </div>
+              style="background-color: #ffd8b9; border-radius: 0.5rem;">
+              <i class="ni ni-badge text-sm" style="color: #371406; opacity: 0.9;"></i>
+            </div>
             <span class="nav-link-text ms-1">Funcionários</span>
           </a>
         </li>
 
         <!-- Novo item: Serviços -->
 
-         <li class="nav-item dropdown-menu-custom">
+        <li class="nav-item dropdown-menu-custom">
           <a href="#" class="nav-link dropdown-toggle-custom" style="color: #371406; border-radius: 0.5rem;">
             <div class="d-flex align-items-center">
               <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
@@ -536,32 +550,36 @@ $dados['totalCliente'] = $totalCliente;
                 </div>
                 <?php foreach ($acompanhamentos as $linha): ?>
                   <div class="carousel-item h-100" style="
-                  background-image: url(<?php
-                                        $caminhoArquivo = $_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $linha['foto_acompanhamento'];
+                  background-image: url(  <?php
+                                          $caminhoArquivo = BASE_URL . "uploads/" . $linha['foto_acompanhamento'];
+                                          $img = BASE_URL . "uploads/sem-foto.jpg"; // Caminho padrão corrigido
+                                          // $alt_foto = "imagem sem foto $index";
 
-                                        if ($linha['foto_acompanhamento'] != "") {
-                                          if (file_exists($caminhoArquivo)) {
-                                            echo ("<?= BASE_URL ?>uploads/" . htmlspecialchars($linha['foto_acompanhamento'], ENT_QUOTES, 'UTF-8'));
-                                          } else {
-                                            echo ("<?= BASE_URL ?>uploads/acompanhamento/sem-foto-acompanhamento.jpg");
+                                          if (!empty($linha['foto_acompanhamento'])) {
+                                            $headers = @get_headers($caminhoArquivo);
+                                            if ($headers && strpos($headers[0], '200') !== false) {
+                                              $img = $caminhoArquivo;
+                                            }
                                           }
-                                        } else {
-                                          echo ("<?= BASE_URL ?>uploads/acompanhamento/sem-foto-acompanhamento.jpg");
-                                        }
-                                        ?>); background-size: cover;">
+
+                                          echo $img;
+                                          ?>
+                    
+                    
+                    ); background-size: cover;">
                     <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5" style="background: rgba(0, 0, 0, 0.4); padding: 1rem 1.5rem; border-radius: 0 15px 0 0;">
                       <div class="icon icon-shape icon-sm text-center border-radius-md mb-3" style="background-color: #ffffff; color: #371406; border: 2px solid #ffd8b9;">
                         <i class="ni ni-bulb-61 text-dark opacity-10"></i>
                       </div>
                       <h5 class="mb-1" style="color: #ffffff; font-weight: bold;"><?php echo htmlspecialchars($linha['nome_acompanhamento']); ?></h5>
                       <p style="color: #ffffff; font-size: 0.9rem;">
-                      <?php echo htmlspecialchars($linha['descricao_acompanhamento']); ?>
+                        <?php echo htmlspecialchars($linha['descricao_acompanhamento']); ?>
                       </p>
                     </div>
                   </div>
 
                 <?php endforeach; ?>
-             
+
               </div>
               <button class="carousel-control-prev w-5 me-3" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: invert(100%);"></span>

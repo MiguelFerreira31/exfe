@@ -56,11 +56,22 @@ class Produtos extends Model
     public function desativarProduto($id)
     {
 
-        $sql = "UPDATE tbl_produto SET status_produto = 'Inativo'  WHERE id_produto = :id_produto";
+        $sql = "UPDATE tbl_produto SET status_produto = 'Inativo' WHERE id_produto = :id_produto";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':id_produto', $id, PDO::PARAM_INT);
         return $stmt->execute();
     }
+
+
+  public function ativarProduto($id)
+    {
+
+        $sql = "UPDATE tbl_produto SET status_produto = 'Ativo' WHERE id_produto = :id_produto";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_produto', $id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
+
 
     public function addProduto($dados)
     {

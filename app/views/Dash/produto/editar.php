@@ -22,24 +22,27 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
 
 
-<form method="POST" action="http://localhost/exfe/cafes/produtos/editar/<?php echo $produtos['id_produto']; ?>" enctype="multipart/form-data">
+<form method="POST" action="<?=BASE_URL?>cafes/editar/<?php echo $produtos['id_produto']; ?>" enctype="multipart/form-data">
     <div class="container my-5">
         <div class="row">
             <!-- Imagem do Funcionario -->
             <div class="col-12 col-md-4 text-center mb-3 mb-md-0">
                 <div class="image-container" style="width: 100%; max-width: 200px; aspect-ratio: 1/1; overflow: hidden; border-radius: 50%; margin: auto;">
                     <?php
+                            $caminhoArquivo = BASE_URL . "uploads/" . $produtos['foto_produto'];
+                            $img = BASE_URL . "uploads/sem-foto.jpg"; // Caminho padrão corrigido
+                            // $alt_foto = "imagem sem foto $index";
 
-                    $fotoProduto = $produtos['foto_produto'];
-                    $fotoPath = "http://localhost/exfe/public/uploads/" . $fotoProduto;
-                    $fotoDefault = "http://localhost/exfe/public/assets/img/login-img.png";
+                            if (!empty($produtos['foto_produto'])) {
+                                $headers = @get_headers($caminhoArquivo);
+                                if ($headers && strpos($headers[0], '200') !== false) {
+                                    $img = $caminhoArquivo;
+                                }
+                            }
 
-                    $imagePath = (file_exists($_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $fotoProduto) && !empty($fotoProduto))
-                        ? $fotoPath
-                        : $fotoDefault;
-                    ?>
+                            ?>
 
-                    <img src="<?php echo $imagePath ?>" alt="exfe Logo" class="img-fluid" id="preview-img" style="cursor: pointer; border-radius: 12px;">
+                    <img src="<?php echo $img ?>" alt="exfe Logo" class="img-fluid" id="preview-img" style="cursor: pointer; border-radius: 12px;">
                 </div>
                 <input type="file" name="foto_produto" id="foto_produto" style="display: none;" accept="image/*">
             </div>

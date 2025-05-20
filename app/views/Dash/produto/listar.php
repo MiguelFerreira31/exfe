@@ -64,13 +64,12 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                         <td><?php echo htmlspecialchars($linha['id_categoria']); ?></td>
                         <td><?php echo htmlspecialchars($linha['nome_fornecedor']); ?></td>
                         <td>
-                            <a href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/produtos/editar/<?php echo $linha['id_produto']; ?>" title="Editar">
+                            <a href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/cafes/editar/<?php echo $linha['id_produto']; ?>" title="Editar">
                                 <i class="fa fa-pencil-alt" style="font-size: 20px; color: #9a5c1f;"></i>
                             </a>
                         </td>
                         <td>
-                            <a href="#" title="Desativar" onclick="abrirModalDesativar(<?php echo $linha['id_produto'];
-                                                                                        echo $linha['id_produto'];  ?>)">
+                            <a href="#" title="Desativar" onclick="abrirModalDesativar(<?php echo $linha['id_produto']; ?>, '<?php echo addslashes($linha['nome_produto']); ?>')">
                                 <i class="fa fa-ban" style="font-size: 20px; color: #ff4d4d;"></i>
                             </a>
                         </td>
@@ -96,11 +95,11 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Desativar ""</h5>
+                <h5 class="modal-title">Desativar Bebida></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>Tem Certeza que deseja desativar esse Produto?</p>
+                <p>Tem Certeza que deseja desativar o <span id="nomeProdutoModal"></span</p>
                 <input type="hidden" id="idProdutoDesativar" value="">
 
             </div>
@@ -125,6 +124,10 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
         }
 
         document.getElementById('idProdutoDesativar').value = idProduto;
+
+         // Atualizando o título do modal com o nome do produto
+        document.getElementById('nomeProdutoModal').textContent = nomeProduto;
+
         $('#modalDesativar').modal('show');
     }
 

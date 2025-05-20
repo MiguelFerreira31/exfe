@@ -14,21 +14,18 @@ class PedidoController extends Controller
         $this->pedidoModel = new Pedido();
     }
 
-    public function listar($id_cliente)
+    public function listar()
     {
         $dados = array();
 
         $pedidoModel = new Pedido();
-        $pedidos = $pedidoModel->listarPedidosCliente($id_cliente);
-        $dados['pedidos'] = $pedidos;
+        $pedidos = $pedidoModel->listarPedidos();
+        $dados['pedido'] = $pedidos;
 
-        // Buscar dados do cliente logado pela sessão
-        $clienteModel = new Cliente();
-        $cliente = $clienteModel->perfilCliente($_SESSION['userEmail']);
-        $dados['cliente'] = $cliente;
+      
 
         $dados['conteudo'] = 'dash/pedido/listar';
-        $this->carregarViews('dash/dashboard-cliente', $dados);
+        $this->carregarViews('dash/dashboard', $dados);
     }
 
     public function adicionar()

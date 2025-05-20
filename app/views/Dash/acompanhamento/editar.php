@@ -19,24 +19,30 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     unset($_SESSION['tipo-msg']);
 }
 ?>
-<form method="POST" action="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/acompanhamentos/editar/<?php echo $acompanhamentos['id_acompanhamento']; ?>" enctype="multipart/form-data">
+
+<form method="POST" action="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/acompanhamentos/editar/<?php echo $acompanhamento['id_acompanhamento']; ?>" enctype="multipart/form-data">
     <div class="container my-5">
         <div class="row justify-content-center">
             <!-- Imagem -->
             <div class="col-12 col-md-4 text-center mb-4">
                 <div class="shadow-lg p-3 rounded-circle" style=" width: 200px; height: 200px; margin: auto; overflow: hidden;">
-                    <?php
+                     <?php
+                    $caminhoArquivo = BASE_URL . "uploads/" . $acompanhamento
+                    ['foto_acompanhamento'];
+                    $img = BASE_URL . "uploads/sem-foto.jpg"; // Caminho padrão corrigido
+                    // $alt_foto = "imagem sem foto $index";
 
-                    $fotoAcompanhamento = $acompanhamentos['foto_acompanhamento'];
-                    $fotoPath = "https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/uploads/" . $fotoAcompanhamento;
-                    $fotoDefault = "https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/hero-bg3.png";
-
-                    $imagePath = (file_exists($_SERVER['DOCUMENT_ROOT'] . "/exfe/public/uploads/" . $fotoAcompanhamento) && !empty($fotoProduto))
-                        ? $fotoPath
-                        : $fotoDefault;
+                    if (!empty($acompanhamento
+                    ['foto_acompanhamento'])) {
+                        $headers = @get_headers($caminhoArquivo);
+                        if ($headers && strpos($headers[0], '200') !== false) {
+                            $img = $caminhoArquivo;
+                        }
+                    }
+                    
                     ?>
 
-                    <img src="<?php echo $imagePath ?>" alt="exfe Logo" class="img-fluid" id="preview-img" style="cursor: pointer; border-radius: 12px; width:100%; height:100%;">
+                    <img src="<?php echo $img?>" alt="exfe Logo" class="img-fluid" id="preview-img" style="cursor: pointer; border-radius: 12px; width:100%; height:100%;">
                 </div>
                 <input type="file" name="foto_acompanhamento" id="foto_acompanhamento" style="display: none;" accept="image/*">
                 <small class="text-muted mt-2 d-block">Clique na imagem para alterar</small>
@@ -49,18 +55,18 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
                     <div class="mb-3">
                         <label for="nome_acompanhamento" class="form-label fw-bold" style="color: #9a5c1f;"> Nome do Acompanhamento:</label>
-                        <input type="text" class="form-control border-2" style="border-color: #fac6a0;" id="nome_acompanhamento" name="nome_acompanhamento" placeholder="Ex: Pão de Queijo" value="<?php echo $acompanhamentos['nome_acompanhamento'] ?? ''; ?>" required>
+                        <input type="text" class="form-control border-2" style="border-color: #fac6a0;" id="nome_acompanhamento" name="nome_acompanhamento" placeholder="Ex: Pão de Queijo" value="<?php echo $acompanhamento['nome_acompanhamento'] ?? ''; ?>" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="descricao_acompanhamento" class="form-label fw-bold" style="color: #9a5c1f;"> Descrição:</label>
-                        <textarea class="form-control border-2" style="border-color: #ffd8b9;" id="descricao_acompanhamento" name="descricao_acompanhamento" rows="3" placeholder="Descreva o acompanhamento..." required><?php echo $acompanhamentos['descricao_acompanhamento'] ?? ''; ?></textarea>
+                        <textarea class="form-control border-2" style="border-color: #ffd8b9;" id="descricao_acompanhamento" name="descricao_acompanhamento" rows="3" placeholder="Descreva o acompanhamento..." required><?php echo $acompanhamento['descricao_acompanhamento'] ?? ''; ?></textarea>
 
                     </div>
 
                     <div class="mb-3">
                         <label for="preco_acompanhamento" class="form-label fw-bold" style="color: #9a5c1f;"> Valor:</label>
-                        <input type="text" class="form-control dinheiro border-2" style="border-color: #ffcea6;" id="preco_acompanhamento" name="preco_acompanhamento" placeholder="R$ 0,00" value="<?php echo $acompanhamentos['preco_acompanhamento'] ?? ''; ?>" required>
+                        <input type="text" class="form-control dinheiro border-2" style="border-color: #ffcea6;" id="preco_acompanhamento" name="preco_acompanhamento" placeholder="R$ 0,00" value="<?php echo $acompanhamento['preco_acompanhamento'] ?? ''; ?>" required>
                     </div>
 
 

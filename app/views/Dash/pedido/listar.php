@@ -26,31 +26,37 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
         <table class="table table-hover text-center align-middle">
             <thead class="thead-custom">
                 <tr>
-                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Cliente</th>
-                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Funcionario</th>
+                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Mesa</th>
                     <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Status</th>
-                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Data</th>
+                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Horário</th>
+                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Bebida</th>
+                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Observações</th>
+                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Acompanhamento</th>
+                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Perfil</th>
                     <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Editar</th>
                     <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Excluir</th>
                 </tr>
             </thead>
 
             <tbody>
-                <?php foreach ($pedidos as $pedido): ?>
+                <?php foreach ($pedido as $linha): ?>
                     <tr class="fw-semibold">
-                        <td><?php echo htmlspecialchars($pedido['nome_cliente']); ?></td>
-                        <td><?php echo htmlspecialchars($pedido['nome_funcionario']); ?></td>
-                        <td><?php echo htmlspecialchars($pedido['descricao_status']); ?></td>
-                        <td><?php echo htmlspecialchars($pedido['data_pedido']); ?></td>
+                        <td><?php echo htmlspecialchars($linha['numero_mesa']); ?></td>
+                        <td><?php echo htmlspecialchars($linha['status_pedido']); ?></td>
+                        <td><?php echo htmlspecialchars($linha['horario']); ?></td>
+                        <td><?php echo htmlspecialchars($linha['nome_produto']); ?></td>
+                        <td><?php echo htmlspecialchars($linha['obs_item']); ?></td>
+                        <td><?php echo htmlspecialchars($linha['nome_acompanhamento']); ?></td>
+                        <td><?php echo htmlspecialchars($linha['nome_cliente']); ?></td>
                       
 
                         <td>
-                            <a href="http://localhost/exfe/public/pedido/editar/<?php echo $pedido['id_pedido']; ?>" title="Editar">
+                            <a href="<?=BASE_URL?>pedido/editar/<?php echo $linha['id_pedido']; ?>" title="Editar">
                                 <i class="fa fa-pencil-alt" style="font-size: 20px; color: #5e3c2d;"></i>
                             </a>
                         </td>
                         <td>
-                            <a href="#" title="Desativar" onclick="abrirModalDesativar(<?php echo $pedido['id_pedido']; ?>)">
+                            <a href="#" title="Desativar" onclick="abrirModalDesativar(<?php echo $linha['id_pedido']; ?>)">
                                 <i class="fa fa-ban" style="font-size: 20px; color: #ff4d4d;"></i>
                             </a>
                         </td>
@@ -63,7 +69,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
     <div class="text-center mt-4">
         <h3 style="color: #5e3c2dad;">Deseja cadastrar um novo Pedido?</h3>
-        <a href="http://localhost/exfe/public/pedido/adicionar/" class="btn fw-bold px-4 py-2" style="background:#5e3c2d; color: #ffffff; border-radius: 8px;">
+        <a href="<?=BASE_URL?>pedido/adicionar/" class="btn fw-bold px-4 py-2" style="background:#5e3c2d; color: #ffffff; border-radius: 8px;">
             Adicionar Pedido
         </a>
     </div>
@@ -109,7 +115,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     });
 
     function desativarPedido(idPedido) {
-        fetch(`http://localhost/exfe/public/pedido/desativar/${idPedido}`, {
+        fetch(`<?=BASE_URL?>pedido/desativar/${idPedido}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

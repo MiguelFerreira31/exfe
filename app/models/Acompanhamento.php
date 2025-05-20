@@ -89,7 +89,6 @@ class Acompanhamento extends Model
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':id_acompanhamento', $id, PDO::PARAM_INT);
         $stmt->execute();
-
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 

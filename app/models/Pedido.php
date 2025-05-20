@@ -2,24 +2,37 @@
 
 class Pedido extends Model
 {
-    
-    public function listarPedidosCliente($id_cliente)
+
+    public function listarPedidos()
     {
-        $sql = "SELECT p.*, s.descricao_status
-                FROM tbl_pedido p
-                LEFT JOIN tbl_status_pedido s ON p.id_status = s.id_status
-                WHERE p.id_cliente = :id_cliente
-                ORDER BY p.data_pedido DESC";
-        
+        $sql = "SELECT 
+  p.id_pedido,
+  m.numero_mesa,
+  c.nome_cliente,
+  p.data_pedido,
+  p.status_pedido,
+  pr.nome_produto,
+    DATE_FORMAT(p.data_pedido, '%d/%m/%Y %H:%i') AS horario,
+  pi.quantidade,
+  pi.observacao AS obs_item,
+  a.nome_acompanhamento
+FROM tbl_pedido p
+JOIN tbl_mesa m ON p.id_mesa = m.id_mesa
+LEFT JOIN tbl_cliente c ON p.id_cliente = c.id_cliente
+JOIN tbl_pedido_item pi ON pi.id_pedido = p.id_pedido
+JOIN tbl_produto pr ON pr.id_produto = pi.id_produto
+LEFT JOIN tbl_pedido_item_acompanhamento pia ON pia.id_pedido_item = pi.id_pedido_item
+LEFT JOIN tbl_acompanhamento a ON a.id_acompanhamento = pia.id_acompanhamento
+WHERE p.status_pedido IN ('aberto', 'em preparo')
+ORDER BY p.data_pedido ASC;";
+
         $stmt = $this->db->prepare($sql);
-        $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
         $stmt->execute();
-        
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
-    
-    
+
+
+
 
     public function addPedido($dados)
     {

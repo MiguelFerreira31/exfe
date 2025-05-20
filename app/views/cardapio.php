@@ -2,16 +2,14 @@
 <html lang="pt-br">
 
 <head>
-
-
-
-
     <?php require_once('template/head.php') ?>
-
+<link rel="stylesheet" href="<?= BASE_URL ?>assets/css/style.css">
 </head>
 
 <body>
     <main>
+
+
         <section id="cardapio-tv">
             <div class="swiper mySwiper3">
                 <div class="swiper-wrapper">
@@ -35,11 +33,25 @@
 
                                         <?php foreach ($cafes as $linha): ?>
                                             <li>
+                                                <?php
+                                                $caminhoArquivo = BASE_URL . "uploads/" . $linha['foto_produto'];
+                                                $img = BASE_URL . "uploads/sem-foto.jpg"; // Caminho padrão corrigido
+                                                // $alt_foto = "imagem sem foto $index";
+
+                                                if (!empty($linha['foto_produto'])) {
+                                                    $headers = @get_headers($caminhoArquivo);
+                                                    if ($headers && strpos($headers[0], '200') !== false) {
+                                                        $img = $caminhoArquivo;
+                                                    }
+                                                }
+
+                                                ?>
+                                                <img src="<?php echo $img ?>" alt="" style="width:120px; border:1px dashed white; border-radius:50%;">
                                                 <h3><?php echo htmlspecialchars($linha['nome_produto']); ?></h3> <span><?php echo ($linha['preco_produto']); ?></span>
                                             </li>
-                                            <?php endforeach; ?>
-                                            
-                                      
+                                        <?php endforeach; ?>
+
+
                                     </ul>
                                 </article>
                                 <figure data-animation="zoomIn">
@@ -51,6 +63,8 @@
 
 
                         </div>
+
+
                     </div>
 
 
@@ -160,78 +174,74 @@
     <script src="<?= BASE_URL ?>assets/script/script.js"></script>
 
 
-<script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
 
+            var swiper = new Swiper(".mySwiper3", {
+                spaceBetween: 30,
+                loop: true,
+                effect: "fade",
+                //   autoplay: {
+                //       delay: 15000, // 5 segundos por slide
+                //       disableOnInteraction: false,
+                //   },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                on: {
+                    init: function() {
+                        animateCards(this.activeIndex);
+                    },
+                    slideChangeTransitionStart: function() {
+                        // Remove animações dos slides não ativos
+                        document.querySelectorAll('.swiper-slide:not(.swiper-slide-active) .card-cafe').forEach(card => {
+                            const animation = card.getAttribute('data-animation');
+                            card.classList.remove('animate__animated', `animate__${animation}`);
+                            card.style.opacity = '0';
+                        });
+                    },
+                    slideChangeTransitionEnd: function() {
+                        animateCards(this.activeIndex);
+                    }
+                }
+            });
 
-document.addEventListener('DOMContentLoaded', function () {
+            function animateCards(activeIndex) {
+                // Pega o slide ativo (considerando o loop)
+                const slides = document.querySelectorAll('.swiper-slide');
+                const activeSlide = slides[activeIndex];
 
-  var swiper = new Swiper(".mySwiper3", {
-      spaceBetween: 30,
-      loop: true,
-      effect: "fade",
-      autoplay: {
-          delay: 15000, // 5 segundos por slide
-          disableOnInteraction: false,
-      },
-      pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-      },
-      on: {
-          init: function () {
-              animateCards(this.activeIndex);
-          },
-          slideChangeTransitionStart: function () {
-              // Remove animações dos slides não ativos
-              document.querySelectorAll('.swiper-slide:not(.swiper-slide-active) .card-cafe').forEach(card => {
-                  const animation = card.getAttribute('data-animation');
-                  card.classList.remove('animate__animated', `animate__${animation}`);
-                  card.style.opacity = '0';
-              });
-          },
-          slideChangeTransitionEnd: function () {
-              animateCards(this.activeIndex);
-          }
-      }
-  });
+                if (activeSlide) {
+                    const cards = activeSlide.querySelectorAll('.card-cafe');
+                    cards.forEach((card, index) => {
+                        // Reset antes de animar
+                        card.style.opacity = '0';
+                        const animation = card.getAttribute('data-animation');
 
-  function animateCards(activeIndex) {
-      // Pega o slide ativo (considerando o loop)
-      const slides = document.querySelectorAll('.swiper-slide');
-      const activeSlide = slides[activeIndex];
+                        // Remove classes antigas (se houver)
+                        card.classList.remove('animate__animated');
 
-      if (activeSlide) {
-          const cards = activeSlide.querySelectorAll('.card-cafe');
-          cards.forEach((card, index) => {
-              // Reset antes de animar
-              card.style.opacity = '0';
-              const animation = card.getAttribute('data-animation');
+                        // Adiciona delay progressivo
+                        setTimeout(() => {
+                            card.classList.add('animate__animated', `animate__${animation}`);
+                            card.style.opacity = '1';
 
-              // Remove classes antigas (se houver)
-              card.classList.remove('animate__animated');
+                            // Configura timing personalizado
+                            if (animation === 'zoomIn') {
+                                card.style.animationDuration = '0.8s';
+                            } else {
+                                card.style.animationDuration = '0.6s';
+                            }
 
-              // Adiciona delay progressivo
-              setTimeout(() => {
-                  card.classList.add('animate__animated', `animate__${animation}`);
-                  card.style.opacity = '1';
-
-                  // Configura timing personalizado
-                  if (animation === 'zoomIn') {
-                      card.style.animationDuration = '0.8s';
-                  } else {
-                      card.style.animationDuration = '0.6s';
-                  }
-
-                  // Delay entre elementos
-                  card.style.animationDelay = `${index * 0.2}s`;
-              }, 50);
-          });
-      }
-  }
-});
-
-
-</script>
+                            // Delay entre elementos
+                            card.style.animationDelay = `${index * 0.2}s`;
+                        }, 50);
+                    });
+                }
+            }
+        });
+    </script>
 
 </body>
 

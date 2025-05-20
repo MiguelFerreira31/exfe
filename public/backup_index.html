@@ -25,7 +25,6 @@
     <link id="pagestyle"
         href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/css/argon-dashboard.css?v=2.1.0"
         rel="stylesheet" />
-    <link rel="stylesheet" href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/css/style.css">
 
     <style>
         #cardapio-tv {
@@ -63,30 +62,12 @@
             justify-content: space-evenly;
             align-items: center;
             position: relative;
- 
+
             z-index: 2;
-           
-.cafe-img{
-    width: 20%;
-    height: 100%;
-}
+
 
 
         }
-
-        .card-cafe {
-            width: 25%;
-            height: 70%;
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            flex-direction: column;
-            opacity: 0;
-            background-color: #cdcdcd63;
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-        }
-
 
 
 
@@ -106,6 +87,85 @@
             z-index: 1;
         }
 
+        .cafe-img {
+            text-align: center;
+
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cafe-img img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .cafe-inner {
+            height: 100vh;
+            overflow-y: auto;
+            padding: 2rem 1rem;
+        }
+
+        .card-cafe {
+            background: linear-gradient(to bottom, #40292049 1.57%, #774a388b 128.95%);
+            backdrop-filter: blur(12px);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+            color: white !important;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+
+        .card-cafe:hover {
+            transform: scale(1.05);
+        }
+
+        .card-cafe img {
+            width: 100%;
+            max-width: 120px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+
+        .card-cafe h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-cafe h4 {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .card-cafe h4 span {
+            background: #9e675f;
+            padding: 0.3rem 0.8rem;
+            border-radius: 8px;
+            margin-left: 0.5rem;
+            display: inline-block;
+            color: white !important;
+        }
+
+        /* Scroll personalizado (opcional) */
+        .cafe-inner::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .cafe-inner::-webkit-scrollbar-thumb {
+            background-color: #9e675f;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .cafe-img {
+                display: none;
+            }
+        }
+
+
 
         .cafe-menu {
             width: 100%;
@@ -113,17 +173,17 @@
             display: flex;
             justify-content: space-evenly;
             align-items: center;
-            background: linear-gradient(to bottom, #23120bb5 1.57%, #2a1208 128.95%);
+            background: linear-gradient(to bottom, #23120bb5 1.57%, #2a12089f 128.95%);
 
             article {
-                width: 30%;
-                height: 80%;
+                width: 50%;
+                height: 90%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 flex-direction: column;
                 color: white;
-                background: linear-gradient(to bottom, #4029207b 1.57%, #774a38 128.95%);
+                background: linear-gradient(to bottom, #40292049 1.57%, #774a388b 128.95%);
                 backdrop-filter: blur(15px);
                 border-radius: 12px;
 
@@ -145,8 +205,16 @@
                         justify-content: space-between;
                         align-items: center;
                         font-size: 1.5em;
-                        border-top: 1px dashed #371406;
+                        border-top: 2px dashed #371406;
                         padding: 1%;
+
+                        img {
+                            width: 110px;
+                            height: 110px;
+                            border: 3px dashed white;
+                            border-radius: 50px;
+                            padding: 1%;
+                        }
 
                         h2 {
                             font-size: 2em;
@@ -158,10 +226,15 @@
 
                         }
 
+
                         h3 {
                             color: #d5d5d5;
                             font-weight: 400;
-
+                            width: 87%;
+                            height: 100%;
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
                         }
 
                         span {
@@ -169,6 +242,7 @@
                             width: 20%;
                             color: #dbdbdb;
                             border-radius: 10px;
+                            letter-spacing: 3px;
                         }
 
 
@@ -192,7 +266,7 @@
 
                 img {
                     animation-name: floating;
-                    animation-duration: 5s;
+                    animation-duration: .1s;
                     animation-iteration-count: infinite;
                     animation-timing-function: ease-in-out;
 
@@ -202,7 +276,7 @@
                         }
 
                         50% {
-                            transform: translate(0, 60px);
+                            transform: translate(0, 10px);
                         }
 
                         100% {
@@ -223,7 +297,147 @@
             <div class="swiper mySwiper3">
                 <div class="swiper-wrapper">
 
+                    <div class="swiper-slide"
+                        style="background-image: url('https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/hero-bg2.png');  background-position: center;">
 
+
+                        <div class="container-fluid">
+                            <div class="row h-100">
+
+                                <!-- LADO ESQUERDO - IMAGEM -->
+                                <div class="col-12 col-md-4 cafe-img">
+                                    <img src="./assets/img/about1.webp" alt="Café em destaque">
+                                </div>
+
+                                <!-- LADO DIREITO - CARDS -->
+                                <div class="col-12 col-md-8 cafe-inner">
+                                    <div class="row g-4">
+
+                                        <!-- Repita os cards -->
+                                        <div class="col-12 col-sm-6 col-lg-4">
+                                            <div class="card-cafe">
+                                                <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/caramelo_macchiato.png"
+                                                    alt="Café">
+                                                <h3>Café Capuccino Especial</h3>
+                                                <h4>Preço <span>R$ 10,00</span></h4>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-sm-6 col-lg-4">
+                                            <div class="card-cafe">
+                                                <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/caramelo_macchiato.png"
+                                                    alt="Café">
+                                                <h3>Espresso Tradicional</h3>
+                                                <h4>Preço <span>R$ 7,00</span></h4>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-sm-6 col-lg-4">
+                                            <div class="card-cafe">
+                                                <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/caramelo_macchiato.png"
+                                                    alt="Café">
+                                                <h3>Latte Caramelo</h3>
+                                                <h4>Preço <span>R$ 9,00</span></h4>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-sm-6 col-lg-4">
+                                            <div class="card-cafe">
+                                                <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/caramelo_macchiato.png"
+                                                    alt="Café">
+                                                <h3>Latte Caramelo</h3>
+                                                <h4>Preço <span>R$ 9,00</span></h4>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-sm-6 col-lg-4">
+                                            <div class="card-cafe">
+                                                <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/caramelo_macchiato.png"
+                                                    alt="Café">
+                                                <h3>Latte Caramelo</h3>
+                                                <h4>Preço <span>R$ 9,00</span></h4>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-sm-6 col-lg-4">
+                                            <div class="card-cafe">
+                                                <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/caramelo_macchiato.png"
+                                                    alt="Café">
+                                                <h3>Latte Caramelo</h3>
+                                                <h4>Preço <span>R$ 9,00</span></h4>
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+
+                                    <div class="row g-4 justify-content-center text-center ">
+
+                                        <div class="col-12 col-sm-10 col-md-8 d-flex align-items-center justify-content-center col-lg-6 ">
+                                            <h2>Customize o café conforme o seu perfil</h2>
+                                            <img src="./assets/img/cup-img2.webp" alt="Café personalizado"
+                                                class="img-fluid mt-3">
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="swiper-slide" style="position: relative; overflow: hidden;">
+                        <!-- Vídeo como background -->
+                        <video
+                            src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/videoTv2.mp4"
+                            autoplay muted loop playsinline></video>
+
+                        <!-- Conteúdo sobreposto -->
+                        <div class="cafes-container">
+                            <div class="cafe-menu">
+                                <article data-animation="zoomIn">
+
+                                    <ul>
+                                        <li>
+                                            <h2> Nossos Cafés</h2>
+
+                                        </li>
+
+                                        <li>
+                                            <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/cup-img4.webp"
+                                                alt="">
+                                            <h3>Café <span>R$10,20</span></h3>
+                                        </li>
+                                        <li>
+                                            <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/cup-img4.webp"
+                                                alt="">
+                                            <h3>Café <span>R$10,20</span></h3>
+                                        </li>
+                                        <li>
+                                            <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/cup-img4.webp"
+                                                alt="">
+                                            <h3>Café <span>R$10,20</span></h3>
+                                        </li>
+                                        <li>
+                                            <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/cup-img4.webp"
+                                                alt="">
+                                            <h3>Café <span>R$10,20</span></h3>
+                                        </li>
+
+                                    </ul>
+                                </article>
+                                <figure data-animation="zoomIn">
+                                    <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/cup-img.webp"
+                                        alt="Caramelo Macchiato">
+                                </figure>
+                            </div>
+
+
+
+                        </div>
+                    </div>
 
                     <div class="swiper-slide"
                         style="background-image: url('https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/hero-bg2.png');  background-position: center;">
@@ -266,52 +480,6 @@
                     </div>
 
 
-                    <div class="swiper-slide" style="position: relative; overflow: hidden;">
-                        <!-- Vídeo como background -->
-                        <video
-                            src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/videoTv2.mp4"
-                            autoplay muted loop playsinline></video>
-
-                        <!-- Conteúdo sobreposto -->
-                        <div class="cafes-container">
-                            <div class="cafe-menu">
-                                <article data-animation="zoomIn">
-
-                                    <ul>
-                                        <li>
-                                            <h2>Cafés</h2>
-                                        </li>
-
-                                        <li>
-                                            <h3>Café</h3> <span>R$10,20</span>
-                                        </li>
-                                        <li>
-                                            <h3>Café</h3> <span>R$10,20</span>
-                                        </li>
-                                        <li>
-                                            <h3>Café</h3> <span>R$10,20</span>
-                                        </li>
-                                        <li>
-                                            <h3>Café</h3> <span>R$10,20</span>
-                                        </li>
-                                        <li>
-                                            <h3>Café</h3> <span>R$10,20</span>
-                                        </li>
-                                        <li>
-                                            <h3>Café</h3> <span>R$10,20</span>
-                                        </li>
-                                    </ul>
-                                </article>
-                                <figure data-animation="zoomIn">
-                                    <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/cup-img.webp"
-                                        alt="Caramelo Macchiato">
-                                </figure>
-                            </div>
-
-
-
-                        </div>
-                    </div>
 
 
                     <!-- Slide 1 com animações de fade -->
