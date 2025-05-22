@@ -21,107 +21,131 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 ?>
 
 
+<style>
+    .glass-card {
+    transition: all 0.3s ease-in-out;
+}
 
-<form method="POST" action="<?=BASE_URL?>cafes/editar/<?php echo $produtos['id_produto']; ?>" enctype="multipart/form-data">
+.glass-card:hover {
+    box-shadow: 0 0 20px rgba(255, 206, 166, 0.4);
+}
+
+input:focus, select:focus {
+    border-color: #9a5c1f !important;
+    box-shadow: 0 0 0 0.2rem rgba(154, 92, 31, 0.25) !important;
+}
+
+</style>
+
+<form method="POST" action="<?= BASE_URL ?>cafes/editar/<?php echo $produtos['id_produto']; ?>" enctype="multipart/form-data">
     <div class="container my-5">
-        <div class="row">
-            <!-- Imagem do Funcionario -->
-            <div class="col-12 col-md-4 text-center mb-3 mb-md-0">
-                <div class="image-container" style="width: 100%; max-width: 200px; aspect-ratio: 1/1; overflow: hidden; border-radius: 50%; margin: auto;">
+        <div class="row justify-content-center">
+            <!-- IMAGEM DO PRODUTO -->
+            <div class="col-12 col-md-4 text-center mb-4">
+                <div class="image-container shadow" style="
+                    width: 100%;
+                    max-width: 220px;
+                    aspect-ratio: 1 / 1;
+                    overflow: hidden;
+                    border-radius: 50%;
+                    backdrop-filter: blur(10px);
+                    background: rgba(255, 255, 255, 0.15);
+                    border: 1px solid rgba(255, 255, 255, 0.3);
+                    margin: auto;
+                ">
                     <?php
-                            $caminhoArquivo = BASE_URL . "uploads/" . $produtos['foto_produto'];
-                            $img = BASE_URL . "uploads/sem-foto.jpg"; // Caminho padrão corrigido
-                            // $alt_foto = "imagem sem foto $index";
-
-                            if (!empty($produtos['foto_produto'])) {
-                                $headers = @get_headers($caminhoArquivo);
-                                if ($headers && strpos($headers[0], '200') !== false) {
-                                    $img = $caminhoArquivo;
-                                }
-                            }
-
-                            ?>
-
-                    <img src="<?php echo $img ?>" alt="exfe Logo" class="img-fluid" id="preview-img" style="cursor: pointer; border-radius: 12px;">
+                    $caminhoArquivo = BASE_URL . "uploads/" . $produtos['foto_produto'];
+                    $img = BASE_URL . "uploads/sem-foto.jpg";
+                    if (!empty($produtos['foto_produto'])) {
+                        $headers = @get_headers($caminhoArquivo);
+                        if ($headers && strpos($headers[0], '200') !== false) {
+                            $img = $caminhoArquivo;
+                        }
+                    }
+                    ?>
+                    <img src="<?= $img ?>" alt="Foto do Produto" id="preview-img"
+                        class="img-fluid" style="cursor: pointer; border-radius: 12px; object-fit: cover; height: 100%; width: 100%;">
                 </div>
                 <input type="file" name="foto_produto" id="foto_produto" style="display: none;" accept="image/*">
             </div>
 
-            <!-- Informações do Funcionario -->
+            <!-- FORMULÁRIO -->
             <div class="col-12 col-md-8">
-                <div class="card shadow-lg border-0 rounded-4 p-4" style="background: #ffffff;">
+                <div class="glass-card card shadow-lg border-0 rounded-4 p-4" style="
+                    background: rgba(255, 255, 255, 0.25);
+                    border-radius: 20px;
+                    backdrop-filter: blur(10px);
+                    -webkit-backdrop-filter: blur(10px);
+                    border: 1px solid rgba(255, 255, 255, 0.3);
+                ">
                     <div class="mb-3">
-                        <label for="nome_produto" class="form-label fw-bold" style="color: #9a5c1f;">Nome do Produto:</label>
-                        <input type="text" class="form-control" id="nome_produto" name="nome_produto" placeholder="Digite o nome do Produto" value="<?php echo $produtos['nome_produto'] ?? ''; ?>" required>
+                        <label for="nome_produto" class="form-label fw-bold" style="color: #371406;">Nome do Produto:</label>
+                        <input type="text" class="form-control" id="nome_produto" name="nome_produto"
+                            placeholder="Digite o nome do Produto"
+                            value="<?= htmlspecialchars($produtos['nome_produto'] ?? '') ?>" required>
                     </div>
 
-                    <!-- Email -->
                     <div class="mb-3">
-                        <label for="descricao_produto" class="form-label fw-bold" style="color: #9a5c1f;">Descrição do Produto</label>
-                        <input type="text" class="form-control" id="descricao_produto" name="descricao_produto" placeholder="Digite a descrição do produto" value="<?php echo $produtos['descricao_produto'] ?? ''; ?>" required>
+                        <label for="descricao_produto" class="form-label fw-bold" style="color: #371406;">Descrição do Produto</label>
+                        <input type="text" class="form-control" id="descricao_produto" name="descricao_produto"
+                            placeholder="Digite a descrição do produto"
+                            value="<?= htmlspecialchars($produtos['descricao_produto'] ?? '') ?>" required>
                     </div>
 
                     <div class="row g-3">
-                        <!-- Data de Nascimento -->
-                        <div class="col-12 col-md-3">
-                            <label for="valor_produto" class="form-label fw-bold" style="color: #9a5c1f;">Valor Produto:</label>
-                            <input type="text" class="form-control dinheiro" id="preco_produto" name="preco_produto" value="<?php echo isset($produtos['preco_produto']) ? 'R$ ' . number_format($produtos['preco_produto'], 2, ',', '.') : ''; ?>" required>
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <label for="preco_produto" class="form-label fw-bold" style="color: #371406;">Valor Produto:</label>
+                            <input type="text" class="form-control dinheiro" id="preco_produto" name="preco_produto"
+                                value="<?= isset($produtos['preco_produto']) ? 'R$ ' . number_format($produtos['preco_produto'], 2, ',', '.') : ''; ?>" required>
                         </div>
 
-                        <!-- Senha -->
-                        <div class="col-12 col-md-3">
-                            <label for="id_fornecedor" class="form-label fw-bold" style="color: #9a5c1f;">Fornecedores:</label>
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <label for="id_fornecedor" class="form-label fw-bold" style="color: #371406;">Fornecedores:</label>
                             <select class="form-select" id="id_fornecedor" name="id_fornecedor" required>
                                 <option value="">Selecione</option>
                                 <?php foreach ($fornecedor as $linha): ?>
-                                    <option value="<?php echo $linha['id_fornecedor']; ?>"
-                                        <?php echo (isset($produtos['id_fornecedor']) && $produtos['id_fornecedor'] == $linha['id_fornecedor']) ? 'selected' : ''; ?>>
-                                        <?php echo $linha['nome_fornecedor']; ?>
+                                    <option value="<?= $linha['id_fornecedor']; ?>"
+                                        <?= (isset($produtos['id_fornecedor']) && $produtos['id_fornecedor'] == $linha['id_fornecedor']) ? 'selected' : ''; ?>>
+                                        <?= $linha['nome_fornecedor']; ?>
                                     </option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
 
-
-                        <div class="col-12 col-md-3">
-                            <label for="id_categoria" class="form-label fw-bold" style="color: #9a5c1f;">Tipo do Produto:</label>
+                        <div class="col-12 col-sm-6 col-md-4">
+                            <label for="id_categoria" class="form-label fw-bold" style="color: #371406;">Tipo do Produto:</label>
                             <select class="form-select" id="id_categoria" name="id_categoria" required>
                                 <option value="">Selecione</option>
                                 <?php foreach ($tipoProduto as $linha): ?>
-                                    <option value="<?php echo $linha['id_categoria']; ?>"
-                                        <?php echo (isset($produtos['id_categoria']) && $produtos['id_categoria'] == $linha['id_categoria']) ? 'selected' : ''; ?>>
-                                        <?php echo $linha['nome_categoria']; ?>
+                                    <option value="<?= $linha['id_categoria']; ?>"
+                                        <?= (isset($produtos['id_categoria']) && $produtos['id_categoria'] == $linha['id_categoria']) ? 'selected' : ''; ?>>
+                                        <?= $linha['nome_categoria']; ?>
                                     </option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
 
-
-
-
-                        <div class="form-group">
-                            <label for="status_produto">Status do Produto</label>
-                            <select name="status_produto" id="status_produto" class="form-control">
-                                <option value="ativo" <?php echo ($produtos['status_produto'] == 'ativo') ? 'selected' : ''; ?>>Ativo</option>
-                                <option value="inativo" <?php echo ($produtos['status_produto'] == 'inativo') ? 'selected' : ''; ?>>Inativo</option>
+                        <div class="col-12">
+                            <label for="status_produto" class="form-label fw-bold" style="color: #371406;">Status do Produto</label>
+                            <select name="status_produto" id="status_produto" class="form-select" required>
+                                <option value="ativo" <?= ($produtos['status_produto'] == 'ativo') ? 'selected' : ''; ?>>Ativo</option>
+                                <option value="inativo" <?= ($produtos['status_produto'] == 'inativo') ? 'selected' : ''; ?>>Inativo</option>
                             </select>
                         </div>
-
-
-
-
                     </div>
 
-                    <div class="mt-4 text-center">
-                        <button type="submit" class="btn btn-lg" style="background: #ffcea6; color: #9a5c1f; font-weight: bold; border-radius: 12px;">Salvar</button>
-                        <button type="button" class="btn btn-lg" style="background: #ffd8b9; color: #9a5c1f; font-weight: bold; border-radius: 12px;">Cancelar</button>
+                    <div class="mt-4 text-center d-flex flex-column flex-sm-row justify-content-center gap-3">
+                        <button type="submit" class="btn btn-lg px-4" style="background: #371406; color:#ffffff; font-weight: bold; border-radius: 12px;">Salvar</button>
+                        <a href="<?= BASE_URL ?>cafes" class="btn btn-lg px-4" style="background: #371406; color: #ffffff; font-weight: bold; border-radius: 12px;">Cancelar</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
 </form>
+
+
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const visualizarImg = document.getElementById('preview-img');

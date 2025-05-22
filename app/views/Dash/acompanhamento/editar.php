@@ -22,64 +22,58 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
 <form method="POST" action="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/acompanhamentos/editar/<?php echo $acompanhamento['id_acompanhamento']; ?>" enctype="multipart/form-data">
     <div class="container my-5">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center g-4">
             <!-- Imagem -->
-            <div class="col-12 col-md-4 text-center mb-4">
-                <div class="shadow-lg p-3 rounded-circle" style=" width: 200px; height: 200px; margin: auto; overflow: hidden;">
-                     <?php
-                    $caminhoArquivo = BASE_URL . "uploads/" . $acompanhamento
-                    ['foto_acompanhamento'];
-                    $img = BASE_URL . "uploads/sem-foto.jpg"; // Caminho padrão corrigido
-                    // $alt_foto = "imagem sem foto $index";
-
-                    if (!empty($acompanhamento
-                    ['foto_acompanhamento'])) {
-                        $headers = @get_headers($caminhoArquivo);
-                        if ($headers && strpos($headers[0], '200') !== false) {
-                            $img = $caminhoArquivo;
+            <div class="col-12 col-md-4 text-center">
+                <div class="position-relative" style="width: 200px; height: 200px; margin: auto;">
+                    <?php
+                        $caminhoArquivo = BASE_URL . "uploads/" . $acompanhamento['foto_acompanhamento'];
+                        $img = BASE_URL . "uploads/sem-foto.jpg";
+                        if (!empty($acompanhamento['foto_acompanhamento'])) {
+                            $headers = @get_headers($caminhoArquivo);
+                            if ($headers && strpos($headers[0], '200') !== false) {
+                                $img = $caminhoArquivo;
+                            }
                         }
-                    }
-                    
                     ?>
-
-                    <img src="<?php echo $img?>" alt="exfe Logo" class="img-fluid" id="preview-img" style="cursor: pointer; border-radius: 12px; width:100%; height:100%;">
+                    <div class="rounded-circle shadow-lg overflow-hidden" style="width: 100%; height: 100%; backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.3); cursor: pointer;">
+                        <img src="<?php echo $img ?>" alt="Foto do Acompanhamento" class="img-fluid w-100 h-100 object-fit-cover" id="preview-img">
+                    </div>
+                    <input type="file" name="foto_acompanhamento" id="foto_acompanhamento" style="display: none;" accept="image/*">
+                    <small class="text-muted mt-2 d-block">Clique na imagem para alterar</small>
                 </div>
-                <input type="file" name="foto_acompanhamento" id="foto_acompanhamento" style="display: none;" accept="image/*">
-                <small class="text-muted mt-2 d-block">Clique na imagem para alterar</small>
             </div>
 
             <!-- Informações -->
             <div class="col-12 col-md-8">
-                <div class="card shadow-lg border-0 rounded-4 p-5" style="background: #ffffff;">
-                    <h4 class="fw-bold mb-4" style="color: #9a5c1f;">Cadastro de Acompanhamento</h4>
+                <div class="p-5 rounded-4 shadow-lg border-0" style="backdrop-filter: blur(12px); background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.3);">
+                    <h4 class="fw-bold mb-4" style="color: #371406;">Editar <?php echo $acompanhamento['nome_acompanhamento'] ?? ''; ?></h4>
 
                     <div class="mb-3">
-                        <label for="nome_acompanhamento" class="form-label fw-bold" style="color: #9a5c1f;"> Nome do Acompanhamento:</label>
-                        <input type="text" class="form-control border-2" style="border-color: #fac6a0;" id="nome_acompanhamento" name="nome_acompanhamento" placeholder="Ex: Pão de Queijo" value="<?php echo $acompanhamento['nome_acompanhamento'] ?? ''; ?>" required>
+                        <label for="nome_acompanhamento" class="form-label fw-semibold" style="color: #371406;">Nome do Acompanhamento:</label>
+                        <input type="text" class="form-control border-0 shadow-sm" style="background: rgba(255,255,255,0.5);" id="nome_acompanhamento" name="nome_acompanhamento" placeholder="Ex: Pão de Queijo" value="<?php echo $acompanhamento['nome_acompanhamento'] ?? ''; ?>" required>
                     </div>
 
                     <div class="mb-3">
-                        <label for="descricao_acompanhamento" class="form-label fw-bold" style="color: #9a5c1f;"> Descrição:</label>
-                        <textarea class="form-control border-2" style="border-color: #ffd8b9;" id="descricao_acompanhamento" name="descricao_acompanhamento" rows="3" placeholder="Descreva o acompanhamento..." required><?php echo $acompanhamento['descricao_acompanhamento'] ?? ''; ?></textarea>
-
+                        <label for="descricao_acompanhamento" class="form-label fw-semibold" style="color: #371406;">Descrição:</label>
+                        <textarea class="form-control border-0 shadow-sm" style="background: rgba(255,255,255,0.5);" id="descricao_acompanhamento" name="descricao_acompanhamento" rows="3" placeholder="Descreva o acompanhamento..." required><?php echo $acompanhamento['descricao_acompanhamento'] ?? ''; ?></textarea>
                     </div>
 
                     <div class="mb-3">
-                        <label for="preco_acompanhamento" class="form-label fw-bold" style="color: #9a5c1f;"> Valor:</label>
-                        <input type="text" class="form-control dinheiro border-2" style="border-color: #ffcea6;" id="preco_acompanhamento" name="preco_acompanhamento" placeholder="R$ 0,00" value="<?php echo $acompanhamento['preco_acompanhamento'] ?? ''; ?>" required>
+                        <label for="preco_acompanhamento" class="form-label fw-semibold" style="color: #371406;">Valor:</label>
+                        <input type="text" class="form-control dinheiro border-0 shadow-sm" style="background: rgba(255,255,255,0.5);" id="preco_acompanhamento" name="preco_acompanhamento" placeholder="R$ 0,00" value="<?php echo $acompanhamento['preco_acompanhamento'] ?? ''; ?>" required>
                     </div>
-
-
 
                     <div class="text-center mt-4">
-                        <button type="submit" class="btn btn-lg px-5 me-2" style="background: #ffcea6; color: #9a5c1f; font-weight: bold; border-radius: 12px;">Salvar</button>
-                        <a href="/exfe/public/acompanhamentos" class="btn btn-lg px-5" style="background: #ffd8b9; color: #9a5c1f; font-weight: bold; border-radius: 12px;">Cancelar</a>
+                        <button type="submit" class="btn px-5 py-2 me-2 fw-bold" style="background: #371406; color: #371406; border-radius: 12px;">Salvar</button>
+                        <a href="/exfe/public/acompanhamentos" class="btn px-5 py-2 fw-bold" style="background: #371406; color: #371406; border-radius: 12px;">Cancelar</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </form>
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {

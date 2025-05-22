@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- HTML -->
+<div id="grid" class="grid">
+    <div class="item">Item 1</div>
+    <div class="item">Item 2</div>
+    <!-- ... -->
+    <div class="item">Item 20</div>
+  </div>
+  
+  <!-- CSS -->
+  <style>
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 10px;
+      max-width: 800px;
+      margin: 30px auto;
+    }
+    .item {
+      background: white;
+      border: 1px solid #ccc;
+      padding: 30px;
+      text-align: center;
+      cursor: grab;
+    }
+  </style>
+  
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+  <script>
+    new Sortable(document.getElementById('grid'), {
+      animation: 150
+    });
+  </script>
+  
+</body>
+</html>

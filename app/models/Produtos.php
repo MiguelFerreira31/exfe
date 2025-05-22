@@ -37,7 +37,7 @@ class Produtos extends Model
     }
 
 
-    public function listarCafe($limite = 4)
+    public function listarCafe($limite)
     {
         $sql = "SELECT * 
             FROM tbl_produto 

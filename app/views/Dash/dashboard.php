@@ -55,6 +55,7 @@ $dados['acompanhamentos'] = $acompanhamentos;
 
 ?>
 
+
 <body class="g-sidenav-show light-mode">
   <div class="bg-dash min-height-300 position-absolute w-100"></div>
 
