@@ -171,7 +171,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="cpf_cnpj_funcionario" class="form-control-label">CPF ou CNPJ</label>
-                                    <input class="form-control" type="text" id="cpf_cnpj_funcionario" name="cpf_cnpj_funcionario" value="<?php echo $funcionarios['cpf_cnpj_funcionario'] ?? ''; ?>" required>
+                                    <input class="form-control" type="text" id="cpf_cnpj" name="cpf_cnpj" value="<?php echo $funcionarios['cpf_cnpj'] ?? ''; ?>" required>
                                 </div>
                             </div>
 

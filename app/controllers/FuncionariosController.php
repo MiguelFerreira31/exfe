@@ -218,7 +218,7 @@ class FuncionariosController extends Controller
             $foto_funcionario                   = filter_input(INPUT_POST, 'foto_funcionario', FILTER_SANITIZE_SPECIAL_CHARS);
             $nasc_funcionario                   = filter_input(INPUT_POST, 'nasc_funcionario', FILTER_SANITIZE_NUMBER_FLOAT);
             $senha_funcionario                  = filter_input(INPUT_POST, 'senha_funcionario', FILTER_SANITIZE_NUMBER_FLOAT);
-            $cpf_cnpj                           = filter_input(INPUT_POST, 'cpf_cnpj_funcionario', FILTER_SANITIZE_SPECIAL_CHARS);
+            $cpf_cnpj                           = filter_input(INPUT_POST, 'cpf_cnpj', FILTER_SANITIZE_SPECIAL_CHARS);
             $status_funcionario                 = filter_input(INPUT_POST, 'status_funcionario', FILTER_SANITIZE_SPECIAL_CHARS);
             $telefone_funcionario               = filter_input(INPUT_POST, 'telefone_funcionario', FILTER_SANITIZE_SPECIAL_CHARS);
             $endereco_funcionario               = filter_input(INPUT_POST, 'endereco_funcionario', FILTER_SANITIZE_SPECIAL_CHARS);

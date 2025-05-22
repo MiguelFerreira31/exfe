@@ -2,26 +2,36 @@
 
 class ApiController extends Controller
 {
- 
- 
+
+
+    private $cafeModel;
+
     public function __construct()
     {
-      
+
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        // Instaciar o modelo cafe
+        $this->cafeModel = new Produtos();
     }
 
- 
     public function menu()
     {
         $dados = array();
         $dados['titulo'] = 'Menu - Exfe';
 
 
-        $cafeModel = new Produtos();
-        $cafes = $cafeModel->ListarCafe();
+
+        $cafes =  $this->cafeModel->listarCafe(4);
         $dados['cafes'] = $cafes;
 
+        $cafeGrid =  $this->cafeModel->listarCafe(6);
+        $dados['cafeGrid'] = $cafeGrid;
 
-        $this->carregarViews('cardapio',$dados);
+
+        $this->carregarViews('cardapio', $dados);
     }
 
 
@@ -35,10 +45,6 @@ class ApiController extends Controller
         $mesas = $mesaModel->listarMesa();
         $dados['mesas'] = $mesas;
 
-        $this->carregarViews('layout',$dados);
+        $this->carregarViews('layout', $dados);
     }
-
-
-
- 
 }

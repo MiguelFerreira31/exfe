@@ -37,19 +37,20 @@ class Produtos extends Model
     }
 
 
-    public function listarCafe()
+    public function listarCafe($limite = 4)
     {
-
         $sql = "SELECT * 
-                        FROM tbl_produto 
-                        WHERE status_produto = 'Ativo' 
-                        ORDER BY RAND() 
-                        LIMIT 5;";
+            FROM tbl_produto 
+            WHERE status_produto = 'Ativo' 
+            ORDER BY RAND() 
+            LIMIT :limite;";
 
-        $stmt = $this->db->query($sql);
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':limite', (int)$limite, PDO::PARAM_INT);
+        $stmt->execute();
+
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
 
 
 
@@ -63,7 +64,7 @@ class Produtos extends Model
     }
 
 
-  public function ativarProduto($id)
+    public function ativarProduto($id)
     {
 
         $sql = "UPDATE tbl_produto SET status_produto = 'Ativo' WHERE id_produto = :id_produto";

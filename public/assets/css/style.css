@@ -1783,9 +1783,9 @@ html body main #sobre .sobreLeft p {
   font-size: 1.5em;
 }
 html body main #sobre .sobreLeft img {
-  width: 600px;
-  height: 700px;
-  border-radius: 10%;
+  width: 600px !important;
+  height: 700px !important;
+  border-radius: 10% !important;
 }
 html body main #sobre .sobreRight {
   display: flex;
@@ -1796,9 +1796,9 @@ html body main #sobre .sobreRight {
   gap: 20px;
 }
 html body main #sobre .sobreRight img {
-  width: 600px;
-  height: 700px;
-  border-radius: 10%;
+  width: 600px !important;
+  height: 700px !important;
+  border-radius: 10% !important;
 }
 html body main #sobre .sobreRight h3 {
   font-weight: bold;
@@ -2405,7 +2405,6 @@ html body main #avaliacao {
   flex-direction: column;
   max-width: 100dvw !important;
   overflow: hidden;
-  margin-top: 5%;
   gap: 50px;
 }
 html body main #avaliacao .title {
