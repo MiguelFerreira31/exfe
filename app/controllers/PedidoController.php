@@ -28,6 +28,23 @@ class PedidoController extends Controller
         $this->carregarViews('dash/dashboard', $dados);
     }
 
+
+    public function detalhe($id = null)
+    {
+        $dados = array();
+
+        $pedidosModel = new Pedido();
+        $pedidos = $pedidosModel->getPedidoById($id);
+        $dados['pedido'] = $pedidos;
+      
+
+        $dados['conteudo'] = 'dash/pedido/detalhe';
+        $this->carregarViews('dash/dashboard', $dados);
+    }
+
+
+
+
     public function adicionar()
     {
         $dados = array();

@@ -48,6 +48,12 @@ $totalMesaDesoModel = new Mesa();
 $totalMesaDeso = $totalMesaDesoModel->getContarMesaDeso();
 $dados['totalMesaDeso'] = $totalMesaDeso;
 
+$totalPedidoModel = new Pedido();
+$totalPedido = $totalPedidoModel->contarPedidos();
+$dados['totalPedido'] = $totalPedido;
+
+
+
 
 $acompanhamentosModel = new Acompanhamento();
 $acompanhamentos = $acompanhamentosModel->getListarAcompanhamentos();
@@ -64,345 +70,425 @@ $dados['acompanhamentos'] = $acompanhamentos;
     id="sidenav-main"
     style="background-color: #fffaf3; border-radius: 1rem; box-shadow: 0 4px 12px rgba(57, 24, 10, 0.15); border: 2px solid #f0c9a9;">
 
-    <div class="sidenav-header">
-      <i
-        class="fas fa-times p-3 cursor-pointer position-absolute end-0 top-0 d-none d-xl-none"
-        aria-hidden="true"
-        id="iconSidenav"
-        style="color: #9e675f; opacity: 0.5;"></i>
+<style>
+  .sidenav-header {
+    position: relative;
+    padding: 1rem;
+  }
 
-      <a class="navbar-brand m-0" href="https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html" target="_blank">
-        <img
-          src="<?= BASE_URL ?>assets/imgDash/coffeLogo.png"
-          width="26px"
-          height="26px"
-          class="navbar-brand-img h-100"
-          alt="main_logo" />
-        <span class="ms-1 font-weight-bold" style="color: #371406;">Dashboard EXFE</span>
+  .sidenav-header i {
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: opacity 0.3s;
+  }
+
+  .sidenav-header i:hover {
+    opacity: 1;
+  }
+
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .navbar-brand span {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-left: 0.5rem;
+    color: #371406;
+  }
+
+  .sidenav-header hr {
+    border-color: #d3c2b5;
+    opacity: 0.7;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.3rem;
+    color: #371406;
+    transition: background 0.2s ease;
+  }
+
+  .nav-link:hover {
+    background-color: #ffe4c7;
+  }
+
+  .icon {
+    width: 36px;
+    height: 36px;
+    background-color: #ffd8b9;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .submenu-custom {
+    background-color: transparent;
+    margin-top: 0.3rem;
+  }
+
+  .submenu-custom a {
+    font-size: 0.9rem;
+    padding-left: 1.5rem;
+    color: #371406;
+  }
+
+  .dropdown-toggle-custom {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .dropdown-toggle-custom:hover {
+    background-color: #ffe4c7;
+  }
+
+  .dropdown-toggle-custom .bi-chevron-down {
+    transition: transform 0.2s ease;
+  }
+
+  .dropdown-toggle-custom[aria-expanded="true"] .bi-chevron-down {
+    transform: rotate(180deg);
+  }
+
+  .nav-item h6 {
+    margin-top: 1rem;
+    color: #9e675f;
+    font-weight: bold;
+    opacity: 0.85;
+    font-size: 0.75rem;
+    padding-left: 1rem;
+  }
+</style>
+
+<!-- Sidenav Header -->
+<div class="sidenav-header">
+  <i class="fas fa-times position-absolute end-0 top-0 d-xl-none" id="iconSidenav" style="color: #9e675f; opacity: 0.5;"></i>
+
+  <a class="navbar-brand m-0" href="<?= BASE_URL ?>dashboard">
+    <img src="<?= BASE_URL ?>assets/imgDash/coffeLogo.png" width="26px" height="26px" class="navbar-brand-img h-100" alt="main_logo" />
+    <span>Dashboard EXFE</span>
+  </a>
+</div>
+
+<hr class="horizontal mt-0" />
+
+<!-- Nav Items -->
+<div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
+  <ul class="navbar-nav">
+
+    <li class="nav-item">
+      <a class="nav-link" href="<?= BASE_URL ?>dashboard">
+        <div class="icon"><i class="fas fa-chart-line"></i></div>
+        <span class="nav-link-text ms-2">Dashboard</span>
       </a>
-    </div>
+    </li>
 
-    <hr class="horizontal mt-0" style="border-color: #d3c2b5; opacity: 0.7;" />
+    <li class="nav-item">
+      <a class="nav-link" href="<?= BASE_URL ?>contato/listar">
+        <div class="icon"><i class="fas fa-envelope-open-text"></i></div>
+        <span class="nav-link-text ms-2">Contatos</span>
+      </a>
+    </li>
 
-    <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
-      <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="<?= BASE_URL ?>pedido/listar">
+        <div class="icon"><i class="fas fa-receipt"></i></div>
+        <span class="nav-link-text ms-2">Pedidos</span>
+      </a>
+    </li>
 
-        <li class="nav-item">
-          <a class="nav-link " href="<?= BASE_URL ?>dashboard"
-            style=" border-radius: 0.5rem;">
-            <div
-              class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
-              style="background-color: #ffd8b9; border-radius: 0.5rem;">
-              <i class="ni ni-tv-2 text-sm" style="color: #371406; opacity: 0.9;"></i>
-            </div>
-            <span class="nav-link-text ms-1">Dashboard</span>
-          </a>
-        </li>
+    <li class="nav-item">
+      <a class="nav-link" href="<?= BASE_URL ?>clientes/listar">
+        <div class="icon"><i class="fas fa-users"></i></div>
+        <span class="nav-link-text ms-2">Clientes</span>
+      </a>
+    </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="<?= BASE_URL ?>contato/listar"
-            style="color: #371406; border-radius: 0.5rem;">
-            <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
-              style="background-color: #ffd8b9; border-radius: 0.5rem;">
-              <i class="ni ni-credit-card text-sm" style="opacity: 0.9;"></i>
+    <li class="nav-item">
+      <a class="nav-link" href="<?= BASE_URL ?>funcionarios/listar">
+        <div class="icon"><i class="fas fa-user-tie"></i></div>
+        <span class="nav-link-text ms-2">Funcionários</span>
+      </a>
+    </li>
 
-            </div>
-            <span class="nav-link-text ms-1">Contatos</span>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="<?= BASE_URL ?>pedido/listar"
-            style="color: #371406; border-radius: 0.5rem;">
-            <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
-              style="background-color: #ffd8b9; border-radius: 0.5rem;">
-              <i class="ni ni-credit-card text-sm" style="opacity: 0.9;"></i>
-
-            </div>
-            <span class="nav-link-text ms-1">Pedidos</span>
-          </a>
-        </li>
-
-
-
-        <!-- Novo item: Clientes -->
-        <li class="nav-item">
-          <a class="nav-link" href="<?= BASE_URL ?>clientes/listar"
-            style="color: #371406; border-radius: 0.5rem;">
-            <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
-              style="background-color: #ffd8b9; border-radius: 0.5rem;">
-              <i class="ni ni-single-02 text-sm" style="color: #371406; opacity: 0.9;"></i>
-            </div>
-            <span class="nav-link-text ms-1">Clientes</span>
-          </a>
-        </li>
-
-
-        <li class="nav-item">
-          <a class="nav-link" href="<?= BASE_URL ?>funcionarios/listar"
-            style="color: #371406; border-radius: 0.5rem;">
-            <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
-              style="background-color: #ffd8b9; border-radius: 0.5rem;">
-              <i class="ni ni-badge text-sm" style="color: #371406; opacity: 0.9;"></i>
-            </div>
-            <span class="nav-link-text ms-1">Funcionários</span>
-          </a>
-        </li>
-
-        <!-- Novo item: Serviços -->
-
-        <li class="nav-item dropdown-menu-custom">
-          <a href="#" class="nav-link dropdown-toggle-custom" style="color: #371406; border-radius: 0.5rem;">
-            <div class="d-flex align-items-center">
-              <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
-                style="background-color: #ffd8b9; border-radius: 0.5rem;">
-                <i class="ni ni-settings text-sm" style="color: #371406; opacity: 0.9;"></i>
-              </div>
-              <span class="nav-link-text">Mesas</span>
-            </div>
-            <i class="bi bi-chevron-down ms-auto"></i>
-          </a>
-
-          <ul class="nav flex-column submenu-custom" style="display: none; padding-left: 2rem;">
-            <li class="nav-item">
-              <a class="nav-link" href="<?= BASE_URL ?>mesa/listar/">
-                <i class="bi bi-box-seam me-2" style="color: #371406;"></i> Ativas
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<?= BASE_URL ?>mesa/desativadas">
-                <i class="bi bi-boxes me-2" style="color: #371406;"></i> Inativas
-              </a>
-            </li>
-          </ul>
-        </li>
-
-
-        <li class="nav-item dropdown-menu-custom">
-          <a href="#" class="nav-link dropdown-toggle-custom" style="color: #371406; border-radius: 0.5rem;">
-            <div class="d-flex align-items-center">
-              <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
-                style="background-color: #ffd8b9; border-radius: 0.5rem;">
-                <i class="ni ni-settings text-sm" style="color: #371406; opacity: 0.9;"></i>
-              </div>
-              <span class="nav-link-text">Produtos</span>
-            </div>
-            <i class="bi bi-chevron-down ms-auto"></i>
-          </a>
-
-          <ul class="nav flex-column submenu-custom" style="display: none; padding-left: 2rem;">
-            <li class="nav-item">
-              <a class="nav-link" href="<?= BASE_URL ?>cafes/listar/">
-                <i class="bi bi-box-seam me-2" style="color: #371406;"></i> Bebidas
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<?= BASE_URL ?>acompanhamentos/listar">
-                <i class="bi bi-boxes me-2" style="color: #371406;"></i> Acompanhamentos
-              </a>
-            </li>
-          </ul>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="<?= BASE_URL ?>newsletter/listar"
-            style="color: #371406; border-radius: 0.5rem;">
-            <div class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
-              style="background-color: #ffd8b9; border-radius: 0.5rem;">
-              <i class="ni ni-settings text-sm" style="color: #371406; opacity: 0.9;"></i>
-            </div>
-            <span class="nav-link-text ms-1">Newsletter</span>
-          </a>
-        </li>
-
-
-        <li class="nav-item mt-3">
-          <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder"
-            style="color: #9e675f; opacity: 0.85;">
-            Account pages
-          </h6>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="<?= BASE_URL ?>funcionarios/perfil"
-            style="color: #371406; border-radius: 0.5rem;">
-            <div
-              class="icon icon-shape icon-sm text-center me-2 d-flex align-items-center justify-content-center"
-              style="background-color: #ffd8b9; border-radius: 0.5rem;">
-              <i class="ni ni-single-02 text-sm" style="color: #371406; opacity: 0.9;"></i>
-            </div>
-            <span class="nav-link-text ms-1">Perfil</span>
-          </a>
-        </li>
-
+    <!-- Dropdown: Mesas -->
+    <li class="nav-item dropdown-menu-custom">
+      <a href="#" class="nav-link dropdown-toggle-custom" data-bs-toggle="collapse" data-bs-target="#mesasSub" aria-expanded="false">
+        <div class="icon"><i class="fas fa-chair"></i></div>
+        <span class="nav-link-text ms-2">Mesas</span>
+        <i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul class="submenu-custom collapse" id="mesasSub">
+        <li class="nav-item"><a class="nav-link" href="<?= BASE_URL ?>mesa/listar/"><i class="bi bi-check2-square me-2"></i>Ativas</a></li>
+        <li class="nav-item"><a class="nav-link" href="<?= BASE_URL ?>mesa/desativadas"><i class="bi bi-x-square me-2"></i>Inativas</a></li>
       </ul>
-    </div>
+    </li>
+
+    <!-- Dropdown: Produtos -->
+    <li class="nav-item dropdown-menu-custom">
+      <a href="#" class="nav-link dropdown-toggle-custom" data-bs-toggle="collapse" data-bs-target="#produtosSub" aria-expanded="false">
+        <div class="icon"><i class="fas fa-mug-hot"></i></div>
+        <span class="nav-link-text ms-2">Produtos</span>
+        <i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul class="submenu-custom collapse" id="produtosSub">
+        <li class="nav-item"><a class="nav-link" href="<?= BASE_URL ?>cafes/listar/"><i class="bi bi-cup-hot me-2"></i>Bebidas</a></li>
+        <li class="nav-item"><a class="nav-link" href="<?= BASE_URL ?>acompanhamentos/listar"><i class="bi bi-bag-check me-2"></i>Acompanhamentos</a></li>
+      </ul>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="<?= BASE_URL ?>newsletter/listar">
+        <div class="icon"><i class="fas fa-paper-plane"></i></div>
+        <span class="nav-link-text ms-2">Newsletter</span>
+      </a>
+    </li>
+
+    <li class="nav-item mt-3">
+      <h6>Account Pages</h6>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="<?= BASE_URL ?>funcionarios/perfil">
+        <div class="icon"><i class="fas fa-id-badge"></i></div>
+        <span class="nav-link-text ms-2">Perfil</span>
+      </a>
+    </li>
+
+  </ul>
+</div>
 
   </aside>
 
   <main class="main-content position-relative border-radius-lg">
     <!-- Navbar -->
-    <nav
-      class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl"
-      d="navbarBlur"
-      data-scroll="false"
-      style="background-color: #371406; border-radius: 1rem; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+    <style>
+  .navbar-custom {
+    background-color: #371406;
+    border-radius: 1rem;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+  }
 
-      <div class="container-fluid py-1 px-3">
-        <nav aria-label="breadcrumb">
-          <ol
-            class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5"
-            style="color: #ffd8b9;">
-            <li class="breadcrumb-item text-sm">
-              <a class="opacity-5 text-white" href="javascript:;" style="color: #f0c9a9;">Páginas</a>
-            </li>
-            <li class="breadcrumb-item text-sm text-white active" aria-current="page" style="color: #ffffff;">
-              Dashboard
-            </li>
-          </ol>
-          <h6 class="font-weight-bolder text-white mb-0" style="color: #ffffff;">Dashboard</h6>
-        </nav>
+  .navbar-custom .breadcrumb {
+    color: #ffd8b9;
+  }
 
-        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-            <div class="input-group" style="background-color: #fffaf3; border-radius: 0.5rem;">
-              <span class="input-group-text text-body" style="background-color: #ffd8b9; border: none;">
-                <i class="fas fa-search" aria-hidden="true" style="color: #ffd8b9;"></i>
-              </span>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Pesquise aqui..."
-                style="border: none; background-color: transparent; color: #ffd8b9;" />
-            </div>
-          </div>
+  .navbar-custom .breadcrumb-item a {
+    color: #f0c9a9;
+    opacity: 0.85;
+    transition: color 0.2s;
+  }
 
-          <ul class="navbar-nav justify-content-end">
-            <li class="nav-item d-flex align-items-center">
-              <a
-                href="<?= BASE_URL ?>auth/sair"
-                class="nav-link text-white font-weight-bold px-0"
-                style="color: #ffd8b9;">
-                <i class="fa fa-user me-sm-1"></i>
-                <span class="d-sm-inline d-none">Sair</span>
-              </a>
-            </li>
+  .navbar-custom .breadcrumb-item.active {
+    color: #ffffff;
+    font-weight: bold;
+  }
 
-            <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link p-0" id="iconNavbarSidenav">
-                <div class="sidenav-toggler-inner">
-                  <i class="sidenav-toggler-line" style="background-color: #fff;"></i>
-                  <i class="sidenav-toggler-line" style="background-color: #fff;"></i>
-                  <i class="sidenav-toggler-line" style="background-color: #fff;"></i>
-                </div>
-              </a>
-            </li>
+  .navbar-custom .form-control::placeholder {
+    color: #d3a06f;
+  }
 
-            <li class="nav-item px-3 d-flex align-items-center">
-              <a href="javascript:;" class="nav-link p-0" style="color: #ffd8b9;">
-                <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
-              </a>
-            </li>
+  .navbar-custom .input-group {
+    background-color: #fff5e1;
+    border-radius: 0.5rem;
+    border: 1px solid #ffd8b9;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
 
-            <li class="nav-item dropdown pe-2 d-flex align-items-center">
-              <a
-                href="javascript:;"
-                class="nav-link p-0"
-                id="dropdownMenuButton"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                style="color: #ffd8b9;">
-                <i class="fa fa-bell cursor-pointer"></i>
-              </a>
-              <ul
-                class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4"
-                aria-labelledby="dropdownMenuButton"
-                style="background-color: #fffaf3; border: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border-radius: 0.75rem;">
+  .navbar-custom .input-group-text {
+    background-color: #ffd8b9;
+    border: none;
+    color: #9a5c1f;
+  }
 
-                <!-- Notificação 1 -->
-                <li class="mb-2">
-                  <a class="dropdown-item border-radius-md" href="javascript:;">
-                    <div class="d-flex py-1">
-                      <div class="my-auto">
-                        <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3" />
-                      </div>
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">New message</span> from Laur
-                        </h6>
-                        <p class="text-xs text-secondary mb-0">
-                          <i class="fa fa-clock me-1"></i> 13 minutes ago
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
+  .navbar-custom .form-control {
+    background-color: transparent;
+    border: none;
+    color: #5e3c2d;
+  }
 
-                <!-- Notificação 2 -->
-                <li class="mb-2">
-                  <a class="dropdown-item border-radius-md" href="javascript:;">
-                    <div class="d-flex py-1">
-                      <div class="my-auto">
-                        <img src="../assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm bg-gradient-dark me-3" />
-                      </div>
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="text-sm font-weight-normal mb-1">
-                          <span class="font-weight-bold">New album</span> by Travis Scott
-                        </h6>
-                        <p class="text-xs text-secondary mb-0">
-                          <i class="fa fa-clock me-1"></i> 1 day
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
+  .navbar-custom .nav-link {
+    color: #ffd8b9;
+    transition: color 0.2s;
+  }
 
-                <!-- Notificação 3 -->
-                <li>
-                  <a class="dropdown-item border-radius-md" href="javascript:;">
-                    <div class="d-flex py-1">
-                      <div class="avatar avatar-sm bg-gradient-secondary me-3 my-auto">
-                        <svg width="12px" height="12px" viewBox="0 0 43 36" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M43,10.7482083 L43,3.58333333 C43,1.60354167 ..." fill="#ffffff" opacity="0.6"></path>
-                          <path d="M0,16.125 L0,32.25 ..." fill="#ffffff"></path>
-                        </svg>
-                      </div>
-                      <div class="d-flex flex-column justify-content-center">
-                        <h6 class="text-sm font-weight-normal mb-1">
-                          Payment successfully completed
-                        </h6>
-                        <p class="text-xs text-secondary mb-0">
-                          <i class="fa fa-clock me-1"></i> 2 days
-                        </p>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-            </li>
-          </ul>
+  .navbar-custom .nav-link:hover {
+    color: #ffffff;
+  }
+
+  .navbar-custom .sidenav-toggler-line {
+    background-color: #fff;
+  }
+</style>
+
+<nav
+  class="navbar navbar-main navbar-expand-lg px-0 mx-4 navbar-custom"
+  data-navbar-scroll="false">
+
+  <div class="container-fluid py-2 px-3">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+        <li class="breadcrumb-item text-sm">
+          <a href="javascript:;">Páginas</a>
+        </li>
+        <li class="breadcrumb-item text-sm active" aria-current="page">
+          Dashboard
+        </li>
+      </ol>
+      <h6 class="font-weight-bolder text-white mb-0">Dashboard</h6>
+    </nav>
+
+    <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+      <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="fas fa-search"></i>
+          </span>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Pesquise aqui..." />
         </div>
       </div>
-    </nav>
+
+      <ul class="navbar-nav justify-content-end">
+        <li class="nav-item d-flex align-items-center">
+          <a href="<?= BASE_URL ?>auth/sair" class="nav-link font-weight-bold px-0">
+            <i class="fa fa-user me-sm-1"></i>
+            <span class="d-sm-inline d-none">Sair</span>
+          </a>
+        </li>
+
+        <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+          <a href="javascript:;" class="nav-link p-0" id="iconNavbarSidenav">
+            <div class="sidenav-toggler-inner">
+              <i class="sidenav-toggler-line"></i>
+              <i class="sidenav-toggler-line"></i>
+              <i class="sidenav-toggler-line"></i>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 
     <!-- End Navbar -->
     <div class="container-fluid py-4">
       <div class="row">
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card" style="background-color: #fff5e1; border: none; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
+
+        <style>
+          .dashboard-card {
+            background: linear-gradient(145deg, #fffaf2, #fff0d5);
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out;
+          }
+
+          .dashboard-card:hover {
+            transform: translateY(-5px);
+          }
+
+          .dashboard-card .numbers p {
+            font-size: 0.85rem;
+            color: #9a5c1fad;
+            font-weight: 600;
+            letter-spacing: 1px;
+          }
+
+          .dashboard-card .numbers h5 {
+            color: #5e3c2d;
+            font-size: 1.6rem;
+            font-weight: bold;
+          }
+
+          .dashboard-icon {
+            background-color: #371406;
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            font-size: 1.25rem;
+            transition: transform 0.3s;
+          }
+
+          .dashboard-icon:hover {
+            transform: scale(1.1);
+          }
+        </style>
+
+        <div class="row">
+          <div class="col-xl-3 col-sm-6 mb-4">
+            <div class="card dashboard-card">
+              <div class="card-body p-3">
+                <div class="d-flex justify-content-between">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase" style="color: #9a5c1fad; font-weight: bold;">
-                      Total de Mesas
-                    </p>
-                    <h5 class="font-weight-bolder" style="color: #9a5c1fad;"><?php echo $totalMesa['total_mesas']; ?></h5>
+                    <p>Total de Mesas</p>
+                    <h5><?php echo $totalMesa['total_mesas']; ?></h5>
+                  </div>
+                  <div class="dashboard-icon">
+                    <i class="ni ni-shop"></i>
                   </div>
                 </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape text-center rounded-circle" style="background-color: #371406; box-shadow: 0 4px 8px rgba(0,0,0,0.1); color: #fff;">
-                    <i class="ni ni-shop text-lg" style="opacity: 0.8;"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-sm-6 mb-4">
+            <div class="card dashboard-card">
+              <div class="card-body p-3">
+                <div class="d-flex justify-content-between">
+                  <div class="numbers">
+                    <p>Mesas Desocupadas</p>
+                    <h5><?php echo $totalMesaDeso['total_mesas_deso']; ?></h5>
+                  </div>
+                  <div class="dashboard-icon">
+                    <i class="ni ni-shop"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-sm-6 mb-4">
+            <div class="card dashboard-card">
+              <div class="card-body p-3">
+                <div class="d-flex justify-content-between">
+                  <div class="numbers">
+                    <p>Novos Clientes</p>
+                    <h5><?php echo $totalCliente['total_clientes']; ?></h5>
+                  </div>
+                  <div class="dashboard-icon">
+                    <i class="ni ni-paper-diploma"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-sm-6 mb-4">
+            <div class="card dashboard-card">
+              <div class="card-body p-3">
+                <div class="d-flex justify-content-between">
+                  <div class="numbers">
+                    <p>Pedidos Abertos</p>
+                    <h5><?php echo $totalPedido['total_pedidos_abertos']; ?></h5>
+                  </div>
+                  <div class="dashboard-icon">
+                    <i class="ni ni-cart"></i>
                   </div>
                 </div>
               </div>
@@ -410,76 +496,6 @@ $dados['acompanhamentos'] = $acompanhamentos;
           </div>
         </div>
 
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card" style="background-color: #fff5e1; border: none; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase" style="color: #9a5c1fad; font-weight: bold;">
-                      Mesas Desocupadas
-                    </p>
-                    <h5 class="font-weight-bolder" style="color: #9a5c1fad;"><?php echo $totalMesaDeso['total_mesas_deso']; ?></h5>
-                  </div>
-                </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape text-center rounded-circle" style="background-color: #371406; box-shadow: 0 4px 8px rgba(0,0,0,0.1); color: #fff;">
-                    <i class="ni ni-shop text-lg" style="opacity: 0.8;"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-          <div class="card" style="background-color: #fff5e1; border: none; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase" style="color: #9a5c1fad; font-weight: bold;">
-                      Novos Clientes
-                    </p>
-                    <h5 class="font-weight-bolder" style="color: #9a5c1fad;"><?php echo $totalCliente['total_clientes']; ?></h5>
-
-                  </div>
-                </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape text-center rounded-circle" style="background-color: #371406; box-shadow: 0 4px 8px rgba(0,0,0,0.1); color: #fff;">
-                    <i class="ni ni-paper-diploma text-lg" style="opacity: 0.8;"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-xl-3 col-sm-6">
-          <div class="card" style="background-color: #fff5e1; border: none; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase" style="color: #9a5c1fad; font-weight: bold;">
-                      Vendas
-                    </p>
-                    <h5 class="font-weight-bolder" style="color: #9a5c1fad;">R$40,430</h5>
-                    <p class="mb-0" style="color: #7a4f2f;">
-                      <span class="text-success text-sm font-weight-bolder">+5%</span>
-                      Do que no mês passado
-                    </p>
-                  </div>
-                </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape text-center rounded-circle" style="background-color: #371406; box-shadow: 0 4px 8px rgba(0,0,0,0.1); color: #fff;">
-                    <i class="ni ni-cart text-lg" style="opacity: 0.8;"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
       <div class="row mt-4">

@@ -31,15 +31,13 @@ $status = ucfirst(strtolower($_GET['status'] ?? 'Ativo'));
             </select>
         </form>
 
-        <?php if ($status !== 'Inativo'): ?>
-            <a href="<?= BASE_URL ?>funcionarios/adicionar" class="btn btn-primary">Adicionar Funcionário</a>
-        <?php endif; ?>
+      
     </div>
 
 
     <div class="table-responsive rounded-3 shadow-lg p-3 bg-white">
         <table class="table table-hover text-center align-middle">
-            <thead class="table-light">
+            <thead>
                 <tr>
                     <th>Foto</th>
                     <th>Nome</th>

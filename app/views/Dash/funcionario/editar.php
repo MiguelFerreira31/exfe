@@ -100,7 +100,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     }
 </style>
 
-<form method="POST" action="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/funcionarios/editar/<?php echo $funcionarios['id_funcionario']; ?>" enctype="multipart/form-data">
+<form method="POST" action="<?php BASE_URL?>funcionarios/editar/<?php echo $funcionarios['id_funcionario']; ?>" enctype="multipart/form-data">
     <div class="container-fluid py-4 glass-container">
         <div class="row">
             <!-- Imagem -->
