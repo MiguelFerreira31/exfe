@@ -1,0 +1,367 @@
+Listagem de caminhos de pasta
+O número de série do volume é B430-6A9D
+C:.
+¦   estrutura.txt
+¦   README.md
+¦   
++---.vscode
+¦       sftp.json
+¦       
++---app
+¦   +---controllers
+¦   ¦       AcompanhamentosController.php
+¦   ¦       ApiController.php
+¦   ¦       AuthController.php
+¦   ¦       AvaliacaoController.php
+¦   ¦       BlogController.php
+¦   ¦       CafesController.php
+¦   ¦       ClientesController.php
+¦   ¦       ContatoController.php
+¦   ¦       DashboardController.php
+¦   ¦       FuncionariosController.php
+¦   ¦       HomeController.php
+¦   ¦       LojaController.php
+¦   ¦       MenuController.php
+¦   ¦       MesaController.php
+¦   ¦       NewsletterController.php
+¦   ¦       PedidoController.php
+¦   ¦       ThanksController.php
+¦   ¦       
+¦   +---models
+¦   ¦       Acompanhamento.php
+¦   ¦       Avaliacao.php
+¦   ¦       Categoria.php
+¦   ¦       Cliente.php
+¦   ¦       Contato.php
+¦   ¦       Cupom.php
+¦   ¦       Especialidades.php
+¦   ¦       Estado.php
+¦   ¦       Fornecedor.php
+¦   ¦       Funcionario.php
+¦   ¦       Intensidade.php
+¦   ¦       Leites.php
+¦   ¦       Mesa.php
+¦   ¦       Newsletter.php
+¦   ¦       Pedido.php
+¦   ¦       Produtos.php
+¦   ¦       Status.php
+¦   ¦       TipoProduto.php
+¦   ¦       
+¦   +---views
+¦       ¦   blog.php
+¦       ¦   cardapio.php
+¦       ¦   contato.php
+¦       ¦   home.php
+¦       ¦   layout.php
+¦       ¦   loja.php
+¦       ¦   menu.php
+¦       ¦   thanks.php
+¦       ¦   
+¦       +---dash
+¦       ¦   ¦   dashboard-cliente.php
+¦       ¦   ¦   dashboard-funcionario.php
+¦       ¦   ¦   dashboard.php
+¦       ¦   ¦   
+¦       ¦   +---acompanhamento
+¦       ¦   ¦       adicionar.php
+¦       ¦   ¦       desativados.php
+¦       ¦   ¦       editar.php
+¦       ¦   ¦       listar.php
+¦       ¦   ¦       
+¦       ¦   +---avaliacao
+¦       ¦   ¦       adicionar.php
+¦       ¦   ¦       desativados.php
+¦       ¦   ¦       editar.php
+¦       ¦   ¦       listar.php
+¦       ¦   ¦       perfil.php
+¦       ¦   ¦       
+¦       ¦   +---cliente
+¦       ¦   ¦       adicionar.php
+¦       ¦   ¦       editar.php
+¦       ¦   ¦       listar.php
+¦       ¦   ¦       perfil.php
+¦       ¦   ¦       
+¦       ¦   +---contato
+¦       ¦   ¦       listar.php
+¦       ¦   ¦       
+¦       ¦   +---funcionario
+¦       ¦   ¦       adicionar.php
+¦       ¦   ¦       editar.php
+¦       ¦   ¦       listar.php
+¦       ¦   ¦       perfil.php
+¦       ¦   ¦       
+¦       ¦   +---mesa
+¦       ¦   ¦       adicionar.php
+¦       ¦   ¦       desativadas.php
+¦       ¦   ¦       editar.php
+¦       ¦   ¦       listar.php
+¦       ¦   ¦       
+¦       ¦   +---newsletter
+¦       ¦   ¦       listar.php
+¦       ¦   ¦       
+¦       ¦   +---pedido
+¦       ¦   ¦       listar.php
+¦       ¦   ¦       
+¦       ¦   +---produto
+¦       ¦   ¦       adicionar.php
+¦       ¦   ¦       desativados.php
+¦       ¦   ¦       editar.php
+¦       ¦   ¦       listar.php
+¦       ¦   ¦       
+¦       ¦   +---servico
+¦       ¦           listar.php
+¦       ¦           
+¦       +---template
+¦               avaliacao.php
+¦               banner-title.php
+¦               banner.php
+¦               blog.php
+¦               contato.php
+¦               desconto.php
+¦               footer.php
+¦               graos.php
+¦               head.php
+¦               header.php
+¦               itemEspecial.php
+¦               produtosEmDestaque.php
+¦               qualidade.php
+¦               sobre.php
+¦               
++---config
+¦       config.php
+¦       
++---core
+¦       Controller.php
+¦       Core.php
+¦       Model.php
+¦       TokenHelper.php
+¦       
++---public
+    ¦   .htaccess
+    ¦   backup_index.html
+    ¦   index.php
+    ¦   mesas.lnk
+    ¦   
+    +---assets
+    ¦   +---css
+    ¦   ¦       argon-dashboard.css
+    ¦   ¦       dash.css
+    ¦   ¦       nucleo-svg.css
+    ¦   ¦       style.css
+    ¦   ¦       style.css.map
+    ¦   ¦       style.scss
+    ¦   ¦       
+    ¦   +---img
+    ¦   ¦       about1.webp
+    ¦   ¦       about2.webp
+    ¦   ¦       apitv.jpg
+    ¦   ¦       aroma_joe.jpg
+    ¦   ¦       bgTv.png
+    ¦   ¦       calendar.png
+    ¦   ¦       caramelo_macchiato.png
+    ¦   ¦       coffee-bean-button.webp
+    ¦   ¦       coffee-beans-dark.png
+    ¦   ¦       coffee-beans.png
+    ¦   ¦       coffee-cup-dark.png
+    ¦   ¦       coffee-cup.png
+    ¦   ¦       coffee_americano.png
+    ¦   ¦       coffee_late.png
+    ¦   ¦       coffe_mocha.png
+    ¦   ¦       cup-coffee-dark.png
+    ¦   ¦       cup-coffee.png
+    ¦   ¦       cup-img.webp
+    ¦   ¦       cup-img2.webp
+    ¦   ¦       cup-img3.webp
+    ¦   ¦       cup-img4.webp
+    ¦   ¦       cup-img5.webp
+    ¦   ¦       curved-arrow.png
+    ¦   ¦       expresso_macchiato.png
+    ¦   ¦       graos-img.webp
+    ¦   ¦       graos-img2.webp
+    ¦   ¦       graos_cafe.webp
+    ¦   ¦       gridCafe.mp4
+    ¦   ¦       group-img.png
+    ¦   ¦       hero-bg.png
+    ¦   ¦       hero-bg2.png
+    ¦   ¦       hero-bg3.png
+    ¦   ¦       hero-bg4.png
+    ¦   ¦       iced_smoked_latte.png
+    ¦   ¦       image-blog.jpg
+    ¦   ¦       image.webp
+    ¦   ¦       img-1.png
+    ¦   ¦       img_bean_desconto.png
+    ¦   ¦       img_coffee_desconto.webp
+    ¦   ¦       logo_facebook.png
+    ¦   ¦       logo_instagram.png
+    ¦   ¦       logo_whatsapp.png
+    ¦   ¦       mesa.png
+    ¦   ¦       milkshake-dark.png
+    ¦   ¦       milkshake.png
+    ¦   ¦       moon.png
+    ¦   ¦       paes.mp4
+    ¦   ¦       pano.jpg
+    ¦   ¦       pao.png
+    ¦   ¦       planta.png
+    ¦   ¦       qualidade_coffee.webp
+    ¦   ¦       seta-graos.png
+    ¦   ¦       sun.png
+    ¦   ¦       videoTv.mp4
+    ¦   ¦       videoTv2.mp4
+    ¦   ¦       white_chocolate.png
+    ¦   ¦       
+    ¦   +---imgDash
+    ¦   ¦   ¦   affBanner.webp
+    ¦   ¦   ¦   apple-icon.png
+    ¦   ¦   ¦   bg-profile.jpg
+    ¦   ¦   ¦   bg1.jpg
+    ¦   ¦   ¦   bg_cliente.jpg
+    ¦   ¦   ¦   bruce-mars.jpg
+    ¦   ¦   ¦   cafeLeite.jpg
+    ¦   ¦   ¦   cafeTradi.jpg
+    ¦   ¦   ¦   cappuBanner.jpg
+    ¦   ¦   ¦   cappuccino.jpg
+    ¦   ¦   ¦   carousel-1.jpg
+    ¦   ¦   ¦   carousel-2.jpg
+    ¦   ¦   ¦   carousel-3.jpg
+    ¦   ¦   ¦   coffe.png
+    ¦   ¦   ¦   coffeBranco.png
+    ¦   ¦   ¦   coffeLogo.png
+    ¦   ¦   ¦   down-arrow-dark.svg
+    ¦   ¦   ¦   down-arrow-white.svg
+    ¦   ¦   ¦   down-arrow.svg
+    ¦   ¦   ¦   favicon.png
+    ¦   ¦   ¦   frappuBanner.jpg
+    ¦   ¦   ¦   frappuccino.jpg
+    ¦   ¦   ¦   home-decor-1.jpg
+    ¦   ¦   ¦   home-decor-2.jpg
+    ¦   ¦   ¦   home-decor-3.jpg
+    ¦   ¦   ¦   ivana-square.jpg
+    ¦   ¦   ¦   ivancik.jpg
+    ¦   ¦   ¦   kal-visuals-square.jpg
+    ¦   ¦   ¦   logo-ct-dark.png
+    ¦   ¦   ¦   logo-ct.png
+    ¦   ¦   ¦   maccBanner.webp
+    ¦   ¦   ¦   macchiato-interna.jpg
+    ¦   ¦   ¦   macchiato.webp
+    ¦   ¦   ¦   marie.jpg
+    ¦   ¦   ¦   mato-grosso-do-sul.png
+    ¦   ¦   ¦   mato-grosso.png
+    ¦   ¦   ¦   minas.png
+    ¦   ¦   ¦   rio-de-janeiro.png
+    ¦   ¦   ¦   sem-foto-produto.jpg
+    ¦   ¦   ¦   team-1.jpg
+    ¦   ¦   ¦   team-2.jpg
+    ¦   ¦   ¦   team-3.jpg
+    ¦   ¦   ¦   team-4.jpg
+    ¦   ¦   ¦   vr-bg.jpg
+    ¦   ¦   ¦   
+    ¦   ¦   +---shapes
+    ¦   ¦           pattern-lines.svg
+    ¦   ¦           shape-1.svg
+    ¦   ¦           shape-2.svg
+    ¦   ¦           shape-3.svg
+    ¦   ¦           wave-down.svg
+    ¦   ¦           wave-up.svg
+    ¦   ¦           waves-gray.svg
+    ¦   ¦           waves-white.svg
+    ¦   ¦           
+    ¦   +---script
+    ¦           argon-dashboard.js
+    ¦           argon-dashboard.js.map
+    ¦           argon-dashboard.min.js
+    ¦           script.js
+    ¦           
+    +---imagens
+    ¦   +---mesas
+    ¦           Disponivel.png
+    ¦           ocupada.png
+    ¦           reservada.png
+    ¦           
+    +---uploads
+    ¦   ¦   sem-foto.jpg
+    ¦   ¦   
+    ¦   +---acompanhamento
+    ¦   ¦       6812ca116ee11.webp
+    ¦   ¦       681379082cb46.png
+    ¦   ¦       68137b2692c1d.webp
+    ¦   ¦       682e791a3fa92.avif
+    ¦   ¦       682e792923109.webp
+    ¦   ¦       682e7934e7515.jpg
+    ¦   ¦       682e793fa5b1b.webp
+    ¦   ¦       682e794bdc58c.avif
+    ¦   ¦       682e7955d8428.webp
+    ¦   ¦       
+    ¦   +---cliente
+    ¦   ¦       67fc5e148cfa0.png
+    ¦   ¦       67fc5f8181636.png
+    ¦   ¦       67fc64894af8c.png
+    ¦   ¦       67fc655c34dc0.png
+    ¦   ¦       67fc6667c9371.png
+    ¦   ¦       67fc689c9b75f.png
+    ¦   ¦       680e3873a9157.jpg
+    ¦   ¦       680e3897459b4.png
+    ¦   ¦       680e3ecc8c380.jpg
+    ¦   ¦       682e76722034e.jpg
+    ¦   ¦       682e767f5dce6.jpg
+    ¦   ¦       682e768e26f32.webp
+    ¦   ¦       anaPaula.jpg
+    ¦   ¦       carlos.png
+    ¦   ¦       sem-foto-cliente.jpg
+    ¦   ¦       
+    ¦   +---funcionario
+    ¦   ¦       67fd2a0139a79.png
+    ¦   ¦       67fd392a425ff.png
+    ¦   ¦       67fd3956862d4.png
+    ¦   ¦       68097805bc385.png
+    ¦   ¦       680b7570363d0.png
+    ¦   ¦       680e504538d14.jpg
+    ¦   ¦       68137fbf1cafc.webp
+    ¦   ¦       681385358df45.png
+    ¦   ¦       682e76a64cef0.webp
+    ¦   ¦       682e76b8dc5ea.webp
+    ¦   ¦       682e76c6ef705.jpg
+    ¦   ¦       682e776a199b0.webp
+    ¦   ¦       682e777a2f1f7.webp
+    ¦   ¦       682e77867fa46.jpg
+    ¦   ¦       682e7793bcad7.jpg
+    ¦   ¦       682e77a157e6c.jpg
+    ¦   ¦       682e77b20f7a2.jpg
+    ¦   ¦       682e77d1466c9.jpg
+    ¦   ¦       682e77e47282a.png
+    ¦   ¦       jesus.jpg
+    ¦   ¦       sem-foto-funcionario.jpg
+    ¦   ¦       
+    ¦   +---mesa
+    ¦   ¦       681a22fa8a074.png
+    ¦   ¦       681b44d30361a.png
+    ¦   ¦       681b47eca9f02.png
+    ¦   ¦       681b51b41eab7.png
+    ¦   ¦       sem-foto-mesa.jpg
+    ¦   ¦       
+    ¦   +---produto
+    ¦           682e7809e1f95.webp
+    ¦           682e781834301.jpg
+    ¦           682e7823e216c.jpg
+    ¦           682e783131f17.webp
+    ¦           682e783cc4eb1.jpg
+    ¦           682e7848c4839.jpg
+    ¦           682e7855e3435.png
+    ¦           682e7864d7686.webp
+    ¦           682e78912db35.jpg
+    ¦           682e78a0bb21a.png
+    ¦           682e78ab84f15.jpg
+    ¦           682e78bb3b19d.png
+    ¦           682e78c8b8f50.jpg
+    ¦           682e7902377ba.jpg
+    ¦           sem-foto-produto.jpg
+    ¦           
+    +---vendors
+        +---phpmailer
+                DSNConfigurator.php
+                Exception.php
+                OAuth.php
+                OAuthTokenProvider.php
+                PHPMailer.php
+                POP3.php
+                SMTP.php
+                

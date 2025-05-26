@@ -11,6 +11,9 @@ class HomeController extends Controller
         $dados['mensagem'] = 'Bem-vindo a Exfé';
 
 
+        $produtosModel = new Produtos();
+        $produtos = $produtosModel->getListarProdutos();
+        $dados['produtos'] = $produtos;
 
         $avaliacaoModel = new Avaliacao();
         $avaliacao = $avaliacaoModel->getAvaliacao();

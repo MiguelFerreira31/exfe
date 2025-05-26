@@ -10,145 +10,47 @@
     <div class="swiper-container mySwiper">
       <div class="swiper-wrapper">
 
-        <div class="swiper-slide">
-          <div class="carouselItems">
-            <div class="img">
-              <img src="assets/img/caramelo_macchiato.png" alt="">
-            </div>
-            <ul>
-              <li>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-              </li>
-            </ul>
-            <h3>Caramelo Macchiato</h3>
-            <h4><span>R$2,00</span> R$10,00</h4>
-            <div class="buttons">
-              <button>
-                Add Carrinho
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                  <path fill="#fff"
-                    d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="carouselItems">
-            <div class="img">
-              <img src="assets/img/caramelo_macchiato.png" alt="">
-            </div>
-            <ul>
-              <li>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-              </li>
-            </ul>
-            <h3>Caramelo Macchiato</h3>
-            <h4><span>R$2,00</span> R$10,00</h4>
-            <div class="buttons">
-              <button>
-                Add Carrinho
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                  <path fill="#fff"
-                    d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
-                </svg>
-              </button>
+        <?php foreach ($produtos as $produto): ?>
+          <div class="swiper-slide">
+            <div class="carouselItems">
+              <div class="img">
+                <?php
+                $caminhoArquivo = BASE_URL . "uploads/" . $produto['foto_produto'];
+                $img = BASE_URL . "uploads/sem-foto.jpg"; // Caminho padrão corrigido
+                // $alt_foto = "imagem sem foto $index";
+
+                if (!empty($produto['foto_produto'])) {
+                  $headers = @get_headers($caminhoArquivo);
+                  if ($headers && strpos($headers[0], '200') !== false) {
+                    $img = $caminhoArquivo;
+                  }
+                }
+
+                ?>
+                <img src="<?php echo $img; ?>" alt="Foto Produto" class="img">
+              </div>
+              <ul>
+                <li>
+                  <?php for ($i = 0; $i < 5; $i++): ?>
+                    <i class='bx bxs-star star'></i>
+                  <?php endfor; ?>
+                </li>
+              </ul>
+              <h3><?= $produto['nome_produto'] ?></h3>
+              <h4><span>R$<?= $produto['preco_promocional_produto'] ?></span> R$<?= $produto['preco_produto'] ?></h4>
+              <div class="buttons">
+                <button>
+                  Add Carrinho
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                    <path fill="#fff" d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22..." />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="carouselItems">
-            <div class="img">
-              <img src="assets/img/caramelo_macchiato.png" alt="">
-            </div>
-            <ul>
-              <li>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-              </li>
-            </ul>
-            <h3>Caramelo Macchiato</h3>
-            <h4><span>R$2,00</span> R$10,00</h4>
-            <div class="buttons">
-              <button>
-                Add Carrinho
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                  <path fill="#fff"
-                    d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="carouselItems">
-            <div class="img">
-              <img src="assets/img/caramelo_macchiato.png" alt="">
-            </div>
-            <ul>
-              <li>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-              </li>
-            </ul>
-            <h3>Caramelo Macchiato</h3>
-            <h4><span>R$2,00</span> R$10,00</h4>
-            <div class="buttons">
-              <button>
-                Add Carrinho
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                  <path fill="#fff"
-                    d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="carouselItems">
-            <div class="img">
-              <img src="assets/img/caramelo_macchiato.png" alt="">
-            </div>
-            <ul>
-              <li>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-                <i class='bx bxs-star star'></i>
-              </li>
-            </ul>
-            <h3>Caramelo Macchiato</h3>
-            <h4><span>R$2,00</span> R$10,00</h4>
-            <div class="buttons">
-              <button>
-                Add Carrinho
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                  <path fill="#fff"
-                    d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
+        <?php endforeach; ?>
 
       </div>
-
-
     </div>
 
     <div class="itemsEspecialPosition">

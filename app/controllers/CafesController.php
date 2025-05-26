@@ -16,7 +16,7 @@ class CafesController extends Controller
         $this->produtosModel = new Produtos();
     }
 
-    
+
 
     // FRONT-END: Carregar a lista de Funcionarios
     public function index()
@@ -93,7 +93,7 @@ class CafesController extends Controller
     }
 
 
-  public function ativar($id = null)
+    public function ativar($id = null)
     {
         if ($id === null) {
             http_response_code(400);
@@ -142,7 +142,7 @@ class CafesController extends Controller
             $status_produto      = filter_input(INPUT_POST, 'status_produto', FILTER_SANITIZE_SPECIAL_CHARS);
             if (empty($status_produto)) {
                 $status_produto = 'ativo'; // valor padrão caso não venha nada
-            }            
+            }
             $foto_produto        = filter_input(INPUT_POST, 'foto_produto', FILTER_SANITIZE_SPECIAL_CHARS);
             $alt_foto_produto    = filter_input(INPUT_POST, 'alt_foto_produto', FILTER_SANITIZE_SPECIAL_CHARS);
 
@@ -195,40 +195,38 @@ class CafesController extends Controller
         $produtos = $this->produtosModel->getProdutoById($id);
         $dados['produtos'] = $produtos;
 
-          // Buscar Fornecedor
-          $fornecedor = new Fornecedor();
-          $dados['fornecedor'] = $fornecedor->getListarFornecedor();
+        // Buscar Fornecedor
+        $fornecedor = new Fornecedor();
+        $dados['fornecedor'] = $fornecedor->getListarFornecedor();
 
-           // Buscar Tipo Produto
-           $fornecedor = new TipoProduto();
-           $dados['tipoProduto'] = $fornecedor->getListarTipoProduto();
+        // Buscar Tipo Produto
+        $fornecedor = new TipoProduto();
+        $dados['tipoProduto'] = $fornecedor->getListarTipoProduto();
 
         if (isset($_SESSION['id_tipo_usuario']) && $_SESSION['id_tipo_usuario'] == '1') {
             $produto = new Produtos();
-        
+
             if (isset($_SESSION['nomeProduto'])) {
                 $dadosProduto = $produto->buscarProduto($_SESSION['nomeProduto']);
                 $dados['produto'] = $dadosProduto;
             } else {
                 $dados['produto'] = [];
             }
-        
+
             $dados['conteudo'] = 'dash/produto/editar';
             $this->carregarViews('dash/dashboard', $dados);
-        
         } else if (isset($_SESSION['id_tipo_usuario']) && $_SESSION['id_tipo_usuario'] == '2') {
             $dados['conteudo'] = 'dash/produto/listar';
             $this->carregarViews('dash/dashboard-funcionario', $dados);
         }
-        
     }
 
     public function adicionar()
     {
         $dados = array();
-    
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
+
             $nome_produto      = filter_input(INPUT_POST, 'nome_produto', FILTER_SANITIZE_SPECIAL_CHARS);
             $descricao_produto = filter_input(INPUT_POST, 'descricao_produto', FILTER_SANITIZE_SPECIAL_CHARS);
             $id_categoria      = filter_input(INPUT_POST, 'id_categoria', FILTER_SANITIZE_NUMBER_INT);
@@ -239,18 +237,18 @@ class CafesController extends Controller
             if ($alt_foto_produto === null || $alt_foto_produto === '') {
                 $alt_foto_produto = $nome_produto; // ou qualquer valor padrão
             }
-                
+
             // Converter valor monetário corretamente
             $preco_raw = str_replace(['R$', '.', ','], ['', '', '.'], $_POST['preco_produto']);
             $preco_produto = floatval($preco_raw);
-    
+
             $foto_produto = '';
             if (isset($_FILES['foto_produto']) && $_FILES['foto_produto']['error'] == 0) {
                 $foto_produto = $_FILES['foto_produto']['name']; // ou usar função de upload
             }
-    
+
             if ($nome_produto && $preco_produto !== false && $id_categoria && $id_fornecedor) {
-    
+
                 $dadosProduto = array(
                     'nome_produto'      => $nome_produto,
                     'descricao_produto' => $descricao_produto,
@@ -261,9 +259,9 @@ class CafesController extends Controller
                     'foto_produto'      => $foto_produto,
                     'alt_foto_produto'  => $alt_foto_produto
                 );
-    
+
                 $id_produto = $this->produtosModel->addProduto($dadosProduto);
-    
+
                 if ($id_produto) {
                     if (!empty($foto_produto)) {
                         $arquivo = $this->uploadFoto($_FILES['foto_produto']);
@@ -271,7 +269,7 @@ class CafesController extends Controller
                             $this->produtosModel->addFotoProduto($id_produto, $arquivo);
                         }
                     }
-    
+
                     $_SESSION['mensagem'] = "Produto cadastrado com sucesso";
                     $_SESSION['tipo-msg'] = "sucesso";
                     header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/produtos/listar');
@@ -285,18 +283,18 @@ class CafesController extends Controller
                 $dados['tipo-msg'] = "erro";
             }
         }
-    
+
         $categoria = new Categoria();
         $fornecedor = new Fornecedor();
-    
+
         $dados['categorias'] = $categoria->getListarCategorias();
         $dados['fornecedores'] = $fornecedor->getListarFornecedor();
         $dados['conteudo'] = 'dash/produto/adicionar';
-    
+
         $this->carregarViews('dash/dashboard', $dados);
     }
-    
-    
+
+
 
 
     public function desativados()
