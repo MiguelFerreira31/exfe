@@ -70,315 +70,326 @@ $dados['acompanhamentos'] = $acompanhamentos;
     id="sidenav-main"
     style="background-color: #fffaf3; border-radius: 1rem; box-shadow: 0 4px 12px rgba(57, 24, 10, 0.15); border: 2px solid #f0c9a9;">
 
-<style>
-  .sidenav-header {
-    position: relative;
-    padding: 1rem;
-  }
+    <style>
+      .sidenav-header {
+        position: relative;
+        padding: 1rem;
+      }
 
-  .sidenav-header i {
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: opacity 0.3s;
-  }
+      .sidenav-header i {
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: opacity 0.3s;
+      }
 
-  .sidenav-header i:hover {
-    opacity: 1;
-  }
+      .sidenav-header i:hover {
+        opacity: 1;
+      }
 
-  .navbar-brand {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-  }
+      .navbar-brand {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+      }
 
-  .navbar-brand span {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-left: 0.5rem;
-    color: #371406;
-  }
+      .navbar-brand span {
+        font-size: 1rem;
+        font-weight: bold;
+        margin-left: 0.5rem;
+        color: #371406;
+      }
 
-  .sidenav-header hr {
-    border-color: #d3c2b5;
-    opacity: 0.7;
-  }
+      .sidenav-header hr {
+        border-color: #d3c2b5;
+        opacity: 0.7;
+      }
 
-  .nav-link {
-    display: flex;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    margin-bottom: 0.3rem;
-    color: #371406;
-    transition: background 0.2s ease;
-  }
+      .nav-link {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        margin-bottom: 0.3rem;
+        color: #371406;
+        transition: background 0.2s ease;
+      }
 
-  .nav-link:hover {
-    background-color: #ffe4c7;
-  }
+      .nav-link:hover {
+        background-color: #ffe4c7;
+      }
 
-  .icon {
-    width: 36px;
-    height: 36px;
-    background-color: #ffd8b9;
-    border-radius: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+      .icon {
+        width: 36px;
+        height: 36px;
+        background-color: #ffd8b9;
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
-  .submenu-custom {
-    background-color: transparent;
-    margin-top: 0.3rem;
-  }
+      .submenu-custom {
+        background-color: transparent;
+        margin-top: 0.3rem;
+      }
 
-  .submenu-custom a {
-    font-size: 0.9rem;
-    padding-left: 1.5rem;
-    color: #371406;
-  }
+      .submenu-custom a {
+        font-size: 0.9rem;
+        padding-left: 1.5rem;
+        color: #371406;
+      }
 
-  .dropdown-toggle-custom {
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+      .dropdown-toggle-custom {
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
 
-  .dropdown-toggle-custom:hover {
-    background-color: #ffe4c7;
-  }
+      .dropdown-toggle-custom:hover {
+        background-color: #ffe4c7;
+      }
 
-  .dropdown-toggle-custom .bi-chevron-down {
-    transition: transform 0.2s ease;
-  }
+      .dropdown-toggle-custom .bi-chevron-down {
+        transition: transform 0.2s ease;
+      }
 
-  .dropdown-toggle-custom[aria-expanded="true"] .bi-chevron-down {
-    transform: rotate(180deg);
-  }
+      .dropdown-toggle-custom[aria-expanded="true"] .bi-chevron-down {
+        transform: rotate(180deg);
+      }
 
-  .nav-item h6 {
-    margin-top: 1rem;
-    color: #9e675f;
-    font-weight: bold;
-    opacity: 0.85;
-    font-size: 0.75rem;
-    padding-left: 1rem;
-  }
-</style>
+      .nav-item h6 {
+        margin-top: 1rem;
+        color: #9e675f;
+        font-weight: bold;
+        opacity: 0.85;
+        font-size: 0.75rem;
+        padding-left: 1rem;
+      }
+    </style>
 
-<!-- Sidenav Header -->
-<div class="sidenav-header">
-  <i class="fas fa-times position-absolute end-0 top-0 d-xl-none" id="iconSidenav" style="color: #9e675f; opacity: 0.5;"></i>
+    <!-- Sidenav Header -->
+    <div class="sidenav-header">
+      <i class="fas fa-times position-absolute end-0 top-0 d-xl-none" id="iconSidenav" style="color: #9e675f; opacity: 0.5;"></i>
 
-  <a class="navbar-brand m-0" href="<?= BASE_URL ?>dashboard">
-    <img src="<?= BASE_URL ?>assets/imgDash/coffeLogo.png" width="26px" height="26px" class="navbar-brand-img h-100" alt="main_logo" />
-    <span>Dashboard EXFE</span>
-  </a>
-</div>
-
-<hr class="horizontal mt-0" />
-
-<!-- Nav Items -->
-<div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
-  <ul class="navbar-nav">
-
-    <li class="nav-item">
-      <a class="nav-link" href="<?= BASE_URL ?>dashboard">
-        <div class="icon"><i class="fas fa-chart-line"></i></div>
-        <span class="nav-link-text ms-2">Dashboard</span>
+      <a class="navbar-brand m-0" href="<?= BASE_URL ?>dashboard">
+        <img src="<?= BASE_URL ?>assets/imgDash/coffeLogo.png" width="26px" height="26px" class="navbar-brand-img h-100" alt="main_logo" />
+        <span>Dashboard EXFE</span>
       </a>
-    </li>
+    </div>
 
-    <li class="nav-item">
-      <a class="nav-link" href="<?= BASE_URL ?>contato/listar">
-        <div class="icon"><i class="fas fa-envelope-open-text"></i></div>
-        <span class="nav-link-text ms-2">Contatos</span>
-      </a>
-    </li>
+    <hr class="horizontal mt-0" />
 
-    <li class="nav-item">
-      <a class="nav-link" href="<?= BASE_URL ?>pedido/listar">
-        <div class="icon"><i class="fas fa-receipt"></i></div>
-        <span class="nav-link-text ms-2">Pedidos</span>
-      </a>
-    </li>
+    <!-- Nav Items -->
+    <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
+      <ul class="navbar-nav">
 
-    <li class="nav-item">
-      <a class="nav-link" href="<?= BASE_URL ?>clientes/listar">
-        <div class="icon"><i class="fas fa-users"></i></div>
-        <span class="nav-link-text ms-2">Clientes</span>
-      </a>
-    </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= BASE_URL ?>dashboard">
+            <div class="icon"><i class="fas fa-chart-line"></i></div>
+            <span class="nav-link-text ms-2">Dashboard</span>
+          </a>
+        </li>
 
-    <li class="nav-item">
-      <a class="nav-link" href="<?= BASE_URL ?>funcionarios/listar">
-        <div class="icon"><i class="fas fa-user-tie"></i></div>
-        <span class="nav-link-text ms-2">Funcionários</span>
-      </a>
-    </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= BASE_URL ?>contato/listar">
+            <div class="icon"><i class="fas fa-envelope-open-text"></i></div>
+            <span class="nav-link-text ms-2">Contatos</span>
+          </a>
+        </li>
 
-    <!-- Dropdown: Mesas -->
-    <li class="nav-item dropdown-menu-custom">
-      <a href="#" class="nav-link dropdown-toggle-custom" data-bs-toggle="collapse" data-bs-target="#mesasSub" aria-expanded="false">
-        <div class="icon"><i class="fas fa-chair"></i></div>
-        <span class="nav-link-text ms-2">Mesas</span>
-        <i class="bi bi-chevron-down ms-auto"></i>
-      </a>
-      <ul class="submenu-custom collapse" id="mesasSub">
-        <li class="nav-item"><a class="nav-link" href="<?= BASE_URL ?>mesa/listar/"><i class="bi bi-check2-square me-2"></i>Ativas</a></li>
-        <li class="nav-item"><a class="nav-link" href="<?= BASE_URL ?>mesa/desativadas"><i class="bi bi-x-square me-2"></i>Inativas</a></li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= BASE_URL ?>pedido/listar">
+            <div class="icon"><i class="fas fa-receipt"></i></div>
+            <span class="nav-link-text ms-2">Pedidos</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="<?= BASE_URL ?>clientes/listar">
+            <div class="icon"><i class="fas fa-users"></i></div>
+            <span class="nav-link-text ms-2">Clientes</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="<?= BASE_URL ?>funcionarios/listar">
+            <div class="icon"><i class="fas fa-user-tie"></i></div>
+            <span class="nav-link-text ms-2">Funcionários</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="<?= BASE_URL ?>api/menu" target="_blank">
+            <div class="icon">
+              <i class="fas fa-tv"></i>
+            </div>
+            <span class="nav-link-text ms-2">Menu TV</span>
+          </a>
+        </li>
+
+
+
+        <!-- Dropdown: Mesas -->
+        <li class="nav-item dropdown-menu-custom">
+          <a href="#" class="nav-link dropdown-toggle-custom" data-bs-toggle="collapse" data-bs-target="#mesasSub" aria-expanded="false">
+            <div class="icon"><i class="fas fa-chair"></i></div>
+            <span class="nav-link-text ms-2">Mesas</span>
+            <i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul class="submenu-custom collapse" id="mesasSub">
+            <li class="nav-item"><a class="nav-link" href="<?= BASE_URL ?>mesa/listar/"><i class="bi bi-check2-square me-2"></i>Ativas</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?= BASE_URL ?>mesa/desativadas"><i class="bi bi-x-square me-2"></i>Inativas</a></li>
+          </ul>
+        </li>
+
+        <!-- Dropdown: Produtos -->
+        <li class="nav-item dropdown-menu-custom">
+          <a href="#" class="nav-link dropdown-toggle-custom" data-bs-toggle="collapse" data-bs-target="#produtosSub" aria-expanded="false">
+            <div class="icon"><i class="fas fa-mug-hot"></i></div>
+            <span class="nav-link-text ms-2">Produtos</span>
+            <i class="bi bi-chevron-down ms-auto"></i>
+          </a>
+          <ul class="submenu-custom collapse" id="produtosSub">
+            <li class="nav-item"><a class="nav-link" href="<?= BASE_URL ?>cafes/listar/"><i class="bi bi-cup-hot me-2"></i>Bebidas</a></li>
+            <li class="nav-item"><a class="nav-link" href="<?= BASE_URL ?>acompanhamentos/listar"><i class="bi bi-bag-check me-2"></i>Acompanhamentos</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="<?= BASE_URL ?>newsletter/listar">
+            <div class="icon"><i class="fas fa-paper-plane"></i></div>
+            <span class="nav-link-text ms-2">Newsletter</span>
+          </a>
+        </li>
+
+        <li class="nav-item mt-3">
+          <h6>Account Pages</h6>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="<?= BASE_URL ?>funcionarios/perfil">
+            <div class="icon"><i class="fas fa-id-badge"></i></div>
+            <span class="nav-link-text ms-2">Perfil</span>
+          </a>
+        </li>
+
       </ul>
-    </li>
-
-    <!-- Dropdown: Produtos -->
-    <li class="nav-item dropdown-menu-custom">
-      <a href="#" class="nav-link dropdown-toggle-custom" data-bs-toggle="collapse" data-bs-target="#produtosSub" aria-expanded="false">
-        <div class="icon"><i class="fas fa-mug-hot"></i></div>
-        <span class="nav-link-text ms-2">Produtos</span>
-        <i class="bi bi-chevron-down ms-auto"></i>
-      </a>
-      <ul class="submenu-custom collapse" id="produtosSub">
-        <li class="nav-item"><a class="nav-link" href="<?= BASE_URL ?>cafes/listar/"><i class="bi bi-cup-hot me-2"></i>Bebidas</a></li>
-        <li class="nav-item"><a class="nav-link" href="<?= BASE_URL ?>acompanhamentos/listar"><i class="bi bi-bag-check me-2"></i>Acompanhamentos</a></li>
-      </ul>
-    </li>
-
-    <li class="nav-item">
-      <a class="nav-link" href="<?= BASE_URL ?>newsletter/listar">
-        <div class="icon"><i class="fas fa-paper-plane"></i></div>
-        <span class="nav-link-text ms-2">Newsletter</span>
-      </a>
-    </li>
-
-    <li class="nav-item mt-3">
-      <h6>Account Pages</h6>
-    </li>
-
-    <li class="nav-item">
-      <a class="nav-link" href="<?= BASE_URL ?>funcionarios/perfil">
-        <div class="icon"><i class="fas fa-id-badge"></i></div>
-        <span class="nav-link-text ms-2">Perfil</span>
-      </a>
-    </li>
-
-  </ul>
-</div>
+    </div>
 
   </aside>
 
   <main class="main-content position-relative border-radius-lg">
     <!-- Navbar -->
     <style>
-  .navbar-custom {
-    background-color: #371406;
-    border-radius: 1rem;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
-  }
+      .navbar-custom {
+        background-color: #371406;
+        border-radius: 1rem;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+      }
 
-  .navbar-custom .breadcrumb {
-    color: #ffd8b9;
-  }
+      .navbar-custom .breadcrumb {
+        color: #ffd8b9;
+      }
 
-  .navbar-custom .breadcrumb-item a {
-    color: #f0c9a9;
-    opacity: 0.85;
-    transition: color 0.2s;
-  }
+      .navbar-custom .breadcrumb-item a {
+        color: #f0c9a9;
+        opacity: 0.85;
+        transition: color 0.2s;
+      }
 
-  .navbar-custom .breadcrumb-item.active {
-    color: #ffffff;
-    font-weight: bold;
-  }
+      .navbar-custom .breadcrumb-item.active {
+        color: #ffffff;
+        font-weight: bold;
+      }
 
-  .navbar-custom .form-control::placeholder {
-    color: #d3a06f;
-  }
+      .navbar-custom .form-control::placeholder {
+        color: #d3a06f;
+      }
 
-  .navbar-custom .input-group {
-    background-color: #fff5e1;
-    border-radius: 0.5rem;
-    border: 1px solid #ffd8b9;
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
-  }
+      .navbar-custom .input-group {
+        background-color: #fff5e1;
+        border-radius: 0.5rem;
+        border: 1px solid #ffd8b9;
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+      }
 
-  .navbar-custom .input-group-text {
-    background-color: #ffd8b9;
-    border: none;
-    color: #9a5c1f;
-  }
+      .navbar-custom .input-group-text {
+        background-color: #ffd8b9;
+        border: none;
+        color: #9a5c1f;
+      }
 
-  .navbar-custom .form-control {
-    background-color: transparent;
-    border: none;
-    color: #5e3c2d;
-  }
+      .navbar-custom .form-control {
+        background-color: transparent;
+        border: none;
+        color: #5e3c2d;
+      }
 
-  .navbar-custom .nav-link {
-    color: #ffd8b9;
-    transition: color 0.2s;
-  }
+      .navbar-custom .nav-link {
+        color: #ffd8b9;
+        transition: color 0.2s;
+      }
 
-  .navbar-custom .nav-link:hover {
-    color: #ffffff;
-  }
+      .navbar-custom .nav-link:hover {
+        color: #ffffff;
+      }
 
-  .navbar-custom .sidenav-toggler-line {
-    background-color: #fff;
-  }
-</style>
+      .navbar-custom .sidenav-toggler-line {
+        background-color: #fff;
+      }
+    </style>
 
-<nav
-  class="navbar navbar-main navbar-expand-lg px-0 mx-4 navbar-custom"
-  data-navbar-scroll="false">
+    <nav
+      class="navbar navbar-main navbar-expand-lg px-0 mx-4 navbar-custom"
+      data-navbar-scroll="false">
 
-  <div class="container-fluid py-2 px-3">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-        <li class="breadcrumb-item text-sm">
-          <a href="javascript:;">Páginas</a>
-        </li>
-        <li class="breadcrumb-item text-sm active" aria-current="page">
-          Dashboard
-        </li>
-      </ol>
-      <h6 class="font-weight-bolder text-white mb-0">Dashboard</h6>
-    </nav>
+      <div class="container-fluid py-2 px-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+            <li class="breadcrumb-item text-sm">
+              <a href="javascript:;">Páginas</a>
+            </li>
+            <li class="breadcrumb-item text-sm active" aria-current="page">
+              Dashboard
+            </li>
+          </ol>
+          <h6 class="font-weight-bolder text-white mb-0">Dashboard</h6>
+        </nav>
 
-    <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-      <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-        <div class="input-group">
-          <span class="input-group-text">
-            <i class="fas fa-search"></i>
-          </span>
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Pesquise aqui..." />
+        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="fas fa-search"></i>
+              </span>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Pesquise aqui..." />
+            </div>
+          </div>
+
+          <ul class="navbar-nav justify-content-end">
+            <li class="nav-item d-flex align-items-center">
+              <a href="<?= BASE_URL ?>auth/sair" class="nav-link font-weight-bold px-0">
+                <i class="fa fa-user me-sm-1"></i>
+                <span class="d-sm-inline d-none">Sair</span>
+              </a>
+            </li>
+
+            <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link p-0" id="iconNavbarSidenav">
+                <div class="sidenav-toggler-inner">
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                </div>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
-
-      <ul class="navbar-nav justify-content-end">
-        <li class="nav-item d-flex align-items-center">
-          <a href="<?= BASE_URL ?>auth/sair" class="nav-link font-weight-bold px-0">
-            <i class="fa fa-user me-sm-1"></i>
-            <span class="d-sm-inline d-none">Sair</span>
-          </a>
-        </li>
-
-        <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-          <a href="javascript:;" class="nav-link p-0" id="iconNavbarSidenav">
-            <div class="sidenav-toggler-inner">
-              <i class="sidenav-toggler-line"></i>
-              <i class="sidenav-toggler-line"></i>
-              <i class="sidenav-toggler-line"></i>
-            </div>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+    </nav>
 
 
     <!-- End Navbar -->

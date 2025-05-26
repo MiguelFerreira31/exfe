@@ -3326,11 +3326,11 @@ html body main #cardapio-tv .cafe-menu article ul li h3 {
   align-items: center;
 }
 html body main #cardapio-tv .cafe-menu article ul li span {
-  background: linear-gradient(to bottom, rgba(158, 103, 95, 0.662745098) 0%, #371406 100%);
   width: 20%;
   color: #dbdbdb;
   border-radius: 10px;
   letter-spacing: 3px;
+  font-size: 2em;
 }
 html body main #cardapio-tv .cafe-menu article ul li:nth-child(1) {
   border: none;

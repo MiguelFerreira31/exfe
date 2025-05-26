@@ -25,7 +25,7 @@
     <link id="pagestyle"
         href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/css/argon-dashboard.css?v=2.1.0"
         rel="stylesheet" />
-
+  <title> Menu Exfé</title>
     <style>
         #cardapio-tv {
             width: 100dvw;
@@ -211,11 +211,11 @@
                                 }
 
                                 span {
-                                    background: linear-gradient(to bottom, #9e675fa9 0%, #371406 100%);
-                                    width: 20%;
-                                    color: #dbdbdb;
+                                    width: 30%;
+                                    color:rgb(255, 255, 255) ;
                                     border-radius: 10px;
                                     letter-spacing: 3px;
+                                    font-size:1.5em;
                                 }
 
 
