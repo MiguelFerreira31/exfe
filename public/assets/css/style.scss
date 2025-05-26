@@ -1380,8 +1380,9 @@ html {
       }
 
       .overlay {
-        background: linear-gradient(90deg, #9e675f -9.62%, #371406 101.5%);
-        display: flex;
+        background-image: url("https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/hero-bg2.png");
+        background-attachment: fixed;
+        background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
         background-position: 0 0;
@@ -2955,7 +2956,7 @@ html {
         flex-direction: column;
         max-width: 100dvw !important;
         overflow: hidden;
-       
+
         gap: 50px;
 
         .title {
