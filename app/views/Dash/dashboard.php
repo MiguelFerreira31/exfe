@@ -234,7 +234,6 @@ $dados['acompanhamentos'] = $acompanhamentos;
           <a href="#" class="nav-link dropdown-toggle-custom" data-bs-toggle="collapse" data-bs-target="#mesasSub" aria-expanded="false">
             <div class="icon"><i class="fas fa-chair"></i></div>
             <span class="nav-link-text ms-2">Mesas</span>
-            <i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul class="submenu-custom collapse" id="mesasSub">
             <li class="nav-item"><a class="nav-link" href="<?= BASE_URL ?>mesa/listar/"><i class="bi bi-check2-square me-2"></i>Ativas</a></li>
@@ -247,7 +246,6 @@ $dados['acompanhamentos'] = $acompanhamentos;
           <a href="#" class="nav-link dropdown-toggle-custom" data-bs-toggle="collapse" data-bs-target="#produtosSub" aria-expanded="false">
             <div class="icon"><i class="fas fa-mug-hot"></i></div>
             <span class="nav-link-text ms-2">Produtos</span>
-            <i class="bi bi-chevron-down ms-auto"></i>
           </a>
           <ul class="submenu-custom collapse" id="produtosSub">
             <li class="nav-item"><a class="nav-link" href="<?= BASE_URL ?>cafes/listar/"><i class="bi bi-cup-hot me-2"></i>Bebidas</a></li>

@@ -37,9 +37,12 @@ class CafesController extends Controller
     {
         $dados = array();
 
+        $status = isset($_GET['status']) ? $_GET['status'] : null;  // Pega o status da URL ou usa 'Ativo' por padrão
+
+
         // Carregar os funcionarios
         $produtosModel = new Produtos();
-        $produtos = $produtosModel->getListarProdutos();
+        $produtos = $produtosModel->getListarProdutos($status);
         $dados['produtos'] = $produtos;
 
 

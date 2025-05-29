@@ -21,9 +21,12 @@ class AcompanhamentosController extends Controller
     {
         $dados = array();
 
+        $status = isset($_GET['status']) ? $_GET['status'] : null;  // Pega o status da URL ou usa 'Ativo' por padrão
+
+
         // Carregar os funcionarios
         $acompanhamentosModel = new Acompanhamento();
-        $acompanhamentos = $acompanhamentosModel->getListarAcompanhamentos();
+        $acompanhamentos = $acompanhamentosModel->getListarAcompanhamentos($status);
         $dados['acompanhamentos'] = $acompanhamentos;
 
 

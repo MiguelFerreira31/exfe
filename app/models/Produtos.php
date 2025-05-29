@@ -15,26 +15,38 @@ class Produtos extends Model
     }
 
     //Método Listar todos os Serviços ativos por ordem alfabetica
-    public function getTodosProdutos()
-    {
+public function getTodosProdutos()
+{
+    $sql = "SELECT * FROM tbl_produto ORDER BY nome_produto ASC";
+    $stmt = $this->db->query($sql);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
-        $sql = "SELECT * FROM tbl_produto WHERE status_produto = 'Ativo' ORDER BY nome_produto ASC";
-        $stmt = $this->db->query($sql);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+public function getListarProdutos($status = null)
+{
+    $sql = "SELECT 
+                p.*, 
+                c.nome_categoria AS nome_categoria, 
+                f.nome_fornecedor AS nome_fornecedor
+            FROM tbl_produto AS p
+            INNER JOIN tbl_categoria AS c ON p.id_categoria = c.id_categoria
+            INNER JOIN tbl_fornecedor AS f ON p.id_fornecedor = f.id_fornecedor";
+
+                // Se o status foi passado, adiciona o filtro
+    if (!empty($status)) {
+        $sql .= " WHERE TRIM(p.status_cliente) = :status";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':status', $status, PDO::PARAM_STR);
+    } else {
+        // Sem filtro de status
+        $stmt = $this->db->prepare($sql);
     }
 
-    public function getListarProdutos()
-    {
+    $stmt = $this->db->query($sql);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
-        $sql = "SELECT * 
-                    FROM tbl_produto AS p
-                    INNER JOIN tbl_categoria AS c ON p.id_categoria = c.id_categoria
-                    INNER JOIN tbl_fornecedor AS f ON p.id_fornecedor = f.id_fornecedor
-                    WHERE p.status_produto = 'ativo'";
-
-        $stmt = $this->db->query($sql);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
 
 
     public function listarCafe($limite)
