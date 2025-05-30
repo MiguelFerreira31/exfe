@@ -1,172 +1,163 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+if (session_status() === PHP_SESSION_NONE) session_start();
 
-if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
-
-    $mensagem = $_SESSION['mensagem'];
-    $tipo = $_SESSION['tipo-msg'];
-
-    // Exibir a mensagem
-    $classeAlerta = ($tipo == 'sucesso') ? 'alert-success' : 'alert-danger';
+if (isset($_SESSION['mensagem'], $_SESSION['tipo-msg'])) {
+    $classeAlerta = ($_SESSION['tipo-msg'] === 'sucesso') ? 'alert-success' : 'alert-danger';
     echo '<div class="alert ' . $classeAlerta . ' text-center fw-bold" role="alert">'
-        . htmlspecialchars($mensagem, ENT_QUOTES, 'UTF-8') .
+        . htmlspecialchars($_SESSION['mensagem'], ENT_QUOTES, 'UTF-8') .
         '</div>';
-
-    // Limpar variáveis de sessão
-    unset($_SESSION['mensagem']);
-    unset($_SESSION['tipo-msg']);
+    unset($_SESSION['mensagem'], $_SESSION['tipo-msg']);
 }
+
+$status = $_GET['status'] ?? 'Ativo';
 ?>
 
 <div class="container my-5">
-    <h2 class="text-center fw-bold py-3" style="background:#5e3c2d; color: white; border-radius: 12px;">Cafés Cadastrados</h2>
-    <a href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/cafes/desativados"><button>Ver Inativos</button></a>
-    <div class="table-responsive rounded-3 shadow-lg p-3" style="background: #ffffff;">
+    <h2 class="text-center fw-bold py-3" style="background: #5e3c2d; color: white; border-radius: 12px;">
+        Cafés Cadastrados (<?= ucfirst($status) ?>)
+    </h2>
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="d-flex justify-content-end mb-3">
+            <form method="get" action="">
+                <label for="statusFiltro">Filtrar por status:</label>
+                <select name="status" id="statusFiltro" onchange="this.form.submit()" class="form-select d-inline w-auto ms-2">
+                    <option value="" <?= !isset($_GET['status']) || $_GET['status'] == '' ? 'selected' : '' ?>>Todos</option>
+                    <option value="ativo" <?= isset($_GET['status']) && $_GET['status'] == 'Ativo' ? 'selected' : '' ?>>Ativos</option>
+                    <option value="inativo" <?= isset($_GET['status']) && $_GET['status'] == 'Inativo' ? 'selected' : '' ?>>Inativos</option>
+                </select>
+            </form>
+        </div>
+
+        <?php if ($status !== 'inativo'): ?>
+            <a href="<?= BASE_URL ?>cafes/adicionar" class="btn btn-primary">Adicionar Café</a>
+        <?php endif; ?>
+    </div>
+
+    <div class="table-responsive rounded-3 shadow-lg p-3 bg-white">
         <table class="table table-hover text-center align-middle">
-            <thead class="thead-custom">
+            <thead>
                 <tr>
-                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Foto</th>
-                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Nome</th>
-                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Descricao</th>
-                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Preço</th>
-                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Categoria</th>
-                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Fornecedor</th>
-                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Editar</th>
-                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Desativar</th>
+                    <th>Foto</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Preço</th>
+                    <th>Categoria</th>
+                    <th>Fornecedor</th>
+                    <th>Editar</th>
+                    <th><?= $status === 'inativo' ? 'Ativar' : 'Desativar' ?></th>
                 </tr>
             </thead>
-
             <tbody>
                 <?php foreach ($produtos as $linha): ?>
-                    <tr class="fw-semibold">
-                        <td class="img-produto">
-
+                    <tr id="produto_<?= $linha['id_produto'] ?>" class="fw-semibold">
+                        <td>
                             <?php
                             $caminhoArquivo = BASE_URL . "uploads/" . $linha['foto_produto'];
-                            $img = BASE_URL . "uploads/sem-foto.jpg"; // Caminho padrão corrigido
-                            // $alt_foto = "imagem sem foto $index";
-
+                            $img = BASE_URL . "uploads/sem-foto.jpg";
                             if (!empty($linha['foto_produto'])) {
                                 $headers = @get_headers($caminhoArquivo);
                                 if ($headers && strpos($headers[0], '200') !== false) {
                                     $img = $caminhoArquivo;
                                 }
                             }
-
                             ?>
-                            <img src="<?php echo $img; ?>" alt="Foto produto" class="rounded-circle" style="width: 50px; height: 50px;">
+                            <img src="<?= $img ?>" alt="Foto Produto" class="rounded-circle" style="width: 50px; height: 50px;">
                         </td>
-                        <td><?php echo htmlspecialchars($linha['nome_produto']); ?></td>
-                        <td><?php echo htmlspecialchars($linha['descricao_produto']); ?></td>
-                        <td><?php echo htmlspecialchars($linha['preco_produto']); ?></td>
-                        <td><?php echo htmlspecialchars($linha['id_categoria']); ?></td>
-                        <td><?php echo htmlspecialchars($linha['nome_fornecedor']); ?></td>
+                        <td><?= htmlspecialchars($linha['nome_produto']) ?></td>
+                        <td><?= htmlspecialchars($linha['descricao_produto']) ?></td>
+                        <td><?= htmlspecialchars($linha['preco_produto']) ?></td>
+                        <td><?= htmlspecialchars($linha['id_categoria']) ?></td>
+                        <td><?= htmlspecialchars($linha['nome_fornecedor']) ?></td>
                         <td>
-                            <a href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/cafes/editar/<?php echo $linha['id_produto']; ?>" title="Editar">
-                                <i class="fa fa-pencil-alt" style="font-size: 20px; color: #9a5c1f;"></i>
+                            <a href="<?= BASE_URL ?>cafes/editar/<?= $linha['id_produto'] ?>" title="Editar">
+                                <i class="fa fa-pencil-alt text-primary" style="font-size: 20px;"></i>
                             </a>
                         </td>
-                        <td>
-                            <a href="#" title="Desativar" onclick="abrirModalDesativar(<?php echo $linha['id_produto']; ?>, '<?php echo addslashes($linha['nome_produto']); ?>')">
-                                <i class="fa fa-ban" style="font-size: 20px; color: #ff4d4d;"></i>
-                            </a>
+                        <td class="status-produto">
+                            <?php if ($linha['status_produto'] === 'Ativo'): ?>
+                                <a href="#" class="status-action" title="Desativar" onclick="alterarStatusProduto(<?= $linha['id_produto'] ?>, 'desativar')">
+                                    <i class="fas fa-ban text-danger" style="font-size: 20px;"></i>
+                                </a>
+                            <?php else: ?>
+                                <a href="#" class="status-action" title="Ativar" onclick="alterarStatusProduto(<?= $linha['id_produto'] ?>, 'ativar')">
+                                    <i class="fas fa-check text-success" style="font-size: 20px;"></i>
+                                </a>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
     </div>
-
-    <div class="text-center mt-4">
-        <h3 style="color: #9a5c1fad;">Não encontrou o produto? Cadastre abaixo</h3>
-        <a href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/cafes/adicionar/" class="btn fw-bold px-4 py-2" style="background:#9a5c1fad; color: #ffffff; border-radius: 8px;">
-            Adicionar Produto
-        </a>
-    </div>
 </div>
 
-
-
-
-<!-- MODAL DESATIVAR Funcionario  -->
-<div class="modal" tabindex="-1" id="modalDesativar">
+<!-- Modal -->
+<div class="modal fade" id="modalAlterarStatusProduto" tabindex="-1" aria-labelledby="modalTitulo" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Desativar Bebida></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 id="modalTitulo" class="modal-title"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
             </div>
             <div class="modal-body">
-                <p>Tem Certeza que deseja desativar o <span id="nomeProdutoModal"></span></p>
-                <input type="hidden" id="idProdutoDesativar" value="">
-
+                <p id="modalTexto"></p>
+                <input type="hidden" id="idProdutoAlterar">
+                <input type="hidden" id="acaoProduto">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="btnConfirmar">Desativar</button>
+                <button type="button" class="btn btn-primary" id="btnConfirmarProduto">Confirmar</button>
             </div>
         </div>
     </div>
 </div>
 
-
-
-
-
-
-
 <script>
-    function abrirModalDesativar(idProduto, nomeProduto) {
-        if ($('#modalDesativar').hasClass('show')) {
-            return;
-        }
+    function alterarStatusProduto(idProduto, acao) {
+        const url = `<?= BASE_URL ?>cafes/${acao}/${idProduto}`;
 
-        document.getElementById('idProdutoDesativar').value = idProduto;
+        // Exibir o modal para confirmar a ação
+        const modal = new bootstrap.Modal(document.getElementById('modalAlterarStatusProduto'));
+        document.getElementById('modalTitulo').innerText = acao === 'ativar' ? 'Ativar Produto' : 'Desativar Produto';
+        document.getElementById('modalTexto').innerText = `Tem certeza que deseja ${acao} este produto?`;
+        document.getElementById('idProdutoAlterar').value = idProduto;
+        document.getElementById('acaoProduto').value = acao;
 
-         // Atualizando o título do modal com o nome do produto
-        document.getElementById('nomeProdutoModal').textContent = nomeProduto;
-
-        $('#modalDesativar').modal('show');
+        modal.show();
     }
 
-    document.getElementById('btnConfirmar').addEventListener('click', function() {
-        const idProduto = document.getElementById('idProdutoDesativar').value;
-        console.log(idProduto);
+    document.getElementById('btnConfirmarProduto').addEventListener('click', function() {
+        const idProduto = document.getElementById('idProdutoAlterar').value;
+        const acao = document.getElementById('acaoProduto').value;
+        const url = `<?= BASE_URL ?>cafes/${acao}/${idProduto}`;
 
-        if (idProduto) {
-            desativarProduto(idProduto);
-        }
-    });
-
-    function desativarProduto(idProduto) {
-        fetch(`https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/cafes/desativar/${idProduto}`, {
+        fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 }
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Erro HTTP: ${response.status}`);
-                }
-                return response.json();
-            })
+            .then(response => response.json())
             .then(data => {
                 if (data.sucesso) {
-                    console.log('Produto desativado com sucesso');
-                    $('#modalDesativar').modal('hide');
-                    setTimeout(() => {
-                        location.reload();
-                    }, 500);
+                    const produtoRow = document.getElementById('produto_' + idProduto);
+                    const statusColumn = produtoRow.querySelector('.status-produto');
+
+                    if (acao === 'ativar') {
+                        statusColumn.innerHTML = `<a href="#" title="Desativar" onclick="alterarStatusProduto(${idProduto}, 'desativar')">
+                            <i class="fas fa-ban text-danger" style="font-size: 20px;"></i></a>`;
+                    } else {
+                        statusColumn.innerHTML = `<a href="#" title="Ativar" onclick="alterarStatusProduto(${idProduto}, 'ativar')">
+                            <i class="fas fa-check text-success" style="font-size: 20px;"></i></a>`;
+                    }
+
+                    // Fechar modal
+                    bootstrap.Modal.getInstance(document.getElementById('modalAlterarStatusProduto')).hide();
                 } else {
-                    alert(data.mensagem || "Ocorreu um erro ao Desativar o Produto");
+                    alert(data.mensagem || 'Erro ao alterar o status do produto.');
                 }
             })
-            .catch(erro => {
-                console.error("erro", erro);
-                alert('Erro na requisição');
-            });
-    }
+            .catch(() => alert('Erro na requisição.'));
+    });
 </script>

@@ -1,165 +1,155 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+if (session_status() === PHP_SESSION_NONE) session_start();
 
-if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
-
-    $mensagem = $_SESSION['mensagem'];
-    $tipo = $_SESSION['tipo-msg'];
-
-    // Exibir a mensagem
-    $classeAlerta = ($tipo == 'sucesso') ? 'alert-success' : 'alert-danger';
+if (isset($_SESSION['mensagem'], $_SESSION['tipo-msg'])) {
+    $classeAlerta = ($_SESSION['tipo-msg'] === 'sucesso') ? 'alert-success' : 'alert-danger';
     echo '<div class="alert ' . $classeAlerta . ' text-center fw-bold" role="alert">'
-        . htmlspecialchars($mensagem, ENT_QUOTES, 'UTF-8') .
+        . htmlspecialchars($_SESSION['mensagem'], ENT_QUOTES, 'UTF-8') .
         '</div>';
-
-    // Limpar variáveis de sessão
-    unset($_SESSION['mensagem']);
-    unset($_SESSION['tipo-msg']);
+    unset($_SESSION['mensagem'], $_SESSION['tipo-msg']);
 }
+
+$status = $_GET['status'] ?? 'Ativo';
 ?>
 
 <div class="container my-5">
-    <h2 class="text-center fw-bold py-3" style="background: linear-gradient(to bottom, #402920 1.57%, #774a38 128.95%); color: white; border-radius: 12px;">Acompanhamentos Cadastrados</h2>
-    <a href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/acompanhamentos/desativados">
-        <button class="btn btn-outline-dark" style="background: #ffd8b9; color: #9a5c1f; font-weight: bold; border-radius: 12px;">Ver Inativos</button>
-    </a>
+    <h2 class="text-center fw-bold py-3" style="background: #5e3c2d; color: white; border-radius: 12px;">
+        Acompanhamentos Cadastrados (<?= ucfirst($status) ?>)
+    </h2>
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="d-flex justify-content-end mb-3">
+        <form method="get" action="">
+                <label for="statusFiltro">Filtrar por status:</label>
+                <select name="status" id="statusFiltro" onchange="this.form.submit()" class="form-select d-inline w-auto ms-2">
+                    <option value="" <?= !isset($_GET['status']) || $_GET['status'] == '' ? 'selected' : '' ?>>Todos</option>
+                    <option value="ativo" <?= isset($_GET['status']) && $_GET['status'] == 'Ativo' ? 'selected' : '' ?>>Ativos</option>
+                    <option value="inativo" <?= isset($_GET['status']) && $_GET['status'] == 'Inativo' ? 'selected' : '' ?>>Inativos</option>
+                </select>
+            </form>
+        </div>
+
+        <?php if ($status !== 'inativo'): ?>
+            <a href="<?= BASE_URL ?>acompanhamentos/adicionar" class="btn btn-primary">Adicionar Acompanhamento</a>
+        <?php endif; ?>
+    </div>
+
     <div class="table-responsive rounded-3 shadow-lg p-3" style="background: #ffffff;">
         <table class="table table-hover text-center align-middle">
             <thead class="thead-custom" style="background-color: #fac6a0;">
                 <tr>
-                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Foto</th>
-                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Nome</th>
-                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Descrição</th>
-                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Editar</th>
-                    <th scope="col" class="text-center" style="font-size: 1.2em; font-weight: bold;">Desativar</th>
+                    <th>Foto</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Editar</th>
+                    <th><?= $status === 'inativo' ? 'Ativar' : 'Desativar' ?></th>
                 </tr>
             </thead>
-
             <tbody>
                 <?php foreach ($acompanhamentos as $linha): ?>
-                    <tr class="fw-semibold">
-                        <td class="img-acompanhamento">
-                             <?php
-                    $caminhoArquivo = BASE_URL . "uploads/" . $linha['foto_acompanhamento'];
-                    $img = BASE_URL . "uploads/sem-foto.jpg"; // Caminho padrão corrigido
-                    // $alt_foto = "imagem sem foto $index";
-
-                    if (!empty($linha['foto_acompanhamento'])) {
-                        $headers = @get_headers($caminhoArquivo);
-                        if ($headers && strpos($headers[0], '200') !== false) {
-                            $img = $caminhoArquivo;
-                        }
-                    }
-                    
-                    ?>
-                            <img src="<?php echo $img; ?>" alt="Foto acompanhamento" class="rounded-circle" style="width: 50px; height: 50px;">
-                           </td>
-                        <td><?php echo htmlspecialchars($linha['nome_acompanhamento']); ?></td>
-                        <td><?php echo htmlspecialchars($linha['descricao_acompanhamento']); ?></td>
+                    <tr id="acompanhamento_<?= $linha['id_acompanhamento'] ?>" class="fw-semibold">
                         <td>
-                            <a href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/acompanhamentos/editar/<?php echo $linha['id_acompanhamento']; ?>" title="Editar">
-                                <i class="fa fa-pencil-alt" style="font-size: 20px; color: #9a5c1f;"></i>
+                            <?php
+                            $caminhoArquivo = BASE_URL . "uploads/" . $linha['foto_acompanhamento'];
+                            $img = BASE_URL . "uploads/sem-foto.jpg";
+                            if (!empty($linha['foto_acompanhamento'])) {
+                                $headers = @get_headers($caminhoArquivo);
+                                if ($headers && strpos($headers[0], '200') !== false) {
+                                    $img = $caminhoArquivo;
+                                }
+                            }
+                            ?>
+                            <img src="<?= $img ?>" alt="Foto Acompanhamento" class="rounded-circle" style="width: 50px; height: 50px;">
+                        </td>
+                        <td><?= htmlspecialchars($linha['nome_acompanhamento']) ?></td>
+                        <td><?= htmlspecialchars($linha['descricao_acompanhamento']) ?></td>
+                        <td>
+                            <a href="<?= BASE_URL ?>acompanhamentos/editar/<?= $linha['id_acompanhamento'] ?>" title="Editar">
+                                <i class="fa fa-pencil-alt text-primary" style="font-size: 20px;"></i>
                             </a>
                         </td>
-                        <td>
-                            <a href="#" title="Desativar" onclick="abrirModalDesativar(<?php echo $linha['id_acompanhamento']; ?>, '<?php echo addslashes($linha['nome_acompanhamento']); ?>')">
-                                <i class="fa fa-ban" style="font-size: 20px; color: #ff4d4d;"></i>
-                            </a>
+                        <td class="status-acompanhamento">
+                            <?php if ($linha['status_acompanhamento'] === 'Ativo'): ?>
+                                <a href="#" class="status-action" title="Desativar" onclick="alterarStatusAcompanhamento(<?= $linha['id_acompanhamento'] ?>, 'desativar')">
+                                    <i class="fas fa-ban text-danger" style="font-size: 20px;"></i>
+                                </a>
+                            <?php else: ?>
+                                <a href="#" class="status-action" title="Ativar" onclick="alterarStatusAcompanhamento(<?= $linha['id_acompanhamento'] ?>, 'ativar')">
+                                    <i class="fas fa-check text-success" style="font-size: 20px;"></i>
+                                </a>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
     </div>
-
-    <div class="text-center mt-4">
-    <h3 class="fw-bold" style="color: #402920;">Não encontrou o acompanhamento? Cadastre abaixo</h3>
-    <a href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/acompanhamentos/adicionar/" class="btn fw-bold px-4 py-2" style="background: linear-gradient(to bottom, #402920 1.57%, #774a38 128.95%); color: #ffffff; border-radius: 12px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
-        Adicionar Acompanhamento
-    </a>
 </div>
 
-</div>
-
-
-
-
-<!-- MODAL DESATIVAR Acompanhamento -->
-<div class="modal" tabindex="-1" id="modalDesativar">
+<!-- Modal -->
+<div class="modal fade" id="modalAlterarStatusAcompanhamento" tabindex="-1" aria-labelledby="modalTitulo" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Desativar Acompanhamento</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 id="modalTitulo" class="modal-title"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
             </div>
             <div class="modal-body">
-                <p>Tem certeza que deseja desativar o <span id="nomeAcompanhamentoModal"></span>?</p>
-                <input type="hidden" id="idAcompanhamentoDesativar" value="">
+                <p id="modalTexto"></p>
+                <input type="hidden" id="idAcompanhamentoAlterar">
+                <input type="hidden" id="acaoAcompanhamento">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="btnConfirmar">Desativar</button>
+                <button type="button" class="btn btn-primary" id="btnConfirmarAcompanhamento">Confirmar</button>
             </div>
         </div>
     </div>
 </div>
 
-
 <script>
-    function abrirModalDesativar(idAcompanhamento, nomeAcompanhamento) {
-        if ($('#modalDesativar').hasClass('show')) {
-            return;
-        }
+    function alterarStatusAcompanhamento(idAcompanhamento, acao) {
+        const url = `<?= BASE_URL ?>acompanhamentos/${acao}/${idAcompanhamento}`;
 
-        // Definindo o valor do campo hidden
-        document.getElementById('idAcompanhamentoDesativar').value = idAcompanhamento;
+        const modal = new bootstrap.Modal(document.getElementById('modalAlterarStatusAcompanhamento'));
+        document.getElementById('modalTitulo').innerText = acao === 'ativar' ? 'Ativar Acompanhamento' : 'Desativar Acompanhamento';
+        document.getElementById('modalTexto').innerText = `Tem certeza que deseja ${acao} este acompanhamento?`;
+        document.getElementById('idAcompanhamentoAlterar').value = idAcompanhamento;
+        document.getElementById('acaoAcompanhamento').value = acao;
 
-        // Atualizando o título do modal com o nome do produto
-        document.getElementById('nomeAcompanhamentoModal').textContent = nomeAcompanhamento;
-
-        // Exibindo o modal
-        $('#modalDesativar').modal('show');
+        modal.show();
     }
 
+    document.getElementById('btnConfirmarAcompanhamento').addEventListener('click', function() {
+        const idAcompanhamento = document.getElementById('idAcompanhamentoAlterar').value;
+        const acao = document.getElementById('acaoAcompanhamento').value;
+        const url = `<?= BASE_URL ?>acompanhamentos/${acao}/${idAcompanhamento}`;
 
-    document.getElementById('btnConfirmar').addEventListener('click', function() {
-        const idAcompanhamento = document.getElementById('idAcompanhamentoDesativar').value;
-        console.log(idAcompanhamento);
-
-        if (idAcompanhamento) {
-            desativarAcompanhamento(idAcompanhamento);
-        }
-    });
-
-    function desativarAcompanhamento(idAcompanhamento) {
-        fetch(`https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/acompanhamentos/desativar/${idAcompanhamento}`, {
+        fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 }
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Erro HTTP: ${response.status}`);
-                }
-                return response.json();
-            })
+            .then(response => response.json())
             .then(data => {
                 if (data.sucesso) {
-                    console.log('Acompanhamento desativado com sucesso');
-                    $('#modalDesativar').modal('hide');
-                    setTimeout(() => {
-                        location.reload();
-                    }, 500);
+                    const row = document.getElementById('acompanhamento_' + idAcompanhamento);
+                    const statusColumn = row.querySelector('.status-acompanhamento');
+
+                    if (acao === 'ativar') {
+                        statusColumn.innerHTML = `<a href="#" title="Desativar" onclick="alterarStatusAcompanhamento(${idAcompanhamento}, 'desativar')">
+                            <i class="fas fa-ban text-danger" style="font-size: 20px;"></i></a>`;
+                    } else {
+                        statusColumn.innerHTML = `<a href="#" title="Ativar" onclick="alterarStatusAcompanhamento(${idAcompanhamento}, 'ativar')">
+                            <i class="fas fa-check text-success" style="font-size: 20px;"></i></a>`;
+                    }
+
+                    bootstrap.Modal.getInstance(document.getElementById('modalAlterarStatusAcompanhamento')).hide();
                 } else {
-                    alert(data.mensagem || "Ocorreu um erro ao Desativar o Acompanhamento");
+                    alert(data.mensagem || 'Erro ao alterar o status do acompanhamento.');
                 }
             })
-            .catch(erro => {
-                console.error("erro", erro);
-                alert('Erro na requisição');
-            });
-    }
+            .catch(() => alert('Erro na requisição.'));
+    });
 </script>

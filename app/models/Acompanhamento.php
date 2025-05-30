@@ -5,23 +5,24 @@ class Acompanhamento extends Model
 
     public function getListarAcompanhamentos($status = null)
     {
-
-        $sql = "SELECT * FROM tbl_acompanhamento  WHERE status_acompanhamento = 'Ativo'";
+        $sql = "SELECT * FROM tbl_acompanhamento";
+    
+        // Se o status foi passado, adiciona o filtro
+        if (!empty($status)) {
+            $sql .= " WHERE TRIM(status_acompanhamento) = :status";
+        }
+    
         $stmt = $this->db->prepare($sql);
-
-                        // Se o status foi passado, adiciona o filtro
-    if (!empty($status)) {
-        $sql .= " WHERE TRIM(p.status_cliente) = :status";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(':status', $status, PDO::PARAM_STR);
-    } else {
-        // Sem filtro de status
-        $stmt = $this->db->prepare($sql);
-    }
+    
+        if (!empty($status)) {
+            $stmt->bindValue(':status', $status, PDO::PARAM_STR);
+        }
     
         $stmt->execute();
+    
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    
 
     public function getListarAcompanhamentosDesativados()
     {

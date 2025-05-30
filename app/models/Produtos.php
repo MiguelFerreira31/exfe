@@ -33,19 +33,22 @@ public function getListarProdutos($status = null)
             INNER JOIN tbl_categoria AS c ON p.id_categoria = c.id_categoria
             INNER JOIN tbl_fornecedor AS f ON p.id_fornecedor = f.id_fornecedor";
 
-                // Se o status foi passado, adiciona o filtro
+    // Se o status foi passado, adiciona o filtro
     if (!empty($status)) {
-        $sql .= " WHERE TRIM(p.status_cliente) = :status";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(':status', $status, PDO::PARAM_STR);
-    } else {
-        // Sem filtro de status
-        $stmt = $this->db->prepare($sql);
+        $sql .= " WHERE TRIM(p.status_produto) = :status";  // Ajuste: verifique o nome correto do campo!
     }
 
-    $stmt = $this->db->query($sql);
+    $stmt = $this->db->prepare($sql);
+
+    if (!empty($status)) {
+        $stmt->bindValue(':status', $status, PDO::PARAM_STR);
+    }
+
+    $stmt->execute();
+
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
 
 
 

@@ -18,16 +18,16 @@ $status = $_GET['status'] ?? 'Ativo';
     </h2>
 
     <div class="d-flex justify-content-between align-items-center mb-4">
-    <div class="d-flex justify-content-end mb-3">
-    <form method="get" action="">
-        <label for="statusFiltro">Filtrar por status:</label>
-        <select name="status" id="statusFiltro" onchange="this.form.submit()" class="form-select d-inline w-auto ms-2">
-            <option value="" <?= !isset($_GET['status']) || $_GET['status'] == '' ? 'selected' : '' ?>>Todos</option>
-            <option value="ativo" <?= isset($_GET['status']) && $_GET['status'] == 'ativo' ? 'selected' : '' ?>>Ativos</option>
-            <option value="inativo" <?= isset($_GET['status']) && $_GET['status'] == 'inativo' ? 'selected' : '' ?>>Inativos</option>
-        </select>
-    </form>
-</div>
+        <div class="d-flex justify-content-end mb-3">
+            <form method="get" action="">
+                <label for="statusFiltro">Filtrar por status:</label>
+                <select name="status" id="statusFiltro" onchange="this.form.submit()" class="form-select d-inline w-auto ms-2">
+                    <option value="" <?= !isset($_GET['status']) || $_GET['status'] == '' ? 'selected' : '' ?>>Todos</option>
+                    <option value="ativo" <?= isset($_GET['status']) && $_GET['status'] == 'ativo' ? 'selected' : '' ?>>Ativos</option>
+                    <option value="inativo" <?= isset($_GET['status']) && $_GET['status'] == 'inativo' ? 'selected' : '' ?>>Inativos</option>
+                </select>
+            </form>
+        </div>
 
         <?php if ($status !== 'inativo'): ?>
             <a href="<?= BASE_URL ?>clientes/adicionar" class="btn btn-primary">Adicionar Cliente</a>
@@ -52,18 +52,18 @@ $status = $_GET['status'] ?? 'Ativo';
                     <tr id="cliente_<?= $linha['id_cliente'] ?>" class="fw-semibold">
                         <td>
                             <?php
-                    $caminhoArquivo = BASE_URL . "uploads/" . $linha['foto_cliente'];
-                    $img = BASE_URL . "uploads/sem-foto.jpg"; // Caminho padrão corrigido
-                    // $alt_foto = "imagem sem foto $index";
+                            $caminhoArquivo = BASE_URL . "uploads/" . $linha['foto_cliente'];
+                            $img = BASE_URL . "uploads/sem-foto.jpg"; // Caminho padrão corrigido
+                            // $alt_foto = "imagem sem foto $index";
 
-                    if (!empty($linha['foto_cliente'])) {
-                        $headers = @get_headers($caminhoArquivo);
-                        if ($headers && strpos($headers[0], '200') !== false) {
-                            $img = $caminhoArquivo;
-                        }
-                    }
-                    
-                    ?>
+                            if (!empty($linha['foto_cliente'])) {
+                                $headers = @get_headers($caminhoArquivo);
+                                if ($headers && strpos($headers[0], '200') !== false) {
+                                    $img = $caminhoArquivo;
+                                }
+                            }
+
+                            ?>
                             <img src="<?php echo $img; ?>" alt="Foto Cliente" class="rounded-circle" style="width: 50px; height: 50px;">
                         </td>
                         <td><?= htmlspecialchars($linha['nome_cliente']) ?></td>
