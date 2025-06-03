@@ -695,6 +695,7 @@ html body header .one .info02 {
   align-items: center;
   justify-content: center;
   justify-content: space-evenly;
+  align-items: center;
 }
 html body header .one .info02 a svg {
   width: 25px;
@@ -709,6 +710,7 @@ html body header .one .info02 label {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 0px !important;
 }
 html body header .site {
   width: 100dvw;
@@ -780,6 +782,7 @@ html body header .site .icons svg {
   border-radius: 25px;
   margin-right: 20px;
   transition: 0.5s;
+  margin-bottom: 0px !important;
 }
 html body header .site .icons svg:hover {
   transform: scale(1.08);
@@ -1860,13 +1863,163 @@ html body main #produtosEmDestaque .produtosCont {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: 30px;
+  gap: 40px;
+}
+html body main #produtosEmDestaque .produtosCont .buttons {
+  width: 50%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+html body main #produtosEmDestaque .produtosCont .buttons button {
+  position: relative;
+  padding: 12px 35px;
+  background: #371406;
+  font-size: 17px;
+  font-weight: 900;
+  color: white;
+  border: 3px solid #371406;
+  border-radius: 25px;
+  box-shadow: 0 0 0 rgba(116, 48, 0, 0.5490196078);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+html body main #produtosEmDestaque .produtosCont .buttons button svg {
+  width: 25px;
+  height: auto;
+  margin-left: 10px;
+}
+html body main #produtosEmDestaque .produtosCont .buttons .star-1 img {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: 25px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
+}
+html body main #produtosEmDestaque .produtosCont .buttons .star-2 img {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+}
+html body main #produtosEmDestaque .produtosCont .buttons .star-3 img {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+}
+html body main #produtosEmDestaque .produtosCont .buttons .star-4 img {
+  position: absolute;
+  top: 20%;
+  left: 40%;
+  width: 8px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
+}
+html body main #produtosEmDestaque .produtosCont .buttons .star-5 img {
+  position: absolute;
+  top: 25%;
+  left: 45%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 0.4s cubic-bezier(0, 0.4, 0, 1.01);
+}
+html body main #produtosEmDestaque .produtosCont .buttons .star-6 img {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 0.8s ease;
+}
+html body main #produtosEmDestaque .produtosCont .buttons button:hover {
+  background: transparent;
+  color: #371406;
+  box-shadow: 0 0 25px rgba(121, 50, 0, 0.5490196078);
+}
+html body main #produtosEmDestaque .produtosCont .buttons button:hover .star-1 img {
+  position: absolute;
+  top: -80%;
+  left: -30%;
+  width: 25px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #produtosEmDestaque .produtosCont .buttons button:hover .star-2 img {
+  position: absolute;
+  top: -25%;
+  left: 10%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #produtosEmDestaque .produtosCont .buttons button:hover .star-3 img {
+  position: absolute;
+  top: 55%;
+  left: 25%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #produtosEmDestaque .produtosCont .buttons button:hover .star-4 img {
+  position: absolute;
+  top: 30%;
+  left: 80%;
+  width: 8px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #produtosEmDestaque .produtosCont .buttons button:hover .star-5 img {
+  position: absolute;
+  top: 25%;
+  left: 115%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #produtosEmDestaque .produtosCont .buttons button:hover .star-6 img {
+  position: absolute;
+  top: 5%;
+  left: 60%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #produtosEmDestaque .produtosCont .buttons .fil0 {
+  fill: #371406;
 }
 html body main #produtosEmDestaque .produtosCont .produtosItems {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: 40px;
 }
 html body main #produtosEmDestaque .produtosCont .produtosItems a:hover .produtosContItems {
   background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
@@ -1875,12 +2028,16 @@ html body main #produtosEmDestaque .produtosCont .produtosItems .produtosContIte
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   justify-content: space-between;
-  width: 450px;
-  height: 160px;
+  width: 300px;
+  height: 320px;
   border-radius: 25px;
-  border: 1px solid #b3b3b3;
-  padding: 1.5%;
+  padding: 1%;
+}
+html body main #produtosEmDestaque .produtosCont .produtosItems .produtosContItems img {
+  width: 250px;
+  height: auto;
 }
 html body main #produtosEmDestaque .produtosCont .produtosItems .produtosContItems .info {
   display: flex;
@@ -1890,20 +2047,33 @@ html body main #produtosEmDestaque .produtosCont .produtosItems .produtosContIte
   align-items: flex-start;
   gap: 5px;
 }
-html body main #produtosEmDestaque .produtosCont .produtosItems .produtosContItems .info h3 {
+html body main #produtosEmDestaque .produtosCont .produtosItems .produtosContItems .info .infoItems {
+  width: 270px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  justify-content: space-between !important;
+}
+html body main #produtosEmDestaque .produtosCont .produtosItems .produtosContItems .info .infoItems h2 {
   color: #371406;
-  font-size: 1.5em;
-  font-weight: 900;
-}
-html body main #produtosEmDestaque .produtosCont .produtosItems .produtosContItems .info p {
   font-size: 1.3em;
-}
-html body main #produtosEmDestaque .produtosCont .produtosItems .produtosContItems .info h4 {
   font-weight: 900;
-  color: #946926;
 }
-html body main #produtosEmDestaque .produtosCont .produtosItems .produtosContItems .info h4 span {
-  text-decoration: line-through !important;
+html body main #produtosEmDestaque .produtosCont .produtosItems .produtosContItems .info .infoItems h3 {
+  color: #946926;
+  font-size: 1.3em;
+  font-weight: 900;
+}
+html body main #produtosEmDestaque .produtosCont .produtosItems .produtosContItems .info .infoItems h4 {
+  font-size: 1.2em;
+  font-weight: 900;
+  color: #b3b3b3;
+}
+html body main #produtosEmDestaque .produtosCont .produtosItems .produtosContItems .info .infoItems svg {
+  width: 25px;
+  height: auto;
 }
 html body main #produtosEmDestaque .produtosCont .produtosPosition {
   position: absolute;
@@ -2097,8 +2267,8 @@ html body main #graos .graosTitle .buttons .fil0 {
 }
 html body main #graos .seta {
   position: absolute;
-  top: 3100px;
-  left: 850px;
+  top: 3600px;
+  left: 860px;
   z-index: 999;
   animation-name: floating;
   animation-duration: 6s;
@@ -2202,7 +2372,7 @@ html body main #itemEspecial .swiper-container .swiper-slide h4 span {
   text-decoration: line-through !important;
 }
 html body main #itemEspecial .swiper-container .swiper-slide .buttons {
-  width: 50%;
+  width: 55%;
   height: 20%;
   display: flex;
   align-items: center;
@@ -2217,7 +2387,7 @@ html body main #itemEspecial .swiper-container .swiper-slide .buttons button {
   font-weight: 900;
   color: white;
   border: 3px solid #371406;
-  border-radius: 8px;
+  border-radius: 25px;
   box-shadow: 0 0 0 rgba(116, 48, 0, 0.5490196078);
   transition: all 0.3s ease-in-out;
   cursor: pointer;
@@ -2439,7 +2609,7 @@ html body main #avaliacao .swiper .swiper-slide {
   justify-content: center;
   flex-direction: column;
   align-items: flex-start;
-  height: 570px;
+  height: 100%;
   width: 20%;
 }
 html body main #avaliacao .swiper .swiper-slide .img {
@@ -2460,6 +2630,7 @@ html body main #avaliacao .swiper .swiper-slide .img .imgItems {
   align-items: center;
   justify-content: center;
   align-items: flex-start;
+  justify-content: flex-start;
   flex-direction: column;
   width: 400px;
   height: 410px;
@@ -2467,12 +2638,10 @@ html body main #avaliacao .swiper .swiper-slide .img .imgItems {
   background: #000000;
   padding: 5%;
   border-radius: 25px;
-  position: absolute;
-  top: 4750px;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
-  position: static;
+  gap: 10px;
 }
 html body main #avaliacao .swiper .swiper-slide .img .imgItems ul {
   width: 100%;
@@ -2482,18 +2651,20 @@ html body main #avaliacao .swiper .swiper-slide .img .imgItems ul {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: flex-start;
+  margin-left: -10%;
 }
 html body main #avaliacao .swiper .swiper-slide .img .imgItems P {
+  color: #b3b3b3;
   font-size: 1.3em;
-  margin: 10% 0% 18% 0%;
 }
 html body main #avaliacao .swiper .swiper-slide .img .imgItems h3 {
   font-weight: 900;
-  color: white;
+  color: #ffffff;
   font-size: 1.8em;
 }
 html body main #avaliacao .swiper .swiper-slide .img .imgItems h4 {
   font-size: 1.2em;
+  color: #ffffff;
 }
 html body main #avaliacao .swiper .swiper-slide .img:hover .imgItems {
   opacity: 1;
@@ -2522,6 +2693,7 @@ html body main #avaliacao .swiper .swiper-slide .carouselItems ul {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: flex-start;
+  margin-left: -8%;
 }
 html body main #avaliacao .swiper .swiper-slide .carouselItems h3 {
   font-weight: 900;
@@ -2545,23 +2717,20 @@ html body main #qualidade {
   gap: 70px;
   margin-top: 5%;
 }
-html body main #qualidade .img {
-  margin-left: 1%;
-}
 html body main #qualidade .qualidadeCont {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 50px;
+  align-items: center;
+  gap: 10px;
 }
 html body main #qualidade .qualidadeCont .title {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
 }
 html body main #qualidade .qualidadeCont .title h2 {
   font-weight: 900;
@@ -2572,19 +2741,18 @@ html body main #qualidade .qualidadeCont .title h2 span {
 }
 html body main #qualidade .qualidadeCont .title p {
   font-size: 1.3em;
-  margin-top: 2%;
 }
 html body main #qualidade .qualidadeCont .qualidadeItems {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
   gap: 20px;
 }
 html body main #qualidade .qualidadeCont .qualidadeItems .qualidadeContItems {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   gap: 50px;
 }
 html body main #qualidade .qualidadeCont .qualidadeItems .qualidadeContItems .itemsQualidade {

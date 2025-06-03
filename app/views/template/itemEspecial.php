@@ -40,10 +40,25 @@
               <h4><span>R$<?= $produto['preco_promocional_produto'] ?></span> R$<?= $produto['preco_produto'] ?></h4>
               <div class="buttons">
                 <button>
-                  Add Carrinho
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                    <path fill="#fff" d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22..." />
-                  </svg>
+                Add Carrinho
+                  <div class="star-1">
+                    <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/coffee-bean-button.webp" alt="">
+                  </div>
+                  <div class="star-2">
+                    <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/coffee-bean-button.webp" alt="">
+                  </div>
+                  <div class="star-3">
+                    <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/coffee-bean-button.webp" alt="">
+                  </div>
+                  <div class="star-4">
+                    <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/coffee-bean-button.webp" alt="">
+                  </div>
+                  <div class="star-5">
+                    <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/coffee-bean-button.webp" alt="">
+                  </div>
+                  <div class="star-6">
+                    <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/coffee-bean-button.webp" alt="">
+                  </div>
                 </button>
               </div>
             </div>

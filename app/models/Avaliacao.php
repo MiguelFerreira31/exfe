@@ -2,24 +2,23 @@
 class Avaliacao extends Model
 {
 
-
     public function getAvaliacao()
     {
-
         $sql = "SELECT 
                     a.*, 
                     c.nome_cliente, 
-                    c.foto_cliente
+                    c.foto_cliente, 
+                    p.nome_produto
                 FROM 
                     tbl_avaliacao a
                 INNER JOIN 
-                    tbl_cliente c 
-                ON  a.id_cliente = c.id_cliente;";
-           $stmt = $this->db->query($sql);
-           return $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    tbl_cliente c ON a.id_cliente = c.id_cliente
+                INNER JOIN
+                    tbl_produto p ON a.id_produto = p.id_produto";
+    
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-
 
     public function avaliacaoCliente($id)
     {

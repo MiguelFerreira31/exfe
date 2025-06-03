@@ -17,22 +17,26 @@
         <div class="swiper-slide">
           <div class="carouselCont">
 
-          <?php
-                    $caminhoArquivo = BASE_URL . "uploads/" . $linha['foto_cliente'];
-                    $img = BASE_URL . "uploads/sem-foto.jpg"; // Caminho padrão corrigido
-                    // $alt_foto = "imagem sem foto $index";
+            <?php
+            $caminhoArquivo = BASE_URL . "uploads/" . $linha['foto_cliente'];
+            $img = BASE_URL . "uploads/sem-foto.jpg"; // Caminho padrão corrigido
+            // $alt_foto = "imagem sem foto $index";
 
-                    if (!empty($linha['foto_cliente'])) {
-                        $headers = @get_headers($caminhoArquivo);
-                        if ($headers && strpos($headers[0], '200') !== false) {
-                            $img = $caminhoArquivo;
-                        }
-                    }
-                    
-                    ?>
-                      
+            if (!empty($linha['foto_cliente'])) {
+              $headers = @get_headers($caminhoArquivo);
+              if ($headers && strpos($headers[0], '200') !== false) {
+                $img = $caminhoArquivo;
+              }
+            }
+
+            ?>
+
             <div class="img" style="background-image: url(<?php echo $img; ?>); ">
               <div class="imgItems">
+
+                <h3><?php echo $linha['nome_cliente']; ?></h3>
+                <h4><?php echo $linha['nome_produto']; ?></h4>
+                <p><?php echo $linha['comentario']; ?></p>
                 <ul>
                   <li>
                     <?php
@@ -48,11 +52,7 @@
                     }
                     ?>
                   </li>
-
                 </ul>
-                <p>Lorem, ipsum dolor sit amet...</p>
-                <h3>Aroma Joe</h3>
-                <h4>Busy Professional</h4>
               </div>
             </div>
             <div class="carouselItems">
@@ -72,17 +72,13 @@
                   ?>
                 </li>
               </ul>
-              <h3> <?php echo $linha['nome_cliente']; ?></h3>
+              <h3><?php echo $linha['nome_cliente']; ?></h3>
               <h4><?php echo $linha['comentario']; ?></h4>
             </div>
           </div>
         </div>
 
-
-
       <?php endforeach ?>
-
-
 
     </div>
   </div>
