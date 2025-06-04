@@ -3,6 +3,29 @@
 class Produtos extends Model
 {
 
+    public function getListarProdutosAleatorios($quantidade = 4)
+{
+    $sql = "SELECT 
+                p.*, 
+                c.nome_categoria AS nome_categoria, 
+                f.nome_fornecedor AS nome_fornecedor
+            FROM tbl_produto AS p
+            INNER JOIN tbl_categoria AS c ON p.id_categoria = c.id_categoria
+            INNER JOIN tbl_fornecedor AS f ON p.id_fornecedor = f.id_fornecedor
+            WHERE TRIM(p.status_produto) = 'ativo'
+            ORDER BY RAND()
+            LIMIT :quantidade";
+
+    $stmt = $this->db->prepare($sql);
+
+    // Para segurança, força a quantidade a ser inteiro
+    $stmt->bindValue(':quantidade', (int)$quantidade, PDO::PARAM_INT);
+
+    $stmt->execute();
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
     public function buscarProduto($email)
     {
