@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const header = document.querySelector('.header');
   const scrollBtn = document.getElementById("scrollToTopBtn");
   const sidebar = document.getElementById('sidebar');
+  const sidebarFiltro = document.getElementById('sidebarFiltro');
   const overlay = document.getElementById('overlay');
   const valorDisplay = document.getElementById('valor');
   //#endregion
@@ -45,6 +46,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
   //#endregion
+
+    //#region filtro
+
+    window.openSidebar = () => {
+      sidebarFiltro.classList.add('show');
+      overlay.classList.add('show');
+    };
+  
+    window.closeSidebar = () => {
+      sidebarFiltro.classList.remove('show');
+      overlay.classList.remove('show');
+    };
+  
+    //#endregion
 
   //#region 🎠 Carousel Swiper
   new Swiper(".mySwiper", {
