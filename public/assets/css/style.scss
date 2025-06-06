@@ -2514,6 +2514,478 @@ html {
         }
       }
 
+      #produtosEmDestaqueMenu {
+        @include container();
+        @include flex-center();
+        flex-direction: column;
+        margin-top: 5%;
+
+        .title {
+          @include flex-center();
+          gap: 30px;
+          margin-bottom: 3%;
+
+          h2 {
+            font-weight: 900;
+
+            width: 36%;
+
+            span {
+              color: $colorSecondary;
+            }
+          }
+
+          img {
+            width: auto;
+            height: 120px;
+            transform: rotate(-20deg);
+          }
+
+          p {
+            font-size: 1.5em;
+            width: 700px;
+          }
+        }
+
+        .filtro{
+
+          .open-btn {
+            position: relative;
+            cursor: pointer;
+          }
+          .sidebarFiltro {
+            background: linear-gradient(to right, #f2e0db, #fff);
+            @include flex-center();
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 700px;
+            transition: right 0.3s ease-in-out;
+            padding: 1.5%;
+            border-radius: 25px;
+            gap: 30px;
+
+            &.show {
+              right: 0;
+            }
+
+            .titleCart {
+              width: 100%;
+              @include flex-center();
+              justify-content: space-between !important;
+              padding-bottom: 2%;
+              border-bottom: 0.5px solid #000;
+
+              h2 {
+                font-size: 2em;
+                font-weight: bold;
+              }
+
+              h3 {
+                font-size: 2em;
+                display: block;
+                text-decoration: none;
+                color: $colorTertiary;
+                transition: 0.2s;
+
+                &:hover {
+                  cursor: pointer;
+                  color: $colorSecondary;
+                }
+              }
+            }
+
+            .cartContent {
+              width: 100%;
+              height: 100%;
+              @include flex-center();
+              flex-direction: column;
+              justify-content: space-between;
+              gap: 30px;
+
+              .cartContentItems {
+                width: 100%;
+                @include flex-center();
+                flex-direction: column;
+                gap: 30px;
+
+                .cartItem {
+                  width: 100%;
+                  @include flex-center();
+                  align-items: flex-start;
+                  justify-content: space-between;
+                  border-bottom: 0.5px solid #000;
+                  padding-bottom: 7%;
+
+                  img {
+                    width: 50px;
+                    height: auto;
+                    border-radius: 10%;
+                  }
+
+                  .cartItemInfo {
+                    @include flex-center();
+                    flex-direction: column;
+                    margin-left: 3%;
+
+                    h4 {
+                      font-size: 1.3em;
+                      color: $colorTertiary;
+                      font-weight: bold;
+                    }
+
+                    h5 {
+                      font-size: 1em;
+                      color: $colorTertiary;
+                      font-weight: 100;
+                    }
+                  }
+
+                  .quantidade {
+                    @include flex-center();
+                    flex-direction: column;
+
+                    h4 {
+                      font-size: 1.3em;
+                      color: $colorTertiary;
+                      font-weight: bold;
+                    }
+
+                    .buttonsQuantidade {
+                      @include flex-center();
+                      gap: 5px;
+
+                      .contador {
+                        font-size: 1em;
+                      }
+
+                      button {
+                        font-size: 1em;
+                        width: 25px;
+                        height: 25px;
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                      }
+
+                      .adicionar {
+                        background-color: #4caf50;
+                        color: white;
+                      }
+
+                      .diminuir {
+                        background-color: #f44336;
+                        color: white;
+                      }
+                    }
+                  }
+                }
+              }
+
+              .buttonsCart {
+                @include flex-center();
+                gap: 10px;
+
+                button {
+                  @include flex-center();
+                  width: 125px;
+                  height: 40px;
+                  position: relative;
+                  background: $colorSecondary;
+                  font-size: 1.1em;
+                  font-weight: 900;
+                  color: white;
+                  border: 3px solid $colorSecondary;
+                  border-radius: 25px;
+                  box-shadow: 0 0 0 #7430008c;
+                  transition: all 0.3s ease-in-out;
+                  cursor: pointer;
+                }
+
+                a {
+                  button {
+                    background: $colorTertiary;
+                    border: 3px solid $colorTertiary;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .produtosCont {
+          @include flex-center();
+          flex-direction: column;
+          gap: 40px;
+
+          .buttons {
+            width: 50%;
+            height: 20%;
+            @include flex-center();
+
+            // #region btn banner
+            button {
+              position: relative;
+              padding: 12px 35px;
+              background: $colorBg2;
+              font-size: 17px;
+              font-weight: 900;
+              color: white;
+              border: 3px solid $colorBg2;
+              border-radius: 25px;
+              box-shadow: 0 0 0 #7430008c;
+              transition: all 0.3s ease-in-out;
+              cursor: pointer;
+              @include flex-center();
+
+              svg {
+                width: 25px;
+                height: auto;
+                margin-left: 10px;
+              }
+            }
+
+            .star-1 img {
+              position: absolute;
+              top: 20%;
+              left: 20%;
+              width: 25px;
+              height: auto;
+              filter: drop-shadow(0 0 0 $colorBg2);
+              z-index: -5;
+              transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
+            }
+
+            .star-2 img {
+              position: absolute;
+              top: 45%;
+              left: 45%;
+              width: 15px;
+              height: auto;
+              filter: drop-shadow(0 0 0 $colorBg2);
+              z-index: -5;
+              transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+            }
+
+            .star-3 img {
+              position: absolute;
+              top: 40%;
+              left: 40%;
+              width: 5px;
+              height: auto;
+              filter: drop-shadow(0 0 0 $colorBg2);
+              z-index: -5;
+              transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+            }
+
+            .star-4 img {
+              position: absolute;
+              top: 20%;
+              left: 40%;
+              width: 8px;
+              height: auto;
+              filter: drop-shadow(0 0 0 $colorBg2);
+              z-index: -5;
+              transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
+            }
+
+            .star-5 img {
+              position: absolute;
+              top: 25%;
+              left: 45%;
+              width: 15px;
+              height: auto;
+              filter: drop-shadow(0 0 0 $colorBg2);
+              z-index: -5;
+              transition: all 0.4s cubic-bezier(0, 0.4, 0, 1.01);
+            }
+
+            .star-6 img {
+              position: absolute;
+              top: 5%;
+              left: 50%;
+              width: 5px;
+              height: auto;
+              filter: drop-shadow(0 0 0 $colorBg2);
+              z-index: -5;
+              transition: all 0.8s ease;
+            }
+
+            button:hover {
+              background: transparent;
+              color: $colorBg2;
+              box-shadow: 0 0 25px #7932008c;
+            }
+
+            button:hover .star-1 img {
+              position: absolute;
+              top: -80%;
+              left: -30%;
+              width: 25px;
+              height: auto;
+              filter: drop-shadow(0 0 10px $colorBg2);
+              z-index: 2;
+            }
+
+            button:hover .star-2 img {
+              position: absolute;
+              top: -25%;
+              left: 10%;
+              width: 15px;
+              height: auto;
+              filter: drop-shadow(0 0 10px $colorBg2);
+              z-index: 2;
+            }
+
+            button:hover .star-3 img {
+              position: absolute;
+              top: 55%;
+              left: 25%;
+              width: 5px;
+              height: auto;
+              filter: drop-shadow(0 0 10px $colorBg2);
+              z-index: 2;
+            }
+
+            button:hover .star-4 img {
+              position: absolute;
+              top: 30%;
+              left: 80%;
+              width: 8px;
+              height: auto;
+              filter: drop-shadow(0 0 10px $colorBg2);
+              z-index: 2;
+            }
+
+            button:hover .star-5 img {
+              position: absolute;
+              top: 25%;
+              left: 115%;
+              width: 15px;
+              height: auto;
+              filter: drop-shadow(0 0 10px $colorBg2);
+              z-index: 2;
+            }
+
+            button:hover .star-6 img {
+              position: absolute;
+              top: 5%;
+              left: 60%;
+              width: 5px;
+              height: auto;
+              filter: drop-shadow(0 0 10px $colorBg2);
+              z-index: 2;
+            }
+
+            .fil0 {
+              fill: $colorBg2;
+            }
+
+            // #endregion
+          }
+
+          .produtosItems {
+            @include flex-center();
+            gap: 40px;
+
+            a:hover {
+              .produtosContItems {
+                background: linear-gradient(
+                  to left,
+                  #f2e0db 1.57%,
+                  #fff 128.95%
+                );
+              }
+            }
+
+            .produtosContItems {
+              @include flex-center();
+              flex-direction: column;
+              justify-content: space-between;
+              width: 300px;
+              height: 320px;
+              border-radius: 25px;
+              padding: 1%;
+
+              img {
+                width: 250px;
+                height: auto;
+              }
+
+              .info {
+                @include flex-center();
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+
+                .infoItems {
+                  width: 270px;
+                  @include flex-center();
+                  align-items: center;
+                  gap: 5px;
+                  justify-content: space-between !important;
+
+                  h2 {
+                    color: $colorTertiary;
+                    font-size: 1.3em;
+                    font-weight: 900;
+                  }
+
+                  h3 {
+                    color: $colorSecondary;
+                    font-size: 1.3em;
+                    font-weight: 900;
+                  }
+
+                  h4 {
+                    font-size: 1.2em;
+                    font-weight: 900;
+                    color: $colorQuartenary;
+                  }
+
+                  svg{
+                    width: 25px;
+                    height: auto;
+                  }
+                }
+              }
+            }
+          }
+
+          .produtosPosition {
+            position: absolute;
+
+            img {
+              position: absolute;
+              top: 200px;
+              left: 780px;
+              animation-name: floating;
+              animation-duration: 6s;
+              animation-iteration-count: infinite;
+              animation-timing-function: ease-in-out;
+
+              @keyframes floating {
+                0% {
+                  transform: translate(0, 0px);
+                }
+
+                50% {
+                  transform: translate(0, 10px);
+                }
+
+                100% {
+                  transform: translate(0, -0px);
+                }
+              }
+            }
+          }
+        }
+      }
+
       #graos {
         @include container();
         @include flex-center();
