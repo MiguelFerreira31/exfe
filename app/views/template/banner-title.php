@@ -10,6 +10,7 @@
         <h4>100% Orgânico</h4>
       </li>
     </ul>
+    <hr>
     <ul>
       <li>
         <h5>Ingredientes</h5>

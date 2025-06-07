@@ -461,7 +461,6 @@ html {
       }
 
       #qualidade {
-        background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
       }
 
       #desconto {
@@ -777,7 +776,6 @@ html {
       }
 
       #qualidade {
-        background: linear-gradient(to left, #402920 1.57%, #b87b62 128.95%);
       }
 
       #desconto {
@@ -1679,7 +1677,6 @@ html {
 
             .content {
               overflow: hidden;
-
               font-family: $font;
               font-size: 1.9em;
 
@@ -1692,6 +1689,8 @@ html {
                   margin-top: 0;
                   text-align: left;
                   list-style: none;
+                  padding: 0px;
+
 
                   -webkit-animation-name: change;
                   -webkit-animation-duration: 10s;
@@ -2056,23 +2055,29 @@ html {
           justify-content: space-evenly;
 
           .info-coffe {
-            width: 20%;
+            width: 25%;
             height: 100%;
             @include flex-center();
             justify-content: space-evenly;
+            gap: 5px;
+
+            hr {
+              width: 1px;
+              height: 50%;
+              background-color: $colorTertiary;
+              border: none;
+              opacity: 1;
+            }
 
             ul {
               width: 50%;
               height: 50%;
               @include flex-center();
-              align-items: flex-start;
               justify-content: space-evenly;
               flex-direction: column;
-
-              &:nth-child(1) {
-                border-right: 1px solid $colorBg2;
-                margin-right: 2%;
-              }
+              padding: 0px;
+              margin: 0px;
+              margin-left: 3%;
 
               li {
                 width: 100%;
@@ -2081,10 +2086,12 @@ html {
                   font-size: 1.6em;
                   letter-spacing: 1px;
                   color: $colorSecondary;
+                  margin: 0px;
                 }
 
                 h4 {
-                  font-size: 2em;
+                  font-size: 1.8em;
+                  margin: 0px;
                 }
               }
             }
@@ -2173,52 +2180,6 @@ html {
           }
         }
       }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       //BanneeTwo
       #bannerTwo {
@@ -2341,6 +2302,70 @@ html {
           }
         }
       }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       #produtosEmDestaque {
         @include container();
@@ -2561,7 +2586,7 @@ html {
             .produtosContItems {
               @include flex-center();
               flex-direction: column;
-              justify-content: space-between;
+              justify-content: flex-start;
               width: 300px;
               height: 320px;
               border-radius: 25px;
@@ -2676,11 +2701,77 @@ html {
         }
 
         .filtro {
+          width: 100%;
+          height: auto;
+          z-index: 99999999;
+          @include flex-center();
+          justify-content: space-between;
+          margin-bottom: 1%;
 
-          .open-btn {
-            position: relative;
-            cursor: pointer;
+          .filtroBtn {
+            @include flex-center();
+            gap: 15%;
+
+            .open-btn {
+              width: 50px;
+              height: auto;
+              position: relative;
+              cursor: pointer;
+            }
+
+            h3 {
+              font-size: 1.5em;
+              color: $colorTertiary;
+              font-weight: bold;
+              margin-bottom: 0px;
+            }
           }
+
+          .dropdown {
+            position: relative;
+            display: inline-block;
+
+            .dropbtn {
+              background: transparent;
+              color: $colorTertiary;
+              padding: 10px 20px;
+              font-size: 16px;
+              border: none;
+              border-radius: 5px;
+
+              &:hover {
+                cursor: pointer;
+              }
+
+            }
+
+            .dropdown-content {
+              display: none;
+              position: absolute;
+              background-color: $colorPrimary;
+              min-width: 160px;
+              box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+              z-index: 1;
+              border-radius: 5px;
+
+              a {
+                color: $colorTertiary;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                border-bottom: 1px solid #ddd;
+
+                &:hover {
+                  color: $colorSecondary;
+                }
+              }
+            }
+
+            &:hover .dropdown-content {
+              display: block;
+            }
+          }
+
 
           .sidebarFiltro {
             background: linear-gradient(to right, #f2e0db, #fff);
@@ -2690,19 +2781,19 @@ html {
             justify-content: flex-start;
             position: fixed;
             top: 0;
-            right: -400px;
+            left: -400px;
             width: 400px;
             height: 700px;
-            transition: right 0.3s ease-in-out;
+            transition: left 0.3s ease-in-out;
             padding: 1.5%;
             border-radius: 25px;
             gap: 30px;
 
             &.show {
-              right: 0;
+              left: 0;
             }
 
-            .titleCart {
+            .titleFiltro {
               width: 100%;
               @include flex-center();
               justify-content: space-between !important;
@@ -2728,7 +2819,7 @@ html {
               }
             }
 
-            .cartContent {
+            .cartFiltro {
               width: 100%;
               height: 100%;
               @include flex-center();
@@ -2736,7 +2827,7 @@ html {
               justify-content: space-between;
               gap: 30px;
 
-              .cartContentItems {
+              .filtroContentItems {
                 width: 100%;
                 @include flex-center();
                 flex-direction: column;
@@ -3019,7 +3110,7 @@ html {
 
           .produtosItems {
             @include flex-center();
-            gap: 40px;
+            gap: 15px;
 
             a:hover {
               .produtosContItems {
@@ -3771,6 +3862,12 @@ html {
         max-width: 100dvw !important;
         gap: 70px;
         margin-top: 5%;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../img/bg_img_qualidade.webp");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow: hidden;
 
         .qualidadeCont {
           @include flex-center();
@@ -3785,7 +3882,6 @@ html {
 
             h2 {
               font-weight: 900;
-
               letter-spacing: -2px;
 
               span {
@@ -3851,7 +3947,6 @@ html {
         @include flex-center();
         flex-direction: column;
         gap: 50px;
-        margin-top: 5%;
 
         .title {
           @include flex-center();

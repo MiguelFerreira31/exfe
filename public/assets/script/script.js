@@ -49,12 +49,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     //#region filtro
 
-    window.openSidebar = () => {
+    window.openSidebarFiltro = () => {
       sidebarFiltro.classList.add('show');
       overlay.classList.add('show');
     };
   
-    window.closeSidebar = () => {
+    window.closeSidebarFiltro = () => {
       sidebarFiltro.classList.remove('show');
       overlay.classList.remove('show');
     };

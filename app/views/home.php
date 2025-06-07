@@ -48,10 +48,10 @@
       <?php require_once('template/graos.php') ?>
 
       <?php require_once('template/itemEspecial.php') ?>
-
-      <?php require_once('template/avaliacao.php') ?>
-
+      
       <?php require_once('template/qualidade.php') ?>
+      
+      <?php require_once('template/avaliacao.php') ?>
 
       <?php require_once('template/blog.php') ?>
 

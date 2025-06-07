@@ -4,7 +4,7 @@ if(session_status() == PHP_SESSION_NONE){
     session_start();
 }
 
-define("BASE_URL", "https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/");
+define("BASE_URL", "http://localhost/exfe/public/");
 
 
 define("DB_HOST", "smpsistema.com.br");
