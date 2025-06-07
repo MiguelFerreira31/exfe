@@ -1640,7 +1640,6 @@ html {
 
       #banner {
         @include area();
-
         @include flex-center();
         max-width: 100dvw !important;
 
@@ -2171,6 +2170,108 @@ html {
               padding: 1%;
               border-radius: 60px;
             }
+          }
+        }
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      //BanneeTwo
+      #bannerTwo {
+        @include area();
+        @include flex-center();
+        max-width: 100dvw !important;
+        background-image: url("../img/banner.jpg");
+        gap: 50px;
+
+        .texto-sobreposto {
+          @include flex-center();
+          flex-direction: column;
+          align-items: flex-start;
+          width: 30%;
+
+          h2 {
+            font-family: "Chewy", system-ui;
+            font-size: 70px;
+            letter-spacing: 5px;
+          }
+
+          p {
+            letter-spacing: 2px;
+            font-weight: 700;
+            width: 80%;
+            font-size: 25px;
+            line-height: 1;
+          }
+        }
+
+        .coffeImg {
+          width: 20%;
+          height: auto;
+        }
+
+        .texto-direito {
+          @include flex-center();
+          flex-direction: column;
+          align-items: flex-start;
+          width: 30%;
+          margin: 0% -9% 0% 5%;
+
+          p {
+            font-size: 25px;
+            font-family: "Chewy", system-ui;
+          }
+
+          h2 {
+            font-family: "Chewy", system-ui;
+            font-size: 60px;
+            letter-spacing: 5px;
+            line-height: 1.2;
+            color: $colorBg1;
           }
         }
       }
@@ -3670,8 +3771,6 @@ html {
         max-width: 100dvw !important;
         gap: 70px;
         margin-top: 5%;
-
-        .img {}
 
         .qualidadeCont {
           @include flex-center();
@@ -5182,82 +5281,7 @@ html {
     }
 
 
-    //Banner Menu
 
-    .banner {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-
-      .bannerImg {
-        width: 100%;
-        height: 800px;
-        position: absolute;
-        z-index: -1;
-      }
-
-      .coffeImg {
-        margin-top: 150px;
-        width: 400px;
-      }
-    }
-
-    .texto-sobreposto {
-      position: relative;
-      width: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      right: 100px;
-      top: -350px;
-
-      h2 {
-        font-family: "Chewy", system-ui;
-        position: relative;
-        font-size: 70px;
-        align-items: center;
-        width: 60%;
-        letter-spacing: 5px;
-        margin-left: 150px;
-      }
-
-      p {
-        letter-spacing: 2px;
-        font-weight: 700;
-        width: 60%;
-        margin-top: 25px;
-        font-size: 25px;
-        line-height: 1;
-        text-align: center;
-      }
-    }
-
-    .texto-direito {
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      text-align: right;
-      position: absolute;
-      top: 50%;
-      right: 2rem;
-      transform: translateY(-50%);
-
-      p{
-        font-size: 25px;
-        font-family: "Chewy", system-ui;
-      }
-
-      h2{
-        font-family: "Chewy", system-ui;
-        font-size: 60px;
-        letter-spacing: 5px;
-        line-height: 1.2;
-      }
-    }
 
 
   }

@@ -11,9 +11,7 @@
     <main>
         <?php require_once('template/header.php') ?>
 
-        <?php require_once('template/banner.php') ?>
-
-        <?php require_once('template/banner-title.php') ?>
+        <?php require_once('template/bannerTwo.php') ?>
 
         <?php require_once('template/produtosEmDestaqueMenu.php') ?>
 

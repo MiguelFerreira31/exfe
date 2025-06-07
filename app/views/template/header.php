@@ -83,9 +83,6 @@ function getActive($rota)
           <a class="<?= getActive('menu') ?>" href="<?= BASE_URL ?>menu">Menu</a>
         </li>
         <li>
-          <a class="<?= getActive('loja') ?>" href="<?= BASE_URL ?>loja">Loja</a>
-        </li>
-        <li>
           <a class="<?= getActive('blog') ?>" href="<?= BASE_URL ?>blog">Blog</a>
         </li>
         <li>
