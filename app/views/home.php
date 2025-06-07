@@ -20,7 +20,7 @@
   </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventLis0tener("DOMContentLoaded", function() {
   setTimeout(function() {
     document.getElementById("loader").style.display = "none";
     document.getElementById("conteudo").style.display = "block";
