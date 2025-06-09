@@ -1,22 +1,37 @@
 <?php
 
- class MenuController extends Controller{
+class MenuController extends Controller
+{
+   public function index()
+   {
+      $produtosModel = new Produtos();
+      $acompanhamentosModel = new Acompanhamento();
 
-    public function index()
-    {
-        
-     $dados = array();
+      $categoriaSelecionada = $_GET['categoria'] ?? 'todas';
+      $ordenarSelecionado = $_GET['ordenar'] ?? 'recomendado';
 
-     $dados['mensagem'] = 'Bem-vindo ao Menu';
+      $produtos = $produtosModel->getProdutosDestaque($categoriaSelecionada, $ordenarSelecionado);
+      $acompanhamentos = $acompanhamentosModel->getAcompanhamentosDestaque($categoriaSelecionada, $ordenarSelecionado);
 
-     $produtosModel = new Produtos();
-     $produtos = $produtosModel->getListarProdutos();
-     $dados['produtos'] = $produtos;
+      $itens = array_merge($produtos, $acompanhamentos);
 
-     $produtosAleatorios = $produtosModel->getListarProdutosAleatorios(4);
-     $dados['produtosAleatorios'] = $produtosAleatorios;
+      // Corrigido: unificação sem sobrescrita
+      $categoriasProdutos = $produtosModel->getCategorias();
+      $categoriasAcompanhamentos = $acompanhamentosModel->getCategoriasAcompanhamento();
 
-     
-     $this->carregarViews('menu', $dados);
-    }
- }
+      $categorias = [];
+
+      foreach (array_merge($categoriasProdutos, $categoriasAcompanhamentos) as $cat) {
+         $categorias[$cat['id_categoria']] = $cat;
+      }
+
+      $categorias = array_values($categorias);
+
+      $this->carregarViews('menu', [
+         'itens' => $itens,
+         'categorias' => $categorias,
+         'categoriaSelecionada' => $categoriaSelecionada,
+         'ordenarSelecionado' => $ordenarSelecionado
+      ]);
+   }
+}

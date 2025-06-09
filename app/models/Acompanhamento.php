@@ -3,26 +3,64 @@
 class Acompanhamento extends Model
 {
 
+    public function getAcompanhamentosDestaque($categoria = 'todas', $ordenar = 'recomendado')
+    {
+        $sql = "SELECT * FROM tbl_acompanhamento WHERE status_acompanhamento = 'ativo'";
+
+        if ($categoria !== 'todas') {
+            $sql .= " AND id_categoria = :categoria";
+        }
+
+        switch ($ordenar) {
+            case 'menor_preco':
+                $sql .= " ORDER BY preco_acompanhamento ASC";
+                break;
+            case 'maior_preco':
+                $sql .= " ORDER BY preco_acompanhamento DESC";
+                break;
+            default:
+                $sql .= " ORDER BY destaque_acompanhamento DESC, nome_acompanhamento ASC";
+        }
+
+        $stmt = $this->db->prepare($sql);
+
+        if ($categoria !== 'todas') {
+            $stmt->bindValue(':categoria', $categoria);
+        }
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getCategoriasAcompanhamento()
+    {
+        $sql = "SELECT * FROM tbl_categoria";
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+
     public function getListarAcompanhamentos($status = null)
     {
         $sql = "SELECT * FROM tbl_acompanhamento";
-    
+
         // Se o status foi passado, adiciona o filtro
         if (!empty($status)) {
             $sql .= " WHERE TRIM(status_acompanhamento) = :status";
         }
-    
+
         $stmt = $this->db->prepare($sql);
-    
+
         if (!empty($status)) {
             $stmt->bindValue(':status', $status, PDO::PARAM_STR);
         }
-    
+
         $stmt->execute();
-    
+
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
+
 
     public function getListarAcompanhamentosDesativados()
     {

@@ -4,8 +4,8 @@ class Produtos extends Model
 {
 
     public function getListarProdutosAleatorios($quantidade = 4)
-{
-    $sql = "SELECT 
+    {
+        $sql = "SELECT 
                 p.*, 
                 c.nome_categoria AS nome_categoria, 
                 f.nome_fornecedor AS nome_fornecedor
@@ -16,15 +16,52 @@ class Produtos extends Model
             ORDER BY RAND()
             LIMIT :quantidade";
 
-    $stmt = $this->db->prepare($sql);
+        $stmt = $this->db->prepare($sql);
 
-    // Para segurança, força a quantidade a ser inteiro
-    $stmt->bindValue(':quantidade', (int)$quantidade, PDO::PARAM_INT);
+        // Para segurança, força a quantidade a ser inteiro
+        $stmt->bindValue(':quantidade', (int)$quantidade, PDO::PARAM_INT);
 
-    $stmt->execute();
+        $stmt->execute();
 
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+        public function getProdutosDestaque($categoria = 'todas', $ordenar = 'recomendado')
+        {
+            $sql = "SELECT * FROM tbl_produto WHERE status_produto = 'ativo'";
+
+            if ($categoria !== 'todas') {
+                $sql .= " AND id_categoria = :categoria";
+            }
+
+            switch ($ordenar) {
+                case 'menor_preco':
+                    $sql .= " ORDER BY preco_produto ASC";
+                    break;
+                case 'maior_preco':
+                    $sql .= " ORDER BY preco_produto DESC";
+                    break;
+                default:
+                    // Removido destaque_produto, ordenando apenas por nome
+                    $sql .= " ORDER BY nome_produto ASC";
+            }
+
+            $stmt = $this->db->prepare($sql);
+
+            if ($categoria !== 'todas') {
+                $stmt->bindValue(':categoria', $categoria);
+            }
+
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function getCategorias()
+        {
+            $sql = "SELECT * FROM tbl_categoria";
+            $stmt = $this->db->query($sql);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
 
 
     public function buscarProduto($email)
@@ -38,17 +75,17 @@ class Produtos extends Model
     }
 
     //Método Listar todos os Serviços ativos por ordem alfabetica
-public function getTodosProdutos()
-{
-    $sql = "SELECT * FROM tbl_produto ORDER BY nome_produto ASC";
-    $stmt = $this->db->query($sql);
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+    public function getTodosProdutos()
+    {
+        $sql = "SELECT * FROM tbl_produto ORDER BY nome_produto ASC";
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
 
-public function getListarProdutos($status = null)
-{
-    $sql = "SELECT 
+    public function getListarProdutos($status = null)
+    {
+        $sql = "SELECT 
                 p.*, 
                 c.nome_categoria AS nome_categoria, 
                 f.nome_fornecedor AS nome_fornecedor
@@ -56,21 +93,21 @@ public function getListarProdutos($status = null)
             INNER JOIN tbl_categoria AS c ON p.id_categoria = c.id_categoria
             INNER JOIN tbl_fornecedor AS f ON p.id_fornecedor = f.id_fornecedor";
 
-    // Se o status foi passado, adiciona o filtro
-    if (!empty($status)) {
-        $sql .= " WHERE TRIM(p.status_produto) = :status";  // Ajuste: verifique o nome correto do campo!
+        // Se o status foi passado, adiciona o filtro
+        if (!empty($status)) {
+            $sql .= " WHERE TRIM(p.status_produto) = :status";  // Ajuste: verifique o nome correto do campo!
+        }
+
+        $stmt = $this->db->prepare($sql);
+
+        if (!empty($status)) {
+            $stmt->bindValue(':status', $status, PDO::PARAM_STR);
+        }
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-    $stmt = $this->db->prepare($sql);
-
-    if (!empty($status)) {
-        $stmt->bindValue(':status', $status, PDO::PARAM_STR);
-    }
-
-    $stmt->execute();
-
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
 
 
 
