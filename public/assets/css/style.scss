@@ -1,8 +1,8 @@
 // Font
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Chewy&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Chewy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Chewy&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap");
 // #region config
 
 // Reset
@@ -135,7 +135,6 @@ hr {
 }
 
 @keyframes blink {
-
   0%,
   100% {
     color: rgb(185, 140, 25);
@@ -332,7 +331,6 @@ html {
       }
 
       @keyframes blink4 {
-
         0%,
         80%,
         100% {
@@ -388,11 +386,11 @@ html {
         transition: all 0.2s cubic-bezier(0.5, 0.1, 0.75, 1.35);
       }
 
-      input[type="checkbox"]:checked+.toggle {
+      input[type="checkbox"]:checked + .toggle {
         border: 1px solid white;
       }
 
-      input[type="checkbox"]:checked+.toggle::after {
+      input[type="checkbox"]:checked + .toggle::after {
         transform: translateX(20px) scale(1.02);
       }
 
@@ -433,7 +431,6 @@ html {
         }
 
         @keyframes blink-light {
-
           0%,
           100% {
             color: #371406;
@@ -460,7 +457,8 @@ html {
         }
       }
 
-      #qualidade {}
+      #qualidade {
+      }
 
       #desconto {
         background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
@@ -641,7 +639,6 @@ html {
       }
 
       @keyframes blink4 {
-
         0%,
         80%,
         100% {
@@ -714,11 +711,11 @@ html {
         transition: all 0.2s cubic-bezier(0.5, 0.1, 0.75, 1.35);
       }
 
-      input[type="checkbox"]:checked+.toggle {
+      input[type="checkbox"]:checked + .toggle {
         border: 2px solid #c59b8a;
       }
 
-      input[type="checkbox"]:checked+.toggle::after {
+      input[type="checkbox"]:checked + .toggle::after {
         transform: translateX(20px) scale(1.02);
       }
 
@@ -747,7 +744,6 @@ html {
         }
 
         @keyframes blink-dark {
-
           0%,
           100% {
             color: #ffffff;
@@ -774,7 +770,8 @@ html {
         }
       }
 
-      #qualidade {}
+      #qualidade {
+      }
 
       #desconto {
         background: linear-gradient(to left, #402920 1.57%, #774a38 128.95%);
@@ -793,13 +790,7 @@ html {
       }
 
       // Hover em modo dark
-
     }
-
-
-
-
-
 
     // #endregion
 
@@ -1292,7 +1283,6 @@ html {
       }
 
       @keyframes show {
-
         0%,
         49.99% {
           opacity: 0;
@@ -1547,7 +1537,6 @@ html {
     // #endregion
 
     main {
-
       // #region loader dash
       .loader {
         width: 35px;
@@ -1618,7 +1607,6 @@ html {
       }
 
       @keyframes blink4 {
-
         0%,
         80%,
         100% {
@@ -1689,7 +1677,6 @@ html {
                   list-style: none;
                   padding: 0px;
 
-
                   -webkit-animation-name: change;
                   -webkit-animation-duration: 10s;
                   -webkit-animation-iteration-count: infinite;
@@ -1707,7 +1694,6 @@ html {
                   }
 
                   @-webkit-keyframes change {
-
                     0%,
                     12.66%,
                     100% {
@@ -1741,7 +1727,6 @@ html {
                   }
 
                   @-o-keyframes change {
-
                     0%,
                     12.66%,
                     100% {
@@ -1775,7 +1760,6 @@ html {
                   }
 
                   @-moz-keyframes change {
-
                     0%,
                     12.66%,
                     100% {
@@ -1809,7 +1793,6 @@ html {
                   }
 
                   @keyframes change {
-
                     0%,
                     12.66%,
                     100% {
@@ -2301,70 +2284,6 @@ html {
         }
       }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       #produtosEmDestaque {
         @include container();
         @include flex-center();
@@ -2414,7 +2333,6 @@ html {
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
           }
         }
-
       }
 
       #produtosEmDestaqueMenu {
@@ -2430,7 +2348,6 @@ html {
 
           h2 {
             font-weight: 900;
-
             width: 36%;
 
             span {
@@ -2482,6 +2399,7 @@ html {
             display: inline-block;
 
             .dropbtn {
+              @include flex-center();
               background: transparent;
               color: $colorTertiary;
               padding: 10px 20px;
@@ -2492,7 +2410,6 @@ html {
               &:hover {
                 cursor: pointer;
               }
-
             }
 
             .dropdown-content {
@@ -2521,7 +2438,6 @@ html {
               display: block;
             }
           }
-
 
           .sidebarFiltro {
             background: linear-gradient(to right, #f2e0db, #fff);
@@ -2569,119 +2485,26 @@ html {
               }
             }
 
-            .cartFiltro {
+            .filtroContent {
               width: 100%;
-              height: 100%;
+              height: auto;
               @include flex-center();
               flex-direction: column;
-              justify-content: space-between;
-              gap: 30px;
 
               .filtroContentItems {
                 width: 100%;
                 @include flex-center();
                 flex-direction: column;
+                align-items: flex-start;
                 gap: 30px;
 
-                .cartItem {
-                  width: 100%;
-                  @include flex-center();
-                  align-items: flex-start;
-                  justify-content: space-between;
-                  border-bottom: 0.5px solid #000;
-                  padding-bottom: 7%;
+                .filtro-categorias{
 
-                  img {
-                    width: 50px;
-                    height: auto;
-                    border-radius: 10%;
-                  }
-
-                  .cartItemInfo {
-                    @include flex-center();
-                    flex-direction: column;
-                    margin-left: 3%;
-
-                    h4 {
-                      font-size: 1.3em;
-                      color: $colorTertiary;
-                      font-weight: bold;
-                    }
-
-                    h5 {
-                      font-size: 1em;
-                      color: $colorTertiary;
-                      font-weight: 100;
-                    }
-                  }
-
-                  .quantidade {
-                    @include flex-center();
-                    flex-direction: column;
-
-                    h4 {
-                      font-size: 1.3em;
-                      color: $colorTertiary;
-                      font-weight: bold;
-                    }
-
-                    .buttonsQuantidade {
-                      @include flex-center();
-                      gap: 5px;
-
-                      .contador {
-                        font-size: 1em;
-                      }
-
-                      button {
-                        font-size: 1em;
-                        width: 25px;
-                        height: 25px;
-                        border: none;
-                        border-radius: 5px;
-                        cursor: pointer;
-                      }
-
-                      .adicionar {
-                        background-color: #4caf50;
-                        color: white;
-                      }
-
-                      .diminuir {
-                        background-color: #f44336;
-                        color: white;
-                      }
-                    }
+                  a{
+                    color: $colorTertiary;
                   }
                 }
-              }
 
-              .buttonsCart {
-                @include flex-center();
-                gap: 10px;
-
-                button {
-                  @include flex-center();
-                  width: 125px;
-                  height: 40px;
-                  position: relative;
-                  background: $colorSecondary;
-                  font-size: 1.1em;
-                  font-weight: 900;
-                  color: white;
-                  border: 3px solid $colorSecondary;
-                  border-radius: 25px;
-                  box-shadow: 0 0 0 #7430008c;
-                  transition: all 0.3s ease-in-out;
-                  cursor: pointer;
-                }
-
-                a {
-                  button {
-                    background: $colorTertiary;
-                    border: 3px solid $colorTertiary;
-                  }
-                }
               }
             }
           }
@@ -2858,13 +2681,17 @@ html {
 
           .produtosItems {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(4, 1fr); /* 4 colunas iguais */
             gap: 40px;
             justify-items: center;
 
             a:hover {
               .produtosContItems {
-                background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
+                background: linear-gradient(
+                  to left,
+                  #f2e0db 1.57%,
+                  #fff 128.95%
+                );
               }
             }
 
@@ -3566,7 +3393,7 @@ html {
                   cursor: pointer;
                 }
 
-                &:hover~.carouselItems {
+                &:hover ~ .carouselItems {
                   opacity: 0;
                   visibility: hidden;
                   transition: opacity 0.4s ease, visibility 0.4s ease;
@@ -3612,7 +3439,11 @@ html {
         max-width: 100dvw !important;
         gap: 70px;
         margin-top: 5%;
-        background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../img/bg_img_qualidade.webp");
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.6),
+            rgba(0, 0, 0, 0.6)
+          ),
+          url("../img/bg_img_qualidade.webp");
         background-attachment: fixed;
         background-position: center;
         background-repeat: no-repeat;
@@ -4339,9 +4170,11 @@ html {
         }
 
         .card-cafe {
-          background: linear-gradient(to bottom,
-              #40292049 1.57%,
-              #774a388b 128.95%);
+          background: linear-gradient(
+            to bottom,
+            #40292049 1.57%,
+            #774a388b 128.95%
+          );
           backdrop-filter: blur(12px);
           border-radius: 16px;
           padding: 1.5rem;
@@ -4404,9 +4237,11 @@ html {
           display: flex;
           justify-content: space-evenly;
           align-items: center;
-          background: linear-gradient(to bottom,
-              #23120bb5 1.57%,
-              #2a12089f 128.95%);
+          background: linear-gradient(
+            to bottom,
+            #23120bb5 1.57%,
+            #2a12089f 128.95%
+          );
 
           article {
             width: 50%;
@@ -4416,9 +4251,11 @@ html {
             align-items: center;
             flex-direction: column;
             color: white;
-            background: linear-gradient(to bottom,
-                #40292049 1.57%,
-                #774a388b 128.95%);
+            background: linear-gradient(
+              to bottom,
+              #40292049 1.57%,
+              #774a388b 128.95%
+            );
             backdrop-filter: blur(15px);
             border-radius: 12px;
 
@@ -4520,9 +4357,11 @@ html {
           display: flex;
           justify-content: space-evenly;
           align-items: center;
-          background: linear-gradient(to bottom,
-              #23120bb5 1.57%,
-              #2a12089f 128.95%);
+          background: linear-gradient(
+            to bottom,
+            #23120bb5 1.57%,
+            #2a12089f 128.95%
+          );
 
           article {
             width: 50%;
@@ -4532,9 +4371,11 @@ html {
             align-items: center;
             flex-direction: column;
             color: white;
-            background: linear-gradient(to bottom,
-                #40292049 1.57%,
-                #774a388b 128.95%);
+            background: linear-gradient(
+              to bottom,
+              #40292049 1.57%,
+              #774a388b 128.95%
+            );
             backdrop-filter: blur(15px);
             border-radius: 12px;
 
@@ -4586,9 +4427,11 @@ html {
                 }
 
                 span {
-                  background: linear-gradient(to bottom,
-                      #9e675fa9 0%,
-                      #371406 100%);
+                  background: linear-gradient(
+                    to bottom,
+                    #9e675fa9 0%,
+                    #371406 100%
+                  );
                   width: 20%;
                   color: #dbdbdb;
                   border-radius: 10px;
@@ -5040,7 +4883,6 @@ html {
           }
 
           @keyframes loaderAnimation {
-
             0%,
             100% {
               transform: scale(1);
@@ -5081,7 +4923,6 @@ html {
       }
 
       @keyframes bounce {
-
         0%,
         100% {
           transform: scale(1);
@@ -5124,10 +4965,5 @@ html {
         }
       }
     }
-
-
-
-
-
   }
 }

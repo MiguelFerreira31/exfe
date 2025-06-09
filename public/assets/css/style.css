@@ -2011,6 +2011,9 @@ html body main #produtosEmDestaqueMenu .filtro .dropdown {
   display: inline-block;
 }
 html body main #produtosEmDestaqueMenu .filtro .dropdown .dropbtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: transparent;
   color: #371406;
   padding: 10px 20px;
@@ -2088,118 +2091,25 @@ html body main #produtosEmDestaqueMenu .filtro .sidebarFiltro .titleFiltro h3:ho
   cursor: pointer;
   color: #946926;
 }
-html body main #produtosEmDestaqueMenu .filtro .sidebarFiltro .cartFiltro {
+html body main #produtosEmDestaqueMenu .filtro .sidebarFiltro .filtroContent {
   width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 30px;
-}
-html body main #produtosEmDestaqueMenu .filtro .sidebarFiltro .cartFiltro .filtroContentItems {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 30px;
-}
-html body main #produtosEmDestaqueMenu .filtro .sidebarFiltro .cartFiltro .filtroContentItems .cartItem {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-items: flex-start;
-  justify-content: space-between;
-  border-bottom: 0.5px solid #000;
-  padding-bottom: 7%;
-}
-html body main #produtosEmDestaqueMenu .filtro .sidebarFiltro .cartFiltro .filtroContentItems .cartItem img {
-  width: 50px;
   height: auto;
-  border-radius: 10%;
-}
-html body main #produtosEmDestaqueMenu .filtro .sidebarFiltro .cartFiltro .filtroContentItems .cartItem .cartItemInfo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin-left: 3%;
-}
-html body main #produtosEmDestaqueMenu .filtro .sidebarFiltro .cartFiltro .filtroContentItems .cartItem .cartItemInfo h4 {
-  font-size: 1.3em;
-  color: #371406;
-  font-weight: bold;
-}
-html body main #produtosEmDestaqueMenu .filtro .sidebarFiltro .cartFiltro .filtroContentItems .cartItem .cartItemInfo h5 {
-  font-size: 1em;
-  color: #371406;
-  font-weight: 100;
-}
-html body main #produtosEmDestaqueMenu .filtro .sidebarFiltro .cartFiltro .filtroContentItems .cartItem .quantidade {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
-html body main #produtosEmDestaqueMenu .filtro .sidebarFiltro .cartFiltro .filtroContentItems .cartItem .quantidade h4 {
-  font-size: 1.3em;
+html body main #produtosEmDestaqueMenu .filtro .sidebarFiltro .filtroContent .filtroContentItems {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 30px;
+}
+html body main #produtosEmDestaqueMenu .filtro .sidebarFiltro .filtroContent .filtroContentItems .filtro-categorias a {
   color: #371406;
-  font-weight: bold;
-}
-html body main #produtosEmDestaqueMenu .filtro .sidebarFiltro .cartFiltro .filtroContentItems .cartItem .quantidade .buttonsQuantidade {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-}
-html body main #produtosEmDestaqueMenu .filtro .sidebarFiltro .cartFiltro .filtroContentItems .cartItem .quantidade .buttonsQuantidade .contador {
-  font-size: 1em;
-}
-html body main #produtosEmDestaqueMenu .filtro .sidebarFiltro .cartFiltro .filtroContentItems .cartItem .quantidade .buttonsQuantidade button {
-  font-size: 1em;
-  width: 25px;
-  height: 25px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-html body main #produtosEmDestaqueMenu .filtro .sidebarFiltro .cartFiltro .filtroContentItems .cartItem .quantidade .buttonsQuantidade .adicionar {
-  background-color: #4caf50;
-  color: white;
-}
-html body main #produtosEmDestaqueMenu .filtro .sidebarFiltro .cartFiltro .filtroContentItems .cartItem .quantidade .buttonsQuantidade .diminuir {
-  background-color: #f44336;
-  color: white;
-}
-html body main #produtosEmDestaqueMenu .filtro .sidebarFiltro .cartFiltro .buttonsCart {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-html body main #produtosEmDestaqueMenu .filtro .sidebarFiltro .cartFiltro .buttonsCart button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 125px;
-  height: 40px;
-  position: relative;
-  background: #946926;
-  font-size: 1.1em;
-  font-weight: 900;
-  color: white;
-  border: 3px solid #946926;
-  border-radius: 25px;
-  box-shadow: 0 0 0 rgba(116, 48, 0, 0.5490196078);
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-}
-html body main #produtosEmDestaqueMenu .filtro .sidebarFiltro .cartFiltro .buttonsCart a button {
-  background: #371406;
-  border: 3px solid #371406;
 }
 html body main #produtosEmDestaqueMenu .produtosCont {
   display: flex;
@@ -2359,7 +2269,7 @@ html body main #produtosEmDestaqueMenu .produtosCont .buttons .fil0 {
 }
 html body main #produtosEmDestaqueMenu .produtosCont .produtosItems {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr); /* 4 colunas iguais */
   gap: 40px;
   justify-items: center;
 }

@@ -18,9 +18,9 @@ class Acompanhamento extends Model
             case 'maior_preco':
                 $sql .= " ORDER BY preco_acompanhamento DESC";
                 break;
-            default:
-                $sql .= " ORDER BY destaque_acompanhamento DESC, nome_acompanhamento ASC";
-        }
+                default:
+                $sql .= " ORDER BY nome_acompanhamento ASC";
+                    }
 
         $stmt = $this->db->prepare($sql);
 

@@ -17,15 +17,16 @@
     <div class="dropdown">
       <form method="GET" action="">
         <label for="ordenar" class="sr-only">Ordenar por:</label>
-        <select name="ordenar" id="ordenar" onchange="this.form.submit()">
-          <option value="recomendado" <?= ($ordenarSelecionado == 'recomendado') ? 'selected' : '' ?>>Recomendado</option>
-          <option value="menor_preco" <?= ($ordenarSelecionado == 'menor_preco') ? 'selected' : '' ?>>Menor preço</option>
-          <option value="maior_preco" <?= ($ordenarSelecionado == 'maior_preco') ? 'selected' : '' ?>>Maior preço</option>
+        <select class="dropbtn" name="ordenar" id="ordenar" onchange="this.form.submit()">
+          <option class="dropdown-content" value="recomendado" <?= ($ordenarSelecionado == 'recomendado') ? 'selected' : '' ?>>Recomendado</option>
+          <option class="dropdown-content" value="menor_preco" <?= ($ordenarSelecionado == 'menor_preco') ? 'selected' : '' ?>>Menor preço</option>
+          <option class="dropdown-content" value="maior_preco" <?= ($ordenarSelecionado == 'maior_preco') ? 'selected' : '' ?>>Maior preço</option>
         </select>
       </form>
     </div>
 
     <div id="sidebarFiltro" class="sidebarFiltro">
+      
       <div class="titleFiltro">
         <h2>Filtro</h2>
         <h3 onclick="closeSidebarFiltro()">✕</h3>
@@ -33,21 +34,26 @@
 
       <div class="filtroContent">
         <div class="filtroContentItems">
+
+          <!-- Filtro "Todas" -->
           <div class="filtro-categorias">
-            <form method="GET" action="">
-              <label for="categoria">Filtrar por categoria:</label>
-              <select name="categoria" id="categoria" onchange="this.form.submit()">
-                <option value="todas" <?= ($categoriaSelecionada === 'todas' || $categoriaSelecionada === '') ? 'selected' : '' ?>>Todas</option>
-                <?php foreach ($categorias as $cat): ?>
-                  <option value="<?= $cat['id_categoria'] ?>" <?= ($categoriaSelecionada == $cat['id_categoria']) ? 'selected' : '' ?>>
-                    <?= htmlspecialchars($cat['nome_categoria']) ?>
-                  </option>
-                <?php endforeach; ?>
-              </select>
-            </form>
+            <a href="?categoria=todas" class="filtro-btn <?= ($categoriaSelecionada === 'todas' || $categoriaSelecionada === '') ? 'ativo' : '' ?>">
+              Todas
+            </a>
           </div>
+
+          <!-- Filtros por categoria -->
+          <?php foreach ($categorias as $cat): ?>
+            <div class="filtro-categorias">
+              <a href="?categoria=<?= $cat['id_categoria'] ?>" class="filtro-btn <?= ($categoriaSelecionada == $cat['id_categoria']) ? 'ativo' : '' ?>">
+                <?= htmlspecialchars($cat['nome_categoria']) ?>
+              </a>
+            </div>
+          <?php endforeach; ?>
+
         </div>
       </div>
+
     </div>
   </div>
 
@@ -123,4 +129,36 @@
   function closeSidebarFiltro() {
     document.getElementById('sidebarFiltro').style.display = 'none';
   }
+</script>
+
+<script>
+  const produtos = document.querySelectorAll('.produtosContItems');
+  const btnVerMais = document.getElementById('btn-ver-mais');
+  const btnVerMenos = document.getElementById('btn-ver-menos');
+  const qtdVisiveis = 6; // Altere conforme necessário
+
+  function mostrarProdutos(limit) {
+    produtos.forEach((prod, index) => {
+      prod.style.display = (index < limit) ? 'block' : 'none';
+    });
+  }
+
+  // Inicializa a lista com limite
+  mostrarProdutos(qtdVisiveis);
+
+  btnVerMais.addEventListener('click', () => {
+    mostrarProdutos(produtos.length);
+    btnVerMais.style.display = 'none';
+    btnVerMenos.style.display = 'block';
+  });
+
+  btnVerMenos.addEventListener('click', () => {
+    mostrarProdutos(qtdVisiveis);
+    btnVerMais.style.display = 'block';
+    btnVerMenos.style.display = 'none';
+    window.scrollTo({
+      top: document.getElementById('produtosEmDestaqueMenu').offsetTop,
+      behavior: 'smooth'
+    });
+  });
 </script>
