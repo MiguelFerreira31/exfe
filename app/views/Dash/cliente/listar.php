@@ -16,23 +16,28 @@ $status = $_GET['status'] ?? 'Ativo';
     <h2 class="text-center fw-bold py-3" style="background: #5e3c2d; color: white; border-radius: 12px;">
         Clientes Cadastrados (<?= ucfirst($status) ?>)
     </h2>
+<div class="container">
+    <div class="row align-items-center mb-4">
+        <!-- Campo de busca -->
+        <div class="col-md-6 mb-2 mb-md-0">
+            <input type="text" id="buscaCliente" class="form-control" placeholder="Digite o nome do cliente...">
+        </div>
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <div class="d-flex justify-content-end mb-3">
-            <form method="get" action="">
-                <label for="statusFiltro">Filtrar por status:</label>
-                <select name="status" id="statusFiltro" onchange="this.form.submit()" class="form-select d-inline w-auto ms-2">
+        <!-- Filtro por status -->
+        <div class="col-md-6 text-md-end">
+            <form method="get" action="" class="d-flex justify-content-md-end align-items-center">
+                <label for="statusFiltro" class="me-2 mb-0">Filtrar por status:</label>
+                <select name="status" id="statusFiltro" onchange="this.form.submit()" class="form-select w-auto">
                     <option value="" <?= !isset($_GET['status']) || $_GET['status'] == '' ? 'selected' : '' ?>>Todos</option>
                     <option value="ativo" <?= isset($_GET['status']) && $_GET['status'] == 'ativo' ? 'selected' : '' ?>>Ativos</option>
                     <option value="inativo" <?= isset($_GET['status']) && $_GET['status'] == 'inativo' ? 'selected' : '' ?>>Inativos</option>
                 </select>
             </form>
         </div>
-
-        <?php if ($status !== 'inativo'): ?>
-            <a href="<?= BASE_URL ?>clientes/adicionar" class="btn btn-primary">Adicionar Cliente</a>
-        <?php endif; ?>
     </div>
+</div>
+
+
 
     <div class="table-responsive rounded-3 shadow-lg p-3 bg-white">
         <table class="table table-hover text-center align-middle">
@@ -47,22 +52,19 @@ $status = $_GET['status'] ?? 'Ativo';
                     <th><?= $status === 'Inativo' ? 'Ativar' : 'Desativar' ?></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="tabelaClientes">
                 <?php foreach ($clientes as $linha): ?>
                     <tr id="cliente_<?= $linha['id_cliente'] ?>" class="fw-semibold">
                         <td>
                             <?php
                             $caminhoArquivo = BASE_URL . "uploads/" . $linha['foto_cliente'];
-                            $img = BASE_URL . "uploads/sem-foto.jpg"; // Caminho padrão corrigido
-                            // $alt_foto = "imagem sem foto $index";
-
+                            $img = BASE_URL . "uploads/sem-foto.jpg";
                             if (!empty($linha['foto_cliente'])) {
                                 $headers = @get_headers($caminhoArquivo);
                                 if ($headers && strpos($headers[0], '200') !== false) {
                                     $img = $caminhoArquivo;
                                 }
                             }
-
                             ?>
                             <img src="<?php echo $img; ?>" alt="Foto Cliente" class="rounded-circle" style="width: 50px; height: 50px;">
                         </td>
@@ -149,4 +151,55 @@ $status = $_GET['status'] ?? 'Ativo';
             })
             .catch(() => alert('Erro na requisição.'));
     }
+</script>
+
+
+
+<script>
+    document.getElementById('buscaCliente').addEventListener('input', function() {
+        const termo = this.value.trim();
+        const status = '<?= $status ?>';
+
+        fetch(`<?= BASE_URL ?>clientes/buscarAjax?termo=${encodeURIComponent(termo)}&status=${encodeURIComponent(status)}`)
+            .then(res => res.json())
+            .then(clientes => {
+                const tbody = document.getElementById('tabelaClientes');
+                tbody.innerHTML = '';
+
+                if (clientes.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="7" class="text-center">Nenhum cliente encontrado.</td></tr>`;
+                    return;
+                }
+
+                clientes.forEach(c => {
+                    const img = c.foto_cliente ? `<?= BASE_URL ?>uploads/${c.foto_cliente}` : `<?= BASE_URL ?>uploads/sem-foto.jpg`;
+                    const statusIcon = c.status_cliente === 'Ativo' ?
+                        `<a href="#" title="Desativar" onclick="alterarStatusCliente(${c.id_cliente}, 'desativar')">
+                            <i class="fas fa-ban text-danger" style="font-size: 20px;"></i>
+                       </a>` :
+                        `<a href="#" title="Ativar" onclick="alterarStatusCliente(${c.id_cliente}, 'ativar')">
+                            <i class="fas fa-check text-success" style="font-size: 20px;"></i>
+                       </a>`;
+
+                    const row = `
+                    <tr id="cliente_${c.id_cliente}" class="fw-semibold">
+                        <td><img src="${img}" alt="Foto Cliente" class="rounded-circle" style="width: 50px; height: 50px;"></td>
+                        <td>${c.nome_cliente}</td>
+                        <td>${c.nome_produto || ''}</td>
+                        <td>${c.nivel_intensidade || ''}</td>
+                        <td>${c.nome_acompanhamento || ''}</td>
+                        <td>
+                            <a href="<?= BASE_URL ?>clientes/editar/${c.id_cliente}" title="Editar">
+                                <i class="fa fa-pencil-alt text-primary" style="font-size: 20px;"></i>
+                            </a>
+                        </td>
+                        <td class="status-cliente">${statusIcon}</td>
+                    </tr>`;
+                    tbody.innerHTML += row;
+                });
+            })
+            .catch(() => {
+                document.getElementById('tabelaClientes').innerHTML = `<tr><td colspan="7" class="text-center text-danger">Erro ao buscar clientes.</td></tr>`;
+            });
+    });
 </script>

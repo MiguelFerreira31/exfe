@@ -458,4 +458,18 @@ class FuncionariosController extends Controller
             $this->carregarViews('dash/dashboard', $dados);
         }
     }
+
+
+    public function buscarAjax()
+    {
+        $termo = $_GET['termo'] ?? '';
+        $status = $_GET['status'] ?? '';
+
+        $funcionarios = $this->funcionarioModel->buscarPorNome($termo, $status);
+
+        header('Content-Type: application/json');
+        echo json_encode($funcionarios);
+        exit;
+    }
+
 } //FIM DA CLASSE

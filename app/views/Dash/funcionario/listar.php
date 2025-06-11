@@ -22,6 +22,11 @@ $status = ucfirst(strtolower($_GET['status'] ?? 'Ativo'));
     </h2>
 
     <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+
+        <div class="col-md-6 mb-2 mb-md-0">
+            <input type="text" id="buscaFuncionario" class="form-control" placeholder="Digite o nome do Funcionario...">
+        </div>
+
         <form method="get" action="" class="d-flex align-items-center mb-2 mb-md-0">
             <label for="statusFiltro" class="me-2">Filtrar por status:</label>
             <select name="status" id="statusFiltro" onchange="this.form.submit()" class="form-select w-auto">
@@ -31,7 +36,7 @@ $status = ucfirst(strtolower($_GET['status'] ?? 'Ativo'));
             </select>
         </form>
 
-      
+
     </div>
 
 
@@ -52,10 +57,10 @@ $status = ucfirst(strtolower($_GET['status'] ?? 'Ativo'));
                     <?php endif; ?>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="tabelaFuncionarios">
                 <?php foreach ($funcionarios as $linha): ?>
                     <tr class="fw-semibold">
-                       
+
                         <td>
                             <?php
                             $caminhoArquivo = BASE_URL . "uploads/" . $linha['foto_funcionario'];
@@ -216,4 +221,55 @@ $status = ucfirst(strtolower($_GET['status'] ?? 'Ativo'));
                 alert('Erro na requisição.');
             });
     }
+</script>
+
+
+
+<script>
+    document.getElementById('buscaFuncionario').addEventListener('input', function() {
+        const termo = this.value.trim();
+        const status = '<?= $status ?>';
+
+        fetch(`<?= BASE_URL ?>funcionarios/buscarAjax?termo=${encodeURIComponent(termo)}&status=${encodeURIComponent(status)}`)
+            .then(res => res.json())
+            .then(funcionarios => {
+                const tbody = document.getElementById('tabelaFuncionarios');
+                tbody.innerHTML = '';
+
+                if (funcionarios.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="7" class="text-center">Nenhum funcionario encontrado.</td></tr>`;
+                    return;
+                }
+
+                funcionarios.forEach(c => {
+                    const img = c.foto_funcionario ? `<?= BASE_URL ?>uploads/${c.foto_funcionario}` : `<?= BASE_URL ?>uploads/sem-foto.jpg`;
+                    const statusIcon = c.status_funcionario === 'Ativo' ?
+                        `<a href="#" title="Desativar" onclick="alterarStatusFuncionario(${c.id_funcionario}, 'desativar')">
+                            <i class="fas fa-ban text-danger" style="font-size: 20px;"></i>
+                       </a>` :
+                        `<a href="#" title="Ativar" onclick="alterarStatusFuncionario(${c.id_funcionario}, 'ativar')">
+                            <i class="fas fa-check text-success" style="font-size: 20px;"></i>
+                       </a>`;
+
+                    const row = `
+                    <tr id="funcionario_${c.id_funcionario}" class="fw-semibold">
+                        <td><img src="${img}" alt="Foto Funcionario" class="rounded-circle" style="width: 50px; height: 50px;"></td>
+                        <td>${c.nome_funcionario}</td>
+                        <td>${c.email_funcionario || ''}</td>
+                        <td>${c.telefone_funcionario || ''}</td>
+                        <td>${c.cargo_funcionario || ''}</td>
+                        <td>
+                            <a href="<?= BASE_URL ?>funcionarios/editar/${c.id_funcionario}" title="Editar">
+                                <i class="fa fa-pencil-alt text-primary" style="font-size: 20px;"></i>
+                            </a>
+                        </td>
+                        <td class="status-funcionario">${statusIcon}</td>
+                    </tr>`;
+                    tbody.innerHTML += row;
+                });
+            })
+            .catch(() => {
+                document.getElementById('tabelaFuncionarios').innerHTML = `<tr><td colspan="7" class="text-center text-danger">Erro ao buscar funcionarios.</td></tr>`;
+            });
+    });
 </script>

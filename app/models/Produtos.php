@@ -249,4 +249,31 @@ class Produtos extends Model
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+
+
+    public function buscarPorNome($nome, $status = '')
+    {
+        $sql = "SELECT 
+                p.*, 
+                c.nome_categoria AS nome_categoria, 
+                f.nome_fornecedor AS nome_fornecedor
+            FROM tbl_produto AS p
+            INNER JOIN tbl_categoria AS c ON p.id_categoria = c.id_categoria
+            INNER JOIN tbl_fornecedor AS f ON p.id_fornecedor = f.id_fornecedor WHERE nome_produto LIKE :nome";
+
+        if (!empty($status)) {
+            $sql .= " AND status_produto = :status";
+        }
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':nome', "%$nome%");
+        if (!empty($status)) {
+            $stmt->bindValue(':status', ucfirst(strtolower($status)));
+        }
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
 }

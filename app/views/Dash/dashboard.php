@@ -368,7 +368,11 @@ $dados['acompanhamentos'] = $acompanhamentos;
           </div>
 
           <ul class="navbar-nav justify-content-end">
-            <li class="nav-item d-flex align-items-center">
+            <label>
+              <input type="checkbox" class="theme-toggle-button" >
+              <span class="toggle"></span>
+            </label>
+            <li class="nav-item d-flex align-items-center" style="margin: 5%;">
               <a href="<?= BASE_URL ?>auth/sair" class="nav-link font-weight-bold px-0">
                 <i class="fa fa-user me-sm-1"></i>
                 <span class="d-sm-inline d-none">Sair</span>

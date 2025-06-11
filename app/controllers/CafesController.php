@@ -342,4 +342,21 @@ class CafesController extends Controller
         // Retorna falso caso o upload falhe
         return false;
     }
+
+
+
+ public function buscarAjax()
+    {
+        $termo = $_GET['termo'] ?? '';
+        $status = $_GET['status'] ?? '';
+
+        $produtos = $this->produtosModel->buscarPorNome($termo, $status);
+
+        header('Content-Type: application/json');
+        echo json_encode($produtos);
+        exit;
+    }
+
+
+
 }

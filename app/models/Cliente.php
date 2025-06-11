@@ -24,8 +24,8 @@ class Cliente extends Model
 
 
     public function getListarCliente($status = null)
-{
-    $sql = "SELECT 
+    {
+        $sql = "SELECT 
                 c.id_cliente, 
                 c.nome_cliente, 
                 c.email_cliente, 
@@ -51,19 +51,46 @@ class Cliente extends Model
             INNER JOIN 
                 tbl_acompanhamento a ON c.id_acompanhamento = a.id_acompanhamento";
 
-    // Se o status foi passado, adiciona o filtro
-    if (!empty($status)) {
-        $sql .= " WHERE TRIM(c.status_cliente) = :status";
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(':status', $status, PDO::PARAM_STR);
-    } else {
-        // Sem filtro de status
-        $stmt = $this->db->prepare($sql);
+        // Se o status foi passado, adiciona o filtro
+        if (!empty($status)) {
+            $sql .= " WHERE TRIM(c.status_cliente) = :status";
+            $stmt = $this->db->prepare($sql);
+            $stmt->bindValue(':status', $status, PDO::PARAM_STR);
+        } else {
+            // Sem filtro de status
+            $stmt = $this->db->prepare($sql);
+        }
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+
+
+    public function buscarPorNome($nome, $status = '')
+    {
+        $sql = "SELECT c.id_cliente, c.nome_cliente, c.foto_cliente, 
+                   p.nome_produto, i.nivel_intensidade, a.nome_acompanhamento, 
+                   c.status_cliente
+            FROM tbl_cliente c
+            LEFT JOIN tbl_produto p ON p.id_produto = c.id_produto
+            LEFT JOIN tbl_intensidade_cafe i ON i.id_intensidade = c.id_intensidade
+            LEFT JOIN tbl_acompanhamento a ON a.id_acompanhamento = c.id_acompanhamento
+            WHERE c.nome_cliente LIKE :nome";
+
+        if (!empty($status)) {
+            $sql .= " AND c.status_cliente = :status";
+        }
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':nome', "%$nome%");
+        if (!empty($status)) {
+            $stmt->bindValue(':status', ucfirst($status));
+        }
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 
 
 

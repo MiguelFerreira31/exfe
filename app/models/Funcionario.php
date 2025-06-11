@@ -123,7 +123,7 @@ class Funcionario extends Model
             :cep_funcionario,
             :id_estado
         );";
-    
+
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':nome_funcionario', $dados['nome_funcionario']);
         $stmt->bindValue(':foto_funcionario', $dados['foto_funcionario']);
@@ -141,11 +141,11 @@ class Funcionario extends Model
         $stmt->bindValue(':cargo_funcionario', $dados['cargo_funcionario']);
         $stmt->bindValue(':cep_funcionario', $dados['cep_funcionario']);
         $stmt->bindValue(':id_estado', $dados['id_estado']);
-    
+
         $stmt->execute();
         return $this->db->lastInsertId();
     }
-    
+
     // 6 Método para add FOTO GALERIA 
 
     public function addFotoFuncionario($id_funcionario, $arquivo)
@@ -238,5 +238,24 @@ class Funcionario extends Model
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':id_funcionario', $id, PDO::PARAM_INT);
         return $stmt->execute();
+    }
+
+
+
+    public function buscarPorNome($nome, $status = '')
+    {
+        $sql = "SELECT * FROM tbl_funcionario WHERE nome_funcionario LIKE :nome";
+
+        if (!empty($status)) {
+            $sql .= " AND status_funcionario = :status";
+        }
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':nome', "%$nome%");
+        if (!empty($status)) {
+            $stmt->bindValue(':status', ucfirst(strtolower($status)));
+        }
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
