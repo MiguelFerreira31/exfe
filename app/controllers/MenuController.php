@@ -31,7 +31,8 @@ class MenuController extends Controller
          'itens' => $itens,
          'categorias' => $categorias,
          'categoriaSelecionada' => $categoriaSelecionada,
-         'ordenarSelecionado' => $ordenarSelecionado
+         'ordenarSelecionado' => $ordenarSelecionado,
+         'produtos' => $produtos
       ]);
    }
 }
