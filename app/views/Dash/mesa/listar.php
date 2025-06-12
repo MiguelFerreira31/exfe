@@ -166,8 +166,8 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                 const style = window.getComputedStyle(mesa);
                 const matrix = new DOMMatrix(style.transform);
 
-                mesa.style.left = `${parseFloat(mesa.style.left) + matrix.m41}px`;
-                mesa.style.top = `${parseFloat(mesa.style.top) + matrix.m42}px`;
+                mesa.style.left = `${parseFloat(mesa.style.left || 0) + matrix.m41}px`;
+                mesa.style.top = `${parseFloat(mesa.style.top || 0) + matrix.m42}px`;
                 mesa.style.transform = 'none';
                 mesa.setAttribute('data-x', 0);
                 mesa.setAttribute('data-y', 0);
@@ -218,13 +218,18 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     }
     //#endregion
 
-    //#region Salvar Posições das Mesas
+    //#region Salvar Posições das Mesas (Corrigido)
     document.getElementById('salvar-posicoes').addEventListener('click', function() {
         const mesas = Array.from(document.querySelectorAll('.mesa-draggable')).map(mesa => {
+            const dataX = parseFloat(mesa.getAttribute('data-x')) || 0;
+            const dataY = parseFloat(mesa.getAttribute('data-y')) || 0;
+            const left = parseFloat(mesa.style.left) || 0;
+            const top = parseFloat(mesa.style.top) || 0;
+
             return {
                 id: mesa.dataset.id,
-                posicao_x: parseInt(mesa.style.left),
-                posicao_y: parseInt(mesa.style.top)
+                posicao_x: Math.round(left + dataX),
+                posicao_y: Math.round(top + dataY)
             };
         });
 
@@ -311,6 +316,7 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
     }
     //#endregion
 </script>
+
 
 <!-- CSS Adicional -->
 <style>

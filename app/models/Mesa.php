@@ -52,7 +52,7 @@ class Mesa extends Model
 
     public function atualizarPosicao($idMesa, $posX, $posY)
     {
-        $sql = "UPDATE tbl_mesa 
+        $sql = "UPDATE tbl_mesa
                 SET posicao_x = :posX, posicao_y = :posY 
                 WHERE id_mesa = :id";
 

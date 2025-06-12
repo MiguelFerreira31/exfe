@@ -26,42 +26,42 @@ class Produtos extends Model
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-        public function getProdutosDestaque($categoria = 'todas', $ordenar = 'recomendado')
-        {
-            $sql = "SELECT * FROM tbl_produto WHERE status_produto = 'ativo'";
+    public function getProdutosDestaque($categoria = 'todas', $ordenar = 'recomendado')
+    {
+        $sql = "SELECT * FROM tbl_produto WHERE status_produto = 'ativo'";
 
-            if ($categoria !== 'todas') {
-                $sql .= " AND id_categoria = :categoria";
-            }
-
-            switch ($ordenar) {
-                case 'menor_preco':
-                    $sql .= " ORDER BY preco_produto ASC";
-                    break;
-                case 'maior_preco':
-                    $sql .= " ORDER BY preco_produto DESC";
-                    break;
-                default:
-                    // Removido destaque_produto, ordenando apenas por nome
-                    $sql .= " ORDER BY nome_produto ASC";
-            }
-
-            $stmt = $this->db->prepare($sql);
-
-            if ($categoria !== 'todas') {
-                $stmt->bindValue(':categoria', $categoria);
-            }
-
-            $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if ($categoria !== 'todas') {
+            $sql .= " AND id_categoria = :categoria";
         }
 
-        public function getCategorias()
-        {
-            $sql = "SELECT * FROM tbl_categoria";
-            $stmt = $this->db->query($sql);
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        switch ($ordenar) {
+            case 'menor_preco':
+                $sql .= " ORDER BY preco_produto ASC";
+                break;
+            case 'maior_preco':
+                $sql .= " ORDER BY preco_produto DESC";
+                break;
+            default:
+                // Removido destaque_produto, ordenando apenas por nome
+                $sql .= " ORDER BY nome_produto ASC";
         }
+
+        $stmt = $this->db->prepare($sql);
+
+        if ($categoria !== 'todas') {
+            $stmt->bindValue(':categoria', $categoria);
+        }
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getCategorias()
+    {
+        $sql = "SELECT * FROM tbl_categoria";
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
 
     public function buscarProduto($email)
@@ -109,9 +109,6 @@ class Produtos extends Model
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-
-
-
     public function listarCafe($limite)
     {
         $sql = "SELECT * 
@@ -126,8 +123,6 @@ class Produtos extends Model
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-
 
     public function desativarProduto($id)
     {
@@ -185,6 +180,8 @@ class Produtos extends Model
         return $this->db->lastInsertId();
     }
 
+
+
     public function updateProduto($id, $dados)
     {
         $sql = "UPDATE tbl_produto SET 
@@ -213,6 +210,8 @@ class Produtos extends Model
         return $stmt->execute();
     }
 
+
+
     public function addFotoProduto($id_produto, $arquivo)
     {
         $sql = "UPDATE tbl_produto 
@@ -226,6 +225,8 @@ class Produtos extends Model
         return $stmt->execute();
     }
 
+
+
     public function getProdutoById($id)
     {
 
@@ -237,6 +238,8 @@ class Produtos extends Model
 
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+
 
     public function getListarProdutosDesativados()
     {
@@ -274,6 +277,7 @@ class Produtos extends Model
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
 
 
 }
