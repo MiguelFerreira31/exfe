@@ -53,7 +53,7 @@
       
       <?php require_once('template/avaliacao.php') ?>
 
-      <?php require_once('template/blog.php') ?>
+      <?php require_once('template/blogPage.php') ?>
 
       <?php require_once('template/desconto.php') ?>
 

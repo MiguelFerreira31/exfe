@@ -344,20 +344,19 @@ html body.light-mode #graos {
 html body.light-mode #itemEspecial .img {
   background: linear-gradient(to top, #f2e0db 1.57%, #fff 128.95%);
 }
-html body.light-mode #desconto {
-  background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
-}
 html body.light-mode .blogCont {
-  background: linear-gradient(to top, #f2e0db 1.57%, #fff 128.95%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+html body.light-mode #desconto {
+  background: linear-gradient(to left, #f2e0db 1.57%, #fff 100%);
 }
 html body.light-mode .footer {
-  background: linear-gradient(to top, #f2e0db 1.57%, #fff 128.95%);
+  background: linear-gradient(to top, #f2e0db 1.5%, #fff 100%);
 }
 html body.dark-mode {
   background-image: url("https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/hero-bg2.png");
   background-attachment: fixed;
   background-position: center;
-  /* #region dashboard  */
   color: #f5f5f5;
 }
 html body.dark-mode .dropdown-menu.show-on-click {
@@ -729,8 +728,8 @@ html body header .site {
   gap: 600px;
 }
 html body header .site .logoHeader a img {
-  width: 70px;
-  height: 70px;
+  width: 90px;
+  height: auto;
   transition: 0.3s;
 }
 html body header .site .logoHeader a img:hover {
@@ -1198,8 +1197,8 @@ html body header.scroll .site {
   gap: 600px;
 }
 html body header.scroll .site .logoHeader a img {
-  width: 70px;
-  height: 70px;
+  width: 90px;
+  height: auto;
   transition: 0.3s;
 }
 html body header.scroll .site .logoHeader a img:hover {
@@ -3208,6 +3207,7 @@ html body main #qualidade .qualidadeCont .title {
 html body main #qualidade .qualidadeCont .title h2 {
   font-weight: 900;
   letter-spacing: -2px;
+  color: #ffffff;
 }
 html body main #qualidade .qualidadeCont .title h2 span {
   color: #946926;
@@ -3253,16 +3253,20 @@ html body main #qualidade .qualidadeCont .qualidadeItems .qualidadeContItems .it
   justify-content: center;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
+  gap: 5px;
 }
 html body main #qualidade .qualidadeCont .qualidadeItems .qualidadeContItems .itemsQualidade div h4 {
   font-weight: 900;
-  color: #371406;
+  color: #ffffff;
   width: 420px;
 }
 html body main #qualidade .qualidadeCont .qualidadeItems .qualidadeContItems .itemsQualidade div p {
   font-size: 1.3em;
   width: 380px;
+}
+html body main #qualidade .qualidadeCont .qualidadeItems .img img {
+  width: 550px;
+  height: auto;
 }
 html body main #blog {
   width: 100%;
@@ -3338,6 +3342,7 @@ html body main #blog .blogContainer .blogCont .blogItems .blogItemsCont svg {
 }
 html body main #blog .blogContainer .blogCont .blogItems .blogItemsCont p {
   font-size: 1.3em;
+  margin: 0px;
 }
 html body main #blog .blogContainer .blogCont .blogItems .blogItemsCont hr {
   transform: rotate(90deg);
@@ -3386,6 +3391,155 @@ html body main #blog .blogContainer .blogCont:hover .img img {
 html body main #blog .blogContainer .blogCont:hover span {
   transform: rotate(-25deg);
 }
+html body main #blog .buttons {
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+html body main #blog .buttons button {
+  position: relative;
+  padding: 12px 35px;
+  background: #371406;
+  font-size: 17px;
+  font-weight: 900;
+  color: white;
+  border: 3px solid #371406;
+  border-radius: 25px;
+  box-shadow: 0 0 0 rgba(116, 48, 0, 0.5490196078);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+html body main #blog .buttons button svg {
+  width: 25px;
+  height: auto;
+  margin-left: 10px;
+}
+html body main #blog .buttons .star-1 img {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: 25px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
+}
+html body main #blog .buttons .star-2 img {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+}
+html body main #blog .buttons .star-3 img {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+}
+html body main #blog .buttons .star-4 img {
+  position: absolute;
+  top: 20%;
+  left: 40%;
+  width: 8px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
+}
+html body main #blog .buttons .star-5 img {
+  position: absolute;
+  top: 25%;
+  left: 45%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 0.4s cubic-bezier(0, 0.4, 0, 1.01);
+}
+html body main #blog .buttons .star-6 img {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 0.8s ease;
+}
+html body main #blog .buttons button:hover {
+  background: transparent;
+  color: #371406;
+  box-shadow: 0 0 25px rgba(121, 50, 0, 0.5490196078);
+}
+html body main #blog .buttons button:hover .star-1 img {
+  position: absolute;
+  top: -80%;
+  left: -30%;
+  width: 25px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #blog .buttons button:hover .star-2 img {
+  position: absolute;
+  top: -25%;
+  left: 10%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #blog .buttons button:hover .star-3 img {
+  position: absolute;
+  top: 55%;
+  left: 25%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #blog .buttons button:hover .star-4 img {
+  position: absolute;
+  top: 30%;
+  left: 80%;
+  width: 8px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #blog .buttons button:hover .star-5 img {
+  position: absolute;
+  top: 25%;
+  left: 115%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #blog .buttons button:hover .star-6 img {
+  position: absolute;
+  top: 5%;
+  left: 60%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #blog .buttons .fil0 {
+  fill: #371406;
+}
 html body main #blog .blogPosition {
   position: absolute;
 }
@@ -3410,6 +3564,432 @@ html body main #blog .blogPosition .grao {
   }
 }
 html body main #blog .blogPosition .cup {
+  position: absolute;
+  top: 430px;
+  left: 780px;
+  animation-name: floating;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+@keyframes floating {
+  0% {
+    transform: translate(0, 0px);
+  }
+  50% {
+    transform: translate(0, 10px);
+  }
+  100% {
+    transform: translate(0, 0px);
+  }
+}
+html body main #blogPage {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 50px;
+}
+html body main #blogPage .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+html body main #blogPage .title h2 {
+  font-weight: 900;
+  letter-spacing: -2px;
+}
+html body main #blogPage .title h2 span {
+  color: #946926;
+}
+html body main #blogPage .blogEvents {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+html body main #blogPage .blogEvents .blogEventsBanner {
+  position: relative;
+  display: inline-block;
+}
+html body main #blogPage .blogEvents .blogEventsBanner img {
+  display: block;
+  width: 900px;
+  height: auto;
+}
+html body main #blogPage .blogEvents .blogEventsBanner h3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  margin: 0;
+}
+html body main #blogPage .blogEvents .blogEventsContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 5px;
+}
+html body main #blogPage .blogEvents .blogEventsContent .blogEventsTitle h3 {
+  width: 100%;
+  font-size: 1.7em;
+}
+html body main #blogPage .blogEvents .blogEventsContent .blogEventsImg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  gap: 10px;
+}
+html body main #blogPage .blogEvents .blogEventsContent .blogEventsImg img {
+  width: 200px;
+  height: auto;
+}
+html body main #blogPage .blogEvents .blogEventsContent .blogEventsImg p {
+  width: 120%;
+}
+html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes {
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  background-color: transparent;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  border: none;
+  /* for all social containers*/
+  /* instagram*/
+  /* Whatsapp*/
+  /* facebook*/
+}
+html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes .socialContainer {
+  width: 35px;
+  height: 35px;
+  background-color: #9e675f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition-duration: 0.3s;
+  border-radius: 30px;
+}
+html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes .containerOne:hover {
+  background-color: #d62976;
+  transition-duration: 0.3s;
+  transform: scale(1.2);
+}
+html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes .containerTwo:hover {
+  background-color: #128c7e;
+  transition-duration: 0.3s;
+  transform: scale(1.2);
+}
+html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes .containerThree:hover {
+  background-color: #0072b1;
+  transition-duration: 0.3s;
+  transform: scale(1.2);
+}
+html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes .socialContainer:active {
+  transform: scale(0.9);
+  transition-duration: 0.3s;
+}
+html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes .socialSvg {
+  width: 17px;
+}
+html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes .socialSvg path {
+  fill: rgb(255, 255, 255);
+}
+html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes .socialContainer:hover .socialSvg {
+  animation: slide-in-top 0.3s both;
+}
+@keyframes slide-in-top {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+html body main #blogPage .blogContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+html body main #blogPage .blogContainer .blogCont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+  border-radius: 40px;
+  padding: 0.5%;
+}
+html body main #blogPage .blogContainer .blogCont .img {
+  overflow: hidden;
+  position: relative;
+}
+html body main #blogPage .blogContainer .blogCont .img img {
+  border-radius: 25px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: transform 0.5s ease;
+}
+html body main #blogPage .blogContainer .blogCont .blogItems {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 15px;
+}
+html body main #blogPage .blogContainer .blogCont .blogItems .blogItemsCont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+html body main #blogPage .blogContainer .blogCont .blogItems .blogItemsCont svg {
+  width: 20px;
+  height: auto;
+}
+html body main #blogPage .blogContainer .blogCont .blogItems .blogItemsCont p {
+  font-size: 1.3em;
+  margin: 0px;
+}
+html body main #blogPage .blogContainer .blogCont .blogItems .blogItemsCont hr {
+  transform: rotate(90deg);
+  width: 30px;
+  height: 0.5px;
+  border-radius: 0px;
+  opacity: 1;
+  background: #b3b3b3;
+}
+html body main #blogPage .blogContainer .blogCont .blogItems .blogTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+html body main #blogPage .blogContainer .blogCont .blogItems .blogTitle h4 {
+  font-weight: 900;
+  color: #000000;
+  width: 400px;
+}
+html body main #blogPage .blogContainer .blogCont .blogItems .blogTitle p {
+  font-size: 1.3em;
+  width: 400px;
+}
+html body main #blogPage .blogContainer .blogCont .blogItems .blogTitle a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1.1em;
+  color: #946926;
+  font-weight: 900;
+}
+html body main #blogPage .blogContainer .blogCont .blogItems .blogTitle a span {
+  font-size: 1.5em;
+  transition: transform 0.5s ease;
+}
+html body main #blogPage .blogContainer .blogCont:hover {
+  cursor: pointer;
+}
+html body main #blogPage .blogContainer .blogCont:hover .img img {
+  transform: scale(1.1);
+}
+html body main #blogPage .blogContainer .blogCont:hover span {
+  transform: rotate(-25deg);
+}
+html body main #blogPage .buttons {
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+html body main #blogPage .buttons button {
+  position: relative;
+  padding: 12px 35px;
+  background: #371406;
+  font-size: 17px;
+  font-weight: 900;
+  color: white;
+  border: 3px solid #371406;
+  border-radius: 25px;
+  box-shadow: 0 0 0 rgba(116, 48, 0, 0.5490196078);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+html body main #blogPage .buttons button svg {
+  width: 25px;
+  height: auto;
+  margin-left: 10px;
+}
+html body main #blogPage .buttons .star-1 img {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: 25px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
+}
+html body main #blogPage .buttons .star-2 img {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+}
+html body main #blogPage .buttons .star-3 img {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+}
+html body main #blogPage .buttons .star-4 img {
+  position: absolute;
+  top: 20%;
+  left: 40%;
+  width: 8px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
+}
+html body main #blogPage .buttons .star-5 img {
+  position: absolute;
+  top: 25%;
+  left: 45%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 0.4s cubic-bezier(0, 0.4, 0, 1.01);
+}
+html body main #blogPage .buttons .star-6 img {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 0 #371406);
+  z-index: -5;
+  transition: all 0.8s ease;
+}
+html body main #blogPage .buttons button:hover {
+  background: transparent;
+  color: #371406;
+  box-shadow: 0 0 25px rgba(121, 50, 0, 0.5490196078);
+}
+html body main #blogPage .buttons button:hover .star-1 img {
+  position: absolute;
+  top: -80%;
+  left: -30%;
+  width: 25px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #blogPage .buttons button:hover .star-2 img {
+  position: absolute;
+  top: -25%;
+  left: 10%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #blogPage .buttons button:hover .star-3 img {
+  position: absolute;
+  top: 55%;
+  left: 25%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #blogPage .buttons button:hover .star-4 img {
+  position: absolute;
+  top: 30%;
+  left: 80%;
+  width: 8px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #blogPage .buttons button:hover .star-5 img {
+  position: absolute;
+  top: 25%;
+  left: 115%;
+  width: 15px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #blogPage .buttons button:hover .star-6 img {
+  position: absolute;
+  top: 5%;
+  left: 60%;
+  width: 5px;
+  height: auto;
+  filter: drop-shadow(0 0 10px #371406);
+  z-index: 2;
+}
+html body main #blogPage .buttons .fil0 {
+  fill: #371406;
+}
+html body main #blogPage .blogPosition {
+  position: absolute;
+}
+html body main #blogPage .blogPosition .grao {
+  position: absolute;
+  top: -360px;
+  left: -800px;
+  animation-name: floating;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+@keyframes floating {
+  0% {
+    transform: translate(0, 0px);
+  }
+  50% {
+    transform: translate(0, 10px);
+  }
+  100% {
+    transform: translate(0, 0px);
+  }
+}
+html body main #blogPage .blogPosition .cup {
   position: absolute;
   top: 430px;
   left: 780px;

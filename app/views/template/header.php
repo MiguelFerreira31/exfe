@@ -69,7 +69,7 @@ function getActive($rota)
   <section class="site">
     <div class="logoHeader">
       <a href="">
-        <img id="logo" src="<?= BASE_URL ?>assets/img/coffee-cup.png" alt="Logo">
+        <img src="assets/img/logo_exfe.png" alt="Logo EXFÉ">
       </a>
     </div>
 

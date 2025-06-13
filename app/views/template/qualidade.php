@@ -25,7 +25,7 @@
       </div>
 
       <div class="img">
-        <img src="assets/img/qualidade_coffee.webp" alt="">
+        <img src="assets/img/logo_exfe_dark.png" alt="">
       </div>
 
       <div class="qualidadeContItems">

@@ -33,7 +33,6 @@
         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam, alias molestias. Earum explicabo
           impedit
           culpa asperiores ab itaque facilis hic.</p>
-        <a href="">Ver mais <span>&#8594;</span></a>
       </div>
     </div>
   </div>
@@ -63,7 +62,6 @@
         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam, alias molestias. Earum explicabo
           impedit
           culpa asperiores ab itaque facilis hic.</p>
-        <a href="">Ver mais <span>&#8594;</span></a>
       </div>
     </div>
   </div>
@@ -93,7 +91,6 @@
         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam, alias molestias. Earum explicabo
           impedit
           culpa asperiores ab itaque facilis hic.</p>
-        <a href="">Ver mais <span>&#8594;</span></a>
       </div>
     </div>
   </div>
@@ -123,12 +120,36 @@
         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam, alias molestias. Earum explicabo
           impedit
           culpa asperiores ab itaque facilis hic.</p>
-        <a href="">Ver mais <span>&#8594;</span></a>
       </div>
     </div>
   </div>
 
 </div>
+
+<div class="buttons">
+      <button>
+        Ver mais
+        <div class="star-1">
+          <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/coffee-bean-button.webp" alt="">
+        </div>
+        <div class="star-2">
+          <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/coffee-bean-button.webp" alt="">
+        </div>
+        <div class="star-3">
+          <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/coffee-bean-button.webp" alt="">
+        </div>
+        <div class="star-4">
+          <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/coffee-bean-button.webp" alt="">
+        </div>
+        <div class="star-5">
+          <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/coffee-bean-button.webp" alt="">
+        </div>
+        <div class="star-6">
+          <img src="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/coffee-bean-button.webp" alt="">
+        </div>
+      </button>
+    </div>
+
 <div class="blogPosition">
   <img class="grao" src="assets/img/graos_cafe.webp" alt="">
   <img class="cup" src="assets/img/cup-img5.webp" alt="">

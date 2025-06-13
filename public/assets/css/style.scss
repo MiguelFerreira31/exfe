@@ -155,9 +155,6 @@ hr {
     }
   }
 }
-
-// #endregion
-
 // #endregion
 
 html {
@@ -165,7 +162,7 @@ html {
   font-family: $font;
 
   body {
-    // #region dark e light
+    // #region light
 
     &.light-mode {
       h2 {
@@ -460,25 +457,28 @@ html {
       #qualidade {
       }
 
-      #desconto {
-        background: linear-gradient(to left, #f2e0db 1.57%, #fff 128.95%);
+      .blogCont {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
       }
 
-      .blogCont {
-        background: linear-gradient(to top, #f2e0db 1.57%, #fff 128.95%);
+      #desconto {
+        background: linear-gradient(to left, #f2e0db 1.57%, #fff 100%);
       }
 
       .footer {
-        background: linear-gradient(to top, #f2e0db 1.57%, #fff 128.95%);
+        background: linear-gradient(to top, #f2e0db 1.5%, #fff 100%);
       }
     }
+
+    // #endregion
+
+    // #region dark
 
     &.dark-mode {
       background-image: url("https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/assets/img/hero-bg2.png");
       background-attachment: fixed;
       background-position: center;
 
-      /* #region dashboard  */
       .dropdown-menu.show-on-click {
         position: static;
         float: none;
@@ -789,10 +789,9 @@ html {
         fill: #f5f5f5;
       }
 
-      // Hover em modo dark
     }
 
-    // #endregion
+  // #endregion
 
     // #region header
 
@@ -925,8 +924,8 @@ html {
 
         .logoHeader a {
           img {
-            width: 70px;
-            height: 70px;
+            width: 90px;
+            height: auto;
             transition: 0.3s;
           }
 
@@ -1452,8 +1451,8 @@ html {
 
         .logoHeader a {
           img {
-            width: 70px;
-            height: 70px;
+            width: 90px;
+            height: auto;
             transition: 0.3s;
           }
 
@@ -1619,8 +1618,6 @@ html {
       }
 
       // #endregion
-
-      //#region home
 
       #banner {
         @include area();
@@ -2162,7 +2159,6 @@ html {
         }
       }
 
-      //BanneeTwo
       #bannerTwo {
         @include area();
         @include flex-center();
@@ -2482,7 +2478,6 @@ html {
             .fil0 {
               fill: $colorBg2;
             }
-
           }
 
           .produtosItems {
@@ -2750,13 +2745,11 @@ html {
                 align-items: flex-start;
                 gap: 30px;
 
-                .filtro-categorias{
-
-                  a{
+                .filtro-categorias {
+                  a {
                     color: $colorTertiary;
                   }
                 }
-
               }
             }
           }
@@ -2927,7 +2920,6 @@ html {
             .fil0 {
               fill: $colorBg2;
             }
-
           }
 
           .produtosItems {
@@ -3715,6 +3707,7 @@ html {
             h2 {
               font-weight: 900;
               letter-spacing: -2px;
+              color: $colorBg1;
 
               span {
                 color: $colorSecondary;
@@ -3755,11 +3748,11 @@ html {
                   @include flex-center();
                   flex-direction: column;
                   align-items: flex-start;
-                  gap: 10px;
+                  gap: 5px;
 
                   h4 {
                     font-weight: 900;
-                    color: $colorTertiary;
+                    color: $colorBg1;
                     width: 420px;
                   }
 
@@ -3768,6 +3761,13 @@ html {
                     width: 380px;
                   }
                 }
+              }
+            }
+
+            .img{
+              img{
+                width: 550px;
+                height: auto;
               }
             }
           }
@@ -3840,6 +3840,7 @@ html {
 
                 p {
                   font-size: 1.3em;
+                  margin: 0px;
                 }
 
                 hr {
@@ -3895,6 +3896,634 @@ html {
                 transform: rotate(-25deg);
               }
             }
+          }
+        }
+
+        .buttons {
+          height: 20%;
+          @include flex-center();
+
+          button {
+            position: relative;
+            padding: 12px 35px;
+            background: $colorBg2;
+            font-size: 17px;
+            font-weight: 900;
+            color: white;
+            border: 3px solid $colorBg2;
+            border-radius: 25px;
+            box-shadow: 0 0 0 #7430008c;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+            @include flex-center();
+
+            svg {
+              width: 25px;
+              height: auto;
+              margin-left: 10px;
+            }
+          }
+
+          .star-1 img {
+            position: absolute;
+            top: 20%;
+            left: 20%;
+            width: 25px;
+            height: auto;
+            filter: drop-shadow(0 0 0 $colorBg2);
+            z-index: -5;
+            transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
+          }
+
+          .star-2 img {
+            position: absolute;
+            top: 45%;
+            left: 45%;
+            width: 15px;
+            height: auto;
+            filter: drop-shadow(0 0 0 $colorBg2);
+            z-index: -5;
+            transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+          }
+
+          .star-3 img {
+            position: absolute;
+            top: 40%;
+            left: 40%;
+            width: 5px;
+            height: auto;
+            filter: drop-shadow(0 0 0 $colorBg2);
+            z-index: -5;
+            transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+          }
+
+          .star-4 img {
+            position: absolute;
+            top: 20%;
+            left: 40%;
+            width: 8px;
+            height: auto;
+            filter: drop-shadow(0 0 0 $colorBg2);
+            z-index: -5;
+            transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
+          }
+
+          .star-5 img {
+            position: absolute;
+            top: 25%;
+            left: 45%;
+            width: 15px;
+            height: auto;
+            filter: drop-shadow(0 0 0 $colorBg2);
+            z-index: -5;
+            transition: all 0.4s cubic-bezier(0, 0.4, 0, 1.01);
+          }
+
+          .star-6 img {
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            width: 5px;
+            height: auto;
+            filter: drop-shadow(0 0 0 $colorBg2);
+            z-index: -5;
+            transition: all 0.8s ease;
+          }
+
+          button:hover {
+            background: transparent;
+            color: $colorBg2;
+            box-shadow: 0 0 25px #7932008c;
+          }
+
+          button:hover .star-1 img {
+            position: absolute;
+            top: -80%;
+            left: -30%;
+            width: 25px;
+            height: auto;
+            filter: drop-shadow(0 0 10px $colorBg2);
+            z-index: 2;
+          }
+
+          button:hover .star-2 img {
+            position: absolute;
+            top: -25%;
+            left: 10%;
+            width: 15px;
+            height: auto;
+            filter: drop-shadow(0 0 10px $colorBg2);
+            z-index: 2;
+          }
+
+          button:hover .star-3 img {
+            position: absolute;
+            top: 55%;
+            left: 25%;
+            width: 5px;
+            height: auto;
+            filter: drop-shadow(0 0 10px $colorBg2);
+            z-index: 2;
+          }
+
+          button:hover .star-4 img {
+            position: absolute;
+            top: 30%;
+            left: 80%;
+            width: 8px;
+            height: auto;
+            filter: drop-shadow(0 0 10px $colorBg2);
+            z-index: 2;
+          }
+
+          button:hover .star-5 img {
+            position: absolute;
+            top: 25%;
+            left: 115%;
+            width: 15px;
+            height: auto;
+            filter: drop-shadow(0 0 10px $colorBg2);
+            z-index: 2;
+          }
+
+          button:hover .star-6 img {
+            position: absolute;
+            top: 5%;
+            left: 60%;
+            width: 5px;
+            height: auto;
+            filter: drop-shadow(0 0 10px $colorBg2);
+            z-index: 2;
+          }
+
+          .fil0 {
+            fill: $colorBg2;
+          }
+        }
+
+        .blogPosition {
+          position: absolute;
+
+          .grao {
+            position: absolute;
+            top: -360px;
+            left: -800px;
+
+            animation-name: floating;
+            animation-duration: 6s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+
+            @keyframes floating {
+              0% {
+                transform: translate(0, 0px);
+              }
+
+              50% {
+                transform: translate(0, 10px);
+              }
+
+              100% {
+                transform: translate(0, -0px);
+              }
+            }
+          }
+
+          .cup {
+            position: absolute;
+            top: 430px;
+            left: 780px;
+
+            animation-name: floating;
+            animation-duration: 6s;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+
+            @keyframes floating {
+              0% {
+                transform: translate(0, 0px);
+              }
+
+              50% {
+                transform: translate(0, 10px);
+              }
+
+              100% {
+                transform: translate(0, -0px);
+              }
+            }
+          }
+        }
+      }
+
+      #blogPage {
+        @include container();
+        @include flex-center();
+        flex-direction: column;
+        gap: 50px;
+        
+        .title {
+          @include flex-center();
+          flex-direction: column;
+          
+          h2 {
+            font-weight: 900;
+            
+            letter-spacing: -2px;
+            
+            span {
+              color: $colorSecondary;
+            }
+          }
+        }
+        
+        .blogEvents{
+          @include flex-center();
+          gap: 50px;
+          
+          .blogEventsBanner{
+            position: relative; 
+            display: inline-block; 
+            
+            img{
+              display: block;
+              width: 900px;
+              height: auto;
+
+            }
+            
+            h3{
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%); 
+              color: white; 
+              margin: 0;
+            }
+          }
+          
+          .blogEventsContent{
+            @include flex-center();
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 5px;
+
+            .blogEventsTitle{
+              
+              h3{
+                width: 100%;
+                font-size: 1.7em
+              }
+
+            }
+
+            .blogEventsImg{
+              @include flex-center();
+              flex-direction: column;
+              text-align: center;
+              gap: 10px;
+
+              img{
+                width: 200px;
+                height: auto;
+              }
+
+              p{
+                width: 120%;
+              }
+            }
+            
+            .blogEventsRedes {
+              width: fit-content;
+              height: fit-content;
+              background-color: transparent;
+              flex-direction: row;
+              @include flex-center();
+              flex-direction: column;
+              gap: 20px;
+              border: none;
+  
+              /* for all social containers*/
+              .socialContainer {
+                width: 35px;
+                height: 35px;
+                background-color: #9e675f;
+                @include flex-center();
+                overflow: hidden;
+                transition-duration: 0.3s;
+                border-radius: 30px;
+              }
+  
+              /* instagram*/
+              .containerOne:hover {
+                background-color: #d62976;
+                transition-duration: 0.3s;
+                transform: scale(1.2);
+              }
+  
+              /* Whatsapp*/
+              .containerTwo:hover {
+                background-color: #128c7e;
+                transition-duration: 0.3s;
+                transform: scale(1.2);
+              }
+  
+              /* facebook*/
+              .containerThree:hover {
+                background-color: #0072b1;
+                transition-duration: 0.3s;
+                transform: scale(1.2);
+              }
+  
+              .socialContainer:active {
+                transform: scale(0.9);
+                transition-duration: 0.3s;
+              }
+  
+              .socialSvg {
+                width: 17px;
+              }
+  
+              .socialSvg path {
+                fill: rgb(255, 255, 255);
+              }
+  
+              .socialContainer:hover .socialSvg {
+                animation: slide-in-top 0.3s both;
+              }
+  
+              @keyframes slide-in-top {
+                0% {
+                  transform: translateY(-50px);
+                  opacity: 0;
+                }
+  
+                100% {
+                  transform: translateY(0);
+                  opacity: 1;
+                }
+              }
+            }
+          }
+          
+        }
+
+        .blogContainer {
+          @include flex-center();
+          gap: 20px;
+
+          .blogCont {
+            @include flex-center();
+            flex-direction: column;
+            gap: 30px;
+            border-radius: 40px;
+            padding: 0.5%;
+
+            .img {
+              overflow: hidden;
+              position: relative;
+
+              img {
+                border-radius: 25px;
+                object-fit: cover;
+                transition: transform 0.5s ease;
+              }
+            }
+
+            .blogItems {
+              @include flex-center();
+              flex-direction: column;
+              gap: 15px;
+
+              .blogItemsCont {
+                @include flex-center();
+                gap: 10px;
+
+                svg {
+                  width: 20px;
+                  height: auto;
+                }
+
+                p {
+                  font-size: 1.3em;
+                  margin: 0px;
+                }
+
+                hr {
+                  transform: rotate(90deg);
+                  width: 30px;
+                  height: 0.5px;
+                  border-radius: 0px;
+                  opacity: 1;
+                  background: $colorQuartenary;
+                }
+              }
+
+              .blogTitle {
+                @include flex-center();
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+
+                h4 {
+                  font-weight: 900;
+                  color: $colorBack;
+                  width: 400px;
+                }
+
+                p {
+                  font-size: 1.3em;
+                  width: 400px;
+                }
+
+                a {
+                  @include flex-center();
+                  gap: 10px;
+                  font-size: 1.1em;
+                  color: $colorSecondary;
+                  font-weight: 900;
+
+                  span {
+                    font-size: 1.5em;
+                    transition: transform 0.5s ease;
+                  }
+                }
+              }
+            }
+
+            &:hover {
+              cursor: pointer;
+
+              .img img {
+                transform: scale(1.1);
+              }
+
+              span {
+                transform: rotate(-25deg);
+              }
+            }
+          }
+        }
+
+        .buttons {
+          height: 20%;
+          @include flex-center();
+
+          button {
+            position: relative;
+            padding: 12px 35px;
+            background: $colorBg2;
+            font-size: 17px;
+            font-weight: 900;
+            color: white;
+            border: 3px solid $colorBg2;
+            border-radius: 25px;
+            box-shadow: 0 0 0 #7430008c;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+            @include flex-center();
+
+            svg {
+              width: 25px;
+              height: auto;
+              margin-left: 10px;
+            }
+          }
+
+          .star-1 img {
+            position: absolute;
+            top: 20%;
+            left: 20%;
+            width: 25px;
+            height: auto;
+            filter: drop-shadow(0 0 0 $colorBg2);
+            z-index: -5;
+            transition: all 1s cubic-bezier(0.05, 0.83, 0.43, 0.96);
+          }
+
+          .star-2 img {
+            position: absolute;
+            top: 45%;
+            left: 45%;
+            width: 15px;
+            height: auto;
+            filter: drop-shadow(0 0 0 $colorBg2);
+            z-index: -5;
+            transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+          }
+
+          .star-3 img {
+            position: absolute;
+            top: 40%;
+            left: 40%;
+            width: 5px;
+            height: auto;
+            filter: drop-shadow(0 0 0 $colorBg2);
+            z-index: -5;
+            transition: all 1s cubic-bezier(0, 0.4, 0, 1.01);
+          }
+
+          .star-4 img {
+            position: absolute;
+            top: 20%;
+            left: 40%;
+            width: 8px;
+            height: auto;
+            filter: drop-shadow(0 0 0 $colorBg2);
+            z-index: -5;
+            transition: all 0.8s cubic-bezier(0, 0.4, 0, 1.01);
+          }
+
+          .star-5 img {
+            position: absolute;
+            top: 25%;
+            left: 45%;
+            width: 15px;
+            height: auto;
+            filter: drop-shadow(0 0 0 $colorBg2);
+            z-index: -5;
+            transition: all 0.4s cubic-bezier(0, 0.4, 0, 1.01);
+          }
+
+          .star-6 img {
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            width: 5px;
+            height: auto;
+            filter: drop-shadow(0 0 0 $colorBg2);
+            z-index: -5;
+            transition: all 0.8s ease;
+          }
+
+          button:hover {
+            background: transparent;
+            color: $colorBg2;
+            box-shadow: 0 0 25px #7932008c;
+          }
+
+          button:hover .star-1 img {
+            position: absolute;
+            top: -80%;
+            left: -30%;
+            width: 25px;
+            height: auto;
+            filter: drop-shadow(0 0 10px $colorBg2);
+            z-index: 2;
+          }
+
+          button:hover .star-2 img {
+            position: absolute;
+            top: -25%;
+            left: 10%;
+            width: 15px;
+            height: auto;
+            filter: drop-shadow(0 0 10px $colorBg2);
+            z-index: 2;
+          }
+
+          button:hover .star-3 img {
+            position: absolute;
+            top: 55%;
+            left: 25%;
+            width: 5px;
+            height: auto;
+            filter: drop-shadow(0 0 10px $colorBg2);
+            z-index: 2;
+          }
+
+          button:hover .star-4 img {
+            position: absolute;
+            top: 30%;
+            left: 80%;
+            width: 8px;
+            height: auto;
+            filter: drop-shadow(0 0 10px $colorBg2);
+            z-index: 2;
+          }
+
+          button:hover .star-5 img {
+            position: absolute;
+            top: 25%;
+            left: 115%;
+            width: 15px;
+            height: auto;
+            filter: drop-shadow(0 0 10px $colorBg2);
+            z-index: 2;
+          }
+
+          button:hover .star-6 img {
+            position: absolute;
+            top: 5%;
+            left: 60%;
+            width: 5px;
+            height: auto;
+            filter: drop-shadow(0 0 10px $colorBg2);
+            z-index: 2;
+          }
+
+          .fil0 {
+            fill: $colorBg2;
           }
         }
 
@@ -4181,21 +4810,6 @@ html {
         }
       }
 
-      //#endregion home
-
-      //#region menu
-
-      //#endregion menu
-
-      //#region loja
-
-      //#endregion loja
-
-      //#region blog
-
-      //#endregion blog
-
-      //#region contato
       #contato {
         @include container();
         @include flex-center();
@@ -4304,8 +4918,6 @@ html {
         }
       }
 
-      //#endregion contato
-
       .thanks {
         @include area();
         @include flex-center();
@@ -4327,8 +4939,6 @@ html {
           }
         }
       }
-
-      // #region menuTv
 
       #cardapio-tv {
         width: 100dvw;
@@ -4727,7 +5337,6 @@ html {
         }
       }
 
-      // #endregion
     }
 
     .footer {
