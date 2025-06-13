@@ -3616,22 +3616,65 @@ html body main #blogPage .blogEvents {
   align-items: flex-start;
   gap: 50px;
 }
-html body main #blogPage .blogEvents .blogEventsBanner {
-  position: relative;
-  display: inline-block;
-}
-html body main #blogPage .blogEvents .blogEventsBanner img {
-  display: block;
+html body main #blogPage .blogEvents .blogEventsFlip {
   width: 1050px;
   height: 630px;
+  perspective: 1000px;
+  cursor: pointer;
+  position: relative;
 }
-html body main #blogPage .blogEvents .blogEventsBanner h3 {
+html body main #blogPage .blogEvents .blogEventsFlip .flip-inner {
+  width: 1050px;
+  height: 630px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s;
+  transform-origin: center center;
+}
+html body main #blogPage .blogEvents .blogEventsFlip.flipped .flip-inner {
+  transform: rotateY(180deg);
+}
+html body main #blogPage .blogEvents .blogEventsFlip .flip-front,
+html body main #blogPage .blogEvents .blogEventsFlip .flip-back {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  margin: 0;
+  top: 0;
+  left: 0;
+  width: 1050px;
+  height: 630px;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  overflow: hidden;
+}
+html body main #blogPage .blogEvents .blogEventsFlip .flip-front {
+  z-index: 2;
+}
+html body main #blogPage .blogEvents .blogEventsFlip .flip-front img {
+  width: 1050px;
+  height: 630px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+html body main #blogPage .blogEvents .blogEventsFlip .flip-back {
+  background-color: #f2e0db;
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 40px;
+  text-align: center;
+  z-index: 1;
+  gap: 10px;
+}
+html body main #blogPage .blogEvents .blogEventsFlip .flip-back h4 {
+  font-size: 1.8em;
+  color: #371406;
+  margin: 0px;
+}
+html body main #blogPage .blogEvents .blogEventsFlip .flip-back p {
+  font-size: 1.5em;
+  color: #b3b3b3;
 }
 html body main #blogPage .blogEvents .blogEventsContent {
   display: flex;

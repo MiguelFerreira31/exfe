@@ -22,7 +22,6 @@ class HomeController extends Controller
         $avaliacao = $avaliacaoModel->getAvaliacao();
         $dados['avaliacoes'] = $avaliacao;
 
-
         $this->carregarViews('home', $dados);
     }
 }

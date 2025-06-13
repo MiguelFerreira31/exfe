@@ -48,7 +48,7 @@
 
       <?php require_once('template/bannerTwo.php') ?>
 
-      <?php require_once('template/blog.php') ?>
+      <?php require_once('template/blogPage.php') ?>
 
       <?php require_once('template/desconto.php') ?>
 

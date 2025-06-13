@@ -4149,26 +4149,76 @@ html {
           align-items: flex-start;
           gap: 50px;
 
-          .blogEventsBanner {
+          .blogEventsFlip {
+            width: 1050px;
+            height: 630px;
+            perspective: 1000px;
+            cursor: pointer;
             position: relative;
-            display: inline-block;
 
-            img {
-              display: block;
+            .flip-inner {
               width: 1050px;
               height: 630px;
-
+              position: relative;
+              transform-style: preserve-3d;
+              transition: transform 0.8s;
+              transform-origin: center center;
             }
 
-            h3 {
+            &.flipped .flip-inner {
+              transform: rotateY(180deg);
+            }
+
+            .flip-front,
+            .flip-back {
               position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
-              color: white;
-              margin: 0;
+              top: 0;
+              left: 0;
+              width: 1050px;
+              height: 630px;
+              backface-visibility: hidden;
+              border-radius: 16px;
+              overflow: hidden;
+            }
+
+            .flip-front {
+              z-index: 2;
+
+              img {
+                width: 1050px;
+                height: 630px;
+                object-fit: cover;
+              }
+            }
+
+            .flip-back {
+              background-color: #f2e0db;
+              transform: rotateY(180deg);
+              @include flex-center();
+              flex-direction: column;
+              justify-content: flex-start;
+              padding: 40px;
+              text-align: center;
+              z-index: 1;
+              gap: 10px;
+
+              h4 {
+                font-size: 1.8em;
+                color: $colorTertiary;
+                margin: 0px;
+              }
+
+              p {
+                font-size: 1.5em;
+                color: $colorQuartenary;
+              }
             }
           }
+
+
+
+
+
 
           .blogEventsContent {
             @include flex-center();
