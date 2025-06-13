@@ -728,7 +728,7 @@ html body header .site {
   gap: 600px;
 }
 html body header .site .logoHeader a img {
-  width: 90px;
+  width: 85px;
   height: auto;
   transition: 0.3s;
 }
@@ -1197,7 +1197,7 @@ html body header.scroll .site {
   gap: 600px;
 }
 html body header.scroll .site .logoHeader a img {
-  width: 90px;
+  width: 85px;
   height: auto;
   transition: 0.3s;
 }
@@ -2085,7 +2085,8 @@ html body main #produtosEmDestaque .produtosCont .buttons .fil0 {
 }
 html body main #produtosEmDestaque .produtosCont .produtosItems {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 colunas iguais */
+  grid-template-columns: repeat(4, 1fr);
+  /* 4 colunas iguais */
   gap: 40px;
   justify-items: center;
 }
@@ -2487,7 +2488,8 @@ html body main #produtosEmDestaqueMenu .produtosCont .buttons .fil0 {
 }
 html body main #produtosEmDestaqueMenu .produtosCont .produtosItems {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 colunas iguais */
+  grid-template-columns: repeat(4, 1fr);
+  /* 4 colunas iguais */
   gap: 40px;
   justify-items: center;
 }
@@ -3611,6 +3613,7 @@ html body main #blogPage .blogEvents {
   display: flex;
   align-items: center;
   justify-content: center;
+  align-items: flex-start;
   gap: 50px;
 }
 html body main #blogPage .blogEvents .blogEventsBanner {
@@ -3619,8 +3622,8 @@ html body main #blogPage .blogEvents .blogEventsBanner {
 }
 html body main #blogPage .blogEvents .blogEventsBanner img {
   display: block;
-  width: 900px;
-  height: auto;
+  width: 1050px;
+  height: 630px;
 }
 html body main #blogPage .blogEvents .blogEventsBanner h3 {
   position: absolute;
@@ -3636,7 +3639,7 @@ html body main #blogPage .blogEvents .blogEventsContent {
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
 }
 html body main #blogPage .blogEvents .blogEventsContent .blogEventsTitle h3 {
   width: 100%;
@@ -3670,12 +3673,23 @@ html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes {
   flex-direction: column;
   gap: 20px;
   border: none;
+  align-items: flex-start;
+}
+html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes .blogEventsRedesItems {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   /* for all social containers*/
   /* instagram*/
   /* Whatsapp*/
   /* facebook*/
 }
-html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes .socialContainer {
+html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes .blogEventsRedesItems h3 {
+  font-size: 1.3em;
+  margin: 0px;
+}
+html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes .blogEventsRedesItems .socialContainer {
   width: 35px;
   height: 35px;
   background-color: #9e675f;
@@ -3686,32 +3700,32 @@ html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes .social
   transition-duration: 0.3s;
   border-radius: 30px;
 }
-html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes .containerOne:hover {
+html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes .blogEventsRedesItems .containerOne:hover {
   background-color: #d62976;
   transition-duration: 0.3s;
   transform: scale(1.2);
 }
-html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes .containerTwo:hover {
+html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes .blogEventsRedesItems .containerTwo:hover {
   background-color: #128c7e;
   transition-duration: 0.3s;
   transform: scale(1.2);
 }
-html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes .containerThree:hover {
+html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes .blogEventsRedesItems .containerThree:hover {
   background-color: #0072b1;
   transition-duration: 0.3s;
   transform: scale(1.2);
 }
-html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes .socialContainer:active {
+html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes .blogEventsRedesItems .socialContainer:active {
   transform: scale(0.9);
   transition-duration: 0.3s;
 }
-html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes .socialSvg {
+html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes .blogEventsRedesItems .socialSvg {
   width: 17px;
 }
-html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes .socialSvg path {
+html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes .blogEventsRedesItems .socialSvg path {
   fill: rgb(255, 255, 255);
 }
-html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes .socialContainer:hover .socialSvg {
+html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes .blogEventsRedesItems .socialContainer:hover .socialSvg {
   animation: slide-in-top 0.3s both;
 }
 @keyframes slide-in-top {
@@ -3725,9 +3739,8 @@ html body main #blogPage .blogEvents .blogEventsContent .blogEventsRedes .social
   }
 }
 html body main #blogPage .blogContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 html body main #blogPage .blogContainer .blogCont {
