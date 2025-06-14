@@ -22,6 +22,9 @@ class HomeController extends Controller
         $avaliacao = $avaliacaoModel->getAvaliacao();
         $dados['avaliacoes'] = $avaliacao;
 
+        $blogModel = new Blog();
+        $dados['blogs'] = $blogModel->listarAleatorios();
+
         $this->carregarViews('home', $dados);
     }
 }

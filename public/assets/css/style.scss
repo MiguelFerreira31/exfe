@@ -3815,6 +3815,10 @@ html {
 
           .blogCont {
             @include flex-center();
+            display: flex !important;
+            width: 430px;
+            height: 600px;
+            justify-content: flex-start;
             flex-direction: column;
             gap: 30px;
             border-radius: 40px;
@@ -3823,8 +3827,10 @@ html {
             .img {
               overflow: hidden;
               position: relative;
-
+              
               img {
+                width: 410px;
+                height: 275px;
                 border-radius: 25px;
                 object-fit: cover;
                 transition: transform 0.5s ease;
@@ -4345,6 +4351,10 @@ html {
 
           .blogCont {
             @include flex-center();
+            display: flex !important;
+            width: 430px;
+            height: 600px;
+            justify-content: flex-start;
             flex-direction: column;
             gap: 30px;
             border-radius: 40px;
@@ -4353,8 +4363,10 @@ html {
             .img {
               overflow: hidden;
               position: relative;
-
+              
               img {
+                width: 410px;
+                height: 275px;
                 border-radius: 25px;
                 object-fit: cover;
                 transition: transform 0.5s ease;

@@ -8,8 +8,10 @@
 </head>
 
 <body>
+
+    <?php require_once('template/header.php') ?>
+    
     <main>
-        <?php require_once('template/header.php') ?>
 
         <?php require_once('template/bannerTwo.php') ?>
 
@@ -18,7 +20,10 @@
         <?php require_once('template/itemEspecial.php') ?>
 
         <?php require_once('template/desconto.php') ?>
+
     </main>
+
+    <?php require_once('template/footer.php') ?>
 
     <script src="//code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.4.1.min.js"></script>

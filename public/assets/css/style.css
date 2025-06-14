@@ -3310,6 +3310,10 @@ html body main #blog .blogContainer .blogCont {
   display: flex;
   align-items: center;
   justify-content: center;
+  display: flex !important;
+  width: 430px;
+  height: 600px;
+  justify-content: flex-start;
   flex-direction: column;
   gap: 30px;
   border-radius: 40px;
@@ -3320,6 +3324,8 @@ html body main #blog .blogContainer .blogCont .img {
   position: relative;
 }
 html body main #blog .blogContainer .blogCont .img img {
+  width: 410px;
+  height: 275px;
   border-radius: 25px;
   -o-object-fit: cover;
      object-fit: cover;
@@ -3790,6 +3796,10 @@ html body main #blogPage .blogContainer .blogCont {
   display: flex;
   align-items: center;
   justify-content: center;
+  display: flex !important;
+  width: 430px;
+  height: 600px;
+  justify-content: flex-start;
   flex-direction: column;
   gap: 30px;
   border-radius: 40px;
@@ -3800,6 +3810,8 @@ html body main #blogPage .blogContainer .blogCont .img {
   position: relative;
 }
 html body main #blogPage .blogContainer .blogCont .img img {
+  width: 410px;
+  height: 275px;
   border-radius: 25px;
   -o-object-fit: cover;
      object-fit: cover;
