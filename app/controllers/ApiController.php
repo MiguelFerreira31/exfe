@@ -5,6 +5,8 @@ class ApiController extends Controller
 
     private $clienteModel;
     private $cafeModel;
+    private $produtoModel;
+    private $categoriaModel;
 
     public function __construct()
     {
@@ -16,6 +18,8 @@ class ApiController extends Controller
         // Instaciar o modelo cafe
         $this->cafeModel = new Produtos();
         $this->clienteModel     = new Cliente();
+        $this->produtoModel     = new Produtos();
+        $this->categoriaModel   = new Categoria();
     }
 
     public function menu()
@@ -191,6 +195,48 @@ class ApiController extends Controller
             ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         }
     }
+
+    public function listarProdutosSelecionados($categoria)
+    {
+        header("Content-Type: application/json");
+
+        // Busca os produtos pelas categorias e com status ativo
+        $produtos = $this->produtoModel->getProdutosCafe($categoria);
+
+        if (!empty($produtos)) {
+            echo json_encode([
+                'status' => 'sucesso',
+                'produtos' => $produtos
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        } else {
+            echo json_encode([
+                'status' => 'vazio',
+                'mensagem' => 'Nenhum produto encontrado.'
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        }
+    }
+
+    public function listarCategorias()
+    {
+        header("Content-Type: application/json");
+    
+        // Busca todas as categorias da tabela
+        $categorias = $this->categoriaModel->getCategorias();
+    
+        if (!empty($categorias)) {
+            echo json_encode([
+                'status' => 'sucesso',
+                'categoria' => $categorias
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        } else {
+            echo json_encode([
+                'status' => 'vazio',
+                'mensagem' => 'Nenhuma categoria encontrada.'
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        }
+    }
+
+
 
     public function editarCliente()
     {

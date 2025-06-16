@@ -26,6 +26,32 @@ class Produtos extends Model
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getProdutosCafe($categoria)
+    {
+        $sql = "SELECT 
+                    p.*, 
+                    c.nome_categoria AS nome_categoria, 
+                    f.nome_fornecedor AS nome_fornecedor
+                FROM tbl_produto AS p
+                INNER JOIN tbl_categoria AS c ON p.id_categoria = c.id_categoria
+                INNER JOIN tbl_fornecedor AS f ON p.id_fornecedor = f.id_fornecedor
+                WHERE p.id_categoria = :categoria
+                AND TRIM(p.status_produto) = 'ativo'
+                ORDER BY p.nome_produto ASC";
+    
+        $stmt = $this->db->prepare($sql);
+    
+        // Substitua 2 pelo ID real da categoria Café
+        $stmt->bindValue(':categoria', $categoria, PDO::PARAM_INT);
+    
+        $stmt->execute();
+    
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+
+
     public function getProdutosDestaque($categoria = 'todas', $ordenar = 'recomendado')
     {
         $sql = "SELECT * FROM tbl_produto WHERE status_produto = 'ativo'";
@@ -277,7 +303,4 @@ class Produtos extends Model
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-
-
 }
