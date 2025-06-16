@@ -254,6 +254,13 @@ $dados['acompanhamentos'] = $acompanhamentos;
         </li>
 
         <li class="nav-item">
+          <a class="nav-link" href="<?= BASE_URL ?>blog/listar">
+            <div class="icon"><i class="fas fa-paper-plane"></i></div>
+            <span class="nav-link-text ms-2">Blog</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
           <a class="nav-link" href="<?= BASE_URL ?>newsletter/listar">
             <div class="icon"><i class="fas fa-paper-plane"></i></div>
             <span class="nav-link-text ms-2">Newsletter</span>
