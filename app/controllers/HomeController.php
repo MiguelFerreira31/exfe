@@ -23,7 +23,7 @@ class HomeController extends Controller
         $dados['avaliacoes'] = $avaliacao;
 
         $blogModel = new Blog();
-        $dados['blogs'] = $blogModel->listarAleatorios();
+        $dados['blogs'] = $blogModel->listarAleatoriosThree();
 
         $this->carregarViews('home', $dados);
     }
