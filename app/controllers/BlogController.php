@@ -2,6 +2,9 @@
 
 class BlogController extends Controller
 {
+
+    private $blogModel;
+
     public function index()
     {
         $dados = [];
@@ -170,14 +173,14 @@ class BlogController extends Controller
 
         $blogModel = new Blog();
 
-        
+
         if ($id === null) {
             http_response_code(400);
             echo json_encode(['sucesso' => false, "mensagem" => "ID inválido."]);
             exit;
         }
 
-        $resultado = $this->$blogModel->desativarBlog($id);
+        $resultado = $blogModel->desativarBlog($id);
 
         header('Content-Type: application/json');
 
@@ -195,7 +198,6 @@ class BlogController extends Controller
     // Ativar Blog
     public function ativar($id = null)
     {
-
         $blogModel = new Blog();
 
         if ($id === null) {
@@ -204,7 +206,7 @@ class BlogController extends Controller
             exit;
         }
 
-        $resultado = $this->$blogModel->desativarBlog($id);
+        $resultado = $blogModel->ativarBlog($id);
 
         header('Content-Type: application/json');
 
@@ -218,7 +220,6 @@ class BlogController extends Controller
             echo json_encode(['sucesso' => false, "mensagem" => 'Falha ao ativar blog']);
         }
     }
-
 
 
     private function uploadFoto($file)
@@ -247,5 +248,17 @@ class BlogController extends Controller
 
         // Retorna falso caso o upload falhe
         return false;
+    }
+
+    public function buscarAjax()
+    {
+        $termo = $_GET['termo'] ?? '';
+        $status = $_GET['status'] ?? '';
+
+        $blogs = $this->blogModel->buscarPorTitulo($termo, $status);
+
+        header('Content-Type: application/json');
+        echo json_encode($blogs);
+        exit;
     }
 }

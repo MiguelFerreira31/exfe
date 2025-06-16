@@ -13,12 +13,14 @@ if (!empty($_SESSION['mensagem']) && !empty($_SESSION['tipo-msg'])) {
     unset($_SESSION['mensagem'], $_SESSION['tipo-msg']);
 }
 
-$status = ucfirst(strtolower($_GET['status'] ?? 'Ativo'));
+// Status
+$status = isset($_GET['status']) && $_GET['status'] !== '' ? ucfirst(strtolower($_GET['status'])) : 'Todos';
+$status = ucfirst(strtolower($status));
 ?>
 
 <div class="container my-5">
     <h2 class="text-center fw-bold py-3" style="background: #5e3c2d; color: white; border-radius: 12px;">
-        Blogs Publicados (<?= $status ?>)
+        Blogs Publicados (<?= htmlspecialchars($status) ?>)
     </h2>
 
     <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
@@ -29,7 +31,7 @@ $status = ucfirst(strtolower($_GET['status'] ?? 'Ativo'));
         <form method="get" action="" class="d-flex align-items-center mb-2 mb-md-0">
             <label for="statusFiltro" class="me-2">Filtrar por status:</label>
             <select name="status" id="statusFiltro" onchange="this.form.submit()" class="form-select w-auto">
-                <option value="" <?= $status === '' ? 'selected' : '' ?>>Todos</option>
+                <option value="" <?= $status === 'Todos' ? 'selected' : '' ?>>Todos</option>
                 <option value="Ativo" <?= $status === 'Ativo' ? 'selected' : '' ?>>Ativos</option>
                 <option value="Inativo" <?= $status === 'Inativo' ? 'selected' : '' ?>>Inativos</option>
             </select>
@@ -46,11 +48,7 @@ $status = ucfirst(strtolower($_GET['status'] ?? 'Ativo'));
                     <th>Imagem</th>
                     <th>Responsável</th>
                     <th>Editar</th>
-                    <?php if ($status !== 'Inativo'): ?>
-                        <th>Desativar</th>
-                    <?php else: ?>
-                        <th>Ativar</th>
-                    <?php endif; ?>
+                    <th><?= $status === 'Inativo' ? 'Ativar' : 'Desativar' ?></th>
                 </tr>
             </thead>
             <tbody id="tabelaBlogs">
@@ -79,7 +77,6 @@ $status = ucfirst(strtolower($_GET['status'] ?? 'Ativo'));
                                 </a>
                             <?php endif; ?>
                         </td>
-
                     </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -204,4 +201,60 @@ $status = ucfirst(strtolower($_GET['status'] ?? 'Ativo'));
                 alert('Erro na requisição.');
             });
     }
+</script>
+
+<script>
+    document.getElementById('buscaBlog').addEventListener('input', function() {
+        const termo = this.value.trim();
+        const status = '<?= $status ?>';
+
+        fetch(`<?= BASE_URL ?>blog/buscarAjax?termo=${encodeURIComponent(termo)}&status=${encodeURIComponent(status)}`)
+            .then(res => res.json())
+            .then(blogs => {
+                const tbody = document.getElementById('tabelaBlogs');
+                tbody.innerHTML = '';
+
+                if (blogs.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="7" class="text-center">Nenhum blog encontrado.</td></tr>`;
+                    return;
+                }
+
+                blogs.forEach(blog => {
+                    const img = blog.foto_blog ? `<?= BASE_URL ?>assets/img/blog/${blog.foto_blog}` : `<?= BASE_URL ?>assets/img/sem-imagem.jpg`;
+                    const statusIcon = blog.status_blog === 'Ativo' ?
+                        `<a href="#" title="Desativar" onclick="abrirModalDesativarBlog(${blog.id_blog})">
+                            <i class="fa fa-ban" style="font-size: 20px; color: #ff4d4d;"></i>
+                        </a>` :
+                        `<a href="#" title="Ativar" onclick="abrirModalAtivarBlog(${blog.id_blog})">
+                            <i class="fa fa-check-circle" style="font-size: 20px; color: #4CAF50;"></i>
+                        </a>`;
+
+                    const row = `
+                        <tr>
+                            <td>${blog.titulo_blog}</td>
+                            <td>${blog.descricao_blog.replace(/\n/g, '<br>')}</td>
+                            <td>${formatarData(blog.data_postagem_blog)}</td>
+                            <td><img src="${img}" alt="${blog.alt_foto_blog || 'Imagem do blog'}" width="100"></td>
+                            <td>${blog.nome_funcionario}</td>
+                            <td>
+                                <a href="<?= BASE_URL ?>blog/editar/${blog.id_blog}" title="Editar">
+                                    <i class="fa fa-pencil-alt" style="font-size: 20px; color: #9a5c1f;"></i>
+                                </a>
+                            </td>
+                            <td class="status-blog">${statusIcon}</td>
+                        </tr>`;
+                    tbody.innerHTML += row;
+                });
+            })
+            .catch(() => {
+                document.getElementById('tabelaBlogs').innerHTML =
+                    `<tr><td colspan="7" class="text-center text-danger">Erro ao buscar blogs.</td></tr>`;
+            });
+
+        // Função auxiliar para formatar a data para o formato BR
+        function formatarData(dataISO) {
+            const [ano, mes, dia] = dataISO.split("-");
+            return `${dia}/${mes}/${ano}`;
+        }
+    });
 </script>

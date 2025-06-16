@@ -151,4 +151,26 @@ class Blog extends Model
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function buscarPorTitulo($titulo, $status = '')
+    {
+        $sql = "SELECT b.*, f.nome_funcionario 
+            FROM tbl_blog b
+            JOIN tbl_funcionario f ON b.id_funcionario = f.id_funcionario
+            WHERE b.titulo_blog LIKE :titulo";
+
+        if (!empty($status)) {
+            $sql .= " AND b.status_blog = :status";
+        }
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':titulo', "%$titulo%");
+
+        if (!empty($status)) {
+            $stmt->bindValue(':status', ucfirst(strtolower($status)));
+        }
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
