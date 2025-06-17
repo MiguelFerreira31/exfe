@@ -11,7 +11,7 @@
         <div class="blogEventsFlip" onclick="this.classList.toggle('flipped')">
           <div class="flip-inner">
             <div class="flip-front">
-              <img src="assets/img/<?= $evento['foto_evento'] ?>" alt="<?= $evento['alt_foto_evento'] ?>">
+              <img src="<?php BASE_URL?>uploads/<?= $evento['foto_evento'] ?>" alt="<?= $evento['alt_foto_evento'] ?>">
             </div>
             <div class="flip-back">
               <h4><?= $evento['nome_evento'] ?></h4>
@@ -79,7 +79,7 @@
     <?php foreach ($blogs as $blog): ?>
       <div class="blogCont">
         <div class="img">
-          <img src="assets/img/<?= $blog['foto_blog'] ?>" alt="<?= $blog['alt_foto_blog'] ?>">
+          <img src="<?php BASE_URL?>uploads/<?= $blog['foto_blog'] ?>" alt="<?= $blog['alt_foto_blog'] ?>">
         </div>
 
         <div class="blogItems">

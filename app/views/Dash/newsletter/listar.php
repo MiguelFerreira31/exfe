@@ -49,8 +49,8 @@
 
 <!-- Modal Enviar Email -->
 <div class="modal fade" id="modalEnviarEmail" tabindex="-1" aria-labelledby="modalEnviarEmailLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <form method="POST" action="http://localhost/exfe/public/newsletter/enviarParaTodos">
+  <div class="modal-dialog modal-lg">
+    <form method="POST" action="<?php echo BASE_URL ?>newsletter/enviarParaTodos" enctype="multipart/form-data">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="modalEnviarEmailLabel">Enviar Email para Newsletter</h5>
@@ -61,7 +61,15 @@
             <label for="assunto" class="form-label">Assunto</label>
             <input type="text" class="form-control" name="assunto" id="assunto" required>
           </div>
-          <div class="mb-3">
+
+          <!-- Preview da imagem escolhida -->
+          <div class="mb-3 text-center">
+            <label class="form-label d-block">Banner selecionado (clique na imagem para escolher outro)</label>
+            <img src="" id="preview-img" alt="Banner selecionado" style="max-width: 100%; max-height: 200px; object-fit: contain; cursor: pointer; border-radius: 8px; border: 1px solid #ccc;">
+            <input type="file" name="banner_file" id="banner_file" accept="image/*" style="display:none;">
+          </div>
+
+          <div class="mb-3 mt-3">
             <label for="mensagem" class="form-label">Mensagem</label>
             <textarea class="form-control" name="mensagem" id="mensagem" rows="5" required></textarea>
           </div>
@@ -74,3 +82,24 @@
     </form>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const previewImg = document.getElementById('preview-img');
+    const bannerFileInput = document.getElementById('banner_file');
+
+    previewImg.addEventListener('click', function() {
+      bannerFileInput.click();
+    });
+
+    bannerFileInput.addEventListener('change', function() {
+      if (bannerFileInput.files && bannerFileInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          previewImg.src = e.target.result;
+        }
+        reader.readAsDataURL(bannerFileInput.files[0]);
+      }
+    });
+  });
+</script>

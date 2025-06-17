@@ -116,7 +116,6 @@ class Blog extends Model
         return $stmt->execute();
     }
 
-
     public function addFotoBlog($id_blog, $arquivo)
     {
         $sql = "UPDATE tbl_blog 

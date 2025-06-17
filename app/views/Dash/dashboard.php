@@ -267,6 +267,13 @@ $dados['acompanhamentos'] = $acompanhamentos;
           </a>
         </li>
 
+        <li class="nav-item">
+          <a class="nav-link" href="<?= BASE_URL ?>evento/listar">
+            <div class="icon"><i class="fas fa-paper-plane"></i></div>
+            <span class="nav-link-text ms-2">Evento</span>
+          </a>
+        </li>
+
         <li class="nav-item mt-3">
           <h6>Account Pages</h6>
         </li>
