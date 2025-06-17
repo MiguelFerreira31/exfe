@@ -29,28 +29,34 @@ class Produtos extends Model
     public function getProdutosCafe($categoria)
     {
         $sql = "SELECT 
-                    p.*, 
-                    c.nome_categoria AS nome_categoria, 
-                    f.nome_fornecedor AS nome_fornecedor
-                FROM tbl_produto AS p
-                INNER JOIN tbl_categoria AS c ON p.id_categoria = c.id_categoria
-                INNER JOIN tbl_fornecedor AS f ON p.id_fornecedor = f.id_fornecedor
-                WHERE p.id_categoria = :categoria
-                AND TRIM(p.status_produto) = 'ativo'
-                ORDER BY p.nome_produto ASC";
-    
+                p.*, 
+                c.nome_categoria AS nome_categoria, 
+                f.nome_fornecedor AS nome_fornecedor
+            FROM tbl_produto AS p
+            INNER JOIN tbl_categoria AS c ON p.id_categoria = c.id_categoria
+            INNER JOIN tbl_fornecedor AS f ON p.id_fornecedor = f.id_fornecedor
+            WHERE p.id_categoria = :categoria
+            AND TRIM(p.status_produto) = 'ativo'
+            ORDER BY p.nome_produto ASC";
+
         $stmt = $this->db->prepare($sql);
-    
+
         // Substitua 2 pelo ID real da categoria Café
         $stmt->bindValue(':categoria', $categoria, PDO::PARAM_INT);
-    
+
         $stmt->execute();
-    
+
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-
-
+    public function getAllProdutos()
+    {
+        $sql = "SELECT p.*, c.* FROM tbl_produto p
+                INNER JOIN tbl_categoria AS c ON p.id_categoria = c.id_categoria
+                WHERE status_produto = 'Ativo'";
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public function getProdutosDestaque($categoria = 'todas', $ordenar = 'recomendado')
     {
@@ -82,13 +88,30 @@ class Produtos extends Model
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getProdutosAgrupadosPorCategoria()
+    {
+        $sql = "SELECT 
+                p.*, 
+                c.nome_categoria AS nome_categoria,
+                f.nome_fornecedor AS nome_fornecedor
+            FROM tbl_produto AS p
+            INNER JOIN tbl_categoria AS c ON p.id_categoria = c.id_categoria
+            INNER JOIN tbl_fornecedor AS f ON p.id_fornecedor = f.id_fornecedor
+            WHERE TRIM(p.status_produto) = 'ativo'
+            ORDER BY c.nome_categoria ASC, p.nome_produto ASC";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+
     public function getCategorias()
     {
         $sql = "SELECT * FROM tbl_categoria";
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
 
     public function buscarProduto($email)
     {
@@ -107,7 +130,6 @@ class Produtos extends Model
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
 
     public function getListarProdutos($status = null)
     {
@@ -159,7 +181,6 @@ class Produtos extends Model
         return $stmt->execute();
     }
 
-
     public function ativarProduto($id)
     {
 
@@ -168,7 +189,6 @@ class Produtos extends Model
         $stmt->bindValue(':id_produto', $id, PDO::PARAM_INT);
         return $stmt->execute();
     }
-
 
     public function addProduto($dados)
     {
@@ -206,8 +226,6 @@ class Produtos extends Model
         return $this->db->lastInsertId();
     }
 
-
-
     public function updateProduto($id, $dados)
     {
         $sql = "UPDATE tbl_produto SET 
@@ -236,8 +254,6 @@ class Produtos extends Model
         return $stmt->execute();
     }
 
-
-
     public function addFotoProduto($id_produto, $arquivo)
     {
         $sql = "UPDATE tbl_produto 
@@ -251,8 +267,6 @@ class Produtos extends Model
         return $stmt->execute();
     }
 
-
-
     public function getProdutoById($id)
     {
 
@@ -265,8 +279,6 @@ class Produtos extends Model
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-
-
     public function getListarProdutosDesativados()
     {
 
@@ -278,8 +290,6 @@ class Produtos extends Model
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-
 
     public function buscarPorNome($nome, $status = '')
     {

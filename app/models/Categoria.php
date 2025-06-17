@@ -13,12 +13,11 @@ class Categoria extends Model
     }
 
     public function getCategorias()
-{
-    $sql = "SELECT id_categoria, nome_categoria FROM tbl_categoria ORDER BY nome_categoria ASC";
-    $stmt = $this->db->prepare($sql);
-    $stmt->execute();
+    {
+        $sql = "SELECT id_categoria, nome_categoria FROM tbl_categoria ORDER BY nome_categoria ASC";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
 
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

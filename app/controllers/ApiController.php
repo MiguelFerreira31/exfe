@@ -196,12 +196,12 @@ class ApiController extends Controller
         }
     }
 
-    public function listarProdutosSelecionados($categoria)
+    public function listarProdutosSelecionados()
     {
         header("Content-Type: application/json");
 
         // Busca os produtos pelas categorias e com status ativo
-        $produtos = $this->produtoModel->getProdutosCafe($categoria);
+        $produtos = $this->produtoModel->getAllProdutos();
 
         if (!empty($produtos)) {
             echo json_encode([
@@ -219,10 +219,10 @@ class ApiController extends Controller
     public function listarCategorias()
     {
         header("Content-Type: application/json");
-    
+
         // Busca todas as categorias da tabela
         $categorias = $this->categoriaModel->getCategorias();
-    
+
         if (!empty($categorias)) {
             echo json_encode([
                 'status' => 'sucesso',
@@ -235,6 +235,38 @@ class ApiController extends Controller
             ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         }
     }
+
+    public function listarProdutosPorCategoria()
+    {
+        header("Content-Type: application/json");
+
+        $produtos = $this->produtoModel->getProdutosAgrupadosPorCategoria();
+
+        if (empty($produtos)) {
+            echo json_encode([
+                'status' => 'vazio',
+                'mensagem' => 'Nenhum produto encontrado.'
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
+        // Agrupa produtos por nome da categoria
+        $agrupado = [];
+
+        foreach ($produtos as $produto) {
+            $categoria = $produto['nome_categoria'];
+            if (!isset($agrupado[$categoria])) {
+                $agrupado[$categoria] = [];
+            }
+            $agrupado[$categoria][] = $produto;
+        }
+
+        echo json_encode([
+            'status' => 'sucesso',
+            'categorias' => $agrupado
+        ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    }
+
 
 
 
