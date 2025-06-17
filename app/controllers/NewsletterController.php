@@ -113,12 +113,19 @@ class NewsletterController extends Controller
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $assunto = trim($_POST['assunto']);
             $mensagem = trim($_POST['mensagem']);
+            $banner_url = filter_var(trim($_POST['banner_url'] ?? ''), FILTER_VALIDATE_URL);
 
             $emails = $this->newsletterModel->getAllEmails();
 
             require_once("vendors/phpmailer/PHPMailer.php");
             require_once("vendors/phpmailer/SMTP.php");
             require_once("vendors/phpmailer/Exception.php");
+
+            // Verifica se foi enviado arquivo válido no input 'banner_file'
+            $bannerFile = null;
+            if (isset($_FILES['banner_file']) && $_FILES['banner_file']['error'] === UPLOAD_ERR_OK) {
+                $bannerFile = $_FILES['banner_file'];
+            }
 
             foreach ($emails as $email) {
                 $mail = new PHPMailer\PHPMailer\PHPMailer();
@@ -130,7 +137,7 @@ class NewsletterController extends Controller
                     $mail->SMTPAuth   = true;
                     $mail->SMTPSecure = 'ssl';
                     $mail->Username   = 'devcyclesz@gmail.com';
-                    $mail->Password   = 'tpep xlgg hgzw wyef';
+                    $mail->Password   = 'tpep xlgg hgzw wyef';  // ATENÇÃO: em produção, use variáveis de ambiente!
                     $mail->CharSet    = 'UTF-8';
 
                     $mail->setFrom('devcyclesz@gmail.com', 'EXFÉ');
@@ -138,18 +145,41 @@ class NewsletterController extends Controller
 
                     $mail->isHTML(true);
                     $mail->Subject = $assunto;
-                    $mail->Body    = nl2br($mensagem);
+
+                    $bodyHtml = '';
+
+                    if ($bannerFile) {
+                        // Define um CID fixo para a imagem embutida
+                        $cid = 'bannerimg';
+
+                        // Anexa o banner e define o Content-ID para usar no HTML inline
+                        $mail->addEmbeddedImage($bannerFile['tmp_name'], $cid, $bannerFile['name']);
+
+                        // Insere a imagem inline com 100% largura (responsivo)
+                        $bodyHtml .= '<div style="text-align:center; margin-bottom: 15px;">
+                                    <img src="cid:' . $cid . '" alt="Banner" style="width: 100%; height: auto; border-radius: 8px;">
+                                  </div>';
+                    } elseif ($banner_url) {
+                        // Se não tem arquivo, usa a URL para exibir imagem no corpo, largura 100%
+                        $bodyHtml .= '<div style="text-align:center; margin-bottom: 15px;">
+                                    <img src="' . htmlspecialchars($banner_url) . '" alt="Banner" style="width: 100%; height: auto; border-radius: 8px;">
+                                  </div>';
+                    }
+
+                    // Inclui a mensagem convertida para <br> depois da imagem
+                    $bodyHtml .= '<div style="font-family: Arial, sans-serif; font-size: 16px; color: #333;">' . nl2br(htmlspecialchars($mensagem)) . '</div>';
+
+                    $mail->Body    = $bodyHtml;
                     $mail->AltBody = $mensagem;
 
                     $mail->send();
                 } catch (Exception $e) {
                     error_log("Erro ao enviar e-mail para $email: " . $mail->ErrorInfo);
-                    // Continue tentando com os outros emails
                 }
             }
 
             $_SESSION['mensagem'] = "E-mails enviados com sucesso para todos os inscritos!";
-            header('Location: newsletter/listar');
+            header('Location: listar');
             exit;
         }
     }
@@ -166,6 +196,4 @@ class NewsletterController extends Controller
             echo "Requisição inválida!";
         }
     }
-    
-    
 }

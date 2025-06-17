@@ -341,7 +341,6 @@ class ApiController extends Controller
         }
     }
 
-
     public function layout()
     {
         $dados = array();
@@ -357,7 +356,6 @@ class ApiController extends Controller
 
     private function uploadFoto($file)
     {
-
         // var_dump($file);
         $dir = '../public/uploads/cliente/';
 

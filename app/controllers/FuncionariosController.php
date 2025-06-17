@@ -55,8 +55,6 @@ class FuncionariosController extends Controller
         }
     }
 
-
-
     // 1- Método para listar todos os Funcionarios
 
     public function listar()
@@ -82,9 +80,6 @@ class FuncionariosController extends Controller
             $this->carregarViews('dash/dashboard-funcionario', $dados);
         }
     }
-    
-    
-
 
     // 2- Método para adicionar Alunos
     public function adicionar()
@@ -195,7 +190,6 @@ class FuncionariosController extends Controller
 
         $this->carregarViews('dash/dashboard', $dados);
     }
-
 
     // 3- Método para editar
     public function editar($id = null)
@@ -393,11 +387,7 @@ class FuncionariosController extends Controller
         }
     }
 
-
-
-
     // 5 metodo upload das fotos
-
     private function uploadFoto($file)
     {
 

@@ -10,7 +10,7 @@
     <?php foreach ($blogs as $blog): ?>
       <div class="blogCont">
         <div class="img">
-          <img src="assets/img/<?= $blog['foto_blog'] ?>" alt="<?= $blog['alt_foto_blog'] ?>">
+          <img src="<?php BASE_URL?>uploads/<?= $blog['foto_blog'] ?>" alt="<?= $blog['alt_foto_blog'] ?>">
         </div>
 
         <div class="blogItems">
