@@ -69,18 +69,18 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
                             <?php echo exibirEstrelas($linha['nota']); ?>
                             <small>(<?php echo htmlspecialchars($linha['nota']); ?>)</small>
                         </td>
-                            <td><?php echo htmlspecialchars($linha['comentario']); ?></td>
-                            
+                        <td><?php echo htmlspecialchars($linha['comentario']); ?></td>
+
                         <td><?php echo htmlspecialchars($linha['data_avaliacao']); ?></td>
-                      
+
                         <td>
                             <a href="https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/avaliacao/editar/<?php echo $linha['id_avaliacao']; ?>" title="Editar">
                                 <i class="fa fa-pencil-alt" style="font-size: 20px; color: #5e3c2d;"></i>
                             </a>
                         </td>
                         <td>
-                            <a href="#" title="Desativar" onclick="abrirModalDesativar(<?php echo $linha['id_avaliacao']; ?>)">
-                                <i class="fa fa-ban" style="font-size: 20px; color: #ff4d4d;"></i>
+                            <a href="#" title="Excluir" onclick="abrirModalExcluir(<?php echo $linha['id_avaliacao']; ?>)">
+                                <i class="fa fa-trash" style="font-size: 20px; color: #ff4d4d;"></i>
                             </a>
                         </td>
                     </tr>
@@ -101,22 +101,21 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
 
 
-<!-- MODAL DESATIVAR avaliacao  -->
-<div class="modal" tabindex="-1" id="modalDesativar">
+<!-- MODAL EXCLUIR AVALIACAO -->
+<div class="modal" tabindex="-1" id="modalExcluir">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Desativar avaliacao</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title">Excluir Avaliação</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
             </div>
             <div class="modal-body">
-                <p>Tem Certeza que deseja Excluir esse avaliacao?</p>
-                <input type="hidden" id="idAvaliacaoDesativar" value="">
-
+                <p>Tem certeza que deseja <strong>excluir</strong> esta avaliação? Esta ação não poderá ser desfeita.</p>
+                <input type="hidden" id="idAvaliacaoExcluir" value="">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="btnConfirmar">Excluir</button>
+                <button type="button" class="btn btn-danger" id="btnConfirmarExcluir">Excluir</button>
             </div>
         </div>
     </div>
@@ -129,53 +128,44 @@ if (isset($_SESSION['mensagem']) && isset($_SESSION['tipo-msg'])) {
 
 
 <script>
-    
-    function abrirModalDesativar(idAvaliacao) {
-        if ($('#modalDesativar').hasClass('show')) {
-            return;
-        }
+    function abrirModalExcluir(idAvaliacao) {
+        if ($('#modalExcluir').hasClass('show')) return;
 
-        document.getElementById('idAvaliacaoDesativar').value = idAvaliacao;
-        $('#modalDesativar').modal('show');
+        document.getElementById('idAvaliacaoExcluir').value = idAvaliacao;
+        $('#modalExcluir').modal('show');
     }
 
-    document.getElementById('btnConfirmar').addEventListener('click', function() {
-        const idAvaliacao = document.getElementById('idAvaliacaoDesativar').value;
-        console.log(idAvaliacao);
-
+    document.getElementById('btnConfirmarExcluir').addEventListener('click', function () {
+        const idAvaliacao = document.getElementById('idAvaliacaoExcluir').value;
         if (idAvaliacao) {
-            desativarAvaliacao(idAvaliacao);
+            excluirAvaliacao(idAvaliacao);
         }
     });
 
-    function desativarAvaliacao(idAvaliacao) {
-        fetch(`https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/avaliacao/desativar/${idAvaliacao}`, {
+    function excluirAvaliacao(idAvaliacao) {
+        fetch(`https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/avaliacao/excluir/${idAvaliacao}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             }
         })
         .then(response => {
-            // Se o código de resposta NÃO for OK, lança um erro
-            if (!response.ok) {
-                throw new Error(`Erro HTTP: ${response.status}`);
-            }
+            if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
             return response.json();
         })
         .then(data => {
             if (data.sucesso) {
-                console.log('Avaliação Excluída com sucesso');
-                $('#modalDesativar').modal('hide');
+                $('#modalExcluir').modal('hide');
                 setTimeout(() => {
                     location.reload();
                 }, 500);
             } else {
-                alert(data.mensagem || "Ocorreu um erro ao Excluir a Avaliação");
+                alert(data.mensagem || "Ocorreu um erro ao excluir a avaliação.");
             }
         })
-        .catch(erro => {
-            console.error("Erro", erro);
-            alert('Erro na requisição');
+        .catch(error => {
+            console.error("Erro:", error);
+            alert("Erro ao excluir a avaliação.");
         });
     }
 </script>

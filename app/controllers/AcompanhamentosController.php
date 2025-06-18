@@ -110,41 +110,50 @@ class AcompanhamentosController extends Controller
     public function editar($id = null)
     {
         $dados = array();
-
+    
         if ($id === null) {
-            header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/acompanhamentos/listar');
+            header('Location: ' . BASE_URL . 'acompanhamentos/listar');
             exit;
         }
+    
         $dados['conteudo'] = 'dash/acompanhamento/editar';
-
-
+    
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nome_acompanhamento      = filter_input(INPUT_POST, 'nome_acompanhamento', FILTER_SANITIZE_SPECIAL_CHARS);
             $descricao_acompanhamento = filter_input(INPUT_POST, 'descricao_acompanhamento', FILTER_SANITIZE_SPECIAL_CHARS);
-            $preco_raw = str_replace(['R$', '.', ','], ['', '', '.'], $_POST['preco_acompanhamento'] ?? '');
+            $status_acompanhamento    = filter_input(INPUT_POST, 'status_acompanhamento', FILTER_SANITIZE_SPECIAL_CHARS) ?: 'Ativo';
+    
+            $preco_raw  = str_replace(['R$', '.', ','], ['', '', '.'], $_POST['preco_acompanhamento'] ?? '');
             $preco_acompanhamento = floatval($preco_raw);
-
-            $foto_acompanhamento  = '';
+    
+            $promocional_raw = str_replace(['R$', '.', ','], ['', '', '.'], $_POST['preco_promocional_acompanhamento'] ?? '');
+            $preco_promocional = floatval($promocional_raw);
+    
+            $quantidade = filter_input(INPUT_POST, 'quantidade_acompanhamento', FILTER_VALIDATE_INT);
+            $tamanho    = filter_input(INPUT_POST, 'tamanho_acompanhamento', FILTER_VALIDATE_INT);
+            $id_categoria = filter_input(INPUT_POST, 'id_categoria', FILTER_VALIDATE_INT);
+            $id_fornecedor = filter_input(INPUT_POST, 'id_fornecedor', FILTER_VALIDATE_INT);
+    
+            $foto_acompanhamento = '';
             if (isset($_FILES['foto_acompanhamento']) && $_FILES['foto_acompanhamento']['error'] === 0) {
                 $foto_acompanhamento = $_FILES['foto_acompanhamento']['name'];
             }
-
-            $status_acompanhamento = filter_input(INPUT_POST, 'status_acompanhamento', FILTER_SANITIZE_SPECIAL_CHARS);
-            if (empty($status_acompanhamento)) {
-                $status_acompanhamento = 'Ativo';
-            }
-
+    
             if ($nome_acompanhamento && $descricao_acompanhamento && $preco_acompanhamento !== false) {
                 $dadosAcompanhamento = array(
                     'nome_acompanhamento'      => $nome_acompanhamento,
                     'descricao_acompanhamento' => $descricao_acompanhamento,
                     'preco_acompanhamento'     => $preco_acompanhamento,
-                    'status_acompanhamento'    => $status_acompanhamento,
-                    'foto_acompanhamento'      => $foto_acompanhamento
+                    'preco_promocional_acompanhamento' => $preco_promocional,
+                    'quantidade_acompanhamento' => $quantidade,
+                    'tamanho_acompanhamento'    => $tamanho,
+                    'id_categoria'              => $id_categoria,
+                    'id_fornecedor'             => $id_fornecedor,
+                    'status_acompanhamento'     => $status_acompanhamento
                 );
-
+    
                 $atualizado = $this->acompanhamentosModel->updateAcompanhamento($id, $dadosAcompanhamento);
-
+    
                 if ($atualizado) {
                     if (!empty($foto_acompanhamento)) {
                         $arquivo = $this->uploadFoto($_FILES['foto_acompanhamento']);
@@ -152,10 +161,10 @@ class AcompanhamentosController extends Controller
                             $this->acompanhamentosModel->addFotoAcompanhamento($id, $arquivo);
                         }
                     }
-
+    
                     $_SESSION['mensagem'] = "Acompanhamento atualizado com sucesso";
                     $_SESSION['tipo-msg'] = "sucesso";
-                    header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/acompanhamentos/listar');
+                    header('Location: ' . BASE_URL . 'acompanhamentos/listar');
                     exit;
                 } else {
                     $dados['mensagem'] = "Erro ao atualizar acompanhamento";
@@ -166,15 +175,19 @@ class AcompanhamentosController extends Controller
                 $dados['tipo-msg'] = "erro";
             }
         }
-
-
-
-
+    
         // Recuperar dados para exibir no formulário
         $acompanhamentosModel = new Acompanhamento();
-        $acompanhamentos = $acompanhamentosModel->getAcompanhamentoById($id);
-        $dados['acompanhamento'] = $acompanhamentos;
+        $acompanhamento = $acompanhamentosModel->getAcompanhamentoById($id);
+        $dados['acompanhamento'] = $acompanhamento;
 
+        $categoria = new Categoria();
+        $dados['categorias'] = $categoria->getListarCategorias();
+        
+        $fornecedor = new Fornecedor();
+        $dados['fornecedores'] = $fornecedor->getListarFornecedor();
+
+    
         // Verifica o tipo de usuário
         if (isset($_SESSION['id_tipo_usuario']) && $_SESSION['id_tipo_usuario'] == '2') {
             $this->carregarViews('dash/dashboard-funcionario', $dados);
@@ -182,33 +195,50 @@ class AcompanhamentosController extends Controller
             $this->carregarViews('dash/dashboard', $dados);
         }
     }
+    
 
     public function adicionar()
     {
         $dados = array();
-
+    
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $nome_acompanhamento      = filter_input(INPUT_POST, 'nome_acompanhamento', FILTER_SANITIZE_SPECIAL_CHARS);
             $descricao_acompanhamento = filter_input(INPUT_POST, 'descricao_acompanhamento', FILTER_SANITIZE_SPECIAL_CHARS);
-            $preco_raw = str_replace(['R$', '.', ','], ['', '', '.'], $_POST['preco_acompanhamento'] ?? '');
-            $preco_acompanhamento = floatval($preco_raw);
-
+            $alt_foto_acompanhamento  = filter_input(INPUT_POST, 'alt_foto_acompanhamento', FILTER_SANITIZE_SPECIAL_CHARS);
+            $preco_raw                = str_replace(['R$', '.', ','], ['', '', '.'], $_POST['preco_acompanhamento'] ?? '');
+            $preco_promocional_raw    = str_replace(['R$', '.', ','], ['', '', '.'], $_POST['preco_promocional_acompanhamento'] ?? '');
+    
+            $preco_acompanhamento          = floatval($preco_raw);
+            $preco_promocional_acompanhamento = floatval($preco_promocional_raw);
+    
+            $quantidade_acompanhamento    = intval($_POST['quantidade_acompanhamento'] ?? 0);
+            $tamanho_acompanhamento       = intval($_POST['tamanho_acompanhamento'] ?? 0);
+            $id_categoria_acompanhamento  = intval($_POST['id_categoria'] ?? 0);
+            $id_fornecedor_acompanhamento = intval($_POST['id_fornecedor'] ?? 0);
+    
             $foto_acompanhamento = '';
             if (isset($_FILES['foto_acompanhamento']) && $_FILES['foto_acompanhamento']['error'] === 0) {
                 $foto_acompanhamento = $_FILES['foto_acompanhamento']['name'];
             }
-
-            // Verifica se os campos obrigatórios estão preenchidos
+    
+            // Verifica campos obrigatórios
             if ($nome_acompanhamento && $descricao_acompanhamento && $preco_acompanhamento !== false) {
                 $dadosAcompanhamento = array(
-                    'nome_acompanhamento'      => $nome_acompanhamento,
-                    'descricao_acompanhamento' => $descricao_acompanhamento,
-                    'preco_acompanhamento'     => $preco_acompanhamento,
-                    'foto_acompanhamento'      => $foto_acompanhamento
+                    'nome_acompanhamento'             => $nome_acompanhamento,
+                    'descricao_acompanhamento'        => $descricao_acompanhamento,
+                    'alt_foto_acompanhamento'         => $alt_foto_acompanhamento,
+                    'preco_acompanhamento'            => $preco_acompanhamento,
+                    'preco_promocional_acompanhamento'=> $preco_promocional_acompanhamento,
+                    'quantidade_acompanhamento'       => $quantidade_acompanhamento,
+                    'tamanho_acompanhamento'          => $tamanho_acompanhamento,
+                    'id_categoria_acompanhamento'     => $id_categoria_acompanhamento,
+                    'id_fornecedor_acompanhamento'    => $id_fornecedor_acompanhamento,
+                    'foto_acompanhamento'             => $foto_acompanhamento,
+                    'status_acompanhamento'           => 'Ativo'
                 );
-
+    
                 $id_acompanhamento = $this->acompanhamentosModel->addAcompanhamento($dadosAcompanhamento);
-
+    
                 if ($id_acompanhamento) {
                     if (!empty($foto_acompanhamento)) {
                         $arquivo = $this->uploadFoto($_FILES['foto_acompanhamento']);
@@ -216,10 +246,10 @@ class AcompanhamentosController extends Controller
                             $this->acompanhamentosModel->addFotoAcompanhamento($id_acompanhamento, $arquivo);
                         }
                     }
-
+    
                     $_SESSION['mensagem'] = "Acompanhamento cadastrado com sucesso";
                     $_SESSION['tipo-msg'] = "sucesso";
-                    header('Location: https://agenciatipi02.smpsistema.com.br/devcycle/exfe/public/acompanhamentos/listar');
+                    header('Location: ' . BASE_URL . 'acompanhamentos/listar');
                     exit;
                 } else {
                     $dados['mensagem'] = "Erro ao adicionar acompanhamento";
@@ -230,12 +260,19 @@ class AcompanhamentosController extends Controller
                 $dados['tipo-msg'] = "erro";
             }
         }
-
+    
+        // Carregar listas para o formulário
+        
+        $categoria = new Categoria();
+        $dados['categorias'] = $categoria->getListarCategorias();
+        
+        $fornecedor = new Fornecedor();
+        $dados['fornecedores'] = $fornecedor->getListarFornecedor();
+                
         $dados['conteudo'] = 'dash/acompanhamento/adicionar';
         $this->carregarViews('dash/dashboard', $dados);
     }
-
-
+    
 
     public function desativados()
     {
@@ -250,7 +287,6 @@ class AcompanhamentosController extends Controller
         $dados['conteudo'] = 'dash/acompanhamento/desativados';
         $this->carregarViews('dash/dashboard', $dados);
     }
-
 
     private function uploadFoto($file)
     {

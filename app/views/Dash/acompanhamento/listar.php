@@ -9,40 +9,47 @@ if (isset($_SESSION['mensagem'], $_SESSION['tipo-msg'])) {
     unset($_SESSION['mensagem'], $_SESSION['tipo-msg']);
 }
 
-$status = $_GET['status'] ?? 'Ativo';
-?>
+$status = strtolower($_GET['status'] ?? ''); ?>
 
 <div class="container my-5">
     <h2 class="text-center fw-bold py-3" style="background: #5e3c2d; color: white; border-radius: 12px;">
-        Acompanhamentos Cadastrados (<?= ucfirst($status) ?>)
+        Acompanhamentos Cadastrados (<?= ucfirst($status) ?: 'Todos' ?>)
     </h2>
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div class="d-flex justify-content-end mb-3">
-        <form method="get" action="">
+            <form method="get" action="">
                 <label for="statusFiltro">Filtrar por status:</label>
                 <select name="status" id="statusFiltro" onchange="this.form.submit()" class="form-select d-inline w-auto ms-2">
-                    <option value="" <?= !isset($_GET['status']) || $_GET['status'] == '' ? 'selected' : '' ?>>Todos</option>
-                    <option value="ativo" <?= isset($_GET['status']) && $_GET['status'] == 'Ativo' ? 'selected' : '' ?>>Ativos</option>
-                    <option value="inativo" <?= isset($_GET['status']) && $_GET['status'] == 'Inativo' ? 'selected' : '' ?>>Inativos</option>
+                    <option value="" <?= ($status === '') ? 'selected' : '' ?>>Todos</option>
+                    <option value="ativo" <?= ($status === 'Ativo') ? 'selected' : '' ?>>Ativos</option>
+                    <option value="inativo" <?= ($status === 'Inativo') ? 'selected' : '' ?>>Inativos</option>
                 </select>
             </form>
         </div>
 
-        <?php if ($status !== 'inativo'): ?>
+        <?php if ($status !== 'Inativo'): ?>
             <a href="<?= BASE_URL ?>acompanhamentos/adicionar" class="btn btn-primary">Adicionar Acompanhamento</a>
         <?php endif; ?>
     </div>
 
     <div class="table-responsive rounded-3 shadow-lg p-3" style="background: #ffffff;">
+
         <table class="table table-hover text-center align-middle">
             <thead class="thead-custom" style="background-color: #fac6a0;">
                 <tr>
                     <th>Foto</th>
+                    <th>Alt</th>
                     <th>Nome</th>
                     <th>Descrição</th>
+                    <th>Preço</th>
+                    <th>Preço Promocional</th>
+                    <th>Quantidade</th>
+                    <th>Tamanho</th>
+                    <th>Categoria</th>
+                    <th>Fornecedor</th>
                     <th>Editar</th>
-                    <th><?= $status === 'inativo' ? 'Ativar' : 'Desativar' ?></th>
+                    <th><?= $status === 'Inativo' ? 'Ativar' : 'Desativar' ?></th>
                 </tr>
             </thead>
             <tbody>
@@ -59,10 +66,17 @@ $status = $_GET['status'] ?? 'Ativo';
                                 }
                             }
                             ?>
-                            <img src="<?= $img ?>" alt="Foto Acompanhamento" class="rounded-circle" style="width: 50px; height: 50px;">
+                            <img src="<?= $img ?>" alt="<?= htmlspecialchars($linha['alt_foto_acompanhamento']) ?>" class="rounded-circle" style="width: 50px; height: 50px;">
                         </td>
+                        <td><?= htmlspecialchars($linha['alt_foto_acompanhamento']) ?></td>
                         <td><?= htmlspecialchars($linha['nome_acompanhamento']) ?></td>
                         <td><?= htmlspecialchars($linha['descricao_acompanhamento']) ?></td>
+                        <td>R$ <?= number_format($linha['preco_acompanhamento'], 2, ',', '.') ?></td>
+                        <td>R$ <?= number_format($linha['preco_promocional_acompanhamento'], 2, ',', '.') ?></td>
+                        <td><?= htmlspecialchars($linha['quantidade_acompanhamento']) ?></td>
+                        <td><?= htmlspecialchars($linha['tamanho_acompanhamento']) ?></td>
+                        <td><?= htmlspecialchars($linha['nome_categoria'] ?? 'Não definido') ?></td>
+                        <td><?= htmlspecialchars($linha['nome_fornecedor'] ?? 'Não definido') ?></td>
                         <td>
                             <a href="<?= BASE_URL ?>acompanhamentos/editar/<?= $linha['id_acompanhamento'] ?>" title="Editar">
                                 <i class="fa fa-pencil-alt text-primary" style="font-size: 20px;"></i>
@@ -83,6 +97,7 @@ $status = $_GET['status'] ?? 'Ativo';
                 <?php endforeach; ?>
             </tbody>
         </table>
+
     </div>
 </div>
 
