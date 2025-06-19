@@ -140,28 +140,28 @@
 </section>
 
 <script>
-  const produtos = document.querySelectorAll('.blogCont');
+  const blogs = document.querySelectorAll('.blogCont');
   const btnVerMais = document.getElementById('btn-ver-mais');
   const btnVerMenos = document.getElementById('btn-ver-menos');
-  const qtdVisiveis = 6; // Altere conforme necessário
+  const qtdVisiveis = 6; // Quantidade inicial visível
 
-  function mostrarProdutos(limit) {
-    produtos.forEach((prod, index) => {
-      prod.style.display = (index < limit) ? 'block' : 'none';
+  function mostrarBlogs(limit) {
+    blogs.forEach((blog, index) => {
+      blog.style.display = (index < limit) ? 'block' : 'none';
     });
   }
 
-  // Inicializa a lista com limite
-  mostrarProdutos(qtdVisiveis);
+  // Mostrar só os 6 primeiros ao carregar
+  mostrarBlogs(qtdVisiveis);
 
   btnVerMais.addEventListener('click', () => {
-    mostrarProdutos(produtos.length);
+    mostrarBlogs(blogs.length);
     btnVerMais.style.display = 'none';
     btnVerMenos.style.display = 'block';
   });
 
   btnVerMenos.addEventListener('click', () => {
-    mostrarProdutos(qtdVisiveis);
+    mostrarBlogs(qtdVisiveis);
     btnVerMais.style.display = 'block';
     btnVerMenos.style.display = 'none';
     window.scrollTo({
