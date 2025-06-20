@@ -7,6 +7,7 @@ class ApiController extends Controller
     private $cafeModel;
     private $produtoModel;
     private $categoriaModel;
+    private $pedidoModel;
 
     public function __construct()
     {
@@ -20,6 +21,7 @@ class ApiController extends Controller
         $this->clienteModel     = new Cliente();
         $this->produtoModel     = new Produtos();
         $this->categoriaModel   = new Categoria();
+        $this->pedidoModel      = new Pedido();
     }
 
     public function menu()
@@ -266,6 +268,122 @@ class ApiController extends Controller
             'categorias' => $agrupado
         ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
+
+    public function detalhes($id)
+    {
+        header("Content-Type: application/json");
+
+        if (empty($id)) {
+            echo json_encode([
+                'status' => 'erro',
+                'mensagem' => 'ID do produto não fornecido.'
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
+        $produto = $this->produtoModel->getProdutoPorId($id);
+
+        if ($produto) {
+            echo json_encode([
+                'status' => 'sucesso',
+                'produto' => $produto
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        } else {
+            echo json_encode([
+                'status' => 'erro',
+                'mensagem' => 'Produto não encontrado.'
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        }
+    }
+
+    public function listarPedidos($id_cliente)
+    {
+        header("Content-Type: application/json");
+
+        if (empty($id_cliente)) {
+            echo json_encode([
+                'status' => 'erro',
+                'mensagem' => 'ID do cliente não fornecido.'
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
+        $pedidos = $this->pedidoModel->getPedidosPorCliente($id_cliente);
+
+        if ($pedidos) {
+            echo json_encode([
+                'status' => 'sucesso',
+                'pedidos' => $pedidos
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        } else {
+            echo json_encode([
+                'status' => 'erro',
+                'mensagem' => 'Nenhum pedido encontrado para este cliente.'
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        }
+    }
+
+    public function criarReserva()
+    {
+        header("Content-Type: application/json");
+
+        // Verifica se os dados foram enviados via POST
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            echo json_encode([
+                'status' => 'erro',
+                'mensagem' => 'Método inválido. Use POST.'
+            ]);
+            return;
+        }
+
+        // Coleta e sanitiza os dados do POST
+        $id_cliente = $_POST['id_cliente'] ?? null;
+        $id_produto = $_POST['id_produto'] ?? null;
+        $quantidade = $_POST['quantidade'] ?? 1;
+        $preco_unitario = $_POST['preco_unitario'] ?? null;
+        $observacao = $_POST['observacao'] ?? null;
+
+        // Validação básica
+        if (empty($id_cliente) || empty($id_produto) || empty($preco_unitario)) {
+            echo json_encode([
+                'status' => 'erro',
+                'mensagem' => 'Campos obrigatórios não fornecidos.'
+            ]);
+            return;
+        }
+
+        // Instancia o model
+        $pedidoModel = $this->pedidoModel;
+
+        // Cria o pedido (retorna o ID gerado)
+        $id_pedido = $pedidoModel->criarPedido($id_cliente);
+
+        if (!$id_pedido) {
+            echo json_encode([
+                'status' => 'erro',
+                'mensagem' => 'Erro ao criar o pedido.'
+            ]);
+            return;
+        }
+
+        // Cria o item do pedido
+        $itemCriado = $pedidoModel->criarItemPedido($id_pedido, $id_produto, $quantidade, $preco_unitario, $observacao);
+
+        if (!$itemCriado) {
+            echo json_encode([
+                'status' => 'erro',
+                'mensagem' => 'Erro ao adicionar item ao pedido.'
+            ]);
+            return;
+        }
+
+        echo json_encode([
+            'status' => 'sucesso',
+            'mensagem' => 'Reserva realizada com sucesso.',
+            'id_pedido' => $id_pedido
+        ]);
+    }
+
 
 
 

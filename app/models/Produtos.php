@@ -51,9 +51,16 @@ class Produtos extends Model
 
     public function getAllProdutos()
     {
-        $sql = "SELECT p.*, c.* FROM tbl_produto p
-                INNER JOIN tbl_categoria AS c ON p.id_categoria = c.id_categoria
-                WHERE status_produto = 'Ativo'";
+        $sql = "SELECT p1.*, 
+            c.nome_categoria AS nome_categoria,
+            f.nome_fornecedor AS nome_fornecedor
+            FROM tbl_produto AS p1 INNER JOIN (
+            SELECT MIN(id_produto) AS id_produto
+            FROM tbl_produto WHERE TRIM(status_produto) = 'ativo'
+            GROUP BY nome_produto) AS p2 ON p1.id_produto = p2.id_produto
+            INNER JOIN tbl_categoria AS c ON p1.id_categoria = c.id_categoria
+            INNER JOIN tbl_fornecedor AS f ON p1.id_fornecedor = f.id_fornecedor
+            ORDER BY c.nome_categoria ASC, p1.nome_produto ASC";
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -104,6 +111,25 @@ class Produtos extends Model
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    public function getProdutoPorId($id)
+{
+    $sql = "SELECT 
+                p.*, 
+                c.nome_categoria AS nome_categoria,
+                f.nome_fornecedor AS nome_fornecedor
+            FROM tbl_produto AS p
+            INNER JOIN tbl_categoria AS c ON p.id_categoria = c.id_categoria
+            INNER JOIN tbl_fornecedor AS f ON p.id_fornecedor = f.id_fornecedor
+            WHERE p.id_produto = :id AND TRIM(p.status_produto) = 'ativo'
+            LIMIT 1";
+
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
 
 
     public function getCategorias()

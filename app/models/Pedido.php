@@ -115,4 +115,78 @@ WHERE status_pedido IN ('aberto', 'em preparo');";
 
         return $stmt->execute();
     }
+
+    public function getPedidosPorCliente($id_cliente)
+    {
+        $sql = "SELECT 
+                p.id_pedido, 
+                p.data_pedido,
+                pi.id_produto,
+                pr.nome_produto
+            FROM tbl_pedido p
+            INNER JOIN tbl_pedido_item pi ON p.id_pedido = pi.id_pedido
+            INNER JOIN tbl_produto pr ON pi.id_produto = pr.id_produto
+            WHERE p.id_cliente = :id_cliente
+            ORDER BY p.data_pedido DESC";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':id_cliente', $id_cliente, PDO::PARAM_INT);
+        $stmt->execute();
+        $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!$resultado) {
+            return [];
+        }
+
+        // Agrupa os produtos por pedido
+        $pedidosAgrupados = [];
+        foreach ($resultado as $linha) {
+            $idPedido = $linha['id_pedido'];
+
+            if (!isset($pedidosAgrupados[$idPedido])) {
+                $pedidosAgrupados[$idPedido] = [
+                    'id_pedido' => $idPedido,
+                    'data_pedido' => $linha['data_pedido'],
+                    'itens' => []
+                ];
+            }
+
+            $pedidosAgrupados[$idPedido]['itens'][] = [
+                'id_produto' => $linha['id_produto'],
+                'nome_produto' => $linha['nome_produto']
+            ];
+        }
+
+        return array_values($pedidosAgrupados);
+    }
+
+
+    public function criarPedido($id_cliente)
+    {
+        $sql = "INSERT INTO tbl_pedido (id_cliente, data) VALUES (:cliente_id, NOW())";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':cliente_id', $id_cliente, PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+            return $this->db->lastInsertId();
+        }
+
+        return false;
+    }
+
+    public function criarItemPedido($id_pedido, $id_produto, $quantidade, $preco_unitario, $observacao = null)
+    {
+        $sql = "INSERT INTO tbl_pedido_item 
+            (id_pedido, id_produto, quantidade, preco_unitario, observacao)
+            VALUES (:id_pedido, :id_produto, :quantidade, :preco_unitario, :observacao)";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':id_pedido', $id_pedido, PDO::PARAM_INT);
+        $stmt->bindParam(':id_produto', $id_produto, PDO::PARAM_INT);
+        $stmt->bindParam(':quantidade', $quantidade, PDO::PARAM_INT);
+        $stmt->bindParam(':preco_unitario', $preco_unitario);
+        $stmt->bindParam(':observacao', $observacao);
+
+        return $stmt->execute();
+    }
 }
