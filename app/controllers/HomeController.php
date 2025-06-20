@@ -15,8 +15,9 @@ class HomeController extends Controller
         $produtos = $produtosModel->getListarProdutos();
         $dados['produtos'] = $produtos;
 
-        $produtosAleatorios = $produtosModel->getListarProdutosAleatorios(4);
+        $produtosAleatorios = $produtosModel->getListarProdutosAleatorios(8);
         $dados['produtosAleatorios'] = $produtosAleatorios;
+
 
         $avaliacaoModel = new Avaliacao();
         $avaliacao = $avaliacaoModel->getAvaliacao();

@@ -10,7 +10,7 @@
 <body>
 
     <?php require_once('template/header.php') ?>
-    
+
     <main>
 
         <?php require_once('template/bannerTwo.php') ?>
@@ -32,6 +32,55 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         crossorigin="anonymous"></script>
     <script src="<?= BASE_URL ?>assets/script/script.js"></script>
+
+    <script>
+        function adicionarAoCarrinho(idProduto) {
+            fetch(`<?= BASE_URL ?>carrinho/adicionar/${idProduto}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.sucesso) {
+                        atualizarSidebar();
+                    } else {
+                        alert(data.erro || 'Erro ao adicionar ao carrinho');
+                    }
+                });
+        }
+
+        function atualizarSidebar() {
+            fetch(`<?= BASE_URL ?>carrinho/listar`)
+                .then(response => response.json())
+                .then(data => {
+                    const cartContentItems = document.querySelector('.cartContentItems');
+                    cartContentItems.innerHTML = ''; // Limpa antes de adicionar
+
+                    for (let id in data) {
+                        const item = data[id];
+                        cartContentItems.innerHTML += `
+            <div class="cartItem">
+              <img src="<?= BASE_URL ?>uploads/${item.imagem}" alt="${item.nome}">
+              <div class="cartItemInfo">
+                <h4>${item.nome}</h4>
+                <p>R$ ${item.preco}</p>
+              </div>
+              <div class="quantidade">
+                <h4>Quantidade</h4>
+                <div class="buttonsQuantidade">
+                  <button onclick="alterarQuantidade(${item.id}, 'diminuir')">-</button>
+                  <div class="contador">${item.quantidade}</div>
+                  <button onclick="alterarQuantidade(${item.id}, 'aumentar')">+</button>
+                </div>
+              </div>
+            </div>
+          `;
+                    }
+                });
+        }
+
+        function alterarQuantidade(id, acao) {
+            fetch(`<?= BASE_URL ?>carrinho/alterarQuantidade/${id}/${acao}`)
+                .then(() => atualizarSidebar());
+        }
+    </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
