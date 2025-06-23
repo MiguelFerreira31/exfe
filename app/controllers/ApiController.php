@@ -296,9 +296,11 @@ class ApiController extends Controller
         }
     }
 
-    public function listarPedidos($id_cliente)
+    public function listarPedidos()
     {
         header("Content-Type: application/json");
+
+        $id_cliente = $_GET['id'] ?? null;
 
         if (empty($id_cliente)) {
             echo json_encode([
@@ -322,6 +324,7 @@ class ApiController extends Controller
             ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         }
     }
+
 
     public function criarReserva()
     {
