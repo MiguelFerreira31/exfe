@@ -8,6 +8,10 @@ class ApiController extends Controller
     private $produtoModel;
     private $categoriaModel;
     private $pedidoModel;
+    private $avaliacaoModel;
+    private $acompanhamentoModel;
+    private $intensidadeModel;
+    private $leiteModel;
 
     public function __construct()
     {
@@ -22,6 +26,10 @@ class ApiController extends Controller
         $this->produtoModel     = new Produtos();
         $this->categoriaModel   = new Categoria();
         $this->pedidoModel      = new Pedido();
+        $this->avaliacaoModel   = new Avaliacao();
+        $this->acompanhamentoModel = new Acompanhamento();
+        $this->intensidadeModel = new Intensidade();
+        $this->leiteModel = new Leites();
     }
 
     public function menu()
@@ -167,7 +175,7 @@ class ApiController extends Controller
         ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
-    public function listarClientes()
+    public function listarClientesPerfil()
     {
         header("Content-Type: application/json");
 
@@ -197,6 +205,64 @@ class ApiController extends Controller
             ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         }
     }
+
+public function atualizarCliente($id)
+{
+    header("Content-Type: application/json");
+
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        echo json_encode([
+            'status' => 'erro',
+            'mensagem' => 'Método não permitido. Use POST.'
+        ]);
+        return;
+    }
+
+    if (!$id) {
+        echo json_encode([
+            'status' => 'erro',
+            'mensagem' => 'ID do cliente não informado.'
+        ]);
+        return;
+    }
+
+    // Obtém os dados enviados (suporta application/x-www-form-urlencoded)
+    $dados = $_POST;
+
+    // Validação simples dos campos obrigatórios
+    $camposObrigatorios = ['nome_cliente', 'email_cliente', 'nasc_cliente', 'id_produto', 'id_intensidade', 'id_acompanhamento', 'prefere_leite_vegetal', 'id_tipo_leite'];
+
+    foreach ($camposObrigatorios as $campo) {
+        if (empty($dados[$campo])) {
+            echo json_encode([
+                'status' => 'erro',
+                'mensagem' => "Campo obrigatório $campo não foi informado."
+            ]);
+            return;
+        }
+    }
+
+    // Tratar senha: se campo está vazio, remover para não atualizar senha para vazio
+    if (isset($dados['senha_cliente']) && trim($dados['senha_cliente']) === '') {
+        unset($dados['senha_cliente']);
+    }
+
+    // Atualiza o cliente no banco via model
+    $atualizado = $this->clienteModel->updateCliente($id, $dados);
+
+    if ($atualizado) {
+        echo json_encode([
+            'status' => 'sucesso',
+            'mensagem' => 'Cliente atualizado com sucesso.'
+        ]);
+    } else {
+        echo json_encode([
+            'status' => 'erro',
+            'mensagem' => 'Erro ao atualizar cliente.'
+        ]);
+    }
+}
+
 
     public function listarProdutosSelecionados()
     {
@@ -384,9 +450,185 @@ class ApiController extends Controller
         ]);
     }
 
+    public function listarAvaliacoes()
+    {
+        header("Content-Type: application/json");
 
+        $id = isset($_GET['id']) ? intval($_GET['id']) : null;
 
+        if (!$id) {
+            echo json_encode([
+                'status' => 'erro',
+                'mensagem' => 'ID do cliente não informado.'
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+            return;
+        }
 
+        $avaliacoes = $this->avaliacaoModel->getAvaliacaoByCliente($id);
+
+        if ($avaliacoes) {
+            echo json_encode([
+                'status' => 'sucesso',
+                'avaliacoes' => $avaliacoes
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        } else {
+            echo json_encode([
+                'status' => 'vazio',
+                'mensagem' => 'Nenhuma avaliação encontrada.'
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        }
+    }
+
+    public function listarProdutos()
+    {
+        header("Content-Type: application/json");
+
+        $produtos = $this->produtoModel->getAllProdutos();
+
+        if ($produtos) {
+            echo json_encode([
+                'status' => 'sucesso',
+                'produtos' => $produtos
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        } else {
+            echo json_encode([
+                'status' => 'vazio',
+                'mensagem' => 'Nenhum produto encontrado.'
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        }
+    }
+
+    // Controller
+    public function listarAcompanhamentos()
+    {
+        header("Content-Type: application/json");
+
+        $acompanhamentos = $this->acompanhamentoModel->getAllAcompanhamentos();
+
+        if ($acompanhamentos) {
+            echo json_encode([
+                'status' => 'sucesso',
+                'acompanhamentos' => $acompanhamentos
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        } else {
+            echo json_encode([
+                'status' => 'vazio',
+                'mensagem' => 'Nenhum acompanhamento encontrado.'
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        }
+    }
+
+    // Controller
+    public function listarIntensidades()
+    {
+        header("Content-Type: application/json");
+
+        $intensidades = $this->intensidadeModel->getAllIntensidades();
+
+        if ($intensidades) {
+            echo json_encode([
+                'status' => 'sucesso',
+                'intensidades' => $intensidades
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        } else {
+            echo json_encode([
+                'status' => 'vazio',
+                'mensagem' => 'Nenhuma intensidade encontrada.'
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        }
+    }
+
+    // Controller
+    public function listarLeites()
+    {
+        header("Content-Type: application/json");
+
+        $leites = $this->leiteModel->getAllLeites();
+
+        if ($leites) {
+            echo json_encode([
+                'status' => 'sucesso',
+                'leites' => $leites
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        } else {
+            echo json_encode([
+                'status' => 'vazio',
+                'mensagem' => 'Nenhum tipo de leite encontrado.'
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        }
+    }
+
+    public function listarItensMenu()
+    {
+        header("Content-Type: application/json");
+
+        $produtos = $this->produtoModel->getAllProdutos(); // já existentes
+        $acompanhamentos = $this->acompanhamentoModel->getAllAcompanhamentos(); // novo método
+
+        $itens = array_merge($produtos, $acompanhamentos);
+
+        if ($itens) {
+            echo json_encode([
+                'status' => 'sucesso',
+                'itens' => $itens
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        } else {
+            echo json_encode([
+                'status' => 'vazio',
+                'mensagem' => 'Nenhum item encontrado.'
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        }
+    }
+
+    public function adicionarAvaliacao()
+    {
+        header("Content-Type: application/json");
+
+        // Verifica se é POST
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            echo json_encode([
+                'status' => 'erro',
+                'mensagem' => 'Método não permitido. Use POST.'
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
+        // Receber dados JSON brutos ou via $_POST
+        $dados = json_decode(file_get_contents('php://input'), true);
+        if (!$dados) {
+            $dados = $_POST;
+        }
+
+        // Valida campos obrigatórios
+        $camposObrigatorios = ['id_cliente', 'id_produto', 'nota', 'comentario'];
+        foreach ($camposObrigatorios as $campo) {
+            if (empty($dados[$campo])) {
+                echo json_encode([
+                    'status' => 'erro',
+                    'mensagem' => "O campo '$campo' é obrigatório."
+                ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+                return;
+            }
+        }
+
+        // Preenche a data atual
+        $dados['data_avaliacao'] = date('Y-m-d H:i:s');
+
+        // Insere no banco
+        $resultado = $this->avaliacaoModel->addAvaliacao($dados);
+
+        if ($resultado) {
+            echo json_encode([
+                'status' => 'sucesso',
+                'mensagem' => 'Avaliação enviada com sucesso! Aguarde aprovação.'
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        } else {
+            echo json_encode([
+                'status' => 'erro',
+                'mensagem' => 'Erro ao cadastrar a avaliação.'
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        }
+    }
 
     public function editarCliente()
     {

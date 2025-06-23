@@ -18,9 +18,9 @@ class Acompanhamento extends Model
             case 'maior_preco':
                 $sql .= " ORDER BY preco_acompanhamento DESC";
                 break;
-                default:
+            default:
                 $sql .= " ORDER BY nome_acompanhamento ASC";
-                    }
+        }
 
         $stmt = $this->db->prepare($sql);
 
@@ -39,6 +39,15 @@ class Acompanhamento extends Model
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getAllAcompanhamentos()
+    {
+        $sql = "SELECT id_acompanhamento AS id_produto, nome_acompanhamento AS nome_produto FROM tbl_acompanhamento WHERE status_acompanhamento = 'Ativo'";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
     public function getListarAcompanhamentos($status = null)
     {
         $sql = "SELECT 
@@ -48,20 +57,20 @@ class Acompanhamento extends Model
                 FROM tbl_acompanhamento a
                 LEFT JOIN tbl_categoria c ON a.id_categoria = c.id_categoria
                 LEFT JOIN tbl_fornecedor f ON a.id_fornecedor = f.id_fornecedor";
-    
+
         // Se o status foi passado, adiciona o filtro
         if (!empty($status)) {
             $sql .= " WHERE TRIM(a.status_acompanhamento) = :status";
         }
-    
+
         $stmt = $this->db->prepare($sql);
-    
+
         if (!empty($status)) {
             $stmt->bindValue(':status', $status, PDO::PARAM_STR);
         }
-    
+
         $stmt->execute();
-    
+
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -112,7 +121,7 @@ class Acompanhamento extends Model
                     :foto_acompanhamento,
                     :status_acompanhamento
                 )";
-    
+
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':nome_acompanhamento', $dados['nome_acompanhamento']);
         $stmt->bindValue(':descricao_acompanhamento', $dados['descricao_acompanhamento']);
@@ -123,11 +132,11 @@ class Acompanhamento extends Model
         $stmt->bindValue(':tamanho_acompanhamento', $dados['tamanho_acompanhamento']);
         $stmt->bindValue(':foto_acompanhamento', $dados['foto_acompanhamento']);
         $stmt->bindValue(':status_acompanhamento', $dados['status_acompanhamento']);
-    
+
         $stmt->execute();
         return $this->db->lastInsertId();
     }
-    
+
     public function updateAcompanhamento($id, $dados)
     {
         $sql = "UPDATE tbl_acompanhamento SET 
@@ -141,9 +150,9 @@ class Acompanhamento extends Model
                     id_fornecedor = :id_fornecedor,
                     status_acompanhamento = :status_acompanhamento
                 WHERE id_acompanhamento = :id_acompanhamento";
-    
+
         $stmt = $this->db->prepare($sql);
-    
+
         $stmt->bindValue(':nome_acompanhamento', $dados['nome_acompanhamento']);
         $stmt->bindValue(':descricao_acompanhamento', $dados['descricao_acompanhamento']);
         $stmt->bindValue(':preco_acompanhamento', $dados['preco_acompanhamento']);
@@ -154,10 +163,10 @@ class Acompanhamento extends Model
         $stmt->bindValue(':id_fornecedor', $dados['id_fornecedor']);
         $stmt->bindValue(':status_acompanhamento', $dados['status_acompanhamento']);
         $stmt->bindValue(':id_acompanhamento', $id, PDO::PARAM_INT);
-    
+
         return $stmt->execute();
     }
-    
+
 
     public function getAcompanhamentoById($id)
     {

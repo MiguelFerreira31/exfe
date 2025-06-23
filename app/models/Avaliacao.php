@@ -2,6 +2,35 @@
 class Avaliacao extends Model
 {
 
+    public function getAvaliacaoByCliente($id_cliente)
+    {
+        $sql = "SELECT 
+                a.id_avaliacao,
+                a.id_cliente,
+                a.id_produto,
+                a.nota,
+                a.comentario,
+                a.data_avaliacao,
+                a.status_avaliacao,
+                p.nome_produto,
+                p.foto_produto,
+                c.nome_cliente
+            FROM 
+                tbl_avaliacao a
+            INNER JOIN 
+                tbl_produto p ON a.id_produto = p.id_produto
+            INNER JOIN
+                tbl_cliente c ON a.id_cliente = c.id_cliente
+            WHERE 
+                a.id_cliente = :id_cliente";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id_cliente', $id_cliente, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function getAvaliacao()
     {
         $sql = "SELECT 

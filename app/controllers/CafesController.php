@@ -297,9 +297,6 @@ class CafesController extends Controller
         $this->carregarViews('dash/dashboard', $dados);
     }
 
-
-
-
     public function desativados()
     {
         $dados = array();
@@ -313,7 +310,6 @@ class CafesController extends Controller
         $dados['conteudo'] = 'dash/produto/desativados';
         $this->carregarViews('dash/dashboard', $dados);
     }
-
 
     private function uploadFoto($file)
     {
@@ -343,9 +339,7 @@ class CafesController extends Controller
         return false;
     }
 
-
-
- public function buscarAjax()
+    public function buscarAjax()
     {
         $termo = $_GET['termo'] ?? '';
         $status = $_GET['status'] ?? '';
@@ -356,7 +350,4 @@ class CafesController extends Controller
         echo json_encode($produtos);
         exit;
     }
-
-
-
 }

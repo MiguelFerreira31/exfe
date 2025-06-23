@@ -11,4 +11,13 @@ class Leites extends Model{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // Model (leiteModel)
+public function getAllLeites()
+{
+    $sql = "SELECT * FROM tbl_tipo_leite WHERE TRIM(status_tipo_leite) = 'ativo' ORDER BY nome_tipo_leite ASC";
+    $stmt = $this->db->query($sql);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
 }

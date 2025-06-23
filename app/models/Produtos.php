@@ -3,9 +3,9 @@
 class Produtos extends Model
 {
 
-public function getListarProdutosAleatorios($quantidade = 8)
-{
-    $sql = "SELECT 
+    public function getListarProdutosAleatorios($quantidade = 8)
+    {
+        $sql = "SELECT 
                 p.*, 
                 c.nome_categoria AS nome_categoria, 
                 f.nome_fornecedor AS nome_fornecedor
@@ -16,13 +16,12 @@ public function getListarProdutosAleatorios($quantidade = 8)
             ORDER BY RAND()
             LIMIT :quantidade";
 
-    $stmt = $this->db->prepare($sql);
-    $stmt->bindValue(':quantidade', (int)$quantidade, PDO::PARAM_INT);
-    $stmt->execute();
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':quantidade', (int)$quantidade, PDO::PARAM_INT);
+        $stmt->execute();
 
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public function getProdutosCafe($categoria)
     {
@@ -36,14 +35,14 @@ public function getListarProdutosAleatorios($quantidade = 8)
                 WHERE p.id_categoria = :categoria
                 AND TRIM(p.status_produto) = 'ativo'
                 ORDER BY p.nome_produto ASC";
-    
+
         $stmt = $this->db->prepare($sql);
-    
+
         // Substitua 2 pelo ID real da categoria Café
         $stmt->bindValue(':categoria', $categoria, PDO::PARAM_INT);
-    
+
         $stmt->execute();
-    
+
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -62,8 +61,6 @@ public function getListarProdutosAleatorios($quantidade = 8)
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-
 
     public function getProdutosDestaque($categoria = 'todas', $ordenar = 'recomendado')
     {
@@ -113,8 +110,8 @@ public function getListarProdutosAleatorios($quantidade = 8)
     }
 
     public function getProdutoPorId($id)
-{
-    $sql = "SELECT 
+    {
+        $sql = "SELECT 
                 p.*, 
                 c.nome_categoria AS nome_categoria,
                 f.nome_fornecedor AS nome_fornecedor
@@ -124,13 +121,11 @@ public function getListarProdutosAleatorios($quantidade = 8)
             WHERE p.id_produto = :id AND TRIM(p.status_produto) = 'ativo'
             LIMIT 1";
 
-    $stmt = $this->db->prepare($sql);
-    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-    $stmt->execute();
-    return $stmt->fetch(PDO::FETCH_ASSOC);
-}
-
-
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
     public function getCategorias()
     {
@@ -138,7 +133,6 @@ public function getListarProdutosAleatorios($quantidade = 8)
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
 
     public function buscarProduto($email)
     {
@@ -157,7 +151,6 @@ public function getListarProdutosAleatorios($quantidade = 8)
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
 
     public function getListarProdutos($status = null)
     {
@@ -209,7 +202,6 @@ public function getListarProdutosAleatorios($quantidade = 8)
         return $stmt->execute();
     }
 
-
     public function ativarProduto($id)
     {
 
@@ -218,7 +210,6 @@ public function getListarProdutosAleatorios($quantidade = 8)
         $stmt->bindValue(':id_produto', $id, PDO::PARAM_INT);
         return $stmt->execute();
     }
-
 
     public function addProduto($dados)
     {
@@ -256,8 +247,6 @@ public function getListarProdutosAleatorios($quantidade = 8)
         return $this->db->lastInsertId();
     }
 
-
-
     public function updateProduto($id, $dados)
     {
         $sql = "UPDATE tbl_produto SET 
@@ -286,8 +275,6 @@ public function getListarProdutosAleatorios($quantidade = 8)
         return $stmt->execute();
     }
 
-
-
     public function addFotoProduto($id_produto, $arquivo)
     {
         $sql = "UPDATE tbl_produto 
@@ -301,8 +288,6 @@ public function getListarProdutosAleatorios($quantidade = 8)
         return $stmt->execute();
     }
 
-
-
     public function getProdutoById($id)
     {
 
@@ -315,19 +300,15 @@ public function getListarProdutosAleatorios($quantidade = 8)
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-        public function buscarPorId($id)
-        {
-            $sql = "SELECT * FROM tbl_produto WHERE id_produto = :id AND status_produto = 'ativo'";
-            $stmt = $this->db->prepare($sql);
-            $stmt->bindValue(':id', $id);
-            $stmt->execute();
+    public function buscarPorId($id)
+    {
+        $sql = "SELECT * FROM tbl_produto WHERE id_produto = :id AND status_produto = 'ativo'";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
 
-            return $stmt->fetch(PDO::FETCH_ASSOC);
-        }
-
-
-
-
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
     public function getListarProdutosDesativados()
     {
