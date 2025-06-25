@@ -14,6 +14,42 @@ class Cliente extends Model
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function salvarTokenRecuperacao($id, $token, $expira)
+    {
+        $sql = "UPDATE tbl_cliente SET token_recuperacao = :token, token_expira = :expira WHERE id_cliente = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':token', $token);
+        $stmt->bindValue(':expira', $expira);
+        $stmt->bindValue(':id', $id);
+        return $stmt->execute();
+    }
+
+    public function getClientePorToken($token)
+    {
+        $sql = "SELECT * FROM tbl_cliente WHERE token_recuperacao = :token";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':token', $token);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function atualizarSenha($id, $novaSenha)
+    {
+        $sql = "UPDATE tbl_cliente SET senha_cliente = :novaSenha WHERE id_cliente = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':novaSenha', $novaSenha);
+        $stmt->bindValue(':id', $id);
+        return $stmt->execute();
+    }
+
+    public function limparTokenRecuperacao($id)
+    {
+        $sql = "UPDATE tbl_cliente SET token_recuperacao = NULL, token_expira = NULL WHERE id_cliente = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':id', $id);
+        return $stmt->execute();
+    }
+
     public function getContarCliente()
     {
 

@@ -1,6 +1,7 @@
 <?php
 
-class Leites extends Model{
+class Leites extends Model
+{
 
     public function getListarLeites()
     {
@@ -12,12 +13,10 @@ class Leites extends Model{
     }
 
     // Model (leiteModel)
-public function getAllLeites()
-{
-    $sql = "SELECT * FROM tbl_tipo_leite WHERE TRIM(status_tipo_leite) = 'ativo' ORDER BY nome_tipo_leite ASC";
-    $stmt = $this->db->query($sql);
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-
-
+    public function getAllLeites()
+    {
+        $sql = "SELECT * FROM tbl_tipo_leite ORDER BY nome_tipo_leite ASC";
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
