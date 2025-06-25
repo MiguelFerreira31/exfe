@@ -172,8 +172,8 @@ $dados['acompanhamentos'] = $acompanhamentos;
       <i class="fas fa-times position-absolute end-0 top-0 d-xl-none" id="iconSidenav" style="color: #9e675f; opacity: 0.5;"></i>
 
       <a class="navbar-brand m-0" href="<?= BASE_URL ?>dashboard">
-        <img src="<?= BASE_URL ?>assets/imgDash/coffeLogo.png" width="26px" height="26px" class="navbar-brand-img h-100" alt="main_logo" />
-        <span>Dashboard EXFE</span>
+        <img src="<?= BASE_URL ?>assets/img/logo_exfe.png" width="35px" height="35px" class="navbar-brand-img h-100" alt="main_logo" />
+        <span>Dashboard EXFÉ</span>
       </a>
     </div>
 

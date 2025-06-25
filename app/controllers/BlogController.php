@@ -12,7 +12,7 @@ class BlogController extends Controller
         $blogModel = new Blog();
         $eventoModel = new Evento();
 
-        $dados['blogs'] = $blogModel->listarTodos();
+        $dados['blogs'] = $blogModel->listarAtivos();
         $dados['eventos'] = $eventoModel->listarTodos();
 
         $this->carregarViews('blog', $dados);

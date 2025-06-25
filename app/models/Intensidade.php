@@ -14,7 +14,7 @@ class Intensidade extends Model{
     // Model (intensidadeModel)
 public function getAllIntensidades()
 {
-    $sql = "SELECT * FROM tbl_intensidade WHERE TRIM(status_intensidade) = 'ativo' ORDER BY nivel_intensidade ASC";
+    $sql = "SELECT * FROM tbl_intensidade_cafe ORDER BY nivel_intensidade ASC";
     $stmt = $this->db->query($sql);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
