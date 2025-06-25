@@ -148,8 +148,8 @@ class Funcionario extends Model
     public function addFotoFuncionario($id_funcionario, $arquivo)
     {
         $sql = "UPDATE tbl_funcionario 
-           SET foto_funcionario = :foto_funcionario 
-           WHERE id_funcionario = :id_funcionario";
+                SET foto_funcionario = :foto_funcionario 
+                WHERE id_funcionario = :id_funcionario";
 
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':foto_funcionario', $arquivo);
@@ -255,4 +255,6 @@ class Funcionario extends Model
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    
 }

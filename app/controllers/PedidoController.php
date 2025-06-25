@@ -22,7 +22,7 @@ class PedidoController extends Controller
         $pedidos = $pedidoModel->listarPedidos();
         $dados['pedido'] = $pedidos;
 
-      
+
 
         $dados['conteudo'] = 'dash/pedido/listar';
         $this->carregarViews('dash/dashboard', $dados);
@@ -36,7 +36,7 @@ class PedidoController extends Controller
         $pedidosModel = new Pedido();
         $pedidos = $pedidosModel->getPedidoById($id);
         $dados['pedido'] = $pedidos;
-      
+
 
         $dados['conteudo'] = 'dash/pedido/detalhe';
         $this->carregarViews('dash/dashboard', $dados);
@@ -90,12 +90,8 @@ class PedidoController extends Controller
         $funcionarios = $funcionarioModel->getTodosFuncionarios();
         $dados['funcionarios'] = $funcionarios;
 
-        // $statusPedidoModel = new StatusPedido();
-        // $statusPedidos = $statusPedidoModel->getTodosStatus();
-        // $dados['statusPedidos'] = $statusPedidos;
-
         $dados['conteudo'] = 'dash/pedido/adicionar';
-        $this->carregarViews('dash/dashboard-cliente', $dados);
+        $this->carregarViews('dash/dashboard', $dados);
     }
 
     public function editar($id = null)

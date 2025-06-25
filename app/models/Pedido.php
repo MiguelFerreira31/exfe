@@ -25,8 +25,8 @@ class Pedido extends Model
     public function contarPedidos()
     {
         $sql = "SELECT COUNT(*) AS total_pedidos_abertos
-FROM tbl_pedido
-WHERE status_pedido IN ('aberto', 'em preparo');";
+                FROM tbl_pedido
+                WHERE status_pedido IN ('aberto', 'em preparo');";
 
         $stmt = $this->db->prepare($sql);
         $stmt->execute();

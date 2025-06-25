@@ -154,13 +154,16 @@ class Produtos extends Model
 
     public function getListarProdutos($status = null)
     {
-        $sql = "SELECT 
-                p.*, 
-                c.nome_categoria AS nome_categoria, 
-                f.nome_fornecedor AS nome_fornecedor
-            FROM tbl_produto AS p
-            INNER JOIN tbl_categoria AS c ON p.id_categoria = c.id_categoria
-            INNER JOIN tbl_fornecedor AS f ON p.id_fornecedor = f.id_fornecedor";
+        $sql = "SELECT p1.*, 
+            c.nome_categoria AS nome_categoria,
+            f.nome_fornecedor AS nome_fornecedor
+            FROM tbl_produto AS p1 INNER JOIN (
+            SELECT MIN(id_produto) AS id_produto
+            FROM tbl_produto WHERE TRIM(status_produto) = 'ativo'
+            GROUP BY nome_produto) AS p2 ON p1.id_produto = p2.id_produto
+            INNER JOIN tbl_categoria AS c ON p1.id_categoria = c.id_categoria
+            INNER JOIN tbl_fornecedor AS f ON p1.id_fornecedor = f.id_fornecedor
+            ORDER BY c.nome_categoria ASC, p1.nome_produto ASC";
 
         // Se o status foi passado, adiciona o filtro
         if (!empty($status)) {
