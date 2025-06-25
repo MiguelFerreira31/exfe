@@ -208,96 +208,94 @@ class ApiController extends Controller
 
     public function atualizarCliente($id)
     {
-        header("Content-Type: application/json");
-    public function atualizarCliente($id)
-    {
-        header("Content-Type: application/json");
+        header("Content-Type: application/json"); {
+            header("Content-Type: application/json");
 
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            echo json_encode([
-                'status' => 'erro',
-                'mensagem' => 'Método não permitido. Use POST.'
-            ]);
-            return;
-        }
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            echo json_encode([
-                'status' => 'erro',
-                'mensagem' => 'Método não permitido. Use POST.'
-            ]);
-            return;
-        }
-
-        if (!$id) {
-            echo json_encode([
-                'status' => 'erro',
-                'mensagem' => 'ID do cliente não informado.'
-            ]);
-            return;
-        }
-        if (!$id) {
-            echo json_encode([
-                'status' => 'erro',
-                'mensagem' => 'ID do cliente não informado.'
-            ]);
-            return;
-        }
-
-        // Obtém os dados enviados (suporta application/x-www-form-urlencoded)
-        $dados = $_POST;
-        // Obtém os dados enviados (suporta application/x-www-form-urlencoded)
-        $dados = $_POST;
-
-        // Validação simples dos campos obrigatórios
-        $camposObrigatorios = ['nome_cliente', 'email_cliente', 'nasc_cliente', 'id_produto', 'id_intensidade', 'id_acompanhamento', 'prefere_leite_vegetal', 'id_tipo_leite'];
-        // Validação simples dos campos obrigatórios
-        $camposObrigatorios = ['nome_cliente', 'email_cliente', 'nasc_cliente', 'id_produto', 'id_intensidade', 'id_acompanhamento', 'prefere_leite_vegetal', 'id_tipo_leite'];
-
-        foreach ($camposObrigatorios as $campo) {
-            if (empty($dados[$campo])) {
+            if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
                 echo json_encode([
                     'status' => 'erro',
-                    'mensagem' => "Campo obrigatório $campo não foi informado."
+                    'mensagem' => 'Método não permitido. Use POST.'
                 ]);
                 return;
             }
-        }
-        foreach ($camposObrigatorios as $campo) {
-            if (empty($dados[$campo])) {
+            if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
                 echo json_encode([
                     'status' => 'erro',
-                    'mensagem' => "Campo obrigatório $campo não foi informado."
+                    'mensagem' => 'Método não permitido. Use POST.'
                 ]);
                 return;
             }
-        }
 
-        // Tratar senha: se campo está vazio, remover para não atualizar senha para vazio
-        if (isset($dados['senha_cliente']) && trim($dados['senha_cliente']) === '') {
-            unset($dados['senha_cliente']);
-        }
-        // Tratar senha: se campo está vazio, remover para não atualizar senha para vazio
-        if (isset($dados['senha_cliente']) && trim($dados['senha_cliente']) === '') {
-            unset($dados['senha_cliente']);
-        }
+            if (!$id) {
+                echo json_encode([
+                    'status' => 'erro',
+                    'mensagem' => 'ID do cliente não informado.'
+                ]);
+                return;
+            }
+            if (!$id) {
+                echo json_encode([
+                    'status' => 'erro',
+                    'mensagem' => 'ID do cliente não informado.'
+                ]);
+                return;
+            }
 
-        // Atualiza o cliente no banco via model
-        $atualizado = $this->clienteModel->updateCliente($id, $dados);
-        // Atualiza o cliente no banco via model
-        $atualizado = $this->clienteModel->updateCliente($id, $dados);
+            // Obtém os dados enviados (suporta application/x-www-form-urlencoded)
+            $dados = $_POST;
+            // Obtém os dados enviados (suporta application/x-www-form-urlencoded)
+            $dados = $_POST;
 
-        if ($atualizado) {
-            echo json_encode([
-                'status' => 'sucesso',
-                'mensagem' => 'Cliente atualizado com sucesso.'
-            ]);
-        } else {
-            echo json_encode([
-                'status' => 'erro',
-                'mensagem' => 'Erro ao atualizar cliente.'
-            ]);
+            // Validação simples dos campos obrigatórios
+            $camposObrigatorios = ['nome_cliente', 'email_cliente', 'nasc_cliente', 'id_produto', 'id_intensidade', 'id_acompanhamento', 'prefere_leite_vegetal', 'id_tipo_leite'];
+            // Validação simples dos campos obrigatórios
+            $camposObrigatorios = ['nome_cliente', 'email_cliente', 'nasc_cliente', 'id_produto', 'id_intensidade', 'id_acompanhamento', 'prefere_leite_vegetal', 'id_tipo_leite'];
+
+            foreach ($camposObrigatorios as $campo) {
+                if (empty($dados[$campo])) {
+                    echo json_encode([
+                        'status' => 'erro',
+                        'mensagem' => "Campo obrigatório $campo não foi informado."
+                    ]);
+                    return;
+                }
+            }
+            foreach ($camposObrigatorios as $campo) {
+                if (empty($dados[$campo])) {
+                    echo json_encode([
+                        'status' => 'erro',
+                        'mensagem' => "Campo obrigatório $campo não foi informado."
+                    ]);
+                    return;
+                }
+            }
+
+            // Tratar senha: se campo está vazio, remover para não atualizar senha para vazio
+            if (isset($dados['senha_cliente']) && trim($dados['senha_cliente']) === '') {
+                unset($dados['senha_cliente']);
+            }
+            // Tratar senha: se campo está vazio, remover para não atualizar senha para vazio
+            if (isset($dados['senha_cliente']) && trim($dados['senha_cliente']) === '') {
+                unset($dados['senha_cliente']);
+            }
+
+            // Atualiza o cliente no banco via model
+            $atualizado = $this->clienteModel->updateCliente($id, $dados);
+            // Atualiza o cliente no banco via model
+            $atualizado = $this->clienteModel->updateCliente($id, $dados);
+
+            if ($atualizado) {
+                echo json_encode([
+                    'status' => 'sucesso',
+                    'mensagem' => 'Cliente atualizado com sucesso.'
+                ]);
+            } else {
+                echo json_encode([
+                    'status' => 'erro',
+                    'mensagem' => 'Erro ao atualizar cliente.'
+                ]);
+            }
         }
-    }
         if ($atualizado) {
             echo json_encode([
                 'status' => 'sucesso',
