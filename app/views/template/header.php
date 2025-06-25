@@ -57,7 +57,7 @@ function getActive($rota)
         <input type="checkbox" class="theme-toggle-button">
         <span class="toggle"></span>
       </label>
-      <a class="<?= getActive('instalacao') ?>" href="<?= BASE_URL ?>instalacao" style="color: white;">
+      <a class="<?= getActive('instalacao') ?>" href="http://agenciatipi02.smpsistema.com.br/devcycle/exfemobile/public/index.php?url=instalacao" style="color: white;">
         App
       </a>
  
