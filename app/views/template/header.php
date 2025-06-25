@@ -88,6 +88,9 @@ function getActive($rota)
         <li>
           <a class="<?= getActive('contato') ?>" href="<?= BASE_URL ?>contato">Contato</a>
         </li>
+        <li>
+          <a class="<?= getActive('instalacao') ?>" href="<?= BASE_URL ?>instalacao">Instalar App</a>
+        </li>
       </ul>
     </nav>
 

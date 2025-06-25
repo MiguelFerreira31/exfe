@@ -206,62 +206,62 @@ class ApiController extends Controller
         }
     }
 
-public function atualizarCliente($id)
-{
-    header("Content-Type: application/json");
+    public function atualizarCliente($id)
+    {
+        header("Content-Type: application/json");
 
-    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-        echo json_encode([
-            'status' => 'erro',
-            'mensagem' => 'Método não permitido. Use POST.'
-        ]);
-        return;
-    }
-
-    if (!$id) {
-        echo json_encode([
-            'status' => 'erro',
-            'mensagem' => 'ID do cliente não informado.'
-        ]);
-        return;
-    }
-
-    // Obtém os dados enviados (suporta application/x-www-form-urlencoded)
-    $dados = $_POST;
-
-    // Validação simples dos campos obrigatórios
-    $camposObrigatorios = ['nome_cliente', 'email_cliente', 'nasc_cliente', 'id_produto', 'id_intensidade', 'id_acompanhamento', 'prefere_leite_vegetal', 'id_tipo_leite'];
-
-    foreach ($camposObrigatorios as $campo) {
-        if (empty($dados[$campo])) {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             echo json_encode([
                 'status' => 'erro',
-                'mensagem' => "Campo obrigatório $campo não foi informado."
+                'mensagem' => 'Método não permitido. Use POST.'
             ]);
             return;
         }
-    }
 
-    // Tratar senha: se campo está vazio, remover para não atualizar senha para vazio
-    if (isset($dados['senha_cliente']) && trim($dados['senha_cliente']) === '') {
-        unset($dados['senha_cliente']);
-    }
+        if (!$id) {
+            echo json_encode([
+                'status' => 'erro',
+                'mensagem' => 'ID do cliente não informado.'
+            ]);
+            return;
+        }
 
-    // Atualiza o cliente no banco via model
-    $atualizado = $this->clienteModel->updateCliente($id, $dados);
+        // Obtém os dados enviados (suporta application/x-www-form-urlencoded)
+        $dados = $_POST;
 
-    if ($atualizado) {
-        echo json_encode([
-            'status' => 'sucesso',
-            'mensagem' => 'Cliente atualizado com sucesso.'
-        ]);
-    } else {
-        echo json_encode([
-            'status' => 'erro',
-            'mensagem' => 'Erro ao atualizar cliente.'
-        ]);
+        // Validação simples dos campos obrigatórios
+        $camposObrigatorios = ['nome_cliente', 'email_cliente', 'nasc_cliente', 'id_produto', 'id_intensidade', 'id_acompanhamento', 'prefere_leite_vegetal', 'id_tipo_leite'];
+
+        foreach ($camposObrigatorios as $campo) {
+            if (empty($dados[$campo])) {
+                echo json_encode([
+                    'status' => 'erro',
+                    'mensagem' => "Campo obrigatório $campo não foi informado."
+                ]);
+                return;
+            }
+        }
+
+        // Tratar senha: se campo está vazio, remover para não atualizar senha para vazio
+        if (isset($dados['senha_cliente']) && trim($dados['senha_cliente']) === '') {
+            unset($dados['senha_cliente']);
+        }
+
+        // Atualiza o cliente no banco via model
+        $atualizado = $this->clienteModel->updateCliente($id, $dados);
+
+        if ($atualizado) {
+            echo json_encode([
+                'status' => 'sucesso',
+                'mensagem' => 'Cliente atualizado com sucesso.'
+            ]);
+        } else {
+            echo json_encode([
+                'status' => 'erro',
+                'mensagem' => 'Erro ao atualizar cliente.'
+            ]);
+        }
     }
-}
 
 
     public function listarProdutosSelecionados()
@@ -387,6 +387,36 @@ public function atualizarCliente($id)
             echo json_encode([
                 'status' => 'erro',
                 'mensagem' => 'Nenhum pedido encontrado para este cliente.'
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        }
+    }
+
+    public function listarCliente($id)
+    {
+        header("Content-Type: application/json");
+
+        // Verifica se o ID veio corretamente
+        if (empty($id)) {
+            echo json_encode([
+                'status' => 'erro',
+                'mensagem' => 'ID do cliente não fornecido.'
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
+        // Busca no model
+        $cliente = $this->clienteModel->getClientePorId($id);
+
+        // Retorno
+        if ($cliente) {
+            echo json_encode([
+                'status' => 'sucesso',
+                'cliente' => $cliente
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        } else {
+            echo json_encode([
+                'status' => 'erro',
+                'mensagem' => 'Cliente não encontrado.'
             ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         }
     }
@@ -733,6 +763,69 @@ public function atualizarCliente($id)
         if (move_uploaded_file($file['tmp_name'], $dir . $nome_arquivo)) {
             return 'cliente/' . $nome_arquivo;
         }
+        return false;
+    }
+
+    public function editarFotoCliente()
+    {
+        header("Content-Type: application/json");
+
+        // Verifica se foi enviado o ID do cliente
+        $id = $_POST['id_cliente'] ?? null;
+
+        if (!$id) {
+            http_response_code(400);
+            echo json_encode(['erro' => 'ID do cliente é obrigatório'], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
+        // Verifica se a imagem foi enviada corretamente
+        if (!isset($_FILES['foto_cliente']) || $_FILES['foto_cliente']['error'] !== 0) {
+            http_response_code(400);
+            echo json_encode(['erro' => 'Nenhuma imagem enviada ou erro no upload'], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
+        // Faz o upload da imagem
+        $arquivo = $this->uploadFoto($_FILES['foto_cliente'], $id);
+        if (!$arquivo) {
+            http_response_code(400);
+            echo json_encode(['erro' => 'Erro ao processar a imagem enviada'], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
+        // Atualiza a imagem no banco de dados
+        $this->clienteModel->addFotoCliente($id, $arquivo);
+
+        echo json_encode([
+            'mensagem' => 'Foto atualizada com sucesso',
+            'status' => 'sucesso',
+            'foto_url' => BASE_URL . 'uploads/cliente/' . $arquivo
+
+        ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    }
+
+    private function uploadFotoCliente($arquivo, $idCliente)
+    {
+        $permitidas = ['jpg', 'jpeg', 'png', 'webp'];
+        $ext = strtolower(pathinfo($arquivo['name'], PATHINFO_EXTENSION));
+
+        if (!in_array($ext, $permitidas)) {
+            return false;
+        }
+
+        $nomeArquivo = 'cliente_' . $idCliente . '_' . time() . '.' . $ext;
+        $pasta = 'uploads/clientes/';
+        if (!is_dir($pasta)) {
+            mkdir($pasta, 0777, true);
+        }
+
+        $caminho = $pasta . $nomeArquivo;
+
+        if (move_uploaded_file($arquivo['tmp_name'], $caminho)) {
+            return $nomeArquivo;
+        }
+
         return false;
     }
 }

@@ -141,7 +141,7 @@ WHERE status_pedido IN ('aberto', 'em preparo');";
         // Agrupa os produtos por pedido
         $pedidosAgrupados = [];
         foreach ($resultado as $linha) {
-            $idPedido = $linha['id_pedido'];
+            $idPedido = $linha['id_pedido'];    
 
             if (!isset($pedidosAgrupados[$idPedido])) {
                 $pedidosAgrupados[$idPedido] = [

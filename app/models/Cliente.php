@@ -22,7 +22,6 @@ class Cliente extends Model
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-
     public function getListarCliente($status = null)
     {
         $sql = "SELECT 
@@ -65,8 +64,6 @@ class Cliente extends Model
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-
-
     public function buscarPorNome($nome, $status = '')
     {
         $sql = "SELECT c.id_cliente, c.nome_cliente, c.foto_cliente, 
@@ -90,9 +87,6 @@ class Cliente extends Model
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-
-
 
     public function addCliente($dados)
     {
@@ -141,7 +135,6 @@ class Cliente extends Model
         $stmt->execute();
         return $this->db->lastInsertId();
     }
-
 
     public function updateCliente($id, $dados)
     {
@@ -219,6 +212,28 @@ class Cliente extends Model
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+
+    public function getClientePorId($id)
+    {
+        $sql = "SELECT 
+                id_cliente,
+                nome_cliente,
+                email_cliente,
+                foto_cliente,
+                status_cliente,
+                observacoes_cliente
+            FROM tbl_cliente
+            WHERE id_cliente = :id
+            LIMIT 1";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+
     // Desativar Cliente 
     public function desativarCliente($id)
     {
@@ -280,17 +295,12 @@ class Cliente extends Model
     }
 
     // 6 Método para add FOTO Cliente 
-    public function addFotocliente($id_cliente, $arquivo)
+    public function addFotoCliente($idCliente, $nomeFoto)
     {
-        $sql = "UPDATE tbl_cliente 
-           SET foto_cliente = :foto_cliente 
-           WHERE id_cliente = :id_cliente";
-
+        $sql = "UPDATE clientes SET foto_cliente = :foto WHERE id_cliente = :id";
         $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(':foto_cliente', $arquivo);
-
-        $stmt->bindValue(':id_cliente', $id_cliente);
-
+        $stmt->bindValue(':foto', $nomeFoto);
+        $stmt->bindValue(':id', $idCliente);
         return $stmt->execute();
     }
 }
