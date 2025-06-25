@@ -12,6 +12,8 @@ class ApiController extends Controller
     private $acompanhamentoModel;
     private $intensidadeModel;
     private $leiteModel;
+    private $reservaModel;
+
 
     public function __construct()
     {
@@ -30,6 +32,7 @@ class ApiController extends Controller
         $this->acompanhamentoModel = new Acompanhamento();
         $this->intensidadeModel = new Intensidade();
         $this->leiteModel = new Leites();
+        $this->reservaModel = new Reserva();
     }
 
     public function menu()
@@ -175,6 +178,128 @@ class ApiController extends Controller
         ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
+    /**
+     * O usuário informa o e-mail. Se for válido, um token temporário é gerado e enviado por e-mail com um link de redefinição.
+     */
+    public function recuperarSenha()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            echo json_encode(['erro' => 'Método não permitido555'], JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
+        $email = filter_input(INPUT_POST, 'email_cliente', FILTER_SANITIZE_EMAIL);
+
+        if (!$email) {
+            http_response_code(400);
+            echo json_encode(['erro' => 'E-mail é obrigatório'], JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
+        $cliente = $this->clienteModel->buscarCliente($email);
+
+        if (!$cliente) {
+            http_response_code(404);
+            echo json_encode(['erro' => 'E-mail não encontrado'], JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
+        $token = bin2hex(random_bytes(32));
+        $expira = date('Y-m-d H:i:s', strtotime('+1 hour'));
+
+        $this->clienteModel->salvarTokenRecuperacao($cliente['id_cliente'], $token, $expira);
+
+        // ENVIO DE E-MAIL
+        require_once("vendors/phpmailer/PHPMailer.php");
+        require_once("vendors/phpmailer/SMTP.php");
+        require_once("vendors/phpmailer/Exception.php");
+
+        $mail = new PHPMailer\PHPMailer\PHPMailer();
+
+        try {
+            $mail->isSMTP();
+            $mail->Host       = EMAIL_HOST;
+            $mail->Port       = EMAIL_PORT;
+            $mail->SMTPAuth   = true;
+            $mail->SMTPSecure = 'ssl';
+            $mail->Username   = EMAIL_USER;
+            $mail->Password   = EMAIL_PASS;
+
+            $mail->CharSet = 'UTF-8';
+            $mail->Encoding = 'base64';
+
+            $mail->setFrom(EMAIL_USER, 'Exfé');
+            $mail->addAddress($cliente['email_cliente'], $cliente['nome_cliente']);
+            $mail->isHTML(true);
+            $mail->Subject = 'Recuperação de Senha';
+            $link = BASE_URL . "api/redefinirSenha?token=$token";
+
+            $mail->msgHTML("
+            Olá {$cliente['nome_cliente']},<br><br>
+            Recebemos uma solicitação para redefinir sua senha.<br>
+            Clique no link abaixo para criar uma nova senha:<br><br>
+            <a href='$link'>$link</a><br><br>
+            Se você não fez essa solicitação, ignore este e-mail.
+        ");
+            $mail->AltBody = "Olá {$cliente['nome_cliente']}, acesse $link para redefinir sua senha.";
+
+            $mail->send();
+
+            echo json_encode(['mensagem' => 'Um link de redefinição foi enviado para seu e-mail'], JSON_UNESCAPED_UNICODE);
+        } catch (Exception $e) {
+            http_response_code(500);
+            echo json_encode(['erro' => 'Erro ao enviar e-mail', 'detalhes' => $mail->ErrorInfo], JSON_UNESCAPED_UNICODE);
+        }
+    }
+
+    /** View para redefinir senha */
+    public function redefinirSenha()
+    {
+        $dados = array();
+        $dados['titulo'] = 'Recuperação de senha - ClubFitness';
+        $this->carregarViews('recuperar_senha', $dados);
+    }
+
+    /** O usuário acessa o link com o token, define uma nova senha e salva. */
+    public function resetarSenha()
+    {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            echo json_encode(['erro' => 'Método não permitido555'], JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
+        $token = $_POST['token'] ?? null;
+        $novaSenha = $_POST['nova_senha'] ?? null;
+
+        if (!$token || !$novaSenha) {
+            http_response_code(400);
+            echo json_encode(['erro' => 'Token e nova senha são obrigatórios'], JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
+        $cliente = $this->clienteModel->getClientePorToken($token);
+
+        if (!$cliente || strtotime($cliente['token_expira']) < time()) {
+            http_response_code(403);
+            echo json_encode(['erro' => 'Token inválido ou expirado'], JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
+        $atualizado = $this->clienteModel->atualizarSenha($cliente['id_cliente'], $novaSenha);
+
+        if ($atualizado) {
+            $this->clienteModel->limparTokenRecuperacao($cliente['id_cliente']);
+            $dados['mensagem'] = 'Senha redefinida com sucesso';
+            $this->carregarViews('home', $dados);
+        } else {
+            http_response_code(500);
+            $dados['erro'] = 'Erro ao atualizar a senha';
+            $this->carregarViews('home', $dados);
+        }
+    }
+
     public function listarClientesPerfil()
     {
         header("Content-Type: application/json");
@@ -309,6 +434,76 @@ class ApiController extends Controller
         }
     }
 
+    public function editarCliente()
+    {
+        header("Content-Type: application/json");
+
+        // Recebe o ID do cliente via GET ou POST
+        $id = $_POST['id_cliente'] ?? null;
+
+        if (!$id) {
+            http_response_code(400);
+            echo json_encode(['erro' => 'ID do cliente é obrigatório'], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
+        // Recebe os dados via POST
+        $nome_cliente             = filter_input(INPUT_POST, 'nome_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
+        $email_cliente            = filter_input(INPUT_POST, 'email_cliente', FILTER_SANITIZE_EMAIL);
+        $nasc_cliente             = filter_input(INPUT_POST, 'nasc_cliente', FILTER_SANITIZE_STRING);
+        $senha_cliente            = filter_input(INPUT_POST, 'senha_cliente', FILTER_SANITIZE_STRING);
+        $id_produto               = filter_input(INPUT_POST, 'id_produto', FILTER_SANITIZE_NUMBER_INT);
+        $id_intensidade           = filter_input(INPUT_POST, 'id_intensidade', FILTER_SANITIZE_NUMBER_INT);
+        $id_acompanhamento        = filter_input(INPUT_POST, 'id_acompanhamento', FILTER_SANITIZE_NUMBER_INT);
+        $prefere_leite_vegetal    = filter_input(INPUT_POST, 'prefere_leite_vegetal', FILTER_SANITIZE_STRING);
+        $id_tipo_leite            = filter_input(INPUT_POST, 'id_tipo_leite', FILTER_SANITIZE_NUMBER_INT);
+        $observacoes_cliente      = filter_input(INPUT_POST, 'observacoes_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
+
+        // Validação básica
+        if (!$nome_cliente || !$email_cliente || !$senha_cliente) {
+            http_response_code(400);
+            echo json_encode(['erro' => 'Nome, e-mail e senha são obrigatórios'], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
+        // Prepara os dados para atualização
+        $dadosCliente = [
+            'nome_cliente'             => $nome_cliente,
+            'email_cliente'            => $email_cliente,
+            'nasc_cliente'             => $nasc_cliente,
+            'senha_cliente'            => $senha_cliente,
+            'id_produto'               => $id_produto,
+            'id_intensidade'           => $id_intensidade,
+            'id_acompanhamento'        => $id_acompanhamento,
+            'prefere_leite_vegetal'    => $prefere_leite_vegetal,
+            'id_tipo_leite'            => $id_tipo_leite,
+            'observacoes_cliente'      => $observacoes_cliente
+        ];
+
+        // Atualiza o cliente
+        $atualizado = $this->clienteModel->updateCliente($id, $dadosCliente);
+
+        if ($atualizado) {
+            // Se estiver enviando uma nova foto
+            if (isset($_FILES['foto_cliente']) && $_FILES['foto_cliente']['error'] == 0) {
+                $arquivo = $this->uploadFoto($_FILES['foto_cliente']);
+                if ($arquivo) {
+                    $this->clienteModel->addFotoCliente($id, $arquivo, $nome_cliente);
+                }
+            }
+
+            echo json_encode([
+                'mensagem' => 'Cliente atualizado com sucesso',
+                'status'   => 'sucesso'
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        } else {
+            http_response_code(500);
+            echo json_encode([
+                'erro' => 'Erro ao atualizar o cliente',
+                'status' => 'erro'
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        }
+    }
 
     public function listarProdutosSelecionados()
     {
@@ -558,6 +753,100 @@ class ApiController extends Controller
         }
     }
 
+    public function adicionarAvaliacao()
+    {
+        header("Content-Type: application/json");
+
+        // Verifica se é POST
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            echo json_encode([
+                'status' => 'erro',
+                'mensagem' => 'Método não permitido. Use POST.'
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+            return;
+        }
+
+        // Receber dados JSON brutos ou via $_POST
+        $dados = json_decode(file_get_contents('php://input'), true);
+        if (!$dados) {
+            $dados = $_POST;
+        }
+
+        // Valida campos obrigatórios
+        $camposObrigatorios = ['id_cliente', 'id_produto', 'nota', 'comentario'];
+        foreach ($camposObrigatorios as $campo) {
+            if (empty($dados[$campo])) {
+                echo json_encode([
+                    'status' => 'erro',
+                    'mensagem' => "O campo '$campo' é obrigatório."
+                ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+                return;
+            }
+        }
+
+        // Preenche a data atual
+        $dados['data_avaliacao'] = date('Y-m-d H:i:s');
+
+        // Insere no banco
+        $resultado = $this->avaliacaoModel->addAvaliacao($dados);
+
+        if ($resultado) {
+            echo json_encode([
+                'status' => 'sucesso',
+                'mensagem' => 'Avaliação enviada com sucesso! Aguarde aprovação.'
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        } else {
+            echo json_encode([
+                'status' => 'erro',
+                'mensagem' => 'Erro ao cadastrar a avaliação.'
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        }
+    }
+
+    public function cancelarAvaliacao()
+    {
+        header("Content-Type: application/json");
+
+        // Aceita POST e GET
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST' && $_SERVER['REQUEST_METHOD'] !== 'GET') {
+            echo json_encode([
+                'status' => 'erro',
+                'mensagem' => 'Método não permitido. Use POST.'
+            ]);
+            return;
+        }
+
+        $dados = json_decode(file_get_contents('php://input'), true);
+        if (!$dados) {
+            $dados = $_POST;
+        }
+        if (empty($dados) && isset($_GET['id'])) {
+            $dados['id_avaliacao'] = $_GET['id'];
+        }
+
+        if (empty($dados['id_avaliacao'])) {
+            echo json_encode([
+                'status' => 'erro',
+                'mensagem' => 'ID da avaliação não informado.'
+            ]);
+            return;
+        }
+
+        $resultado = $this->avaliacaoModel->excluirAvaliacao($dados['id_avaliacao']);
+
+        if ($resultado) {
+            echo json_encode([
+                'status' => 'sucesso',
+                'mensagem' => 'Avaliação removida com sucesso.'
+            ]);
+        } else {
+            echo json_encode([
+                'status' => 'erro',
+                'mensagem' => 'Erro ao remover avaliação.'
+            ]);
+        }
+    }
+
     public function listarProdutos()
     {
         header("Content-Type: application/json");
@@ -658,125 +947,143 @@ class ApiController extends Controller
             ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         }
     }
-
-    public function adicionarAvaliacao()
+    
+    public function listarReservas()
     {
         header("Content-Type: application/json");
 
-        // Verifica se é POST
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        $id = isset($_GET['id']) ? intval($_GET['id']) : null;
+
+        if (!$id) {
             echo json_encode([
                 'status' => 'erro',
-                'mensagem' => 'Método não permitido. Use POST.'
+                'mensagem' => 'ID do cliente não informado.'
             ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
             return;
         }
 
-        // Receber dados JSON brutos ou via $_POST
+        $reservas = $this->reservaModel->getReservasByCliente($id);
+
+        if ($reservas) {
+            echo json_encode([
+                'status' => 'sucesso',
+                'reservas' => $reservas
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        } else {
+            echo json_encode([
+                'status' => 'vazio',
+                'mensagem' => 'Nenhuma reserva encontrada.'
+            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        }
+    }
+
+    public function cancelarReserva()
+    {
+        header("Content-Type: application/json");
+
+        // Aceita POST e GET
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST' && $_SERVER['REQUEST_METHOD'] !== 'GET') {
+            echo json_encode([
+                'status' => 'erro',
+                'mensagem' => 'Método não permitido. Use POST.'
+            ]);
+            return;
+        }
+
+        $dados = json_decode(file_get_contents('php://input'), true);
+        if (!$dados) {
+            $dados = $_POST;
+        }
+        if (empty($dados) && isset($_GET['id'])) {
+            $dados['id_reserva'] = $_GET['id'];
+        }
+
+        if (empty($dados['id_reserva'])) {
+            echo json_encode([
+                'status' => 'erro',
+                'mensagem' => 'ID da reserva não informado.'
+            ]);
+            return;
+        }
+
+        $resultado = $this->reservaModel->cancelarReserva($dados['id_reserva']);
+
+        if ($resultado) {
+            echo json_encode([
+                'status' => 'sucesso',
+                'mensagem' => 'Reserva cancelada com sucesso.'
+            ]);
+        } else {
+            echo json_encode([
+                'status' => 'erro',
+                'mensagem' => 'Erro ao cancelar reserva.'
+            ]);
+        }
+    }
+
+    public function adicionarReserva()
+    {
+        header("Content-Type: application/json");
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            echo json_encode([
+                'status' => 'erro',
+                'mensagem' => 'Método não permitido. Use POST.'
+            ]);
+            return;
+        }
+
         $dados = json_decode(file_get_contents('php://input'), true);
         if (!$dados) {
             $dados = $_POST;
         }
 
-        // Valida campos obrigatórios
-        $camposObrigatorios = ['id_cliente', 'id_produto', 'nota', 'comentario'];
+        $camposObrigatorios = ['id_cliente', 'data_reserva', 'hora_inicio', 'hora_fim', 'id_mesa'];
         foreach ($camposObrigatorios as $campo) {
             if (empty($dados[$campo])) {
                 echo json_encode([
                     'status' => 'erro',
                     'mensagem' => "O campo '$campo' é obrigatório."
-                ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+                ]);
                 return;
             }
         }
 
-        // Preenche a data atual
-        $dados['data_avaliacao'] = date('Y-m-d H:i:s');
+        $dados['status_reserva'] = 'Pendente';
+        $dados['data_reserva'] = $dados['data_reserva']; // Data já no formato
+        $dados['observacoes'] = $dados['observacoes'] ?? null;
 
-        // Insere no banco
-        $resultado = $this->avaliacaoModel->addAvaliacao($dados);
+        $resultado = $this->reservaModel->addReserva($dados);
 
         if ($resultado) {
             echo json_encode([
                 'status' => 'sucesso',
-                'mensagem' => 'Avaliação enviada com sucesso! Aguarde aprovação.'
-            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+                'mensagem' => 'Reserva realizada com sucesso!'
+            ]);
         } else {
             echo json_encode([
                 'status' => 'erro',
-                'mensagem' => 'Erro ao cadastrar a avaliação.'
-            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+                'mensagem' => 'Erro ao salvar reserva.'
+            ]);
         }
     }
 
-    public function editarCliente()
+    public function listarMesasDisponiveis()
     {
         header("Content-Type: application/json");
 
-        // Recebe o ID do cliente via GET ou POST
-        $id = $_POST['id_cliente'] ?? null;
+        $mesas = $this->reservaModel->getMesasDisponiveis();
 
-        if (!$id) {
-            http_response_code(400);
-            echo json_encode(['erro' => 'ID do cliente é obrigatório'], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-            return;
-        }
-
-        // Recebe os dados via POST
-        $nome_cliente             = filter_input(INPUT_POST, 'nome_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
-        $email_cliente            = filter_input(INPUT_POST, 'email_cliente', FILTER_SANITIZE_EMAIL);
-        $nasc_cliente             = filter_input(INPUT_POST, 'nasc_cliente', FILTER_SANITIZE_STRING);
-        $senha_cliente            = filter_input(INPUT_POST, 'senha_cliente', FILTER_SANITIZE_STRING);
-        $id_produto               = filter_input(INPUT_POST, 'id_produto', FILTER_SANITIZE_NUMBER_INT);
-        $id_intensidade           = filter_input(INPUT_POST, 'id_intensidade', FILTER_SANITIZE_NUMBER_INT);
-        $id_acompanhamento        = filter_input(INPUT_POST, 'id_acompanhamento', FILTER_SANITIZE_NUMBER_INT);
-        $prefere_leite_vegetal    = filter_input(INPUT_POST, 'prefere_leite_vegetal', FILTER_SANITIZE_STRING);
-        $id_tipo_leite            = filter_input(INPUT_POST, 'id_tipo_leite', FILTER_SANITIZE_NUMBER_INT);
-        $observacoes_cliente      = filter_input(INPUT_POST, 'observacoes_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
-
-        // Validação básica
-        if (!$nome_cliente || !$email_cliente || !$senha_cliente) {
-            http_response_code(400);
-            echo json_encode(['erro' => 'Nome, e-mail e senha são obrigatórios'], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-            return;
-        }
-
-        // Prepara os dados para atualização
-        $dadosCliente = [
-            'nome_cliente'             => $nome_cliente,
-            'email_cliente'            => $email_cliente,
-            'nasc_cliente'             => $nasc_cliente,
-            'senha_cliente'            => $senha_cliente,
-            'id_produto'               => $id_produto,
-            'id_intensidade'           => $id_intensidade,
-            'id_acompanhamento'        => $id_acompanhamento,
-            'prefere_leite_vegetal'    => $prefere_leite_vegetal,
-            'id_tipo_leite'            => $id_tipo_leite,
-            'observacoes_cliente'      => $observacoes_cliente
-        ];
-
-        // Atualiza o cliente
-        $atualizado = $this->clienteModel->updateCliente($id, $dadosCliente);
-
-        if ($atualizado) {
-            // Se estiver enviando uma nova foto
-            if (isset($_FILES['foto_cliente']) && $_FILES['foto_cliente']['error'] == 0) {
-                $arquivo = $this->uploadFoto($_FILES['foto_cliente']);
-                if ($arquivo) {
-                    $this->clienteModel->addFotoCliente($id, $arquivo, $nome_cliente);
-                }
-            }
-
+        if ($mesas) {
             echo json_encode([
-                'mensagem' => 'Cliente atualizado com sucesso',
-                'status'   => 'sucesso'
-            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+                'status' => 'sucesso',
+                'mesas' => $mesas
+            ]);
         } else {
-            http_response_code(500);
             echo json_encode([
-                'erro' => 'Erro ao atualizar o cliente',
-                'status' => 'erro'
-            ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+                'status' => 'vazio',
+                'mensagem' => 'Nenhuma mesa disponível no momento.'
+            ]);
         }
     }
 

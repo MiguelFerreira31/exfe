@@ -273,7 +273,7 @@ $dados['acompanhamentos'] = $acompanhamentos;
             <span class="nav-link-text ms-2">Evento</span>
           </a>
         </li>
-        
+
         <li class="nav-item">
           <a class="nav-link" href="<?= BASE_URL ?>avaliacao/listarFuncionario">
             <div class="icon"><i class="fas fa-paper-plane"></i></div>
@@ -390,7 +390,7 @@ $dados['acompanhamentos'] = $acompanhamentos;
 
           <ul class="navbar-nav justify-content-end">
             <label>
-              <input type="checkbox" class="theme-toggle-button" >
+              <input type="checkbox" class="theme-toggle-button">
               <span class="toggle"></span>
             </label>
             <li class="nav-item d-flex align-items-center" style="margin: 5%;">
