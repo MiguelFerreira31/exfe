@@ -49,111 +49,110 @@ class ClientesController extends Controller
     }
 
 
-    // 2- Método para adicionar Alunos
     public function adicionar()
     {
-
-
         $dados = array();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
             // TBL Cliente
-            // TBL Cliente
-            $email_cliente                  = filter_input(INPUT_POST, 'email_cliente', FILTER_SANITIZE_EMAIL);
-            $nome_cliente                   = filter_input(INPUT_POST, 'nome_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
-            $nasc_cliente                   = filter_input(INPUT_POST, 'nasc_cliente', FILTER_SANITIZE_STRING);  // Para data, o tipo é string
-            $senha_cliente                  = filter_input(INPUT_POST, 'senha_cliente', FILTER_SANITIZE_STRING);
+            $email_cliente        = filter_input(INPUT_POST, 'email_cliente', FILTER_SANITIZE_EMAIL);
+            $nome_cliente         = filter_input(INPUT_POST, 'nome_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
+            $nasc_cliente         = filter_input(INPUT_POST, 'nasc_cliente', FILTER_SANITIZE_STRING);
+            $senha_cliente        = filter_input(INPUT_POST, 'senha_cliente', FILTER_SANITIZE_STRING);
 
             // Preferências de Café
-            $id_produto                     = filter_input(INPUT_POST, 'id_produto', FILTER_SANITIZE_NUMBER_INT);
-            $id_intensidade                 = filter_input(INPUT_POST, 'id_intensidade', FILTER_SANITIZE_NUMBER_INT);
-            $id_acompanhamento              = filter_input(INPUT_POST, 'id_acompanhamento', FILTER_SANITIZE_NUMBER_INT);
-            $prefere_leite_vegetal         = filter_input(INPUT_POST, 'prefere_leite_vegetal', FILTER_SANITIZE_STRING);
-            $id_tipo_leite                  = filter_input(INPUT_POST, 'id_tipo_leite', FILTER_SANITIZE_NUMBER_INT);
-            $observacoes_cliente            = filter_input(INPUT_POST, 'observacoes_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
+            $id_produto           = filter_input(INPUT_POST, 'id_produto', FILTER_SANITIZE_NUMBER_INT);
+            $id_intensidade       = filter_input(INPUT_POST, 'id_intensidade', FILTER_SANITIZE_NUMBER_INT);
+            $id_acompanhamento    = filter_input(INPUT_POST, 'id_acompanhamento', FILTER_SANITIZE_NUMBER_INT);
+            $prefere_leite_vegetal = isset($_POST['prefere_leite_vegetal']) ? 1 : 0;
+            $id_tipo_leite        = filter_input(INPUT_POST, 'id_tipo_leite', FILTER_SANITIZE_NUMBER_INT);
+            $observacoes_cliente  = filter_input(INPUT_POST, 'observacoes_cliente', FILTER_SANITIZE_SPECIAL_CHARS);
 
+            // Validação básica
+            if ($nome_cliente && $email_cliente && $senha_cliente) {
+                if (strlen($senha_cliente) < 3) {
+                    $dados['mensagem'] = "A senha deve conter no mínimo 3 caracteres.";
+                    $dados['tipo-msg'] = "erro";
+                    $this->carregarViews('dash/dashboard', $dados);
+                    return;
+                }
 
+                // Criptografar senha
+                $senha_hash = password_hash($senha_cliente, PASSWORD_DEFAULT);
 
-            if ($nome_cliente && $email_cliente && $senha_cliente !== false) {
+                // Verificar integridade de chaves estrangeiras
+                $produtos = new Produtos();
+                $tiposLeite = new Leites();
+                $acompanhamentos = new Acompanhamento();
+                $intensidades = new Intensidade();
 
+                $validProdutos = array_column($produtos->getListarProdutos(), 'id_produto');
+                $validLeites = array_column($tiposLeite->getListarLeites(), 'id_tipo_leite');
+                $validAcompanhamentos = array_column($acompanhamentos->getListarAcompanhamentos(), 'id_acompanhamento');
+                $validIntensidades = array_column($intensidades->getListarIntensidades(), 'id_intensidade');
 
-                // 3 Preparar Dados 
+                if (
+                    !in_array($id_produto, $validProdutos) || !in_array($id_tipo_leite, $validLeites) ||
+                    !in_array($id_acompanhamento, $validAcompanhamentos) || !in_array($id_intensidade, $validIntensidades)
+                ) {
+                    $dados['mensagem'] = "Algum dado inválido (Produto, Leite, Acompanhamento ou Intensidade).";
+                    $dados['tipo-msg'] = "erro";
+                    $this->carregarViews('dash/dashboard', $dados);
+                    return;
+                }
 
+                // Preparar dados para inserção
                 $dadosCliente = array(
-                    'nome_cliente'                => $nome_cliente,
-                    'email_cliente'               => $email_cliente,
-                    'nasc_cliente'                => $nasc_cliente,
-                    'senha_cliente'               => $senha_cliente,
-                    'id_produto'                  => $id_produto,
-                    'id_intensidade'              => $id_intensidade,
-                    'id_acompanhamento'           => $id_acompanhamento,
-                    'prefere_leite_vegetal'      => $prefere_leite_vegetal,
-                    'id_tipo_leite'               => $id_tipo_leite,
-                    'observacoes_cliente'         => $observacoes_cliente,
-
+                    'nome_cliente'           => $nome_cliente,
+                    'email_cliente'          => $email_cliente,
+                    'nasc_cliente'           => $nasc_cliente,
+                    'senha_cliente'          => $senha_hash,
+                    'id_produto'             => $id_produto,
+                    'id_intensidade'         => $id_intensidade,
+                    'id_acompanhamento'      => $id_acompanhamento,
+                    'prefere_leite_vegetal'  => $prefere_leite_vegetal,
+                    'id_tipo_leite'          => $id_tipo_leite,
+                    'observacoes_cliente'    => $observacoes_cliente,
+                    'id_tipo_usuario'        => 2,
+                    'status_cliente'         => 'ativo'
                 );
 
-
-
-                // 4 Inserir Cliente
-
+                // Inserir Cliente
                 $id_cliente = $this->clienteModel->addCliente($dadosCliente);
-
-
 
                 if ($id_cliente) {
                     if (isset($_FILES['foto_cliente']) && $_FILES['foto_cliente']['error'] == 0) {
-
-
                         $arquivo = $this->uploadFoto($_FILES['foto_cliente']);
-
-
                         if ($arquivo) {
-                            //Inserir na galeria
-
                             $this->clienteModel->addFotoCliente($id_cliente, $arquivo, $nome_cliente);
-                        } else {
-                            //Definir uma mensagem informando que não pode ser salva
                         }
                     }
 
-
-                    // Mensagem de SUCESSO 
-                    $_SESSION['mensagem'] = "Cliente Cadastrado com Sucesso";
+                    $_SESSION['mensagem'] = "Cliente cadastrado com sucesso!";
                     $_SESSION['tipo-msg'] = "sucesso";
-                    header('Location:' . BASE_URL . ' clientes/listar');
+                    header('Location: ' . BASE_URL . 'clientes/listar');
                     exit;
                 } else {
-                    $dados['mensagem'] = "Erro ao adicionar Ao adcionar cliente";
+                    $dados['mensagem'] = "Erro ao adicionar o cliente.";
                     $dados['tipo-msg'] = "erro";
                 }
             } else {
-                $dados['mensagem'] = "Preencha todos os campos obrigatórios";
+                $dados['mensagem'] = "Preencha todos os campos obrigatórios.";
                 $dados['tipo-msg'] = "erro";
             }
         }
 
-
-
-        // Buscar Produto
+        // Carregar selects
         $produtos = new Produtos();
-        $dados['produtos'] = $produtos->getListarProdutos();
-
-
         $tiposLeite = new Leites();
-        $dados['tiposLeite'] = $tiposLeite->getListarLeites();
-
-
         $acompanhamentos = new Acompanhamento();
-        $dados['acompanhamentos'] = $acompanhamentos->getListarAcompanhamentos();
-
-
         $intensidades = new Intensidade();
+
+        $dados['produtos'] = $produtos->getListarProdutos();
+        $dados['tiposLeite'] = $tiposLeite->getListarLeites();
+        $dados['acompanhamentos'] = $acompanhamentos->getListarAcompanhamentos();
         $dados['intensidades'] = $intensidades->getListarIntensidades();
-
         $dados['conteudo'] = 'dash/cliente/adicionar';
-
 
         $this->carregarViews('dash/dashboard', $dados);
     }

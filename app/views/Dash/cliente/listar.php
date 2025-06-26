@@ -93,6 +93,14 @@ $status = $_GET['status'] ?? 'Ativo';
             </tbody>
         </table>
     </div>
+    <?php if ($status !== 'Inativo'): ?>
+        <div class="text-center mt-4">
+            <h3 style="color: #9a5c1fad;">Cadastre abaixo um novo cliente</h3>
+            <a href="<?= BASE_URL ?>clientes/adicionar" class="btn fw-bold px-4 py-2" style="background:#9a5c1fad; color: #ffffff; border-radius: 8px;">
+                Adicionar Cliente
+            </a>
+        </div>
+    <?php endif; ?>
 </div>
 
 <!-- Modal -->
