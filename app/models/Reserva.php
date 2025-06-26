@@ -70,4 +70,42 @@ class Reserva extends Model
         $stmt->bindValue(':id_reserva', $id_reserva, PDO::PARAM_INT);
         return $stmt->execute();
     }
+
+    public function getTodasReservasComRelacionamentos()
+    {
+        $sql = "SELECT 
+                r.*, 
+                c.nome_cliente, 
+                f.nome_funcionario 
+            FROM tbl_reserva r
+            LEFT JOIN tbl_cliente c ON r.id_cliente = c.id_cliente
+            LEFT JOIN tbl_funcionario f ON r.id_funcionario = f.id_funcionario
+            ORDER BY r.data_reserva DESC";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+public function atualizarStatus($id, $status)
+{
+    $sql = "UPDATE tbl_reserva SET status_reserva = :status WHERE id_reserva = :id";
+    $stmt = $this->db->prepare($sql);
+    $stmt->bindValue(':status', $status);
+    $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+
+    if ($stmt->execute()) {
+        if ($stmt->rowCount() > 0) {
+            return true; // Atualizado com sucesso
+        } else {
+            // Nenhuma linha alterada (talvez o valor já era o mesmo ou ID não existe)
+            file_put_contents('log_status_debug.txt', "Nenhuma linha alterada. ID: $id, Status: $status", FILE_APPEND);
+            return false;
+        }
+    } else {
+        $erro = $stmt->errorInfo();
+        file_put_contents('log_status_debug.txt', "Erro SQL: " . print_r($erro, true), FILE_APPEND);
+        return false;
+    }
+}
 }

@@ -212,6 +212,13 @@ $dados['acompanhamentos'] = $acompanhamentos;
         </li>
 
         <li class="nav-item">
+          <a class="nav-link" href="<?= BASE_URL ?>reserva/listar">
+            <div class="icon"><i class="fas fa-users"></i></div>
+            <span class="nav-link-text ms-2">Reservas</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
           <a class="nav-link" href="<?= BASE_URL ?>funcionarios/listar">
             <div class="icon"><i class="fas fa-user-tie"></i></div>
             <span class="nav-link-text ms-2">Funcionários</span>

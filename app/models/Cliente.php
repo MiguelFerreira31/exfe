@@ -172,41 +172,64 @@ class Cliente extends Model
         return $this->db->lastInsertId();
     }
 
-    public function updateCliente($id, $dados)
-    {
-        // Atualizando apenas os campos relevantes
-        $sql = "UPDATE tbl_cliente SET 
-                nome_cliente = :nome_cliente, 
-                email_cliente = :email_cliente, 
-                senha_cliente = :senha_cliente, 
-                nasc_cliente = :nasc_cliente, 
-                id_produto = :id_produto,
-                id_intensidade = :id_intensidade,
-                id_acompanhamento = :id_acompanhamento,
-                prefere_leite_vegetal = :prefere_leite_vegetal,
-                id_tipo_leite = :id_tipo_leite,
-                observacoes_cliente = :observacoes_cliente
-                WHERE id_cliente = :id_cliente";
+public function updateCliente($id, $dados)
+{
+    // Verifica e processa a imagem, se existir
+    if (isset($_FILES['foto_cliente']) && $_FILES['foto_cliente']['error'] === UPLOAD_ERR_OK) {
+        $ext = pathinfo($_FILES['foto_cliente']['name'], PATHINFO_EXTENSION);
+        $nomeArquivo = 'foto_' . time() . '_' . uniqid() . '.' . $ext;
+        $caminhoDestino = 'uploads/' . $nomeArquivo;
 
-        // Preparar a execução da consulta
-        $stmt = $this->db->prepare($sql);
-
-        // Vincular os dados recebidos para os parâmetros da consulta
-        $stmt->bindValue(':nome_cliente', $dados['nome_cliente']);
-        $stmt->bindValue(':email_cliente', $dados['email_cliente']);
-        $stmt->bindValue(':senha_cliente', $dados['senha_cliente']);
-        $stmt->bindValue(':nasc_cliente', $dados['nasc_cliente']);
-        $stmt->bindValue(':id_produto', $dados['id_produto']);
-        $stmt->bindValue(':id_intensidade', $dados['id_intensidade']);
-        $stmt->bindValue(':id_acompanhamento', $dados['id_acompanhamento']);
-        $stmt->bindValue(':prefere_leite_vegetal', $dados['prefere_leite_vegetal']);
-        $stmt->bindValue(':id_tipo_leite', $dados['id_tipo_leite']);
-        $stmt->bindValue(':observacoes_cliente', $dados['observacoes_cliente']);
-        $stmt->bindValue(':id_cliente', $id);
-
-        // Executar a consulta
-        return $stmt->execute();
+        if (move_uploaded_file($_FILES['foto_cliente']['tmp_name'], $caminhoDestino)) {
+            $dados['foto_cliente'] = $nomeArquivo;
+        } else {
+            // Se falhar o upload, você pode decidir se continua ou não
+            return false;
+        }
     }
+
+    // Montar SQL dinamicamente com ou sem a imagem
+    $sql = "UPDATE tbl_cliente SET 
+            nome_cliente = :nome_cliente, 
+            email_cliente = :email_cliente, 
+            senha_cliente = :senha_cliente, 
+            nasc_cliente = :nasc_cliente, 
+            id_produto = :id_produto,
+            id_intensidade = :id_intensidade,
+            id_acompanhamento = :id_acompanhamento,
+            prefere_leite_vegetal = :prefere_leite_vegetal,
+            id_tipo_leite = :id_tipo_leite,
+            observacoes_cliente = :observacoes_cliente";
+
+    if (!empty($dados['foto_cliente'])) {
+        $sql .= ", foto_cliente = :foto_cliente";
+    }
+
+    $sql .= " WHERE id_cliente = :id_cliente";
+
+    $stmt = $this->db->prepare($sql);
+
+    // Bind dos dados
+    $stmt->bindValue(':nome_cliente', $dados['nome_cliente']);
+    $stmt->bindValue(':email_cliente', $dados['email_cliente']);
+    $stmt->bindValue(':senha_cliente', $dados['senha_cliente']);
+    $stmt->bindValue(':nasc_cliente', $dados['nasc_cliente']);
+    $stmt->bindValue(':id_produto', $dados['id_produto']);
+    $stmt->bindValue(':id_intensidade', $dados['id_intensidade']);
+    $stmt->bindValue(':id_acompanhamento', $dados['id_acompanhamento']);
+    $stmt->bindValue(':prefere_leite_vegetal', $dados['prefere_leite_vegetal']);
+    $stmt->bindValue(':id_tipo_leite', $dados['id_tipo_leite']);
+    $stmt->bindValue(':observacoes_cliente', $dados['observacoes_cliente']);
+
+    if (!empty($dados['foto_cliente'])) {
+        $stmt->bindValue(':foto_cliente', $dados['foto_cliente']);
+    }
+
+    $stmt->bindValue(':id_cliente', $id);
+
+    return $stmt->execute();
+}
+
 
     public function getClienteById($id)
     {
