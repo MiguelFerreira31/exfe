@@ -4746,6 +4746,847 @@ html body main #cardapio-tv .paes-menu figure img {
     transform: translate(0, 0px);
   }
 }
+@media (max-width: 1400px) {
+  html body main #sobre {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 60px 10%;
+    position: relative;
+    flex-wrap: wrap;
+  }
+  html body main #sobre .sobreLeft,
+  html body main #sobre .sobreRight {
+    flex: 1 1 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  html body main #sobre .sobreLeft img,
+  html body main #sobre .sobreRight img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  html body main #sobre .sobreRight h3 {
+    font-size: 1.5rem;
+    margin-top: 10px;
+  }
+  html body main #sobre .sobrePosition {
+    position: absolute;
+    bottom: -30px;
+    right: 50px;
+    display: flex;
+    gap: 20px;
+  }
+  html body main #sobre .sobrePosition img {
+    width: 80px;
+    height: auto;
+  }
+  html body main #sobre .imgOne {
+    transform: rotate(-10deg);
+  }
+  html body main #sobre .imgTwo {
+    transform: rotate(10deg);
+  }
+  html body main #produtosEmDestaque .produtosItems {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  html body main #produtosEmDestaque .title h2 {
+    width: 50%;
+  }
+  html body main #produtosEmDestaque .title p {
+    width: 90%;
+  }
+  html body main #produtosEmDestaque .produtosPosition img {
+    left: 650px;
+  }
+  html body main #graos {
+    min-width: auto !important;
+    flex-direction: row;
+    padding: 0 5%;
+    gap: 30px;
+  }
+  html body main #graos .graosTitle h3 {
+    font-size: 2em;
+    width: 500px;
+  }
+  html body main #graos .grao {
+    height: 250px;
+  }
+  html body main #graos .seta {
+    left: 700px;
+  }
+  html body main #itemEspecial .title p {
+    width: 80%;
+    font-size: 1.2em;
+  }
+  html body main #itemEspecial .swiper-slide .img {
+    width: 320px;
+    height: 340px;
+  }
+  html body main #itemEspecial .itemsEspecialPosition .cup {
+    left: 600px;
+  }
+  html body main #itemEspecial .itemsEspecialPosition .grao {
+    left: -600px;
+  }
+  html body main #avaliacao .title p {
+    width: 80%;
+    font-size: 1.2em;
+  }
+  html body main #avaliacao .swiper-slide {
+    width: 300px;
+  }
+  html body main #avaliacao .swiper-slide .img {
+    width: 340px;
+    height: 340px;
+  }
+  html body main #avaliacao .swiper-slide .img .imgItems {
+    width: 300px;
+    height: 320px;
+  }
+  html body main #avaliacao .swiper-slide .img .imgItems h3 {
+    font-size: 1.6em;
+  }
+  html body main #avaliacao .swiper-slide .img .imgItems h4,
+  html body main #avaliacao .swiper-slide .img .imgItems p {
+    font-size: 1.1em;
+  }
+  html body main #avaliacao .swiper-slide .carouselItems h3 {
+    font-size: 1.6em;
+  }
+  html body main #avaliacao .swiper-slide .carouselItems h4 {
+    font-size: 1.1em;
+  }
+  html body main #qualidade .qualidadeItems {
+    gap: 15px;
+  }
+  html body main #qualidade .qualidadeItems .img img {
+    width: 450px;
+  }
+  html body main #qualidade .qualidadeItems .qualidadeContItems .itemsQualidade {
+    width: 450px;
+  }
+  html body main #qualidade .qualidadeItems .qualidadeContItems .itemsQualidade div h4 {
+    width: 380px;
+  }
+  html body main #qualidade .qualidadeItems .qualidadeContItems .itemsQualidade div p {
+    width: 340px;
+  }
+  html body main #blog .title p {
+    width: 70%;
+  }
+  html body main #blog .blogCont {
+    width: 380px;
+  }
+  html body main #blog .blogCont .img img {
+    width: 100%;
+  }
+  html body main #blog .blogCont .blogItems .blogTitle h4,
+  html body main #blog .blogCont .blogItems .blogTitle p {
+    width: 100%;
+  }
+  html body main #blog .blogPosition .cup {
+    left: 600px;
+  }
+  html body main #desconto {
+    min-width: 100% !important;
+    padding: 0 5%;
+  }
+  html body main #desconto .emailCont .emailTitle h2 {
+    width: 100%;
+    text-align: center;
+  }
+  html body main #desconto .emailCont {
+    margin-right: 0;
+  }
+}
+@media (max-width: 1200px) {
+  html body main #sobre {
+    gap: 30px;
+    padding: 50px 8%;
+  }
+  html body main #sobre .sobrePosition {
+    right: 30px;
+  }
+  html body main #produtosEmDestaque .produtosItems {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  html body main #produtosEmDestaque .title h2 {
+    width: 45%;
+    font-size: 2em;
+  }
+  html body main #produtosEmDestaque .title img {
+    height: 100px;
+  }
+  html body main #produtosEmDestaque .title p {
+    width: 80%;
+    font-size: 1.3em;
+  }
+  html body main #produtosEmDestaque .produtosContItems img {
+    width: 230px;
+  }
+  html body main #produtosEmDestaque .produtosPosition img {
+    left: 700px;
+    width: 100px;
+  }
+  html body main #produtosEmDestaque .buttons button {
+    padding: 10px 30px;
+    font-size: 16px;
+  }
+  html body main #graos {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: auto;
+    padding: 40px 5%;
+    gap: 30px;
+  }
+  html body main #graos .graosTitle h3 {
+    width: 100%;
+    font-size: 1.8em;
+    letter-spacing: -1px;
+  }
+  html body main #graos .buttons {
+    width: 100%;
+    justify-content: center !important;
+  }
+  html body main #graos .grao {
+    height: 220px;
+  }
+  html body main #graos .seta {
+    top: unset;
+    left: unset;
+    position: static;
+    margin-top: 20px;
+    width: 100px;
+  }
+  html body main #itemEspecial {
+    gap: 40px;
+  }
+  html body main #itemEspecial .title h2 {
+    font-size: 2em;
+  }
+  html body main #itemEspecial .title p {
+    font-size: 1.1em;
+  }
+  html body main #itemEspecial .swiper-slide .img {
+    width: 300px;
+    height: 320px;
+  }
+  html body main #itemEspecial .swiper-slide h3 {
+    font-size: 1.8em;
+  }
+  html body main #itemEspecial .swiper-slide h4 {
+    font-size: 1.2em;
+  }
+  html body main #itemEspecial .buttons {
+    width: 65%;
+  }
+  html body main #itemEspecial .itemsEspecialPosition .cup {
+    left: 500px;
+  }
+  html body main #itemEspecial .itemsEspecialPosition .grao {
+    left: -500px;
+  }
+  html body main #avaliacao .title p {
+    width: 85%;
+    font-size: 1.2em;
+  }
+  html body main #avaliacao .swiper-slide {
+    width: 350px;
+  }
+  html body main #avaliacao .swiper-slide .img {
+    width: 370px;
+    height: 370px;
+  }
+  html body main #avaliacao .swiper-slide .img .imgItems {
+    width: 340px;
+    height: 350px;
+  }
+  html body main #avaliacao .swiper-slide .img .imgItems h3 {
+    font-size: 1.6em;
+  }
+  html body main #avaliacao .swiper-slide .img .imgItems h4,
+  html body main #avaliacao .swiper-slide .img .imgItems p {
+    font-size: 1.1em;
+  }
+  html body main #avaliacao .swiper-slide .carouselItems h3 {
+    font-size: 1.6em;
+  }
+  html body main #avaliacao .swiper-slide .carouselItems h4 {
+    font-size: 1.1em;
+  }
+  html body main #avaliacao .swiper-slide .carouselItems ul {
+    margin-left: -6%;
+  }
+  html body main #qualidade .title p {
+    font-size: 1.2em;
+    width: 90%;
+    text-align: center;
+  }
+  html body main #qualidade .qualidadeItems {
+    gap: 20px;
+  }
+  html body main #qualidade .qualidadeItems .img img {
+    width: 380px;
+  }
+  html body main #qualidade .qualidadeItems .qualidadeContItems .itemsQualidade {
+    width: 400px;
+    height: auto;
+    gap: 15px;
+  }
+  html body main #qualidade .qualidadeItems .qualidadeContItems .itemsQualidade div h4 {
+    font-size: 1.1em;
+    width: 100%;
+  }
+  html body main #qualidade .qualidadeItems .qualidadeContItems .itemsQualidade div p {
+    font-size: 1.1em;
+    width: 100%;
+  }
+  html body main #blog .title p {
+    width: 90%;
+  }
+  html body main #blog .blogContainer {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  html body main #blog .blogCont {
+    width: 90%;
+    height: auto;
+    padding: 2%;
+  }
+  html body main #blog .blogCont .img img {
+    width: 100%;
+    height: auto;
+  }
+  html body main #blog .blogCont .blogItems .blogTitle h4,
+  html body main #blog .blogCont .blogItems .blogTitle p {
+    width: 100%;
+  }
+  html body main #blog .blogPosition {
+    display: none;
+  }
+  html body main #desconto {
+    flex-direction: column;
+    height: auto;
+    padding: 40px 20px;
+  }
+  html body main #desconto .coffee,
+  html body main #desconto .bean {
+    display: none;
+  }
+  html body main #desconto .emailCont {
+    width: 100%;
+    align-items: center;
+    margin-right: 0;
+  }
+  html body main #desconto .emailCont .emailTitle {
+    text-align: center;
+  }
+  html body main #desconto .emailCont .emailTitle h2 {
+    width: 100%;
+    font-size: 2em;
+  }
+  html body main #desconto .emailCont .emailTitle p {
+    font-size: 1.2em;
+  }
+  html body main #desconto .emailCont .emailItems form {
+    flex-direction: column;
+    gap: 15px;
+  }
+  html body main #desconto .emailCont .emailItems form .email {
+    width: 100%;
+  }
+  html body main #desconto .emailCont .emailItems form .buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  html body main #desconto .emailCont .emailItems form .buttons button {
+    width: 100%;
+  }
+}
+@media (max-width: 992px) {
+  html body main #sobre {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  html body main #sobre .sobreLeft,
+  html body main #sobre .sobreRight {
+    flex: 1 1 100%;
+    max-width: 700px;
+  }
+  html body main #sobre .sobrePosition {
+    position: static;
+    margin-top: 40px;
+    justify-content: center;
+  }
+  html body main #produtosEmDestaque .produtosItems {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+  html body main #produtosEmDestaque #produtosEmDestaque .title {
+    flex-direction: column;
+    text-align: center;
+  }
+  html body main #produtosEmDestaque #produtosEmDestaque .title h2,
+  html body main #produtosEmDestaque #produtosEmDestaque .title p {
+    width: 100%;
+  }
+  html body main #produtosEmDestaque #produtosEmDestaque .produtosContItems img {
+    width: 220px;
+  }
+  html body main #produtosEmDestaque #produtosEmDestaque .produtosPosition img {
+    top: 100px;
+    left: 500px;
+    width: 90px;
+  }
+  html body main #graos .graosTitle h3 {
+    font-size: 1.6em;
+  }
+  html body main #graos .grao {
+    height: 200px;
+  }
+  html body main #graos .buttons button {
+    font-size: 1em;
+    padding: 8px 25px;
+  }
+  html body main #itemEspecial .title h2 {
+    font-size: 1.8em;
+  }
+  html body main #itemEspecial .title p {
+    font-size: 1em;
+    width: 90%;
+  }
+  html body main #itemEspecial .swiper-slide .img {
+    width: 260px;
+    height: 280px;
+  }
+  html body main #itemEspecial .swiper-slide h3 {
+    font-size: 1.5em;
+  }
+  html body main #itemEspecial .swiper-slide h4 {
+    font-size: 1.1em;
+  }
+  html body main #itemEspecial .buttons {
+    width: 75%;
+  }
+  html body main #itemEspecial .itemsEspecialPosition .cup,
+  html body main #itemEspecial .itemsEspecialPosition .grao {
+    display: none;
+  }
+  html body main #avaliacao {
+    gap: 30px;
+  }
+  html body main #avaliacao .title h2 {
+    font-size: 1.8em;
+  }
+  html body main #avaliacao .title p {
+    font-size: 1.1em;
+  }
+  html body main #avaliacao .swiper {
+    margin-left: 0;
+  }
+  html body main #avaliacao .swiper-slide {
+    width: 100% !important;
+    align-items: center;
+  }
+  html body main #avaliacao .swiper-slide .img {
+    width: 280px;
+    height: 280px;
+  }
+  html body main #avaliacao .swiper-slide .img .imgItems {
+    width: 260px;
+    height: auto;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    position: static;
+    background: #000000;
+    padding: 15px;
+    border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  html body main #avaliacao .swiper-slide .img .imgItems h3 {
+    font-size: 1.4em;
+  }
+  html body main #avaliacao .swiper-slide .img .imgItems h4 {
+    font-size: 1em;
+  }
+  html body main #avaliacao .swiper-slide .img .imgItems p {
+    font-size: 1em;
+  }
+  html body main #avaliacao .swiper-slide .img:hover .imgItems {
+    /* Desativa hover */
+    opacity: 1;
+    visibility: visible;
+  }
+  html body main #avaliacao .swiper-slide .carouselItems {
+    display: none !important;
+  }
+  html body main #qualidade .qualidadeItems {
+    flex-direction: column;
+    align-items: center;
+  }
+  html body main #qualidade .qualidadeItems .img img {
+    width: 300px;
+    margin: 30px 0;
+  }
+  html body main #qualidade .qualidadeItems .qualidadeContItems {
+    flex-direction: column;
+    gap: 30px;
+  }
+  html body main #qualidade .qualidadeItems .qualidadeContItems .itemsQualidade {
+    width: 90%;
+    flex-direction: row;
+  }
+  html body main #qualidade .qualidadeItems .qualidadeContItems .itemsQualidade img {
+    width: 60px;
+  }
+  html body main #qualidade .qualidadeItems .qualidadeContItems .itemsQualidade div h4 {
+    font-size: 1.1em;
+  }
+  html body main #qualidade .qualidadeItems .qualidadeContItems .itemsQualidade div p {
+    font-size: 1em;
+  }
+  html body main #blog .blogCont {
+    width: 95%;
+  }
+  html body main #blog .title h2 {
+    font-size: 2em;
+  }
+  html body main #blog .title p {
+    font-size: 1.1em;
+  }
+  html body main #blog .buttons button {
+    font-size: 15px;
+    padding: 10px 25px;
+  }
+  html body main #desconto .emailCont .emailTitle h2 {
+    font-size: 1.8em;
+  }
+  html body main #desconto .emailCont .emailTitle p {
+    font-size: 1.1em;
+  }
+  html body main #desconto .emailCont .emailItems form .email::-moz-placeholder {
+    font-size: 1.3em;
+  }
+  html body main #desconto .emailCont .emailItems form .email::placeholder {
+    font-size: 1.3em;
+  }
+  html body main #desconto .emailCont .emailItems form .buttons button {
+    font-size: 1.1em;
+    padding: 10px 25px;
+  }
+}
+@media (max-width: 768px) {
+  html body main #sobre .sobreRight h3 {
+    font-size: 1.3rem;
+  }
+  html body main #sobre .sobrePosition img {
+    width: 60px;
+  }
+  html body main #produtosEmDestaque {
+    padding: 0 5%;
+  }
+  html body main #produtosEmDestaque .produtosItems {
+    grid-template-columns: 1fr;
+  }
+  html body main #produtosEmDestaque .produtosContItems {
+    max-width: 100%;
+  }
+  html body main #produtosEmDestaque .produtosContItems img {
+    width: 200px;
+  }
+  html body main #produtosEmDestaque .info .infoItems {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  html body main #produtosEmDestaque .buttons button {
+    font-size: 15px;
+    padding: 10px 25px;
+  }
+  html body main #produtosEmDestaque .produtosPosition img {
+    display: none;
+  }
+  html body main #graos {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px 20px;
+    gap: 20px;
+  }
+  html body main #graos .graosTitle h3 {
+    font-size: 1.4em;
+  }
+  html body main #graos .buttons {
+    width: 100%;
+    justify-content: center !important;
+  }
+  html body main #graos .buttons button {
+    font-size: 0.95em;
+    padding: 8px 20px;
+  }
+  html body main #graos .grao {
+    height: 180px;
+  }
+  html body main #graos .seta {
+    display: none;
+  }
+  html body main #itemEspecial .title h2 {
+    font-size: 1.6em;
+    text-align: center;
+  }
+  html body main #itemEspecial .title p {
+    font-size: 0.95em;
+  }
+  html body main #itemEspecial .swiper-slide .img {
+    width: 220px;
+    height: 240px;
+  }
+  html body main #itemEspecial .swiper-slide h3 {
+    font-size: 1.4em;
+  }
+  html body main #itemEspecial .buttons {
+    width: 100%;
+  }
+  html body main #itemEspecial .buttons button {
+    padding: 10px 20px;
+    font-size: 0.95em;
+  }
+  html body main #avaliacao .title h2 {
+    font-size: 1.6em;
+    text-align: center;
+  }
+  html body main #avaliacao .title p {
+    font-size: 0.95em;
+    width: 100%;
+  }
+  html body main #avaliacao .swiper-slide .img {
+    width: 220px;
+    height: 220px;
+  }
+  html body main #avaliacao .swiper-slide .img .imgItems {
+    width: 100%;
+    padding: 10px;
+  }
+  html body main #avaliacao .swiper-slide .img .imgItems h3 {
+    font-size: 1.2em;
+  }
+  html body main #avaliacao .swiper-slide .img .imgItems h4,
+  html body main #avaliacao .swiper-slide .img .imgItems p {
+    font-size: 0.95em;
+  }
+  html body main #avaliacao .swiper-slide .img .imgItems ul {
+    margin-left: 0;
+  }
+  html body main #qualidade .title h2 {
+    font-size: 1.6em;
+    text-align: center;
+  }
+  html body main #qualidade .title p {
+    font-size: 1em;
+  }
+  html body main #qualidade .qualidadeItems .img img {
+    width: 250px;
+  }
+  html body main #qualidade .itemsQualidade {
+    gap: 10px;
+  }
+  html body main #qualidade .itemsQualidade img {
+    width: 55px;
+  }
+  html body main #qualidade .itemsQualidade div h4 {
+    font-size: 1em;
+  }
+  html body main #qualidade .itemsQualidade div p {
+    font-size: 0.95em;
+  }
+  html body main #blog {
+    gap: 30px;
+  }
+  html body main #blog .title h2 {
+    font-size: 1.8em;
+    text-align: center;
+  }
+  html body main #blog .title p {
+    font-size: 1em;
+  }
+  html body main #blog .blogCont {
+    flex-direction: column;
+    padding: 4%;
+  }
+  html body main #blog .blogItemsCont {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+  html body main #blog .blogItemsCont hr {
+    display: none;
+  }
+  html body main #blog .buttons button {
+    font-size: 14px;
+    padding: 8px 20px;
+  }
+  html body main #desconto {
+    gap: 30px;
+  }
+  html body main #desconto .emailCont .emailTitle h2 {
+    font-size: 1.6em;
+  }
+  html body main #desconto .emailCont .emailTitle p {
+    font-size: 1em;
+  }
+  html body main #desconto .emailCont .emailItems form .email::-moz-placeholder {
+    font-size: 1.1em;
+  }
+  html body main #desconto .emailCont .emailItems form .email::placeholder {
+    font-size: 1.1em;
+  }
+  html body main #desconto .emailCont .emailItems form .buttons button {
+    font-size: 1em;
+  }
+}
+@media (max-width: 576px) {
+  html body main #sobre {
+    padding: 40px 20px;
+  }
+  html body main #sobre .sobreRight h3 {
+    font-size: 1.1rem;
+  }
+  html body main #sobre .sobrePosition {
+    flex-direction: column;
+    align-items: center;
+  }
+  html body main #sobre .sobrePosition img {
+    width: 50px;
+  }
+  html body main #produtosEmDestaque .title img {
+    height: 80px;
+  }
+  html body main #produtosEmDestaque .title p {
+    font-size: 1.1em;
+  }
+  html body main #produtosEmDestaque .buttons button {
+    width: 100%;
+    text-align: center;
+  }
+  html body main #graos {
+    padding: 25px 15px;
+  }
+  html body main #graos .graosTitle h3 {
+    font-size: 1.2em;
+  }
+  html body main #graos .grao {
+    height: 150px;
+  }
+  html body main #graos .buttons button {
+    width: 100%;
+  }
+  html body main #itemEspecial .title h2 {
+    font-size: 1.4em;
+  }
+  html body main #itemEspecial .title p {
+    font-size: 0.9em;
+    width: 100%;
+  }
+  html body main #itemEspecial .swiper-slide .img {
+    width: 180px;
+    height: 200px;
+  }
+  html body main #itemEspecial .swiper-slide h3 {
+    font-size: 1.2em;
+  }
+  html body main #itemEspecial .swiper-slide h4 {
+    font-size: 1em;
+  }
+  html body main #itemEspecial .buttons button {
+    font-size: 0.85em;
+  }
+  html body main #avaliacao .title h2 {
+    font-size: 1.4em;
+  }
+  html body main #avaliacao .swiper-slide .img {
+    width: 180px;
+    height: 200px;
+  }
+  html body main #avaliacao .swiper-slide .img .imgItems {
+    padding: 8px;
+  }
+  html body main #avaliacao .swiper-slide .img .imgItems h3 {
+    font-size: 1.1em;
+  }
+  html body main #avaliacao .swiper-slide .img .imgItems h4,
+  html body main #avaliacao .swiper-slide .img .imgItems p {
+    font-size: 0.9em;
+  }
+  html body main #qualidade .title h2 {
+    font-size: 1.4em;
+  }
+  html body main #qualidade .title p {
+    font-size: 0.9em;
+  }
+  html body main #qualidade .qualidadeItems .img img {
+    width: 200px;
+  }
+  html body main #qualidade .qualidadeItems .itemsQualidade {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  html body main #qualidade .qualidadeItems .itemsQualidade img {
+    width: 50px;
+  }
+  html body main #qualidade .qualidadeItems .itemsQualidade div h4,
+  html body main #qualidade .qualidadeItems .itemsQualidade div p {
+    width: 90%;
+  }
+  html body main #blog .title h2 {
+    font-size: 1.5em;
+  }
+  html body main #blog .title p {
+    font-size: 0.95em;
+    width: 95%;
+  }
+  html body main #blog .blogCont {
+    width: 100%;
+    padding: 5%;
+  }
+  html body main #blog .blogItems .blogTitle h4 {
+    font-size: 1.1em;
+  }
+  html body main #blog .blogItems .blogTitle p {
+    font-size: 0.95em;
+  }
+  html body main #blog .buttons button {
+    font-size: 13px;
+  }
+  html body main #desconto {
+    border-radius: 40px;
+    padding: 30px 15px;
+  }
+  html body main #desconto .emailCont .emailTitle h2 {
+    font-size: 1.4em;
+  }
+  html body main #desconto .emailCont .emailTitle p {
+    font-size: 0.95em;
+  }
+  html body main #desconto .emailCont .emailItems form .email::-moz-placeholder {
+    font-size: 1em;
+  }
+  html body main #desconto .emailCont .emailItems form .email::placeholder {
+    font-size: 1em;
+  }
+  html body main #desconto .emailCont .emailItems form .buttons button {
+    font-size: 0.95em;
+    padding: 10px 20px;
+  }
+}
 html body .footer {
   margin-top: 5%;
   display: flex;
@@ -5191,4 +6032,94 @@ html body .footer #scrollToTopBtn .arrow {
 }
 html body .footer #scrollToTopBtn:hover {
   transform: scale(1.08);
+}
+@media (max-width: 1400px) {
+  html body .footer .footer-container {
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  html body .footer .footer-links {
+    gap: 40px;
+  }
+}
+@media (max-width: 1200px) {
+  html body .footer .footer-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+  html body .footer .footer-logo h3 {
+    width: 100%;
+    text-align: center;
+  }
+  html body .footer .footer-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+  html body .footer .footer-section {
+    align-items: center;
+    text-align: center;
+  }
+}
+@media (max-width: 992px) {
+  html body .footer .footer-logo img {
+    width: 200px;
+    height: auto;
+  }
+  html body .footer .footer-section h4 {
+    font-size: 1.5em;
+  }
+  html body .footer .footer-section a {
+    font-size: 1.2em;
+  }
+  html body .footer .paragrafo {
+    font-size: 1em;
+  }
+}
+@media (max-width: 768px) {
+  html body .footer .footer-container {
+    gap: 20px;
+    padding: 0 5%;
+  }
+  html body .footer .footer-links {
+    gap: 25px;
+  }
+  html body .footer .footer-section .card {
+    gap: 10px;
+  }
+  html body .footer .chat-boot #chat-container {
+    width: 90%;
+    right: 5%;
+  }
+}
+@media (max-width: 576px) {
+  html body .footer .footer-logo h3 {
+    font-size: 1em;
+    width: 100%;
+  }
+  html body .footer .footer-section h4 {
+    font-size: 1.2em;
+  }
+  html body .footer .footer-section a {
+    font-size: 1em;
+  }
+  html body .footer .footer-section .card {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  html body .footer .chat-boot #chat-icon {
+    bottom: 70px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+  }
+  html body .footer .chat-boot #chat-icon i {
+    font-size: 1.5em;
+  }
+  html body .footer .paragrafo {
+    font-size: 0.9em;
+    text-align: center;
+    padding: 0 10px;
+  }
 }/*# sourceMappingURL=style.css.map */
