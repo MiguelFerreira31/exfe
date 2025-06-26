@@ -185,7 +185,7 @@ class ApiController extends Controller
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             http_response_code(405);
-            echo json_encode(['erro' => 'Método não permitido555'], JSON_UNESCAPED_UNICODE);
+            echo json_encode(['erro' => 'Método não permitido'], JSON_UNESCAPED_UNICODE);
             return;
         }
 
@@ -205,12 +205,13 @@ class ApiController extends Controller
             return;
         }
 
+        // Geração do token e validade
         $token = bin2hex(random_bytes(32));
         $expira = date('Y-m-d H:i:s', strtotime('+1 hour'));
 
         $this->clienteModel->salvarTokenRecuperacao($cliente['id_cliente'], $token, $expira);
 
-        // ENVIO DE E-MAIL
+        // Envio do e-mail
         require_once("vendors/phpmailer/PHPMailer.php");
         require_once("vendors/phpmailer/SMTP.php");
         require_once("vendors/phpmailer/Exception.php");
@@ -219,37 +220,49 @@ class ApiController extends Controller
 
         try {
             $mail->isSMTP();
-            $mail->Host       = EMAIL_HOST;
-            $mail->Port       = EMAIL_PORT;
+            $mail->Host       = 'smtp.gmail.com';
+            $mail->Port       = 465;
             $mail->SMTPAuth   = true;
             $mail->SMTPSecure = 'ssl';
-            $mail->Username   = EMAIL_USER;
-            $mail->Password   = EMAIL_PASS;
+            $mail->Username   = 'devcyclesz@gmail.com';
+            $mail->Password   = 'tpep xlgg hgzw wyef';
+            $mail->CharSet    = 'UTF-8';
+            $mail->Encoding   = 'base64';
 
-            $mail->CharSet = 'UTF-8';
-            $mail->Encoding = 'base64';
-
-            $mail->setFrom(EMAIL_USER, 'Exfé');
+            $mail->setFrom('devcyclesz@gmail.com', 'EXFÉ');
             $mail->addAddress($cliente['email_cliente'], $cliente['nome_cliente']);
             $mail->isHTML(true);
-            $mail->Subject = 'Recuperação de Senha';
+            $mail->Subject = 'Redefinição de Senha - EXFÉ';
+
             $link = BASE_URL . "api/redefinirSenha?token=$token";
 
-            $mail->msgHTML("
-            Olá {$cliente['nome_cliente']},<br><br>
-            Recebemos uma solicitação para redefinir sua senha.<br>
-            Clique no link abaixo para criar uma nova senha:<br><br>
-            <a href='$link'>$link</a><br><br>
-            Se você não fez essa solicitação, ignore este e-mail.
-        ");
-            $mail->AltBody = "Olá {$cliente['nome_cliente']}, acesse $link para redefinir sua senha.";
+            $mail->Body = '
+            <div style="font-family: Arial, sans-serif; font-size: 16px; color: #5c4033; max-width: 600px; margin: auto; padding: 20px;">
+                <h2 style="color: #5c4033;">Olá ' . htmlspecialchars($cliente['nome_cliente']) . ',</h2>
+                <p>Recebemos uma solicitação para redefinir sua senha na plataforma <strong>EXFÉ</strong>.</p>
+                <p>Clique no botão abaixo para criar uma nova senha:</p>
+                <div style="text-align: center; margin: 20px 0;">
+                    <a href="' . $link . '" style="padding: 12px 24px; background-color: #5c4033; color: #fff; text-decoration: none; border-radius: 5px;">Redefinir Senha</a>
+                </div>
+                <p>Ou copie e cole este link no seu navegador:</p>
+                <p><a href="' . $link . '">' . $link . '</a></p>
+                <p style="color: #5c4033;">Se você não fez essa solicitação, apenas ignore este e-mail.</p>
+                <hr>
+                <p style="font-size: 12px; color: #aaa;">© ' . date('Y') . ' EXFÉ. Todos os direitos reservados.</p>
+            </div>
+        ';
+
+            $mail->AltBody = "Olá {$cliente['nome_cliente']}, acesse este link para redefinir sua senha: $link";
 
             $mail->send();
 
             echo json_encode(['mensagem' => 'Um link de redefinição foi enviado para seu e-mail'], JSON_UNESCAPED_UNICODE);
         } catch (Exception $e) {
             http_response_code(500);
-            echo json_encode(['erro' => 'Erro ao enviar e-mail', 'detalhes' => $mail->ErrorInfo], JSON_UNESCAPED_UNICODE);
+            echo json_encode([
+                'erro' => 'Erro ao enviar e-mail',
+                'detalhes' => $mail->ErrorInfo
+            ], JSON_UNESCAPED_UNICODE);
         }
     }
 
@@ -257,8 +270,8 @@ class ApiController extends Controller
     public function redefinirSenha()
     {
         $dados = array();
-        $dados['titulo'] = 'Recuperação de senha - ClubFitness';
-        $this->carregarViews('recuperar_senha', $dados);
+        $dados['titulo'] = 'Recuperação de senha - Exfé';
+        $this->carregarViews('recuperar', $dados);
     }
 
     /** O usuário acessa o link com o token, define uma nova senha e salva. */
@@ -947,7 +960,7 @@ class ApiController extends Controller
             ], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         }
     }
-    
+
     public function listarReservas()
     {
         header("Content-Type: application/json");

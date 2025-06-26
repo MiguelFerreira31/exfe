@@ -333,7 +333,7 @@ class Cliente extends Model
     // 6 Método para add FOTO Cliente 
     public function addFotoCliente($idCliente, $nomeFoto)
     {
-        $sql = "UPDATE clientes SET foto_cliente = :foto WHERE id_cliente = :id";
+        $sql = "UPDATE tbl_clientes SET foto_cliente = :foto WHERE id_cliente = :id";
         $stmt = $this->db->prepare($sql);
         $stmt->bindValue(':foto', $nomeFoto);
         $stmt->bindValue(':id', $idCliente);
